@@ -7,6 +7,12 @@ namespace Blog\Frontend\Controllers;
  */
 class IndexController extends BaseController
 {
+	public function initialize()
+	{
+		\Phalcon\Tag::setTitle('首页');
+		parent::initialize();
+		$this->view->setTemplateAfter('common');
+	}
 
 	public function indexAction()
 	{

@@ -2,6 +2,7 @@
 namespace Blog\Frontend\Controllers;
 use Phalcon\Mvc\Controller;
 
+
 /**
  * 基础控制器
  * @author hongker
@@ -9,5 +10,8 @@ use Phalcon\Mvc\Controller;
  */
 class BaseController extends Controller
 {
-
+	protected function initialize() {
+        //Prepend the application name to the title
+        \Phalcon\Tag::prependTitle('Blog | ');
+    }
 }

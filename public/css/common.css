@@ -1,0 +1,7 @@
+@CHARSET "UTF-8";
+body {
+  font-family: microsoft yahei,Tahoma,Helvetica,arial,sans-serif;
+}
+.navbar {
+	border-radius:0px;
+}
