@@ -1,7 +1,86 @@
 @CHARSET "UTF-8";
+
 body {
-  font-family: microsoft yahei,Tahoma,Helvetica,arial,sans-serif;
+	font-family: microsoft yahei, Tahoma, Helvetica, arial, sans-serif;
 }
+
 .navbar {
-	border-radius:0px;
+	border-radius: 0px;
+}
+.navbar-inverse {
+  background-color: #1787CB;
+}
+.navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:hover, .navbar-inverse .navbar-nav>.active>a:focus {
+  color: #fff;
+  background-color: #19D2D2;
+}
+
+/**
+ * footer
+ */
+
+.top-footer {
+	background-color: #222222;
+	color: #ffffff;
+	text-align: center;
+	font-family: "Lato", sans-serif;
+	padding: 30px 0;
+	font-size: 21px;
+	font-weight: 300;
+}
+.top-footer span{
+	font-size:30px;
+}
+.top-footer .register-btn {
+	transition: 0.2s all;
+	font-size:22px;
+}
+.center-footer {
+	background-color: #161616;
+  	color: #666666;
+}
+.center-footer {
+	padding:40px 0px;
+	color: #ffffff;
+}
+.center-footer span {
+	font-size:18px;
+}
+ul li{
+	list-style: none;
+}
+.center-footer ul {
+	padding:0px;
+	margin-top:20px;
+}
+.center-footer ul li a {
+	color:#E0E0E0;
+	transition: 0.5s all;
+}
+.center-footer ul li a:hover {
+	color:#ffffff;
+	cursor: pointer;
+}
+
+
+ul.atentions li {
+	float:left;
+	width:20%;
+}
+ul.atentions li a{
+	height:50px;
+	width:50px;
+	background-color: #fff;
+  	border-radius: 50%;
+  	padding: 10px;
+	color:#000000;
+}
+ul.atentions li a:hover {
+	background-color: rgba(211, 211, 211, 0.56);
+	color:#fff;
+}
+.bottom-footer {
+	padding:20px;
+	background-color: #0a0a0a;
+	color:#666666;
 }

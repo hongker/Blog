@@ -2,8 +2,7 @@
 use Phalcon\Mvc\Router;
 use Phalcon\Mvc\Application;
 use Phalcon\DI\FactoryDefault;
-
-
+$config = new Phalcon\Config\Adapter\Ini("../apps/configs/config.ini");
 $di = new FactoryDefault();
 
 // 自定义路由
@@ -33,6 +32,7 @@ $di->set('router', function () {
 
     return $router;
 });
+
 
 try {
 
