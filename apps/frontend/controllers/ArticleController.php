@@ -35,8 +35,9 @@ class ArticleController extends BaseController
 		
 		$article = $this->operation->get($id);
 		
-		$article->author = $this->operation->getAuthor($id);
+		$article->author = $article->getAuthor();
 		
+		$artiles->comments = $article->getComments();
 		$this->view->setVar('article',$article);
 		$this->view->cache(array(
 				"lifetime" => 3600
