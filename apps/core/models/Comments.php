@@ -1,11 +1,11 @@
 <?php
 namespace Blog\Models;
 /**
- * Articles模型
+ * Comments模型
  * @author hongker
  *
  */
-class Articles extends BaseModel {
+class Comments extends BaseModel {
 	/**
 	 * 模型初始化
 	 */
@@ -13,10 +13,11 @@ class Articles extends BaseModel {
 		//关联users表
 		$this->belongsTo("author_id", "Blog\Models\Users", "id", array(
               'alias' => 'Author'
-          ));
+         ));
 		
-		$this->hasMany("id", "Blog\Models\Comments", "target_id", array(
-				'alias' => 'Comments'
+		//关联articles表
+		$this->belongsTo("article_id", "Blog\Models\Articles", "id", array(
+				'alias' => 'Article'
 		));
 	}
 }
