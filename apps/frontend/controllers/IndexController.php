@@ -16,7 +16,9 @@ class IndexController extends BaseController
 
 	public function indexAction()
 	{
-		echo "<h1>Hello!</h1>";
+		for($i=1;$i<50;$i++) {
+			echo $i;
+		}
 	}
 
 }
