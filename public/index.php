@@ -29,6 +29,25 @@ $di->set('router', function () {
         'action'     => 'index',
     ));
 
+    $router->add('/admin', array(
+    		'module' => 'backend',
+    		'controller' => 'index',
+    		'action' => 'index',
+    ));
+    $router->add('/admin/', array(
+    		'module' => 'backend',
+    		'controller' => 'index',
+    		'action' => 'index',
+    ));
+    $router->add('/admin/:controller', array(
+    		'module' => 'backend',
+    		'controller' => 1,
+    ));
+    $router->add('/admin/:controller/', array(
+    		'module' => 'backend',
+    		'controller' => 1,
+    ));
+    
     $router->add('/admin/:controller/:action', array(
     		'module' => 'backend',
     		'controller' => 1,

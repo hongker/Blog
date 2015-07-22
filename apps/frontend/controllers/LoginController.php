@@ -1,6 +1,8 @@
 <?php
 namespace Blog\Frontend\Controllers;
-use Blog\Models\Users;
+use Blog\Operations\UserOperation;
+use Blog\Operations\ArticleOperation;
+
 /**
  * 首页控制器
  * @author hongker
@@ -16,8 +18,9 @@ class LoginController extends BaseController
 	}
 
 	public function indexAction() {
-		$user = Users::findFirst();
-		echo $user->username;exit;
+		$operation = new ArticleOperation();
+		$author = $operation->getAuthor(1);
+		echo $author->username;exit;
 	}
 
 }

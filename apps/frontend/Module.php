@@ -17,7 +17,8 @@ class Module implements ModuleDefinitionInterface {
 		
 		$loader->registerNamespaces ( array (
 				'Blog\Frontend\Controllers' => '../apps/frontend/controllers/',
-				'Blog\Models' => '../apps/core/models/' 
+				'Blog\Models' => '../apps/core/models/',
+				'Blog\Operations' => '../apps/core/operations/',
 		) );
 		
 		$loader->register ();
