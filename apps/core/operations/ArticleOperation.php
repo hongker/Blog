@@ -65,4 +65,12 @@ class ArticleOperation extends BaseOperation implements Operation {
 		$article =$this->get($id);
 		return $article->getAuthor();
 	}
+	
+	/**
+	 * 根据条件查找文章数据
+	 * @param array $condition
+	 */
+	public function findAll(array $condition = null) {
+		return Articles::find($condition);
+	}
 }

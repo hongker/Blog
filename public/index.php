@@ -17,10 +17,11 @@ $di->set('router', function () {
 
     $router->setDefaultModule("frontend");
 
-    $router->add('/:controller/:action', array(
+    $router->add('/:controller/:action/:params', array(
     		'module' => 'frontend',
     		'controller' => 1,
     		'action' => 2,
+    		"params" => 3,
     ));
     
     $router->add("/login", array(
