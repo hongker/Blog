@@ -1,11 +1,11 @@
 <?php
 namespace Blog\Models;
 /**
- * Comments模型
+ * Replies模型
  * @author hongker
  *
  */
-class Comments extends BaseModel {
+class Replies extends BaseModel {
 	/**
 	 * 模型初始化
 	 */
@@ -14,14 +14,12 @@ class Comments extends BaseModel {
 		$this->belongsTo("author_id", "Blog\Models\Users", "id", array(
               'alias' => 'Author'
          ));
-		
-		//关联articles表
-		$this->belongsTo("article_id", "Blog\Models\Articles", "id", array(
-				'alias' => 'Article'
+		$this->belongsTo("target_id", "Blog\Models\Users", "id", array(
+				'alias' => 'Target'
 		));
 		
-		$this->hasMany("id", "Blog\Models\Replies", "comment_id", array(
-				'alias' => 'Replies'
+		$this->belongsTo("comment_id", "Blog\Models\Comments", "id", array(
+				'alias' => 'Comment'
 		));
 	}
 }

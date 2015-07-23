@@ -9,8 +9,8 @@ use Blog\Models\Comments;
  */
 class CommentOperation extends BaseOperation implements Operation {
 	
-	public function __construct() {
-		
+	public function __construct($di) {
+		parent::__construct($di);
 	}
 	
 	/**
@@ -20,6 +20,23 @@ class CommentOperation extends BaseOperation implements Operation {
 	 */
 	public function get($id) {
 		return Comments::findFirst($id);
+	}
+	
+	/**
+	 * 添加评论
+	 * @param array $data
+	 * @return boolean
+	 */
+	public function save(Array $data) {
+		$comment = new Comments();
+		foreach ($data as $key=>$value) {
+			$comment->$key = $value;
+		}
+	
+		if($comment->save()==true) {
+			return true;
+		}
+		return false;
 	}
 	
 	/**
@@ -73,5 +90,14 @@ class CommentOperation extends BaseOperation implements Operation {
 	public function getArticle($id) {
 		$comment =$this->get($id);
 		return $comment->getArticle();
+	}
+	
+	/**
+	 * 获取回复内容
+	 * @param unknown $id
+	 */
+	public function getReplies($id) {
+		$comment =$this->get($id);
+		return $comment->getReplies();
 	}
 }
