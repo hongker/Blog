@@ -1,4 +1,5 @@
 <?php
+header ( "Content-type: text/html; charset=utf-8" );
 use Phalcon\Mvc\Router;
 use Phalcon\Mvc\Application;
 use Phalcon\DI\FactoryDefault;
@@ -9,6 +10,8 @@ use Phalcon\Cache\Multiple;
 use Phalcon\Cache\Backend\Xcache;
 use Phalcon\Cache\Backend\File as FileCache;
 use Phalcon\Cache\Backend\Redis as RedisCache;
+use Phalcon\Cache\Frontend\Output as OutputFrontend;
+use Phalcon\Flash\Direct as FlashDirect;
 /**
  * 读取配置文件
  */
@@ -62,28 +65,34 @@ $di->set ( 'router', function () {
 	
 	return $router;
 } );
-
+// 建立flash服务
+$di->set ( 'flash', function () {
+	return new FlashDirect ();
+} );
 $di->set ( 'db', function () use($config) {
-	return new DbAdapter ( array (
+	
+	$connection = new DbAdapter ( array (
 			"host" => $config->database->host,
 			"username" => $config->database->username,
 			"password" => $config->database->password,
 			"dbname" => $config->database->dbname,
 			"charset" => $config->database->charset 
 	) );
+	
+	return $connection;
 } );
 
 // Set the views cache service
 $di->set ( 'viewCache', function () {
 	
 	// Cache data for one day by default
-	$frontCache = new DataFrontend ( array (
+	$frontCache = new OutputFrontend ( array (
 			"lifetime" => 86400 
 	) );
 	
 	// Memcached connection settings
 	$cache = new RedisCache ( $frontCache, array (
-			"prefix" => 'cache',
+			"prefix" => 'cache_',
 			"host" => "118.244.201.40",
 			"port" => "6379" 
 	) );
