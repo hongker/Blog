@@ -44,6 +44,26 @@ create table articles(
 insert into articles(title,author_id,content)
 values('this is title',1,'this is content');
 
+
+/**
+ * comments 评论表
+ * id 主键
+ * author_id 作者id
+ * content 评论内容
+ * article_id 评论目标
+ * created_at 创建时间
+ * updated_at 更改时间
+ */
+drop table if exists tables;
+create table tables(
+	id int not null primary key auto_increment,
+	author_id int not null,
+	content varchar(255) not null,
+	article_id int not null,
+	created_at timestamp not null default current_timestamp,
+	updated_at timestamp not null default '0000-00-00 00:00:00'
+)engine=myisam default charset=utf8;
+
 /**
  * tables 表模板
  * id 主键

@@ -14,6 +14,6 @@ class Users extends BaseModel {
 		//关联articles表
 		$this->hasMany("id", "Blog\Models\Articles", "author_id", array(
               'alias' => 'Articles'
-          ));
+         ));
 	}
 }
