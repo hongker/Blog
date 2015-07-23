@@ -10,10 +10,14 @@ use Phalcon\Mvc\Controller;
  */
 class BaseController extends Controller
 {
+	protected $controller;
+	protected $action;
+	
 	protected function initialize() {
         //Prepend the application name to the title
         \Phalcon\Tag::prependTitle('Blog | ');
         $this->view->setTemplateAfter('common');
+        
     }
     
     /**
@@ -22,6 +26,11 @@ class BaseController extends Controller
     public function show404() {
 		$this->response->redirect('404.html');
 		$this->response->send();
+    }
+    
+    public function beforeExecuteRoute($dispatcher) {
+    	$this->controller = $dispatcher->getControllerName();
+    	$this->action = $dispatcher->getActionName();
     }
     
 }

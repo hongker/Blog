@@ -9,6 +9,7 @@ use Phalcon\Cache\Multiple;
 use Phalcon\Cache\Backend\Xcache;
 use Phalcon\Cache\Backend\File as FileCache;
 use Phalcon\Cache\Backend\Redis as RedisCache;
+use Phalcon\Cache\Frontend\Output as OutputFrontend;
 /**
  * 读取配置文件
  */
@@ -77,13 +78,13 @@ $di->set ( 'db', function () use($config) {
 $di->set ( 'viewCache', function () {
 	
 	// Cache data for one day by default
-	$frontCache = new DataFrontend ( array (
+	$frontCache = new OutputFrontend ( array (
 			"lifetime" => 86400 
 	) );
 	
 	// Memcached connection settings
 	$cache = new RedisCache ( $frontCache, array (
-			"prefix" => 'cache',
+			"prefix" => 'cache_',
 			"host" => "118.244.201.40",
 			"port" => "6379" 
 	) );

@@ -54,8 +54,8 @@ values('this is title',1,'this is content');
  * created_at 创建时间
  * updated_at 更改时间
  */
-drop table if exists tables;
-create table tables(
+drop table if exists comments;
+create table comments(
 	id int not null primary key auto_increment,
 	author_id int not null,
 	content varchar(255) not null,

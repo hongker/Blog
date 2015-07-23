@@ -15,7 +15,7 @@ class Articles extends BaseModel {
               'alias' => 'Author'
           ));
 		
-		$this->hasMany("id", "Blog\Models\Comments", "target_id", array(
+		$this->hasMany("id", "Blog\Models\Comments", "article_id", array(
 				'alias' => 'Comments'
 		));
 	}
