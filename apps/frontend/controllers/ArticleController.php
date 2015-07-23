@@ -13,7 +13,6 @@ class ArticleController extends BaseController
 	{
 		\Phalcon\Tag::setTitle('资讯');
 		parent::initialize();
-		$this->view->setTemplateAfter('common');
 		$this->operation = new ArticleOperation();
 	}
 
@@ -34,6 +33,12 @@ class ArticleController extends BaseController
 		$id =  $this->dispatcher->getParam(0);
 		
 		$article = $this->operation->get($id);
+		
+		if($article) {
+			
+		}else {
+			$this->show404();
+		}
 		
 		$article->author = $this->operation->getAuthor($id);
 		

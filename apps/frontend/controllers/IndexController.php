@@ -11,7 +11,7 @@ class IndexController extends BaseController
 	{
 		\Phalcon\Tag::setTitle('首页');
 		parent::initialize();
-		$this->view->setTemplateAfter('common');
+		
 	}
 
 	public function indexAction()
