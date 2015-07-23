@@ -47,8 +47,6 @@ class ArticleController extends BaseController
 		}else {
 			$this->show404();
 		}
-		
-		
 	}
 	
 	/**
@@ -64,6 +62,9 @@ class ArticleController extends BaseController
 		exit;
 	}
 	
+	/**
+	 * 编辑文章
+	 */
 	public function editAction() {
 		$id = 1;
 		$data['content'] = 'test for cache1';
