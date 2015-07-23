@@ -6,7 +6,6 @@ namespace Blog\Operations;
  *
  */
 class BaseOperation {
-	
 		
 	
 }

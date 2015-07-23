@@ -1,4 +1,5 @@
 <?php
+header ( "Content-type: text/html; charset=utf-8" );
 use Phalcon\Mvc\Router;
 use Phalcon\Mvc\Application;
 use Phalcon\DI\FactoryDefault;
@@ -10,6 +11,10 @@ use Phalcon\Cache\Backend\Xcache;
 use Phalcon\Cache\Backend\File as FileCache;
 use Phalcon\Cache\Backend\Redis as RedisCache;
 use Phalcon\Cache\Frontend\Output as OutputFrontend;
+use Phalcon\Events\Manager as EventsManager;
+use Phalcon\Logger\Adapter\File as FileLogger;
+use Phalcon\Logger;
+use Phalcon\Flash\Direct as FlashDirect;
 /**
  * 读取配置文件
  */
@@ -63,15 +68,33 @@ $di->set ( 'router', function () {
 	
 	return $router;
 } );
-
+// 建立flash服务
+$di->set ( 'flash', function () {
+	return new FlashDirect ();
+} );
 $di->set ( 'db', function () use($config) {
-	return new DbAdapter ( array (
+	$eventsManager = new EventsManager ();
+	
+	$logger = new FileLogger ( "../apps/logs/debug.log" );
+	
+	// Listen all the database events
+	$eventsManager->attach ( 'db', function ($event, $connection) use($logger) {
+		if ($event->getType () == 'beforeQuery') {
+			$logger->log ( $connection->getSQLStatement (), Logger::INFO );
+		}
+	} );
+	
+	$connection = new DbAdapter ( array (
 			"host" => $config->database->host,
 			"username" => $config->database->username,
 			"password" => $config->database->password,
 			"dbname" => $config->database->dbname,
 			"charset" => $config->database->charset 
 	) );
+	
+	$connection->setEventsManager ( $eventsManager );
+	
+	return $connection;
 } );
 
 // Set the views cache service

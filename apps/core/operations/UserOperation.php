@@ -25,6 +25,25 @@ class UserOperation extends BaseOperation implements Operation {
 		return Users::findFirst($id);
 	}
 	
+	public function save(Array $data) {
+		$user = new Users();
+		foreach ($data as $key=>$value) {
+			$user->$key = $value;
+		}
+		if(!isset($data['type'])) {
+			$user->type = 1;
+		}
+		
+		if($user->save()==true) {
+			return true;
+		}else {
+			foreach ($user->getMessages() as $message) {
+				echo $message;
+			}
+		}
+		return false;
+	}
+	
 	/**
 	 * 根据用户id更改用户信息
 	 * @param unknown $id
@@ -37,7 +56,7 @@ class UserOperation extends BaseOperation implements Operation {
 			$user->$key = $value;
 		}
 		
-		if($user->save()) {
+		if($user->update()==true) {
 			return true;
 		}
 		return false;
@@ -67,5 +86,7 @@ class UserOperation extends BaseOperation implements Operation {
 		$user = $this->get($id);
 		return $user->getArticles();
 	}
+	
+	
 	
 }
