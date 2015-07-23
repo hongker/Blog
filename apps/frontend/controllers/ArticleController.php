@@ -13,7 +13,7 @@ class ArticleController extends BaseController
 	{
 		\Phalcon\Tag::setTitle('资讯');
 		parent::initialize();
-		$this->operation = new ArticleOperation();
+		$this->operation = new ArticleOperation($this->di);
 	}
 
 	/**
@@ -49,6 +49,19 @@ class ArticleController extends BaseController
 		}
 		
 		
+	}
+	
+	/**
+	 * 添加文章
+	 */
+	public function addAction() {
+		$data['title'] = 'test for title';
+		$data['author_id'] = 1;
+		//$data['content'] = 'test for content';
+		
+		$this->operation->save($data);
+		$this->flashSession->output();
+		exit;
 	}
 	
 	public function editAction() {

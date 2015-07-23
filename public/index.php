@@ -75,7 +75,7 @@ $di->set ( 'flash', function () {
 $di->set ( 'db', function () use($config) {
 	$eventsManager = new EventsManager ();
 	
-	$logger = new FileLogger ( "../apps/logs/debug.log" );
+	$logger = new FileLogger( "../apps/logs/debug.log" );
 	
 	// Listen all the database events
 	$eventsManager->attach ( 'db', function ($event, $connection) use($logger) {

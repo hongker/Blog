@@ -11,6 +11,10 @@ class BaseModel extends Model {
 		$this->skipAttributes(array('created_at', ));
 		
 		$this->skipAttributesOnCreate(array('updated_at'));
+		
+		$this->setup(
+				array('notNullValidations'=>false)
+		);
 	}
 	
 	/**

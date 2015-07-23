@@ -19,9 +19,8 @@ class Users extends BaseModel {
 		$this->hasMany("id", "Blog\Models\Articles", "author_id", array(
               'alias' => 'Articles'
          ));
-		$this->setup(
-				array('notNullValidations'=>false)
-		);
+		
+		$this->skipAttributesOnUpdate(array('email','username'));
 		
 	}
 	

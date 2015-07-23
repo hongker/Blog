@@ -18,23 +18,23 @@ class IndexController extends BaseController
 	public function indexAction()
 	{
 		
-		$operation = new UserOperation();
-		
-		$data['username'] = 'ubuntu1';
-		$data['email'] = 'test1@qq.com';
-		$data['password'] = $this->security->hash('ubuntu1');
+		$operation = new UserOperation($this->di);
+		/*
+		$data['username'] = 'ubuntu2';
+		$data['email'] = 'test2@qq.com';
+		$data['password'] = $this->security->hash('ubuntu2');
 		$data['age'] = 25;
 		
 		$operation->save($data);
+		*/
 		
-		/*
 		$id = 2;
-		//$data['age'] = 22;
-		//var_dump($operation->update($id, $data));
+		$data['age'] = 22;
+		var_dump($operation->update($id, $data));
 		//var_dump($operation->checkIsUpdated($id));
 		$user = $operation->get($id);
 		echo $user->username;
-		*/
+		
 		exit;
 	}
 

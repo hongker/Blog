@@ -214,3 +214,202 @@
 [Thu, 23 Jul 15 16:24:45 +0800][INFO] SELECT IF(COUNT(*) > 0, 1, 0) FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_NAME` = 'users' AND `TABLE_SCHEMA` = DATABASE()
 [Thu, 23 Jul 15 16:24:45 +0800][INFO] DESCRIBE `users`
 [Thu, 23 Jul 15 16:24:45 +0800][INFO] SELECT COUNT(42) AS `rowcount` FROM `users` WHERE `users`.`username` = :0
+[Thu, 23 Jul 15 16:26:48 +0800][INFO] SELECT IF(COUNT(*) > 0, 1, 0) FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_NAME` = 'users' AND `TABLE_SCHEMA` = DATABASE()
+[Thu, 23 Jul 15 16:26:48 +0800][INFO] DESCRIBE `users`
+[Thu, 23 Jul 15 16:26:48 +0800][INFO] SELECT COUNT(42) AS `rowcount` FROM `users` WHERE `users`.`username` = :0
+[Thu, 23 Jul 15 16:26:48 +0800][INFO] SELECT COUNT(42) AS `rowcount` FROM `users` WHERE `users`.`email` = :0
+[Thu, 23 Jul 15 16:26:49 +0800][INFO] SELECT IF(COUNT(*) > 0, 1, 0) FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_NAME` = 'users' AND `TABLE_SCHEMA` = DATABASE()
+[Thu, 23 Jul 15 16:26:49 +0800][INFO] DESCRIBE `users`
+[Thu, 23 Jul 15 16:26:49 +0800][INFO] SELECT COUNT(42) AS `rowcount` FROM `users` WHERE `users`.`username` = :0
+[Thu, 23 Jul 15 16:26:49 +0800][INFO] SELECT COUNT(42) AS `rowcount` FROM `users` WHERE `users`.`email` = :0
+[Thu, 23 Jul 15 16:53:34 +0800][INFO] SELECT IF(COUNT(*) > 0, 1, 0) FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_NAME` = 'users' AND `TABLE_SCHEMA` = DATABASE()
+[Thu, 23 Jul 15 16:53:34 +0800][INFO] DESCRIBE `users`
+[Thu, 23 Jul 15 16:53:34 +0800][INFO] SELECT `users`.`id`, `users`.`username`, `users`.`email`, `users`.`type`, `users`.`password`, `users`.`age`, `users`.`created_at`, `users`.`updated_at` FROM `users` WHERE `users`.`id` = 2 LIMIT :AP0
+[Thu, 23 Jul 15 16:53:34 +0800][INFO] SELECT COUNT(42) AS `rowcount` FROM `users` WHERE `users`.`username` = :0 AND `users`.`id` <> :1
+[Thu, 23 Jul 15 16:53:34 +0800][INFO] SELECT COUNT(42) AS `rowcount` FROM `users` WHERE `users`.`email` = :0 AND `users`.`id` <> :1
+[Thu, 23 Jul 15 16:53:34 +0800][INFO] UPDATE `users` SET `username` = ?, `email` = ?, `type` = ?, `password` = ?, `age` = ?, `updated_at` = ? WHERE `id` = ?
+[Thu, 23 Jul 15 16:53:34 +0800][INFO] SELECT `users`.`id`, `users`.`username`, `users`.`email`, `users`.`type`, `users`.`password`, `users`.`age`, `users`.`created_at`, `users`.`updated_at` FROM `users` WHERE `users`.`id` = 2 LIMIT :AP0
+[Thu, 23 Jul 15 16:53:34 +0800][INFO] SELECT IF(COUNT(*) > 0, 1, 0) FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_NAME` = 'users' AND `TABLE_SCHEMA` = DATABASE()
+[Thu, 23 Jul 15 16:53:34 +0800][INFO] DESCRIBE `users`
+[Thu, 23 Jul 15 16:53:34 +0800][INFO] SELECT `users`.`id`, `users`.`username`, `users`.`email`, `users`.`type`, `users`.`password`, `users`.`age`, `users`.`created_at`, `users`.`updated_at` FROM `users` WHERE `users`.`id` = 2 LIMIT :AP0
+[Thu, 23 Jul 15 16:53:34 +0800][INFO] SELECT COUNT(42) AS `rowcount` FROM `users` WHERE `users`.`username` = :0 AND `users`.`id` <> :1
+[Thu, 23 Jul 15 16:53:34 +0800][INFO] SELECT COUNT(42) AS `rowcount` FROM `users` WHERE `users`.`email` = :0 AND `users`.`id` <> :1
+[Thu, 23 Jul 15 16:53:34 +0800][INFO] UPDATE `users` SET `username` = ?, `email` = ?, `type` = ?, `password` = ?, `age` = ?, `updated_at` = ? WHERE `id` = ?
+[Thu, 23 Jul 15 16:53:34 +0800][INFO] SELECT `users`.`id`, `users`.`username`, `users`.`email`, `users`.`type`, `users`.`password`, `users`.`age`, `users`.`created_at`, `users`.`updated_at` FROM `users` WHERE `users`.`id` = 2 LIMIT :AP0
+[Thu, 23 Jul 15 16:55:57 +0800][INFO] SELECT IF(COUNT(*) > 0, 1, 0) FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_NAME` = 'users' AND `TABLE_SCHEMA` = DATABASE()
+[Thu, 23 Jul 15 16:55:57 +0800][INFO] DESCRIBE `users`
+[Thu, 23 Jul 15 16:55:57 +0800][INFO] SELECT `users`.`id`, `users`.`username`, `users`.`email`, `users`.`type`, `users`.`password`, `users`.`age`, `users`.`created_at`, `users`.`updated_at` FROM `users` WHERE `users`.`id` = 2 LIMIT :AP0
+[Thu, 23 Jul 15 16:55:57 +0800][INFO] SELECT COUNT(42) AS `rowcount` FROM `users` WHERE `users`.`username` = :0 AND `users`.`id` <> :1
+[Thu, 23 Jul 15 16:55:57 +0800][INFO] SELECT COUNT(42) AS `rowcount` FROM `users` WHERE `users`.`email` = :0 AND `users`.`id` <> :1
+[Thu, 23 Jul 15 16:55:57 +0800][INFO] UPDATE `users` SET `type` = ?, `password` = ?, `age` = ?, `created_at` = ?, `updated_at` = ? WHERE `id` = ?
+[Thu, 23 Jul 15 16:55:57 +0800][INFO] SELECT `users`.`id`, `users`.`username`, `users`.`email`, `users`.`type`, `users`.`password`, `users`.`age`, `users`.`created_at`, `users`.`updated_at` FROM `users` WHERE `users`.`id` = 2 LIMIT :AP0
+[Thu, 23 Jul 15 16:55:57 +0800][INFO] SELECT IF(COUNT(*) > 0, 1, 0) FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_NAME` = 'users' AND `TABLE_SCHEMA` = DATABASE()
+[Thu, 23 Jul 15 16:55:57 +0800][INFO] DESCRIBE `users`
+[Thu, 23 Jul 15 16:55:57 +0800][INFO] SELECT `users`.`id`, `users`.`username`, `users`.`email`, `users`.`type`, `users`.`password`, `users`.`age`, `users`.`created_at`, `users`.`updated_at` FROM `users` WHERE `users`.`id` = 2 LIMIT :AP0
+[Thu, 23 Jul 15 16:55:57 +0800][INFO] SELECT COUNT(42) AS `rowcount` FROM `users` WHERE `users`.`username` = :0 AND `users`.`id` <> :1
+[Thu, 23 Jul 15 16:55:57 +0800][INFO] SELECT COUNT(42) AS `rowcount` FROM `users` WHERE `users`.`email` = :0 AND `users`.`id` <> :1
+[Thu, 23 Jul 15 16:55:57 +0800][INFO] UPDATE `users` SET `type` = ?, `password` = ?, `age` = ?, `created_at` = ?, `updated_at` = ? WHERE `id` = ?
+[Thu, 23 Jul 15 16:55:57 +0800][INFO] SELECT `users`.`id`, `users`.`username`, `users`.`email`, `users`.`type`, `users`.`password`, `users`.`age`, `users`.`created_at`, `users`.`updated_at` FROM `users` WHERE `users`.`id` = 2 LIMIT :AP0
+[Thu, 23 Jul 15 17:03:50 +0800][INFO] SELECT IF(COUNT(*) > 0, 1, 0) FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_NAME` = 'articles' AND `TABLE_SCHEMA` = DATABASE()
+[Thu, 23 Jul 15 17:03:50 +0800][INFO] DESCRIBE `articles`
+[Thu, 23 Jul 15 17:03:50 +0800][INFO] INSERT INTO `articles` (`title`, `author_id`, `content`, `created_at`) VALUES (?, ?, ?, DEFAULT)
+[Thu, 23 Jul 15 17:03:50 +0800][INFO] SELECT IF(COUNT(*) > 0, 1, 0) FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_NAME` = 'users' AND `TABLE_SCHEMA` = DATABASE()
+[Thu, 23 Jul 15 17:03:50 +0800][INFO] DESCRIBE `users`
+[Thu, 23 Jul 15 17:03:50 +0800][INFO] SELECT `users`.`id`, `users`.`username`, `users`.`email`, `users`.`type`, `users`.`password`, `users`.`age`, `users`.`created_at`, `users`.`updated_at` FROM `users` WHERE `users`.`id` = 2 LIMIT :AP0
+[Thu, 23 Jul 15 17:03:50 +0800][INFO] SELECT COUNT(42) AS `rowcount` FROM `users` WHERE `users`.`username` = :0 AND `users`.`id` <> :1
+[Thu, 23 Jul 15 17:03:50 +0800][INFO] SELECT COUNT(42) AS `rowcount` FROM `users` WHERE `users`.`email` = :0 AND `users`.`id` <> :1
+[Thu, 23 Jul 15 17:03:50 +0800][INFO] UPDATE `users` SET `type` = ?, `password` = ?, `age` = ?, `created_at` = ?, `updated_at` = ? WHERE `id` = ?
+[Thu, 23 Jul 15 17:03:50 +0800][INFO] SELECT `users`.`id`, `users`.`username`, `users`.`email`, `users`.`type`, `users`.`password`, `users`.`age`, `users`.`created_at`, `users`.`updated_at` FROM `users` WHERE `users`.`id` = 2 LIMIT :AP0
+[Thu, 23 Jul 15 17:04:46 +0800][INFO] SELECT IF(COUNT(*) > 0, 1, 0) FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_NAME` = 'articles' AND `TABLE_SCHEMA` = DATABASE()
+[Thu, 23 Jul 15 17:04:46 +0800][INFO] DESCRIBE `articles`
+[Thu, 23 Jul 15 17:04:46 +0800][INFO] SELECT IF(COUNT(*) > 0, 1, 0) FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_NAME` = 'users' AND `TABLE_SCHEMA` = DATABASE()
+[Thu, 23 Jul 15 17:04:46 +0800][INFO] DESCRIBE `users`
+[Thu, 23 Jul 15 17:04:46 +0800][INFO] SELECT `users`.`id`, `users`.`username`, `users`.`email`, `users`.`type`, `users`.`password`, `users`.`age`, `users`.`created_at`, `users`.`updated_at` FROM `users` WHERE `users`.`id` = 2 LIMIT :AP0
+[Thu, 23 Jul 15 17:04:46 +0800][INFO] SELECT COUNT(42) AS `rowcount` FROM `users` WHERE `users`.`username` = :0 AND `users`.`id` <> :1
+[Thu, 23 Jul 15 17:04:46 +0800][INFO] SELECT COUNT(42) AS `rowcount` FROM `users` WHERE `users`.`email` = :0 AND `users`.`id` <> :1
+[Thu, 23 Jul 15 17:04:46 +0800][INFO] UPDATE `users` SET `type` = ?, `password` = ?, `age` = ?, `created_at` = ?, `updated_at` = ? WHERE `id` = ?
+[Thu, 23 Jul 15 17:04:46 +0800][INFO] SELECT `users`.`id`, `users`.`username`, `users`.`email`, `users`.`type`, `users`.`password`, `users`.`age`, `users`.`created_at`, `users`.`updated_at` FROM `users` WHERE `users`.`id` = 2 LIMIT :AP0
+[Thu, 23 Jul 15 17:04:53 +0800][INFO] SELECT IF(COUNT(*) > 0, 1, 0) FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_NAME` = 'articles' AND `TABLE_SCHEMA` = DATABASE()
+[Thu, 23 Jul 15 17:04:53 +0800][INFO] DESCRIBE `articles`
+[Thu, 23 Jul 15 17:04:54 +0800][INFO] SELECT IF(COUNT(*) > 0, 1, 0) FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_NAME` = 'users' AND `TABLE_SCHEMA` = DATABASE()
+[Thu, 23 Jul 15 17:04:54 +0800][INFO] DESCRIBE `users`
+[Thu, 23 Jul 15 17:04:54 +0800][INFO] SELECT `users`.`id`, `users`.`username`, `users`.`email`, `users`.`type`, `users`.`password`, `users`.`age`, `users`.`created_at`, `users`.`updated_at` FROM `users` WHERE `users`.`id` = 2 LIMIT :AP0
+[Thu, 23 Jul 15 17:04:54 +0800][INFO] SELECT COUNT(42) AS `rowcount` FROM `users` WHERE `users`.`username` = :0 AND `users`.`id` <> :1
+[Thu, 23 Jul 15 17:04:54 +0800][INFO] SELECT COUNT(42) AS `rowcount` FROM `users` WHERE `users`.`email` = :0 AND `users`.`id` <> :1
+[Thu, 23 Jul 15 17:04:54 +0800][INFO] UPDATE `users` SET `type` = ?, `password` = ?, `age` = ?, `created_at` = ?, `updated_at` = ? WHERE `id` = ?
+[Thu, 23 Jul 15 17:04:54 +0800][INFO] SELECT `users`.`id`, `users`.`username`, `users`.`email`, `users`.`type`, `users`.`password`, `users`.`age`, `users`.`created_at`, `users`.`updated_at` FROM `users` WHERE `users`.`id` = 2 LIMIT :AP0
+[Thu, 23 Jul 15 17:05:00 +0800][INFO] SELECT IF(COUNT(*) > 0, 1, 0) FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_NAME` = 'articles' AND `TABLE_SCHEMA` = DATABASE()
+[Thu, 23 Jul 15 17:05:00 +0800][INFO] DESCRIBE `articles`
+[Thu, 23 Jul 15 17:05:00 +0800][INFO] SELECT IF(COUNT(*) > 0, 1, 0) FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_NAME` = 'users' AND `TABLE_SCHEMA` = DATABASE()
+[Thu, 23 Jul 15 17:05:00 +0800][INFO] DESCRIBE `users`
+[Thu, 23 Jul 15 17:05:00 +0800][INFO] SELECT `users`.`id`, `users`.`username`, `users`.`email`, `users`.`type`, `users`.`password`, `users`.`age`, `users`.`created_at`, `users`.`updated_at` FROM `users` WHERE `users`.`id` = 2 LIMIT :AP0
+[Thu, 23 Jul 15 17:05:00 +0800][INFO] SELECT COUNT(42) AS `rowcount` FROM `users` WHERE `users`.`username` = :0 AND `users`.`id` <> :1
+[Thu, 23 Jul 15 17:05:00 +0800][INFO] SELECT COUNT(42) AS `rowcount` FROM `users` WHERE `users`.`email` = :0 AND `users`.`id` <> :1
+[Thu, 23 Jul 15 17:05:00 +0800][INFO] UPDATE `users` SET `type` = ?, `password` = ?, `age` = ?, `created_at` = ?, `updated_at` = ? WHERE `id` = ?
+[Thu, 23 Jul 15 17:05:00 +0800][INFO] SELECT `users`.`id`, `users`.`username`, `users`.`email`, `users`.`type`, `users`.`password`, `users`.`age`, `users`.`created_at`, `users`.`updated_at` FROM `users` WHERE `users`.`id` = 2 LIMIT :AP0
+[Thu, 23 Jul 15 17:08:29 +0800][INFO] SELECT IF(COUNT(*) > 0, 1, 0) FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_NAME` = 'articles' AND `TABLE_SCHEMA` = DATABASE()
+[Thu, 23 Jul 15 17:08:29 +0800][INFO] DESCRIBE `articles`
+[Thu, 23 Jul 15 17:08:29 +0800][INFO] SELECT IF(COUNT(*) > 0, 1, 0) FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_NAME` = 'users' AND `TABLE_SCHEMA` = DATABASE()
+[Thu, 23 Jul 15 17:08:29 +0800][INFO] DESCRIBE `users`
+[Thu, 23 Jul 15 17:08:29 +0800][INFO] SELECT `users`.`id`, `users`.`username`, `users`.`email`, `users`.`type`, `users`.`password`, `users`.`age`, `users`.`created_at`, `users`.`updated_at` FROM `users` WHERE `users`.`id` = 2 LIMIT :AP0
+[Thu, 23 Jul 15 17:08:29 +0800][INFO] SELECT COUNT(42) AS `rowcount` FROM `users` WHERE `users`.`username` = :0 AND `users`.`id` <> :1
+[Thu, 23 Jul 15 17:08:29 +0800][INFO] SELECT COUNT(42) AS `rowcount` FROM `users` WHERE `users`.`email` = :0 AND `users`.`id` <> :1
+[Thu, 23 Jul 15 17:08:29 +0800][INFO] UPDATE `users` SET `type` = ?, `password` = ?, `age` = ?, `created_at` = ?, `updated_at` = ? WHERE `id` = ?
+[Thu, 23 Jul 15 17:08:29 +0800][INFO] SELECT `users`.`id`, `users`.`username`, `users`.`email`, `users`.`type`, `users`.`password`, `users`.`age`, `users`.`created_at`, `users`.`updated_at` FROM `users` WHERE `users`.`id` = 2 LIMIT :AP0
+[Thu, 23 Jul 15 17:09:26 +0800][INFO] SELECT IF(COUNT(*) > 0, 1, 0) FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_NAME` = 'articles' AND `TABLE_SCHEMA` = DATABASE()
+[Thu, 23 Jul 15 17:09:26 +0800][INFO] DESCRIBE `articles`
+[Thu, 23 Jul 15 17:09:26 +0800][INFO] SELECT IF(COUNT(*) > 0, 1, 0) FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_NAME` = 'users' AND `TABLE_SCHEMA` = DATABASE()
+[Thu, 23 Jul 15 17:09:26 +0800][INFO] DESCRIBE `users`
+[Thu, 23 Jul 15 17:09:26 +0800][INFO] SELECT `users`.`id`, `users`.`username`, `users`.`email`, `users`.`type`, `users`.`password`, `users`.`age`, `users`.`created_at`, `users`.`updated_at` FROM `users` WHERE `users`.`id` = 2 LIMIT :AP0
+[Thu, 23 Jul 15 17:09:26 +0800][INFO] SELECT COUNT(42) AS `rowcount` FROM `users` WHERE `users`.`username` = :0 AND `users`.`id` <> :1
+[Thu, 23 Jul 15 17:09:26 +0800][INFO] SELECT COUNT(42) AS `rowcount` FROM `users` WHERE `users`.`email` = :0 AND `users`.`id` <> :1
+[Thu, 23 Jul 15 17:09:26 +0800][INFO] UPDATE `users` SET `type` = ?, `password` = ?, `age` = ?, `created_at` = ?, `updated_at` = ? WHERE `id` = ?
+[Thu, 23 Jul 15 17:09:26 +0800][INFO] SELECT `users`.`id`, `users`.`username`, `users`.`email`, `users`.`type`, `users`.`password`, `users`.`age`, `users`.`created_at`, `users`.`updated_at` FROM `users` WHERE `users`.`id` = 2 LIMIT :AP0
+[Thu, 23 Jul 15 17:09:33 +0800][INFO] SELECT IF(COUNT(*) > 0, 1, 0) FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_NAME` = 'articles' AND `TABLE_SCHEMA` = DATABASE()
+[Thu, 23 Jul 15 17:09:33 +0800][INFO] DESCRIBE `articles`
+[Thu, 23 Jul 15 17:09:33 +0800][INFO] SELECT IF(COUNT(*) > 0, 1, 0) FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_NAME` = 'users' AND `TABLE_SCHEMA` = DATABASE()
+[Thu, 23 Jul 15 17:09:33 +0800][INFO] DESCRIBE `users`
+[Thu, 23 Jul 15 17:09:33 +0800][INFO] SELECT `users`.`id`, `users`.`username`, `users`.`email`, `users`.`type`, `users`.`password`, `users`.`age`, `users`.`created_at`, `users`.`updated_at` FROM `users` WHERE `users`.`id` = 2 LIMIT :AP0
+[Thu, 23 Jul 15 17:09:33 +0800][INFO] SELECT COUNT(42) AS `rowcount` FROM `users` WHERE `users`.`username` = :0 AND `users`.`id` <> :1
+[Thu, 23 Jul 15 17:09:33 +0800][INFO] SELECT COUNT(42) AS `rowcount` FROM `users` WHERE `users`.`email` = :0 AND `users`.`id` <> :1
+[Thu, 23 Jul 15 17:09:33 +0800][INFO] UPDATE `users` SET `type` = ?, `password` = ?, `age` = ?, `created_at` = ?, `updated_at` = ? WHERE `id` = ?
+[Thu, 23 Jul 15 17:09:33 +0800][INFO] SELECT `users`.`id`, `users`.`username`, `users`.`email`, `users`.`type`, `users`.`password`, `users`.`age`, `users`.`created_at`, `users`.`updated_at` FROM `users` WHERE `users`.`id` = 2 LIMIT :AP0
+[Thu, 23 Jul 15 17:13:15 +0800][INFO] SELECT IF(COUNT(*) > 0, 1, 0) FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_NAME` = 'users' AND `TABLE_SCHEMA` = DATABASE()
+[Thu, 23 Jul 15 17:13:15 +0800][INFO] DESCRIBE `users`
+[Thu, 23 Jul 15 17:13:15 +0800][INFO] SELECT `users`.`id`, `users`.`username`, `users`.`email`, `users`.`type`, `users`.`password`, `users`.`age`, `users`.`created_at`, `users`.`updated_at` FROM `users` WHERE `users`.`id` = 2 LIMIT :AP0
+[Thu, 23 Jul 15 17:13:15 +0800][INFO] SELECT COUNT(42) AS `rowcount` FROM `users` WHERE `users`.`username` = :0 AND `users`.`id` <> :1
+[Thu, 23 Jul 15 17:13:15 +0800][INFO] SELECT COUNT(42) AS `rowcount` FROM `users` WHERE `users`.`email` = :0 AND `users`.`id` <> :1
+[Thu, 23 Jul 15 17:13:15 +0800][INFO] UPDATE `users` SET `type` = ?, `password` = ?, `age` = ?, `created_at` = ?, `updated_at` = ? WHERE `id` = ?
+[Thu, 23 Jul 15 17:13:15 +0800][INFO] SELECT `users`.`id`, `users`.`username`, `users`.`email`, `users`.`type`, `users`.`password`, `users`.`age`, `users`.`created_at`, `users`.`updated_at` FROM `users` WHERE `users`.`id` = 2 LIMIT :AP0
+[Thu, 23 Jul 15 17:13:20 +0800][INFO] SELECT IF(COUNT(*) > 0, 1, 0) FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_NAME` = 'articles' AND `TABLE_SCHEMA` = DATABASE()
+[Thu, 23 Jul 15 17:13:20 +0800][INFO] DESCRIBE `articles`
+[Thu, 23 Jul 15 17:13:20 +0800][INFO] SELECT IF(COUNT(*) > 0, 1, 0) FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_NAME` = 'users' AND `TABLE_SCHEMA` = DATABASE()
+[Thu, 23 Jul 15 17:13:20 +0800][INFO] DESCRIBE `users`
+[Thu, 23 Jul 15 17:13:20 +0800][INFO] SELECT `users`.`id`, `users`.`username`, `users`.`email`, `users`.`type`, `users`.`password`, `users`.`age`, `users`.`created_at`, `users`.`updated_at` FROM `users` WHERE `users`.`id` = 2 LIMIT :AP0
+[Thu, 23 Jul 15 17:13:20 +0800][INFO] SELECT COUNT(42) AS `rowcount` FROM `users` WHERE `users`.`username` = :0 AND `users`.`id` <> :1
+[Thu, 23 Jul 15 17:13:20 +0800][INFO] SELECT COUNT(42) AS `rowcount` FROM `users` WHERE `users`.`email` = :0 AND `users`.`id` <> :1
+[Thu, 23 Jul 15 17:13:20 +0800][INFO] UPDATE `users` SET `type` = ?, `password` = ?, `age` = ?, `created_at` = ?, `updated_at` = ? WHERE `id` = ?
+[Thu, 23 Jul 15 17:13:20 +0800][INFO] SELECT `users`.`id`, `users`.`username`, `users`.`email`, `users`.`type`, `users`.`password`, `users`.`age`, `users`.`created_at`, `users`.`updated_at` FROM `users` WHERE `users`.`id` = 2 LIMIT :AP0
+[Thu, 23 Jul 15 17:14:00 +0800][INFO] SELECT IF(COUNT(*) > 0, 1, 0) FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_NAME` = 'articles' AND `TABLE_SCHEMA` = DATABASE()
+[Thu, 23 Jul 15 17:14:00 +0800][INFO] DESCRIBE `articles`
+[Thu, 23 Jul 15 17:14:00 +0800][INFO] SELECT IF(COUNT(*) > 0, 1, 0) FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_NAME` = 'users' AND `TABLE_SCHEMA` = DATABASE()
+[Thu, 23 Jul 15 17:14:00 +0800][INFO] DESCRIBE `users`
+[Thu, 23 Jul 15 17:14:00 +0800][INFO] SELECT `users`.`id`, `users`.`username`, `users`.`email`, `users`.`type`, `users`.`password`, `users`.`age`, `users`.`created_at`, `users`.`updated_at` FROM `users` WHERE `users`.`id` = 2 LIMIT :AP0
+[Thu, 23 Jul 15 17:14:00 +0800][INFO] SELECT COUNT(42) AS `rowcount` FROM `users` WHERE `users`.`username` = :0 AND `users`.`id` <> :1
+[Thu, 23 Jul 15 17:14:00 +0800][INFO] SELECT COUNT(42) AS `rowcount` FROM `users` WHERE `users`.`email` = :0 AND `users`.`id` <> :1
+[Thu, 23 Jul 15 17:14:00 +0800][INFO] UPDATE `users` SET `type` = ?, `password` = ?, `age` = ?, `created_at` = ?, `updated_at` = ? WHERE `id` = ?
+[Thu, 23 Jul 15 17:14:00 +0800][INFO] SELECT `users`.`id`, `users`.`username`, `users`.`email`, `users`.`type`, `users`.`password`, `users`.`age`, `users`.`created_at`, `users`.`updated_at` FROM `users` WHERE `users`.`id` = 2 LIMIT :AP0
+[Thu, 23 Jul 15 17:16:02 +0800][INFO] SELECT IF(COUNT(*) > 0, 1, 0) FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_NAME` = 'articles' AND `TABLE_SCHEMA` = DATABASE()
+[Thu, 23 Jul 15 17:16:02 +0800][INFO] DESCRIBE `articles`
+[Thu, 23 Jul 15 17:16:03 +0800][INFO] SELECT IF(COUNT(*) > 0, 1, 0) FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_NAME` = 'users' AND `TABLE_SCHEMA` = DATABASE()
+[Thu, 23 Jul 15 17:16:03 +0800][INFO] DESCRIBE `users`
+[Thu, 23 Jul 15 17:16:03 +0800][INFO] SELECT `users`.`id`, `users`.`username`, `users`.`email`, `users`.`type`, `users`.`password`, `users`.`age`, `users`.`created_at`, `users`.`updated_at` FROM `users` WHERE `users`.`id` = 2 LIMIT :AP0
+[Thu, 23 Jul 15 17:16:03 +0800][INFO] SELECT COUNT(42) AS `rowcount` FROM `users` WHERE `users`.`username` = :0 AND `users`.`id` <> :1
+[Thu, 23 Jul 15 17:16:03 +0800][INFO] SELECT COUNT(42) AS `rowcount` FROM `users` WHERE `users`.`email` = :0 AND `users`.`id` <> :1
+[Thu, 23 Jul 15 17:16:03 +0800][INFO] UPDATE `users` SET `type` = ?, `password` = ?, `age` = ?, `created_at` = ?, `updated_at` = ? WHERE `id` = ?
+[Thu, 23 Jul 15 17:16:03 +0800][INFO] SELECT `users`.`id`, `users`.`username`, `users`.`email`, `users`.`type`, `users`.`password`, `users`.`age`, `users`.`created_at`, `users`.`updated_at` FROM `users` WHERE `users`.`id` = 2 LIMIT :AP0
+[Thu, 23 Jul 15 17:18:29 +0800][INFO] SELECT IF(COUNT(*) > 0, 1, 0) FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_NAME` = 'articles' AND `TABLE_SCHEMA` = DATABASE()
+[Thu, 23 Jul 15 17:18:29 +0800][INFO] DESCRIBE `articles`
+[Thu, 23 Jul 15 17:18:29 +0800][INFO] INSERT INTO `articles` (`title`, `author_id`, `content`, `created_at`) VALUES (?, ?, ?, DEFAULT)
+[Thu, 23 Jul 15 17:18:29 +0800][INFO] SELECT IF(COUNT(*) > 0, 1, 0) FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_NAME` = 'users' AND `TABLE_SCHEMA` = DATABASE()
+[Thu, 23 Jul 15 17:18:29 +0800][INFO] DESCRIBE `users`
+[Thu, 23 Jul 15 17:18:29 +0800][INFO] SELECT `users`.`id`, `users`.`username`, `users`.`email`, `users`.`type`, `users`.`password`, `users`.`age`, `users`.`created_at`, `users`.`updated_at` FROM `users` WHERE `users`.`id` = 2 LIMIT :AP0
+[Thu, 23 Jul 15 17:18:29 +0800][INFO] SELECT COUNT(42) AS `rowcount` FROM `users` WHERE `users`.`username` = :0 AND `users`.`id` <> :1
+[Thu, 23 Jul 15 17:18:29 +0800][INFO] SELECT COUNT(42) AS `rowcount` FROM `users` WHERE `users`.`email` = :0 AND `users`.`id` <> :1
+[Thu, 23 Jul 15 17:18:29 +0800][INFO] UPDATE `users` SET `type` = ?, `password` = ?, `age` = ?, `created_at` = ?, `updated_at` = ? WHERE `id` = ?
+[Thu, 23 Jul 15 17:18:29 +0800][INFO] SELECT `users`.`id`, `users`.`username`, `users`.`email`, `users`.`type`, `users`.`password`, `users`.`age`, `users`.`created_at`, `users`.`updated_at` FROM `users` WHERE `users`.`id` = 2 LIMIT :AP0
+[Thu, 23 Jul 15 17:18:52 +0800][INFO] SELECT IF(COUNT(*) > 0, 1, 0) FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_NAME` = 'articles' AND `TABLE_SCHEMA` = DATABASE()
+[Thu, 23 Jul 15 17:18:52 +0800][INFO] DESCRIBE `articles`
+[Thu, 23 Jul 15 17:18:52 +0800][INFO] SELECT IF(COUNT(*) > 0, 1, 0) FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_NAME` = 'users' AND `TABLE_SCHEMA` = DATABASE()
+[Thu, 23 Jul 15 17:18:52 +0800][INFO] DESCRIBE `users`
+[Thu, 23 Jul 15 17:18:52 +0800][INFO] SELECT `users`.`id`, `users`.`username`, `users`.`email`, `users`.`type`, `users`.`password`, `users`.`age`, `users`.`created_at`, `users`.`updated_at` FROM `users` WHERE `users`.`id` = 2 LIMIT :AP0
+[Thu, 23 Jul 15 17:18:52 +0800][INFO] SELECT COUNT(42) AS `rowcount` FROM `users` WHERE `users`.`username` = :0 AND `users`.`id` <> :1
+[Thu, 23 Jul 15 17:18:52 +0800][INFO] SELECT COUNT(42) AS `rowcount` FROM `users` WHERE `users`.`email` = :0 AND `users`.`id` <> :1
+[Thu, 23 Jul 15 17:18:52 +0800][INFO] UPDATE `users` SET `type` = ?, `password` = ?, `age` = ?, `created_at` = ?, `updated_at` = ? WHERE `id` = ?
+[Thu, 23 Jul 15 17:18:52 +0800][INFO] SELECT `users`.`id`, `users`.`username`, `users`.`email`, `users`.`type`, `users`.`password`, `users`.`age`, `users`.`created_at`, `users`.`updated_at` FROM `users` WHERE `users`.`id` = 2 LIMIT :AP0
+[Thu, 23 Jul 15 17:30:28 +0800][INFO] SELECT IF(COUNT(*) > 0, 1, 0) FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_NAME` = 'articles' AND `TABLE_SCHEMA` = DATABASE()
+[Thu, 23 Jul 15 17:30:28 +0800][INFO] DESCRIBE `articles`
+[Thu, 23 Jul 15 17:30:28 +0800][INFO] INSERT INTO `articles` (`title`, `author_id`, `content`, `created_at`) VALUES (?, ?, ?, DEFAULT)
+[Thu, 23 Jul 15 17:30:28 +0800][INFO] SELECT IF(COUNT(*) > 0, 1, 0) FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_NAME` = 'users' AND `TABLE_SCHEMA` = DATABASE()
+[Thu, 23 Jul 15 17:30:28 +0800][INFO] DESCRIBE `users`
+[Thu, 23 Jul 15 17:30:28 +0800][INFO] SELECT `users`.`id`, `users`.`username`, `users`.`email`, `users`.`type`, `users`.`password`, `users`.`age`, `users`.`created_at`, `users`.`updated_at` FROM `users` WHERE `users`.`id` = 2 LIMIT :AP0
+[Thu, 23 Jul 15 17:30:28 +0800][INFO] SELECT COUNT(42) AS `rowcount` FROM `users` WHERE `users`.`username` = :0 AND `users`.`id` <> :1
+[Thu, 23 Jul 15 17:30:28 +0800][INFO] SELECT COUNT(42) AS `rowcount` FROM `users` WHERE `users`.`email` = :0 AND `users`.`id` <> :1
+[Thu, 23 Jul 15 17:30:28 +0800][INFO] UPDATE `users` SET `type` = ?, `password` = ?, `age` = ?, `created_at` = ?, `updated_at` = ? WHERE `id` = ?
+[Thu, 23 Jul 15 17:30:28 +0800][INFO] SELECT `users`.`id`, `users`.`username`, `users`.`email`, `users`.`type`, `users`.`password`, `users`.`age`, `users`.`created_at`, `users`.`updated_at` FROM `users` WHERE `users`.`id` = 2 LIMIT :AP0
+[Thu, 23 Jul 15 17:30:45 +0800][INFO] SELECT IF(COUNT(*) > 0, 1, 0) FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_NAME` = 'articles' AND `TABLE_SCHEMA` = DATABASE()
+[Thu, 23 Jul 15 17:30:45 +0800][INFO] DESCRIBE `articles`
+[Thu, 23 Jul 15 17:30:45 +0800][INFO] SELECT IF(COUNT(*) > 0, 1, 0) FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_NAME` = 'users' AND `TABLE_SCHEMA` = DATABASE()
+[Thu, 23 Jul 15 17:30:45 +0800][INFO] DESCRIBE `users`
+[Thu, 23 Jul 15 17:30:45 +0800][INFO] SELECT `users`.`id`, `users`.`username`, `users`.`email`, `users`.`type`, `users`.`password`, `users`.`age`, `users`.`created_at`, `users`.`updated_at` FROM `users` WHERE `users`.`id` = 2 LIMIT :AP0
+[Thu, 23 Jul 15 17:30:45 +0800][INFO] SELECT COUNT(42) AS `rowcount` FROM `users` WHERE `users`.`username` = :0 AND `users`.`id` <> :1
+[Thu, 23 Jul 15 17:30:45 +0800][INFO] SELECT COUNT(42) AS `rowcount` FROM `users` WHERE `users`.`email` = :0 AND `users`.`id` <> :1
+[Thu, 23 Jul 15 17:30:45 +0800][INFO] UPDATE `users` SET `type` = ?, `password` = ?, `age` = ?, `created_at` = ?, `updated_at` = ? WHERE `id` = ?
+[Thu, 23 Jul 15 17:30:45 +0800][INFO] SELECT `users`.`id`, `users`.`username`, `users`.`email`, `users`.`type`, `users`.`password`, `users`.`age`, `users`.`created_at`, `users`.`updated_at` FROM `users` WHERE `users`.`id` = 2 LIMIT :AP0
+[Thu, 23 Jul 15 17:36:17 +0800][INFO] SELECT IF(COUNT(*) > 0, 1, 0) FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_NAME` = 'articles' AND `TABLE_SCHEMA` = DATABASE()
+[Thu, 23 Jul 15 17:36:17 +0800][INFO] DESCRIBE `articles`
+[Thu, 23 Jul 15 17:36:18 +0800][INFO] SELECT IF(COUNT(*) > 0, 1, 0) FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_NAME` = 'users' AND `TABLE_SCHEMA` = DATABASE()
+[Thu, 23 Jul 15 17:36:18 +0800][INFO] DESCRIBE `users`
+[Thu, 23 Jul 15 17:36:18 +0800][INFO] SELECT `users`.`id`, `users`.`username`, `users`.`email`, `users`.`type`, `users`.`password`, `users`.`age`, `users`.`created_at`, `users`.`updated_at` FROM `users` WHERE `users`.`id` = 2 LIMIT :AP0
+[Thu, 23 Jul 15 17:36:18 +0800][INFO] SELECT COUNT(42) AS `rowcount` FROM `users` WHERE `users`.`username` = :0 AND `users`.`id` <> :1
+[Thu, 23 Jul 15 17:36:18 +0800][INFO] SELECT COUNT(42) AS `rowcount` FROM `users` WHERE `users`.`email` = :0 AND `users`.`id` <> :1
+[Thu, 23 Jul 15 17:36:18 +0800][INFO] UPDATE `users` SET `type` = ?, `password` = ?, `age` = ?, `created_at` = ?, `updated_at` = ? WHERE `id` = ?
+[Thu, 23 Jul 15 17:36:18 +0800][INFO] SELECT `users`.`id`, `users`.`username`, `users`.`email`, `users`.`type`, `users`.`password`, `users`.`age`, `users`.`created_at`, `users`.`updated_at` FROM `users` WHERE `users`.`id` = 2 LIMIT :AP0
+[Thu, 23 Jul 15 17:36:23 +0800][INFO] SELECT IF(COUNT(*) > 0, 1, 0) FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_NAME` = 'articles' AND `TABLE_SCHEMA` = DATABASE()
+[Thu, 23 Jul 15 17:36:23 +0800][INFO] DESCRIBE `articles`
+[Thu, 23 Jul 15 17:36:24 +0800][INFO] SELECT IF(COUNT(*) > 0, 1, 0) FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_NAME` = 'users' AND `TABLE_SCHEMA` = DATABASE()
+[Thu, 23 Jul 15 17:36:24 +0800][INFO] DESCRIBE `users`
+[Thu, 23 Jul 15 17:36:24 +0800][INFO] SELECT `users`.`id`, `users`.`username`, `users`.`email`, `users`.`type`, `users`.`password`, `users`.`age`, `users`.`created_at`, `users`.`updated_at` FROM `users` WHERE `users`.`id` = 2 LIMIT :AP0
+[Thu, 23 Jul 15 17:36:24 +0800][INFO] SELECT COUNT(42) AS `rowcount` FROM `users` WHERE `users`.`username` = :0 AND `users`.`id` <> :1
+[Thu, 23 Jul 15 17:36:24 +0800][INFO] SELECT COUNT(42) AS `rowcount` FROM `users` WHERE `users`.`email` = :0 AND `users`.`id` <> :1
+[Thu, 23 Jul 15 17:36:24 +0800][INFO] UPDATE `users` SET `type` = ?, `password` = ?, `age` = ?, `created_at` = ?, `updated_at` = ? WHERE `id` = ?
+[Thu, 23 Jul 15 17:36:24 +0800][INFO] SELECT `users`.`id`, `users`.`username`, `users`.`email`, `users`.`type`, `users`.`password`, `users`.`age`, `users`.`created_at`, `users`.`updated_at` FROM `users` WHERE `users`.`id` = 2 LIMIT :AP0
+[Thu, 23 Jul 15 17:36:56 +0800][INFO] SELECT IF(COUNT(*) > 0, 1, 0) FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_NAME` = 'articles' AND `TABLE_SCHEMA` = DATABASE()
+[Thu, 23 Jul 15 17:36:56 +0800][INFO] DESCRIBE `articles`
+[Thu, 23 Jul 15 17:36:57 +0800][INFO] SELECT IF(COUNT(*) > 0, 1, 0) FROM `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_NAME` = 'users' AND `TABLE_SCHEMA` = DATABASE()
+[Thu, 23 Jul 15 17:36:57 +0800][INFO] DESCRIBE `users`
+[Thu, 23 Jul 15 17:36:57 +0800][INFO] SELECT `users`.`id`, `users`.`username`, `users`.`email`, `users`.`type`, `users`.`password`, `users`.`age`, `users`.`created_at`, `users`.`updated_at` FROM `users` WHERE `users`.`id` = 2 LIMIT :AP0
+[Thu, 23 Jul 15 17:36:57 +0800][INFO] SELECT COUNT(42) AS `rowcount` FROM `users` WHERE `users`.`username` = :0 AND `users`.`id` <> :1
+[Thu, 23 Jul 15 17:36:57 +0800][INFO] SELECT COUNT(42) AS `rowcount` FROM `users` WHERE `users`.`email` = :0 AND `users`.`id` <> :1
+[Thu, 23 Jul 15 17:36:57 +0800][INFO] UPDATE `users` SET `type` = ?, `password` = ?, `age` = ?, `created_at` = ?, `updated_at` = ? WHERE `id` = ?
+[Thu, 23 Jul 15 17:36:57 +0800][INFO] SELECT `users`.`id`, `users`.`username`, `users`.`email`, `users`.`type`, `users`.`password`, `users`.`age`, `users`.`created_at`, `users`.`updated_at` FROM `users` WHERE `users`.`id` = 2 LIMIT :AP0

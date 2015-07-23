@@ -8,9 +8,9 @@ use Blog\Models\Articles;
  *
  */
 class ArticleOperation extends BaseOperation implements Operation {
-	
-	public function __construct() {
-		
+	protected $articleLogFile = '../apps/logs/article.log';
+	public function __construct($di) {
+		parent::__construct($di);
 	}
 	
 	/**
@@ -20,6 +20,29 @@ class ArticleOperation extends BaseOperation implements Operation {
 	 */
 	public function get($id) {
 		return Articles::findFirst($id);
+	}
+	
+	/**
+	 * 添加文章
+	 * @param array $data
+	 * @return boolean
+	 */
+	public function save(Array $data) {
+		$article = new Articles();
+		foreach ($data as $key=>$value) {
+			$article->$key = $value;
+		}
+	
+		if($article->save()==true) {
+			return true;
+		}else {
+			foreach ($article->getMessages() as $message) {
+				$errorMessage = '用户:'.$article->author_id.'添加文章失败,提示内容:'.$message;
+				$this->log($errorMessage,$this->articleLogFile);
+				$this->getDI()->get('flash')->error($message);
+			}
+		}
+		return false;
 	}
 	
 	/**

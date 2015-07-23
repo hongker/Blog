@@ -8,12 +8,9 @@ use Blog\Models\Users;
  *
  */
 class UserOperation extends BaseOperation implements Operation {
-	/**
-	 * 获取用户信息
-	 * @return string
-	 */
-	public function __construct() {
-		
+	
+	public function __construct($di) {
+		parent::__construct($di);
 	}
 	
 	/**
@@ -25,6 +22,11 @@ class UserOperation extends BaseOperation implements Operation {
 		return Users::findFirst($id);
 	}
 	
+	/**
+	 * 添加用户信息
+	 * @param array $data
+	 * @return boolean
+	 */
 	public function save(Array $data) {
 		$user = new Users();
 		foreach ($data as $key=>$value) {
@@ -38,7 +40,7 @@ class UserOperation extends BaseOperation implements Operation {
 			return true;
 		}else {
 			foreach ($user->getMessages() as $message) {
-				echo $message;
+				$this->getDI()->get('flash')->error($message);
 			}
 		}
 		return false;
