@@ -2,7 +2,7 @@
 namespace Blog\Utils;
 
 /**
- * Redis雷
+ * Redis类
  * @author hongker
  *
  */

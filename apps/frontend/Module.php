@@ -19,6 +19,7 @@ class Module implements ModuleDefinitionInterface {
 				'Blog\Frontend\Controllers' => '../apps/frontend/controllers/',
 				'Blog\Models' => '../apps/core/models/',
 				'Blog\Operations' => '../apps/core/operations/',
+				'Blog\Utils' => '../apps/core/utils/',
 		) );
 		
 		$loader->register ();

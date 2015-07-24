@@ -1,6 +1,7 @@
 <?php
 namespace Blog\Frontend\Controllers;
 use Blog\Operations\UserOperation;
+use Blog\Utils\Email;
 /**
  * 首页控制器
  * @author hongker
@@ -18,7 +19,7 @@ class IndexController extends BaseController
 	public function indexAction()
 	{
 		
-		$operation = new UserOperation($this->di);
+		//$operation = new UserOperation($this->di);
 		/*
 		$data['username'] = 'ubuntu2';
 		$data['email'] = 'test2@qq.com';
@@ -28,14 +29,17 @@ class IndexController extends BaseController
 		$operation->save($data);
 		*/
 		
-		$id = 2;
-		$data['age'] = 22;
-		var_dump($operation->update($id, $data));
+		//$id = 2;
+		//$data['age'] = 22;
+		//var_dump($operation->update($id, $data));
 		//var_dump($operation->checkIsUpdated($id));
-		$user = $operation->get($id);
-		echo $user->username;
+		//$user = $operation->get($id);
+		//echo $user->username;
 		
-		exit;
+		//exit;
+		
 	}
+	
+	
 
 }
