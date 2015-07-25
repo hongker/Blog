@@ -15,7 +15,8 @@ use Phalcon\Flash\Direct as FlashDirect;
 /**
  * 读取配置文件
  */
-$config = new Phalcon\Config\Adapter\Ini ( "../apps/configs/config.ini" );
+$config_path = __DIR__."/../apps/configs/config.ini";
+$config = new Phalcon\Config\Adapter\Ini ($config_path);
 $di = new FactoryDefault ();
 
 // 自定义路由

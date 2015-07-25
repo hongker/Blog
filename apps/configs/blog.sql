@@ -1,5 +1,5 @@
 create database blog charset=utf8;
-
+use blog;
 /**
  * 1.users用户表
  * id 主键

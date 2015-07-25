@@ -18,9 +18,18 @@ class LoginController extends BaseController
 	}
 
 	public function indexAction() {
-		$operation = new ArticleOperation();
-		$author = $operation->getAuthor(1);
-		echo $author->username;exit;
+		var_dump($this->error[0]);exit;
+	}
+	
+	public function addUser() {
+		$return = array();
+		if($this->request->isPost()) {
+			
+		}else {
+			$return['errNo'] = 1002;
+			
+		}
+		return json_encode($return);
 	}
 
 }

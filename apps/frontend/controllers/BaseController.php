@@ -32,8 +32,8 @@ class BaseController extends Controller
     public function beforeExecuteRoute($dispatcher) {
     	$this->controller = $dispatcher->getControllerName();
     	$this->action = $dispatcher->getActionName();
-    	$config = new Phalcon\Config\Adapter\Ini ( "../apps/configs/config.ini" );
-    	$this->error = $config->error;
+    	$config = new \Phalcon\Config\Adapter\Ini ( "../apps/configs/config.ini" );
+    	$this->error = $config->message->error;
     }
     
 }
