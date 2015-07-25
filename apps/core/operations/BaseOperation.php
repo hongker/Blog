@@ -8,7 +8,7 @@ use Phalcon\Logger;
  *
  */
 class BaseOperation {
-	protected $_di;
+	private $_di;
 	
 	public function __construct($di) {
 		$this->_di = $di;	
@@ -27,6 +27,15 @@ class BaseOperation {
 	public function log($string,$logFile) {
 		$logger = new FileLogger($logFile);
 		$logger->log ( $string, Logger::ERROR);
+	}
+	
+	/**
+	 * 保存session
+	 * @param unknown $key
+	 * @param array $session
+	 */
+	public function store($key,Array $session) {
+		$this->_di->getService('session')->set($key,$session);
 	}
 	
 }
