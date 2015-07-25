@@ -37,10 +37,13 @@ class RegisterController extends BaseController
 				$return['errMsg'] = '';
 			}else {
 				//注册失败
-				$return['errNo'] = 1002;
+				//$return['errNo'] = 1002;
 				//$return['errMsg'] = $this->flash->output();
 			}
 			
+		}else {
+			$return['errNo'] = 1002;
+			$return['errMsg'] = '请求方式错误';
 		}
 	}
 

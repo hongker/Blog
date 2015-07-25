@@ -32,26 +32,26 @@ class Users extends BaseModel {
 		$validates = array();
 		$validates[] = new PresenceOf(array(
 				"field" => 'username',
-				"message" => '用户名不能为空'
+				"message" => 1000,
 		));
 		$validates[] = new PresenceOf(array(
 				"field" => 'email',
-				"message" => '邮箱不能为空'
+				"message" => 1003,
 		));
 		
 		$validates[] = new Uniqueness(array(
 				"field"   => "username",
-				"message" => "该用户名已被使用"
+				"message" => 1004,
 		));
 		
 		$validates[] = new Uniqueness(array(
 				"field"   => "email",
-				"message" => "该邮箱已被使用"
+				"message" => 1005,
 		));
 		
 		$validates[] = new EmailValidator(array(
 				'field' => 'email',
-				'message' => '邮箱格式不正确'
+				'message' => 1006,
 		));
 		
 		if($this->validateAll($validates)==false) {

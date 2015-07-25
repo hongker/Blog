@@ -12,6 +12,7 @@ class BaseController extends Controller
 {
 	protected $controller;
 	protected $action;
+	protected $error;
 	
 	protected function initialize() {
         //Prepend the application name to the title
@@ -31,6 +32,8 @@ class BaseController extends Controller
     public function beforeExecuteRoute($dispatcher) {
     	$this->controller = $dispatcher->getControllerName();
     	$this->action = $dispatcher->getActionName();
+    	$config = new Phalcon\Config\Adapter\Ini ( "../apps/configs/config.ini" );
+    	$this->error = $config->error;
     }
     
 }

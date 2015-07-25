@@ -139,6 +139,20 @@ class UserOperation extends BaseOperation implements Operation {
 	}
 	
 	/**
+	 * 检查邮箱是否已绑定
+	 * @param string $email 邮箱
+	 * @return boolean
+	 */
+	public function checkEmailExist($email) {
+		$user = Users::findFirst(array('email'=>$email));
+	
+		if($user) {
+			return true;
+		}
+		return false;
+	}
+	
+	/**
 	 * 检查用户密码是否正确
 	 * @param array $condition
 	 * @return boolean
@@ -153,7 +167,31 @@ class UserOperation extends BaseOperation implements Operation {
 		return false;
 	}
 	
-	
-	
-	
+	public function register(Array $user) {
+		$return = array();
+		if($user['username']) {
+			if(!$this->checkUserExist(array('username'=>$user['username']))) {
+				if($user['email']) {
+					if(!$this->checkEmailExist($user['email'])) {
+						if($user['password']) {
+							
+						}else {
+							$return['errNo'] = 1007;
+						}
+					}else {
+						$return['errNo'] = 1005;
+					}
+				}else {
+					$return['errNo'] = 1003;
+				}
+				
+			}else {
+				$return['errNo'] = 1004;
+			}
+		}else {
+			$return['errNo'] = 1000;
+		}
+		
+		return $return;
+	}	
 }
