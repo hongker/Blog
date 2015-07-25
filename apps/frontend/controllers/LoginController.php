@@ -15,21 +15,25 @@ class LoginController extends BaseController
 		\Phalcon\Tag::setTitle('首页');
 		parent::initialize();
 		$this->view->setTemplateAfter('common');
+		$this->operation = new UserOperation($this->di);
 	}
 
 	public function indexAction() {
-		var_dump($this->error[0]);exit;
+
 	}
 	
-	public function addUser() {
+	public function checkAction() {
 		$return = array();
 		if($this->request->isPost()) {
-			
+			$user['username'] = $this->request->getPost('username','string');
+			$user['password'] = $this->request->getPost('password','string');
+			$return = $this->operation->login($user);
 		}else {
 			$return['errNo'] = 1002;
-			
 		}
-		return json_encode($return);
+		$return['errMsg'] = $this->error[$return['errNo']];
+		
+		$this->json_return($return);
 	}
 
 }

@@ -2,20 +2,58 @@
 	<p>Welcome to Sign in our web.</p>
 	<div class="row">
 		<div class="col-sm-4">
-			<form>
+			<form id="loginForm">
+				
 				<div class="form-group has-feedback">
-					<input type="text" value="" placeholder="Please input your username"
+					<input type="text" id="username" placeholder="Please input your username"
 						class="form-control" /> <span
 						class="form-control-feedback fui-user"></span>
 				</div>
 				<div class="form-group has-feedback">
-					<input type="password" value="" placeholder="Please input your password"
+					<input type="password" id="password" placeholder="Please input your password"
 						class="form-control" /> <span
 						class="form-control-feedback fui-lock"></span>
 				</div>
-				<a class="btn btn-primary btn-lg btn-block" href="#">Sign in</a>
+				<div id="login-tip" class="text-danger"></div>
+				<button id="login-btn" class="btn btn-primary btn-lg btn-block" type="submit">Sign in</button>
 				<a class="login-link" href="#">Lost your password?</a>
 			</form>
 		</div>
 	</div>
 </div>
+<script>
+$(function() {
+	$("#loginForm").submit(function(e){
+		var loginBtn = $("#login-btn");
+		loginBtn.html('Sign in<i class="fa fa-spinner fa-pulse fa-fw margin-bottom"></i>');
+		var username = $("#username").val();
+		if(!username) {
+			$("#login-tip").html('*请填写用户名');
+			$("#username").focus();
+			loginBtn.html('Sign in');
+			return false;
+		}
+		var password = $("#password").val();
+		if(!password) {
+			$("#login-tip").html('*请填写您的密码');
+			$("#password").focus();
+			loginBtn.html('Sign in');
+			return false;
+		}
+
+		$.post("/login/check",{username:username,password:password},function(data){
+		    var result = $.parseJSON(data);
+		    if(result.errNo==0) {
+				alert('登录成功');
+				//跳转
+			}else {
+				$("#login-tip").html(result.errMsg);
+			}
+		});
+		loginBtn.html('Sign in');
+		return false;
+		
+	});
+});
+
+</script>

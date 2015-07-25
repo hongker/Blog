@@ -36,4 +36,11 @@ class BaseController extends Controller
     	$this->error = $config->message->error;
     }
     
+    /**
+     * 输出json数据
+     * @param array $array
+     */
+    public function json_return(Array $array) {
+    	echo json_encode($array);exit;
+    }
 }

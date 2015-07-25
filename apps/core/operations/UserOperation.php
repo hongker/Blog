@@ -107,18 +107,14 @@ class UserOperation extends BaseOperation implements Operation {
 					);
 					$this->store('user',$userSession);
 					$return['errNo'] = 0;
-					$return['errMsg'] = '';
 				}else {
-					$return['errNo'] = 1002;
-					$return['errMsg'] = '密码不正确';
+					$return['errNo'] = 1008;
 				}
 			}else {
 				$return['errNo'] = 1001;
-				$return['errMsg'] = '该用户不存在';
 			}
 		}else {
 			$return['errNo'] = 1000;
-			$return['errMsg'] = '用户名不能为空';
 		}
 		
 		return $return;
@@ -158,12 +154,12 @@ class UserOperation extends BaseOperation implements Operation {
 	 * @return boolean
 	 */
 	public function checkPassword(Array $condition) {
-		$condition['password'] = $this->getDI()->getService('security')->hash($condition['password']);
-		$user = Users::findFirst($condition);
+			$user = Users::findFirst(array('username'=>$condition['username']));
+			
+			if($this->getDI()->get('security')->checkHash($condition['password'],$user->password)) {
+				return true;
+			}
 		
-		if($user) {
-			return true;
-		}
 		return false;
 	}
 	

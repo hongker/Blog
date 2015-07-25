@@ -35,7 +35,7 @@ class BaseOperation {
 	 * @param array $session
 	 */
 	public function store($key,Array $session) {
-		$this->_di->getService('session')->set($key,$session);
+		$this->_di->get('session')->set($key,$session);
 	}
 	
 }
