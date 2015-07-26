@@ -1,7 +1,6 @@
 <?php
 namespace Blog\Frontend\Controllers;
 use Blog\Operations\UserOperation;
-use Blog\Operations\ArticleOperation;
 
 /**
  * 首页控制器
@@ -14,7 +13,7 @@ class LoginController extends BaseController
 	{
 		\Phalcon\Tag::setTitle('首页');
 		parent::initialize();
-		$this->view->setTemplateAfter('common');
+		$this->view->setTemplateAfter('login_register');
 		$this->operation = new UserOperation($this->di);
 	}
 

@@ -21,7 +21,11 @@ class Users extends BaseModel {
          ));
 		
 		$this->skipAttributesOnUpdate(array('email','username'));
-		
+	}
+	
+	public function beforeUpdate() {
+		parent::beforeUpdate();
+		$this->age = 0;
 	}
 	
 	/**

@@ -13,6 +13,7 @@ class BaseController extends Controller
 	protected $controller;
 	protected $action;
 	protected $error;
+	protected $operation ;
 	
 	protected function initialize() {
         //Prepend the application name to the title

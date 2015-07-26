@@ -1,6 +1,7 @@
 <?php
 namespace Blog\Frontend\Controllers;
 use Blog\Operations\ArticleOperation;
+use Blog\Operations\TypeOperation;
 /**
  * 资讯控制器
  * @author hongker
@@ -8,12 +9,13 @@ use Blog\Operations\ArticleOperation;
  */
 class ArticleController extends BaseController
 {
-	protected $operation ;
+	protected $typeOperation;
 	public function initialize()
 	{
 		\Phalcon\Tag::setTitle('资讯');
 		parent::initialize();
 		$this->operation = new ArticleOperation($this->di);
+		$this->typeOperation = new TypeOperation($this->di);
 	}
 
 	/**
@@ -23,6 +25,7 @@ class ArticleController extends BaseController
 		$articles = $this->operation->findAll();
 		
 		$this->view->setVar('articles',$articles);
+		$this->view->setVar('types',$this->typeOperation->findAll());
 	}
 	
 	/**

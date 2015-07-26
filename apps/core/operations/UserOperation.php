@@ -170,7 +170,10 @@ class UserOperation extends BaseOperation implements Operation {
 				if($user['email']) {
 					if(!$this->checkEmailExist($user['email'])) {
 						if($user['password']) {
-							
+							$user['password'] = $this->getDI()->get('security')->hash($user['password']);
+							if($this->save($user)) {
+								$return['errNo'] = 0;
+							}
 						}else {
 							$return['errNo'] = 1007;
 						}
