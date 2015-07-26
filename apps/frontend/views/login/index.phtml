@@ -46,6 +46,7 @@ $(function() {
 		    if(result.errNo==0) {
 				alert('登录成功');
 				//跳转
+				location.href='/';
 			}else {
 				$("#login-tip").html(result.errMsg);
 			}

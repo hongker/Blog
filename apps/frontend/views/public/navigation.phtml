@@ -5,18 +5,24 @@
 				data-target=".navbar-collapse">
 				<span class="sr-only">Toggle navigation</span>
 			</button>
-			<a class="navbar-brand" href="#">Web</a>
+			<a class="navbar-brand" href="/">Web</a>
 		</div>
 		<div class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">
-				<li class="active"><a href="#">Home</a></li>
-				<li><a href="#about">Blog</a></li>
-				<li><a href="#about">Contact</a></li>
-				<li><a href="#about">About</a></li>
+				<li class="active"><a href="/">Home</a></li>
+				<li><a href="/article">Blog</a></li>
+				<li><a href="/contact">Contact</a></li>
+				<li><a href="/about">About</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
+			<?php if($this->session->has('user')):?>
+				<li><a href="/home"><?php echo $this->session->get('user')['username']?></a></li>
+				<li><a href="javascript:void(0)" id="logout">退出</a></li>
+			<?php else:?>
 				<li><a href="/login">Sign in</a></li>
-				<li><a href="../navbar/">Sign up</a></li>
+				<li><a href="/register">Sign up</a></li>
+			<?php endif;?>
+				
 			</ul>
 		</div>
 		<!--/.nav-collapse -->

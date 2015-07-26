@@ -35,5 +35,19 @@ class LoginController extends BaseController
 		
 		$this->json_return($return);
 	}
+	
+	public function logoutAction() {
+		if($this->request->isPost()) {
+			if($this->operation->logout()) {
+				$return['errNo'] = 0;
+			}
+		}else {
+			$return['errNo'] = 1002;
+		}
+		
+		$return['errMsg'] = $this->error[$return['errNo']];
+		
+		$this->json_return($return);
+	}
 
 }

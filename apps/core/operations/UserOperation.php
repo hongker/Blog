@@ -190,4 +190,16 @@ class UserOperation extends BaseOperation implements Operation {
 		
 		return $return;
 	}	
+	
+	/**
+	 * 退出
+	 * @return boolean
+	 */
+	public function logout() {
+		if($this->getDI()->get('session')->destroy()) {
+			return true;
+		}
+		return false;
+	}
+	
 }

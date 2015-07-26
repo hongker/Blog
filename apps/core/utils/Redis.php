@@ -16,7 +16,7 @@ class Redis {
 	function __construct() {
 		$this->redis = new \Redis();
 		
-		$config = new Phalcon\Config\Adapter\Ini ( "../../configs/config.ini" );
+		$config = new \Phalcon\Config\Adapter\Ini ( "../../configs/config.ini" );
 		
 		$this->redis->connect($config->redis->host);
 	}
