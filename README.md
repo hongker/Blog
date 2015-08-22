@@ -1,3 +1,4 @@
 # Blog
-A blog use mongodb
+
+使用MongoDb作为数据库服务器
 
