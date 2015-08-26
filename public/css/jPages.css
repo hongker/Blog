@@ -4,11 +4,11 @@
 }
 
 .holder a {
-	font-size: 18px;
+	font-size: 14px;
 	cursor: pointer;
 	margin: 0 3px;
 	color: #333;
-	padding:5px 20px;
+	padding:5px 10px;
 	border:1px solid #D9D9D9;
 	border-radius:2px;
 }
@@ -19,8 +19,8 @@
 	color: #333;
 }
 
-.holder a.jp-previous { margin-right: 10px; }
-.holder a.jp-next { margin-left: 10px; }
+.holder a.jp-previous { margin-right: 0px; }
+.holder a.jp-next { margin-left: 0px; }
 
 .holder a.jp-current, a.jp-current:hover { 
 	border-color:#049EE4;

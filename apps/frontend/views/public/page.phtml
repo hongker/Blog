@@ -3,19 +3,19 @@
 	<?php if($page->current!=1):?>
 	href="<?php echo '?page='.$page->before?>"
 	<?php endif;?>>上一页</a>
-<?php if($page->total_pages>5):?>
-	<?php if($page->current<4):?>
-		<?php for($i=1;$i<=4;$i++):?>
+<?php if($page->total_pages>4):?>
+	<?php if($page->current<3):?>
+		<?php for($i=1;$i<=3;$i++):?>
 			<a class="<?php if($page->current==$i) echo 'jp-current'?>" href="<?php echo '?page='.$i?>"><?php echo $i?></a>
 		<?php endfor;?>
 		<a class="jp-previous jp-disabled">...</a>
 		
 	<?php elseif($page->total_pages-$page->current<3):?>
-		<?php for($i=$page->total_pages-4;$i<$page->total_pages;$i++):?>
+		<?php for($i=$page->total_pages-3;$i<$page->total_pages;$i++):?>
 			<a class="<?php if($page->current==$i) echo 'jp-current'?>" href="<?php echo '?page='.$i?>"><?php echo $i?></a>
 		<?php endfor;?>
 	<?php else:?>
-		<?php for($i=$page->current-2;$i<=5;$i++):?>
+		<?php for($i=$page->current-1;$i<=$page->current+1;$i++):?>
 			<a class="<?php if($page->current==$i) echo 'jp-current'?>" href="<?php echo '?page='.$i?>"><?php echo $i?></a>
 		<?php endfor;?>
 		<a class="jp-previous jp-disabled">...</a>

@@ -118,21 +118,22 @@ ul.atentions li a:hover {
 .login-bg .row {
 	margin:0px;
 }
-.login-container {
-	height:500px;
-	width:500px;
-	position:absolute; 
-	top:50%; left:50%;
-	margin-top:-250px;
-	margin-left:-250px;
-	background:rgba(0,0,0,0.25);
-	border-radius: 50%; 
+.login-bg .container {
+	background:rgba(0,0,0,0.5);
+	width:100%;
+	height:100%;
 	text-align:center;
-	padding:160px 80px;
+	padding:100px 0px;
+	
 }
-.login-container #loginForm {
-	margin:auto auto;
+.login-form-container {
+	max-width:330px;
+	padding:30px 25px;
+	margin:0px auto;
+	background:rgba(255,255,255,0.25);
+	border-radius:10px;
 }
+
 .article {
 	margin:5px 0px 0px 0px;
 }
@@ -248,8 +249,9 @@ ul.types {
 	width:100%;
 	height:300px;
 	/*background:#4FFFB6;*/
-	background: -webkit-gradient(linear,0 0,100% 100%, from(#0980CD),to(#0FFF64));
-	background: -moz-linear-gradient(left,#0980CD,#0FFF64);
+	/*background: -webkit-gradient(linear,0 0,100% 100%, from(#0980CD),to(#0FFF64));
+	background: -moz-linear-gradient(left,#0980CD,#0FFF64); */
+	background-image:linear-gradient(120deg,#0980CD,#0FFF64);
 	text-align:center;
 	padding:20px;
 	margin-top:-20px;

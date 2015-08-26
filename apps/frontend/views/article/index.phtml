@@ -1,5 +1,18 @@
 <div class="container">
 <div class="row">
+	<div class="col-sm-3">
+	
+		<div class="box">
+		<ul class="types">
+			<li><a href="/article" class="<?php if($action=='index') echo 'active';?>">全部</a></li>
+			<?php foreach ($types as $type):?>
+			<li><a href="/article/classify/<?php echo $type->id?>" class="<?php if($currentType==$type->id) echo 'active';?>"><?php echo $type->name?></a></li>
+			<?php endforeach;?>
+		</ul>
+		<div class="clear"></div>
+		</div>
+		<div class="box">Second box</div>
+	</div>
 	<div class="col-sm-9">
 	<div class="box">
 		<div class="row">
@@ -28,19 +41,6 @@
 			<?php endif;?>
 		</div>
 		</div>
-	</div>
-	<div class="col-sm-3">
-	
-		<div class="box">
-		<ul class="types">
-			<li><a href="/article" class="<?php if($action=='index') echo 'active';?>">全部</a></li>
-			<?php foreach ($types as $type):?>
-			<li><a href="/article/classify/<?php echo $type->id?>" class="<?php if($currentType==$type->id) echo 'active';?>"><?php echo $type->name?></a></li>
-			<?php endforeach;?>
-		</ul>
-		<div class="clear"></div>
-		</div>
-		<div class="box">Second box</div>
 	</div>
 </div>
 </div>
