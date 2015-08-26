@@ -2,6 +2,11 @@
 namespace Blog\Models;
 use Phalcon\Mvc\Model;
 
+/**
+ * 基础Model类
+ * @author hongker
+ * @version 1.0
+ */
 class BaseModel extends Model {
 	public $updated_at;
 	/**

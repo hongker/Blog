@@ -5,12 +5,12 @@ use Blog\Models\Articles;
 /**
  * 文章操作类
  * @author hongker
- *
+ * @version 1.0
  */
 class ArticleOperation extends BaseOperation implements Operation {
-	protected $articleLogFile = '../apps/logs/article.log';
 	public function __construct($di) {
 		parent::__construct($di);
+		$this->setLogFile('article.log');
 	}
 	
 	/**
@@ -38,7 +38,7 @@ class ArticleOperation extends BaseOperation implements Operation {
 		}else {
 			foreach ($article->getMessages() as $message) {
 				$errorMessage = '用户:'.$article->author_id.'添加文章失败,提示内容:'.$message;
-				$this->log($errorMessage,$this->articleLogFile);
+				$this->log($errorMessage,'error');
 				$this->getDI()->get('flash')->error($message);
 			}
 		}
@@ -91,9 +91,17 @@ class ArticleOperation extends BaseOperation implements Operation {
 	
 	/**
 	 * 根据条件查找文章数据
-	 * @param array $condition
+	 * @param string $condition
 	 */
-	public function findAll(array $condition = null) {
+	public function findAll(Array $condition = null) {
 		return Articles::find($condition);
+	}
+	
+	/**
+	 * 根据类型获取文章
+	 * @param unknown $type
+	 */
+	public function classify($type) {
+		return $this->findAll(array("conditions"=>"type_id=$type"));
 	}
 }

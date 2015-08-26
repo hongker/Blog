@@ -1,3 +1,71 @@
+<div class="container">
+<h3>Register</h3>
+<div class="register-container">
+<form id="registerForm">
+				
+				<div class="form-group has-feedback">
+					<input type="text" id="username" placeholder="Please input your username"
+						class="form-control" /> <span
+						class="form-control-feedback fui-user"></span>
+				</div>
+				<div class="form-group has-feedback">
+					<input type="email" id="email" placeholder="Please input your email"
+						class="form-control" /> <span
+						class="form-control-feedback fui-mail"></span>
+				</div>
+				<div class="form-group has-feedback">
+					<input type="password" id="password" placeholder="Please input your password"
+						class="form-control" /> <span
+						class="form-control-feedback fui-lock"></span>
+				</div>
+				<div id="register-tip" class="text-danger"></div>
+				<button id="register-btn" class="btn btn-info btn-lg btn-block" type="submit">Sign up</button>
+			</form>
+</div>
 
+</div>
+<script>
+$(function() {
+	$("#registerForm").submit(function(e){
+		var registerBtn = $("#register-btn");
+		registerBtn.html('Sign up<i class="fa fa-spinner fa-pulse fa-fw margin-bottom"></i>');
+		var username = $("#username").val();
+		
+		if(!username) {
+			$("#register-tip").html('*请填写用户名');
+			$("#username").focus();
+			registerBtn.html('Sign up');
+			return false;
+		}
+		var email = $("#email").val();
+		if(!email) {
+			$("#register-tip").html('*请填写您的邮箱');
+			$("#email").focus();
+			registerBtn.html('Sign up');
+			return false;
+		}
+		var password = $("#password").val();
+		if(!password) {
+			$("#register-tip").html('*请填写您的密码');
+			$("#password").focus();
+			registerBtn.html('Sign up');
+			return false;
+		}
 
-<p>this is content</p>
+		$.post("/register/addUser",{username:username,email:email,password:password},function(data){
+		    var result = $.parseJSON(data);
+		    if(result.errNo==0) {
+				alert('注册成功');
+				//跳转
+				location.href='/';
+			}else {
+				$("#register-tip").html(result.errMsg);
+			}
+		});
+		registerBtn.html('Sign up');
+		return false;
+		
+	});
+});
+
+</script>

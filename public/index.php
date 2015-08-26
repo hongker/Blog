@@ -39,6 +39,26 @@ $di->set ( 'router', function () {
 			'action' => 'index' 
 	) );
 	
+	$router->add ( '/user', array (
+			'module' => 'user',
+			'controller' => 'index',
+			'action' => 'index'
+	) );
+	$router->add ( '/user/:controller', array (
+			'module' => 'user',
+			'controller' => 1
+	) );
+	$router->add ( '/user/:controller/', array (
+			'module' => 'user',
+			'controller' => 1
+	) );
+	
+	$router->add ( '/user/:controller/:action', array (
+			'module' => 'user',
+			'controller' => 1,
+			'action' => 2
+	) );
+	
 	$router->add ( '/admin', array (
 			'module' => 'backend',
 			'controller' => 'index',
@@ -162,6 +182,10 @@ try {
 			'frontend' => array (
 					'className' => 'Blog\Frontend\Module',
 					'path' => '../apps/frontend/Module.php' 
+			),
+			'user' => array (
+					'className' => 'Blog\User\Module',
+					'path' => '../apps/user/Module.php'
 			),
 			'backend' => array (
 					'className' => 'Blog\Backend\Module',

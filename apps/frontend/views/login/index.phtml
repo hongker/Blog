@@ -65,7 +65,7 @@ $(function() {
 		$.post("/login/check",{username:username,password:password},function(data){
 		    var result = $.parseJSON(data);
 		    if(result.errNo==0) {
-				alert('登录成功');
+				alertify.success('登录成功');
 				//跳转
 				location.href='/';
 			}else {

@@ -5,13 +5,13 @@ use Blog\Operations\UserOperation;
 /**
  * 首页控制器
  * @author hongker
- *
+ * @version 1.0
  */
 class LoginController extends BaseController
 {
 	public function initialize()
 	{
-		\Phalcon\Tag::setTitle('首页');
+		\Phalcon\Tag::setTitle('登录');
 		parent::initialize();
 		$this->view->setTemplateAfter('login_register');
 		$this->operation = new UserOperation($this->di);

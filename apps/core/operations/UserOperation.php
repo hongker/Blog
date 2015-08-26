@@ -5,12 +5,13 @@ use Blog\Models\Users;
 /**
  * 用户信息操作类
  * @author hongker
- *
+ * @version 1.0
  */
 class UserOperation extends BaseOperation implements Operation {
 	
 	public function __construct($di) {
 		parent::__construct($di);
+		$this->setLogFile('user.log');
 	}
 	
 	/**
@@ -95,12 +96,12 @@ class UserOperation extends BaseOperation implements Operation {
 	 * @param array $user 
 	 * @return array
 	 */
-	public function login(Array $user) {
+	public function login(Array $info) {
 		$return = array();
-		if($user['username']) {
-			if($this->checkUserExist(array('username'=>$user['username']))) {
-				if($this->checkPassword($user)) {
-					$user = Users::findFirst(array('username'=>$user['username']));
+		if($info['username']) {
+			if($this->checkUserExist($info['username'])) {
+				if($this->checkPassword($info)) {
+					$user = Users::findFirst("username='$info[username]'");
 					$userSession = array(
 						'id'=>$user->id,
 						'username'=>$user->username,
@@ -117,16 +118,25 @@ class UserOperation extends BaseOperation implements Operation {
 			$return['errNo'] = 1000;
 		}
 		
+		$logString = "IP:{$this->ip},用户名:{$info['username']}登录，errNo：{$return['errNo']}";
+		
+		if($return['errNo']==0) {
+			$this->log($logString,'info');
+		}else {
+			$this->log($logString,'error');
+		}
+		
 		return $return;
 	}
 	
+	
 	/**
 	 * 检查用户是否存在
-	 * @param array $condition
+	 * @param string $username
 	 * @return boolean
 	 */
-	public function checkUserExist(Array $condition) {
-		$user = Users::findFirst($condition);
+	public function checkUserExist($username) {
+		$user = Users::findFirst("username='$username'");
 		
 		if($user) {
 			return true;
@@ -140,7 +150,7 @@ class UserOperation extends BaseOperation implements Operation {
 	 * @return boolean
 	 */
 	public function checkEmailExist($email) {
-		$user = Users::findFirst(array('email'=>$email));
+		$user = Users::findFirst("email='$email'");
 	
 		if($user) {
 			return true;
@@ -154,7 +164,7 @@ class UserOperation extends BaseOperation implements Operation {
 	 * @return boolean
 	 */
 	public function checkPassword(Array $condition) {
-			$user = Users::findFirst(array('username'=>$condition['username']));
+			$user = Users::findFirst(array("username='$condition[username]'"));
 			
 			if($this->getDI()->get('security')->checkHash($condition['password'],$user->password)) {
 				return true;
@@ -163,15 +173,20 @@ class UserOperation extends BaseOperation implements Operation {
 		return false;
 	}
 	
-	public function register(Array $user) {
+	/**
+	 * 用户注册
+	 * @param array $info
+	 * @return array
+	 */
+	public function register(Array $info) {
 		$return = array();
-		if($user['username']) {
-			if(!$this->checkUserExist(array('username'=>$user['username']))) {
-				if($user['email']) {
-					if(!$this->checkEmailExist($user['email'])) {
-						if($user['password']) {
-							$user['password'] = $this->getDI()->get('security')->hash($user['password']);
-							if($this->save($user)) {
+		if($info['username']) {
+			if(!$this->checkUserExist($info['username'])) {
+				if($info['email']) {
+					if(!$this->checkEmailExist($info['email'])) {
+						if($info['password']) {
+							$info['password'] = $this->getDI()->get('security')->hash($info['password']);
+							if($this->save($info)) {
 								$return['errNo'] = 0;
 							}
 						}else {
@@ -189,6 +204,14 @@ class UserOperation extends BaseOperation implements Operation {
 			}
 		}else {
 			$return['errNo'] = 1000;
+		}
+		
+		$logString = "IP:{$this->ip},用户名:{$info['username']}注册，errNo：{$return['errNo']}";
+		
+		if($return['errNo']==0) {
+			$this->log($logString,'info');
+		}else {
+			$this->log($logString,'error');
 		}
 		
 		return $return;

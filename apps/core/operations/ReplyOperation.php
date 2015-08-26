@@ -5,7 +5,7 @@ use Blog\Models\Replies;
 /**
  * 回复操作类
  * @author hongker
- *
+ * @version 1.0
  */
 class ReplyOperation extends BaseOperation implements Operation {
 	

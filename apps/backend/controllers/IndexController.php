@@ -1,17 +1,16 @@
 <?php
 namespace Blog\Backend\Controllers;
 /**
- * 首页控制器
+ * 管理首页控制器
  * @author hongker
- *
+ * @version 1.0
  */
 class IndexController extends BaseController
 {
 	public function initialize()
 	{
-		\Phalcon\Tag::setTitle('首页');
+		\Phalcon\Tag::setTitle('管理首页');
 		parent::initialize();
-		//$this->view->setTemplateAfter('common');
 	}
 
 	public function indexAction()

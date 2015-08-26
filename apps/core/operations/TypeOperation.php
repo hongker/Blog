@@ -5,7 +5,7 @@ use Blog\Models\Types;
 /**
  * 类型操作类
  * @author hongker
- *
+ * @version 1.0
  */
 class TypeOperation extends BaseOperation implements Operation {
 	public function __construct($di) {

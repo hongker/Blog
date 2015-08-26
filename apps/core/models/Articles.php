@@ -17,7 +17,7 @@ class Articles extends BaseModel {
               'alias' => 'Author'
           ));
 		
-		$this->hasMany("id", "Blog\Models\Comments", "article_id", array(
+		$this->hasMany("id", "Blog\Models\Comments", "target", array(
 				'alias' => 'Comments'
 		));
 		$this->skipAttributesOnUpdate(array('author_id'));
@@ -40,6 +40,10 @@ class Articles extends BaseModel {
 		$validates[] = new PresenceOf(array(
 				"field" => 'author_id',
 				"message" => '作者不能为空'
+		));
+		$validates[] = new PresenceOf(array(
+				"field" => 'type_id',
+				"message" => '文章类型不能为空'
 		));
 	
 		

@@ -4,7 +4,7 @@ use Blog\Operations\UserOperation;
 /**
  * 注册控制器
  * @author hongker
- *
+ * @version 1.0
  */
 class RegisterController extends BaseController
 {
@@ -25,26 +25,21 @@ class RegisterController extends BaseController
 	/**
 	 * 添加用户
 	 */
-	public function addUser() {
+	public function addUserAction() {
 		$return = array();
 		if($this->request->isPost()) {
 			$data['username'] = $this->request->getPost('username','string');
 			$data['email'] = $this->request->getPost('email','email');
 			$data['password'] = $this->security->hash($this->request->getPost('password','string'));
 			
-			if($this->operation->save($data)) {
-				$return['errNo'] = 0;
-				$return['errMsg'] = '';
-			}else {
-				//注册失败
-				//$return['errNo'] = 1002;
-				//$return['errMsg'] = $this->flash->output();
-			}
+			$return = $this->operation->register($data);
 			
 		}else {
 			$return['errNo'] = 1002;
-			$return['errMsg'] = '请求方式错误';
 		}
+		$return['errMsg'] = $this->error[$return['errNo']];
+		
+		$this->json_return($return);
 	}
 
 }

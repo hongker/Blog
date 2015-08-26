@@ -1,11 +1,10 @@
 <?php
-
-namespace Blog\operations;
+namespace Blog\Operations;
 
 /**
  * 操作类接口
  * @author hongker
- *
+ * @version 1.0
  */
 interface Operation {
 	public function get($id);

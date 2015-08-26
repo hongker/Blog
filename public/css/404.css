@@ -99,6 +99,10 @@ body.fourofour .fourofour-container a.btn:hover {
 }
 .return_home {
 	margin-top:20px;
+	border-radius:0px;
+}
+.return_home:hover {
+	transition: 0.8s;
 }
 .btn i {
   display: inline-block;

@@ -14,11 +14,13 @@ class Comments extends BaseModel {
 		$this->belongsTo("author_id", "Blog\Models\Users", "id", array(
               'alias' => 'Author'
          ));
+		if($this->type==1) {
+			//关联articles表
+			$this->belongsTo("target", "Blog\Models\Articles", "id", array(
+					'alias' => 'Article'
+			));
+		}
 		
-		//关联articles表
-		$this->belongsTo("article_id", "Blog\Models\Articles", "id", array(
-				'alias' => 'Article'
-		));
 		
 		$this->hasMany("id", "Blog\Models\Replies", "comment_id", array(
 				'alias' => 'Replies'

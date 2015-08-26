@@ -1,21 +1,46 @@
 <div class="container">
 <div class="row">
-	<div class="col-sm-7">
+	<div class="col-sm-9">
+	<div class="box">
 		<div class="row">
-			<?php for($i=1;$i<10;$i++):?>
-			<div class="col-sm-12 article">
-				<div class="title">this is title</div>
-				<p class="content">Sed pretium, ligula sollicitudin laoreet viverra, tortor libero sodales leo eget. Excepteur sint occaecat cupidatat non proident, sunt.</p>
+			<?php if($page->total_items==0):?>
+			<div class="col-sm-12 none">
+			暂无数据
 			</div>
-			<?php endfor;?>
+			<?php else:?>
+			<?php foreach ($page->items as $article):?>
+			<div class="col-sm-12 article">
+				<div class="title"><a class="text-info" href="/article/info/<?php echo $article->id?>"><span class="fui-link"></span><?php echo $article->title?></a></div>
+				<div class="info">
+					<span class="author">作者：<span class="username"><?php echo $article->getAuthor()->username?></span></span>
+					<span class="created_at"><?php echo substr($article->created_at,5,11)?></span>
+				</div>
+				<p class="digest"><?php echo $article->digest?></p>
+				<div class="numbers">
+					<span class="view">阅读：<span class="count">20</span></span>
+					<span class="comment">评论：<span class="count">20</span></span>
+					<span class="praise">点赞：<span class="count">20</span></span>
+				</div>
+				<hr>
+			</div>
+			<?php endforeach;?>
+			<?php $this->partial('public/page')?>
+			<?php endif;?>
+		</div>
 		</div>
 	</div>
-	<div class="col-sm-5">
+	<div class="col-sm-3">
+	
+		<div class="box">
 		<ul class="types">
+			<li><a href="/article" class="<?php if($action=='index') echo 'active';?>">全部</a></li>
 			<?php foreach ($types as $type):?>
-			<li><a href="/article/classify/<?php echo $type->id?>" class="text-info"><?php echo $type->name?></a></li>
+			<li><a href="/article/classify/<?php echo $type->id?>" class="<?php if($currentType==$type->id) echo 'active';?>"><?php echo $type->name?></a></li>
 			<?php endforeach;?>
 		</ul>
+		<div class="clear"></div>
+		</div>
+		<div class="box">Second box</div>
 	</div>
 </div>
 </div>

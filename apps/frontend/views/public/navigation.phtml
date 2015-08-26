@@ -9,8 +9,8 @@
 		</div>
 		<div class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">
-				<li class="active"><a href="/">Home</a></li>
-				<li><a href="/article">Blog</a></li>
+				<li class="<?php if($controller=='index') echo 'active'?>"><a href="/">Home</a></li>
+				<li class="<?php if($controller=='article') echo 'active'?>"><a href="/article">Blog</a></li>
 				<li><a href="/contact">Contact</a></li>
 				<li><a href="/about">About</a></li>
 			</ul>

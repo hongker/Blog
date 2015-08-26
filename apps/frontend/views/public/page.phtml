@@ -1,0 +1,36 @@
+<div class="holder">
+<a class="jp-previous <?php if($page->current==1) echo 'jp-disabled'?>" 
+	<?php if($page->current!=1):?>
+	href="<?php echo '?page='.$page->before?>"
+	<?php endif;?>>上一页</a>
+<?php if($page->total_pages>5):?>
+	<?php if($page->current<4):?>
+		<?php for($i=1;$i<=4;$i++):?>
+			<a class="<?php if($page->current==$i) echo 'jp-current'?>" href="<?php echo '?page='.$i?>"><?php echo $i?></a>
+		<?php endfor;?>
+		<a class="jp-previous jp-disabled">...</a>
+		
+	<?php elseif($page->total_pages-$page->current<3):?>
+		<?php for($i=$page->total_pages-4;$i<$page->total_pages;$i++):?>
+			<a class="<?php if($page->current==$i) echo 'jp-current'?>" href="<?php echo '?page='.$i?>"><?php echo $i?></a>
+		<?php endfor;?>
+	<?php else:?>
+		<?php for($i=$page->current-2;$i<=5;$i++):?>
+			<a class="<?php if($page->current==$i) echo 'jp-current'?>" href="<?php echo '?page='.$i?>"><?php echo $i?></a>
+		<?php endfor;?>
+		<a class="jp-previous jp-disabled">...</a>
+	<?php endif;?>
+	<a class="<?php if($page->current==$page->total_pages) echo 'jp-current'?>" href="<?php echo "?page=".$page->total_pages?>"><?php echo $page->total_pages?></a>
+<?php else:?>
+<?php for($i=1;$i<=$page->total_pages;$i++):?>
+<a class="<?php if($page->current==$i) echo 'jp-current'?>" href="<?php echo '?page='.$i?>"><?php echo $i?></a>
+<?php endfor;?>
+<?php endif;?>
+
+
+<a class="jp-next <?php if($page->current==$page->total_pages) echo 'jp-disabled'?>"
+	<?php if($page->current!=$page->total_pages): ?>
+	 href="<?php echo '?page='.$page->next?>"
+	<?php endif;?>>下一页</a>
+</div>
+

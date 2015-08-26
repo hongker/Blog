@@ -5,7 +5,7 @@ use Blog\Models\Comments;
 /**
  * 评论操作类
  * @author hongker
- *
+ * @version 1.0
  */
 class CommentOperation extends BaseOperation implements Operation {
 	

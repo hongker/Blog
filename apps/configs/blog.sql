@@ -29,6 +29,7 @@ values('hongker','xiaok2013@live.com',1,'$2a$12$0Y8tnffNb6PMCBi7SmlAHe8jFNYBvtFE
  * articles 文章表
  * id 主键
  * title 标题
+ * digest 摘要
  * author_id 作者id
  * type_id 类型id
  * content 内容
@@ -39,14 +40,18 @@ drop table if exists articles;
 create table articles(
 	id int not null primary key auto_increment,
 	title varchar(100) not null,
+	digest varchar(255) not null,
 	author_id int not null,
 	type_id int not null,
 	content text not null,
 	created_at timestamp not null default current_timestamp,
 	updated_at timestamp not null default '0000-00-00 00:00:00'
 )engine=myisam default charset=utf8;
-insert into articles(title,author_id,type_id,content)
-values('this is title',1,1,'this is content');
+insert into articles(title,digest,author_id,type_id,content)
+values('This is article title','Either you run the day or the day runs for you',1,1,'Sed pretium, ligula sollicitudin laoreet viverra, tortor libero sodales leo eget. Excepteur sint occaecat cupidatat non proident, sunt'),
+('This is article title','Either you run the day or the day runs for you',3,2,'Sed pretium, ligula sollicitudin laoreet viverra, tortor libero sodales leo eget. Excepteur sint occaecat cupidatat non proident, sunt')
+;
+
 
 
 /**
@@ -54,7 +59,8 @@ values('this is title',1,1,'this is content');
  * id 主键
  * author_id 作者id
  * content 评论内容
- * article_id 评论目标
+ * target 评论目标
+ * type 评论类型(1:文章评论)
  * created_at 创建时间
  * updated_at 更改时间
  */
@@ -63,7 +69,8 @@ create table comments(
 	id int not null primary key auto_increment,
 	author_id int not null,
 	content varchar(255) not null,
-	article_id int not null,
+	target int not null,
+	type tinyint not null default 1,
 	created_at timestamp not null default current_timestamp,
 	updated_at timestamp not null default '0000-00-00 00:00:00'
 )engine=myisam default charset=utf8;
@@ -72,7 +79,7 @@ create table comments(
  * replies 回复表
  * id 主键
  * author_id 作者
- * target_id 回复目标
+ * target_id 回复目标用户ID
  * content 回复内容
  * comment_id 所属评论id
  * created_at 创建时间
