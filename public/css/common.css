@@ -115,6 +115,7 @@ ul.atentions li a:hover {
 	height:100%;
 	text-align:center;
 }
+
 .login-bg .row {
 	margin:0px;
 }
@@ -144,6 +145,19 @@ ul.atentions li a:hover {
   font-weight: 400;
   font-style: normal;
   font-size: 1.5em;
+}
+#loginForm input {
+	border-style:none none solid none;
+	background:none;
+	border-radius:0px;
+	border-bottom:1px solid #DBDBDB;
+	color:#fff;
+	font-size:18px;
+	
+}
+
+#loginForm span {
+	color:#fff;
 }
 
 .register-container {
