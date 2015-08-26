@@ -1,4 +1,4 @@
 # Blog
 
-使用MongoDb作为数据库服务器
+I want to use pjax and nprogress to display the content.Please waiting for the cool thing.
 
