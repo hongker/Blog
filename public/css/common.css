@@ -120,7 +120,7 @@ ul.atentions li a:hover {
 	margin:0px;
 }
 .login-bg .container {
-	background:rgba(0,0,0,0.5);
+	background:rgba(0,0,0,0.25);
 	width:100%;
 	height:100%;
 	text-align:center;
@@ -131,7 +131,7 @@ ul.atentions li a:hover {
 	max-width:330px;
 	padding:30px 25px;
 	margin:0px auto;
-	background:rgba(255,255,255,0.25);
+	background:rgba(0,0,0,0.35);
 	border-radius:10px;
 }
 
@@ -146,7 +146,7 @@ ul.atentions li a:hover {
   font-style: normal;
   font-size: 1.5em;
 }
-#loginForm input {
+#loginForm input,#registerForm input {
 	border-style:none none solid none;
 	background:none;
 	border-radius:0px;
@@ -155,16 +155,39 @@ ul.atentions li a:hover {
 	font-size:18px;
 	
 }
-
-#loginForm span {
-	color:#fff;
+#loginForm input:focus,#registerForm input:focus {
+	border-bottom-color:#1abc9c;
 }
 
-.register-container {
-	height:400px;
-	width:400px;
+#loginForm span,#registerForm span {
+	color:#fff;
+	transition:0.5s;
+}
+#loginForm .focus span,#registerForm .focus span{
+	color:#1abc9c;
+	
+}
+.register-bg {
+	background:url('../images/register_bg.jpg');
+	background-size:100% 100%;
+	width:100%;
+	height:100%;
 	text-align:center;
-	padding:20px 50px;
+}
+
+.register-bg .container {
+	background:rgba(255,255,255,0.25);
+	width:100%;
+	height:100%;
+	text-align:center;
+	padding:100px 0px;
+}
+.register-form-container {
+	max-width:330px;
+	padding:30px 25px;
+	margin:0px auto;
+	background:rgba(0,0,0,0.35);
+	border-radius:10px;
 }
 
 /*------ article ------*/

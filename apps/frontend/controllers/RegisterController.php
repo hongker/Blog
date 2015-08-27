@@ -13,7 +13,7 @@ class RegisterController extends BaseController
 	{
 		\Phalcon\Tag::setTitle('注册');
 		parent::initialize();
-		$this->view->setTemplateAfter('common');
+		$this->view->setTemplateAfter('login_register');
 		
 		$this->operation = new UserOperation($this->di);
 	}
