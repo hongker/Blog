@@ -1,2 +1,29 @@
-<header>this is header</header>
-<?php $this->partial('public/navigation')?>
+<div class="navbar navbar-default" role="navigation">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse"
+				data-target=".navbar-collapse">
+				<span class="sr-only">Toggle navigation</span>
+			</button>
+			<a class="navbar-brand" href="/">Blog System</a>
+		</div>
+		<div class="navbar-collapse collapse">
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="#"><span class="fui-list"></span></a></li>
+				<li><a href="#"><span class="fui-mail"></span><span class="navbar-new">2</span></a></li>
+				<li><a href="#"><span class="fui-chat"></span></a></li>
+				<li><a href="#"><i class="fa fa-bell"></i></a></li>
+				<li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">admin <b class="caret"></b></a>
+                  <span class="dropdown-arrow"></span>
+                  <ul class="dropdown-menu">
+                  	<li><a href="#"><span class="fui-exit"></span>退出系统</a></li>
+                    <li><a href="#"><i class="fa fa-cog"></i>系统设置</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">修改信息</a></li>
+                  </ul>
+                </li>
+				
+			</ul>
+		</div>
+		<!--/.nav-collapse -->
+</div>
