@@ -46,7 +46,13 @@ class ArticleController extends BaseController
 	 * 删除文章
 	 */
 	public function deleteAction() {
-		
+		$id = 1;
+		if($this->operation->delete($id)) {
+			echo 'true';
+		}else {
+			echo 'false';
+		}
+		exit;
 	}
 
 }

@@ -22,7 +22,7 @@ class Module implements ModuleDefinitionInterface
         $loader->registerNamespaces(
             array(
                 'Blog\Backend\Controllers' => '../apps/backend/controllers/',
-                'Blog\Backend\Models'      => '../apps/core/models/',
+                'Blog\Models'      => '../apps/core/models/',
             	'Blog\Operations' => '../apps/core/operations/',
             	'Blog\Utils' => '../apps/core/utils/',
             )

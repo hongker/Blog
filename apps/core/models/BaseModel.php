@@ -1,6 +1,7 @@
 <?php
 namespace Blog\Models;
 use Phalcon\Mvc\Model;
+use Phalcon\Mvc\Model\Behavior\SoftDelete;
 
 /**
  * 基础Model类
@@ -8,6 +9,10 @@ use Phalcon\Mvc\Model;
  * @version 1.0
  */
 class BaseModel extends Model {
+	const DELETED = 1;
+	
+	const NOT_DELETED = 0;
+	
 	public $updated_at;
 	/**
 	 * 模型初始化
@@ -19,6 +24,15 @@ class BaseModel extends Model {
 		
 		$this->setup(
 				array('notNullValidations'=>false)
+		);
+		
+		$this->addBehavior(
+				new SoftDelete(
+						array(
+								'field' => 'is_delete',
+								'value' => self::DELETED
+						)
+				)
 		);
 	}
 	

@@ -8,6 +8,7 @@ use blog;
  * type 用户类型(1:普通用户,2:管理员)
  * password 密码
  * age 年龄
+ * is_delete 是否删除(1:是，0：否)
  * created_at 创建时间
  * updated_at 更改时间
  */
@@ -19,6 +20,7 @@ create table users(
 	type tinyint not null default 1,
 	password char(60) not null,
 	age tinyint not null default 0,
+	is_delete tinyint not null default 0,
 	created_at timestamp not null default current_timestamp,
 	updated_at timestamp not null default '0000-00-00 00:00:00'
 )engine=myisam default charset=utf8;
@@ -63,6 +65,7 @@ values('This is article title','Either you run the day or the day runs for you',
  * content 评论内容
  * target 评论目标
  * type 评论类型(1:文章评论)
+ * is_delete 是否删除(1:是，0：否)
  * created_at 创建时间
  * updated_at 更改时间
  */
@@ -73,6 +76,7 @@ create table comments(
 	content varchar(255) not null,
 	target int not null,
 	type tinyint not null default 1,
+	is_delete tinyint not null default 0,
 	created_at timestamp not null default current_timestamp,
 	updated_at timestamp not null default '0000-00-00 00:00:00'
 )engine=myisam default charset=utf8;
@@ -84,6 +88,7 @@ create table comments(
  * target_id 回复目标用户ID
  * content 回复内容
  * comment_id 所属评论id
+ * is_delete 是否删除(1:是，0：否)
  * created_at 创建时间
  * updated_at 更改时间
  */
@@ -94,6 +99,7 @@ create table replies(
 	target_id int not null,
 	content varchar(255) not null,
 	comment_id int not null,
+	is_delete tinyint not null default 0,
 	created_at timestamp not null default current_timestamp,
 	updated_at timestamp not null default '0000-00-00 00:00:00'
 )engine=myisam default charset=utf8;
@@ -102,6 +108,7 @@ create table replies(
  * types 类型表
  * id 主键
  * name 类型名称
+ * is_delete 是否删除(1:是，0：否)
  * created_at 创建时间
  * updated_at 更改时间
  */
@@ -109,6 +116,7 @@ drop table if exists types;
 create table types(
 	id int not null primary key auto_increment,
 	name varchar(10) not null,
+	is_delete tinyint not null default 0,
 	created_at timestamp not null default current_timestamp,
 	updated_at timestamp not null default '0000-00-00 00:00:00'
 )engine=myisam default charset=utf8;
