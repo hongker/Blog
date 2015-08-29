@@ -25,6 +25,14 @@ html, body {
     border-right: 1px solid #CACACA;
   }
 }
+	
+.sidebar .fa.arrow:before {
+    content: "\f104";
+}
+
+.sidebar .active>a>.fa.arrow:before {
+    content: "\f107";
+}
 
 /* Sidebar navigation */
 .nav-sidebar {
@@ -39,7 +47,8 @@ html, body {
   font-size:16px;
 }
 
-.nav-sidebar #arrow {
+
+.nav-sidebar .arrow {
 	float: right;
 	margin-top:7px;
 }
