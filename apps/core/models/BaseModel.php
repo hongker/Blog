@@ -13,7 +13,7 @@ class BaseModel extends Model {
 	 * 模型初始化
 	 */
 	public function initialize() {
-		$this->skipAttributes(array('created_at', ));
+		$this->skipAttributes(array('created_at','is_delete'));
 		
 		$this->skipAttributesOnCreate(array('updated_at'));
 		

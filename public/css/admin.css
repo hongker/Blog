@@ -43,9 +43,9 @@ html, body {
 	float: right;
 	margin-top:7px;
 }
-.nav-sidebar a:hover {
-	
-}
+.nav-second-level > li.active {
+	background: #EEEEEE;
+} 
 
 .nav-sidebar > .active > a,
 .nav-sidebar > .active > a:hover,

@@ -33,6 +33,7 @@ values('hongker','xiaok2013@live.com',1,'$2a$12$0Y8tnffNb6PMCBi7SmlAHe8jFNYBvtFE
  * author_id 作者id
  * type_id 类型id
  * content 内容
+ * is_delete 是否删除(1:是，0：否)
  * created_at 创建时间
  * updated_at 更改时间
  */
@@ -44,6 +45,7 @@ create table articles(
 	author_id int not null,
 	type_id int not null,
 	content text not null,
+	is_delete tinyint not null default 0,
 	created_at timestamp not null default current_timestamp,
 	updated_at timestamp not null default '0000-00-00 00:00:00'
 )engine=myisam default charset=utf8;

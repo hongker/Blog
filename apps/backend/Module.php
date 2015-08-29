@@ -23,6 +23,8 @@ class Module implements ModuleDefinitionInterface
             array(
                 'Blog\Backend\Controllers' => '../apps/backend/controllers/',
                 'Blog\Backend\Models'      => '../apps/core/models/',
+            	'Blog\Operations' => '../apps/core/operations/',
+            	'Blog\Utils' => '../apps/core/utils/',
             )
         );
 

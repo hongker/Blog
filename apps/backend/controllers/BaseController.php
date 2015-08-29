@@ -40,6 +40,8 @@ class BaseController extends Controller
         	echo '请先登录';exit;
         }
         $this->view->setTemplateAfter('common');
+        $this->view->setVar('action',$this->action);
+        $this->view->setVar('controller',$this->controller);
     }
     
     public function beforeExecuteRoute($dispatcher) {

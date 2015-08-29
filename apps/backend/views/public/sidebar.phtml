@@ -1,14 +1,13 @@
 <nav class="sidebar">
 	<ul class="nav nav-sidebar" id="side-menu">
-		<li class="active">
-			<a href="#"><i class="fa fa-dashboard"></i> 系统首页</a>
+		<li class="<?php if($controller=='index') echo 'active'?>">
+			<a href="/admin"><i class="fa fa-dashboard"></i> 系统首页</a>
 		</li>
-		<li class="">
-			<a href="#">
+		<li class="<?php if($controller=='user') echo 'active'?>">
+			<a href="/admin/user">
 				<span class="fui-user"></span> 用户管理<i id="arrow" class="fa fa-chevron-left"></i>
 			</a>
-			<ul class="nav nav-second-level collapse" aria-expanded="false"
-				style="height: 0px;">
+			<ul class="nav nav-second-level collapse" <?php if($controller!='user') echo 'aria-expanded="false" style="height: 0px;"'?>>
 				<li>
 					<a href="#"><i class="fa fa-chain fa-fw"></i> 用户列表</a>
 				</li>
@@ -24,14 +23,14 @@
 
 			</ul> <!-- /.nav-second-level -->
 		</li>
-		<li class="">
-			<a href="#">
+		<li class="<?php if($controller=='article') echo 'active'?>">
+			<a href="">
 				<span class="fui-document"></span> 文章管理<i id="arrow" class="fa fa-chevron-left"></i>
 			</a>
-			<ul class="nav nav-second-level collapse" aria-expanded="false"
-				style="height: 0px;">
-				<li>
-					<a href="#"><i class="fa fa-chain fa-fw"></i> 文章列表</a>
+			<ul class="nav nav-second-level collapse "
+				<?php if($controller!='article') echo 'aria-expanded="false" style="height: 0px;"'?>>
+				<li class="<?php if($controller=='article'&&$action=='index') echo 'active'?>">
+					<a href="/admin/article" ><i class="fa fa-chain fa-fw"></i> 文章列表</a>
 				</li>
 				<li>
 					<a href="#"><i class="fa fa-chain fa-fw"></i> 添加文章</a>
@@ -50,10 +49,9 @@
 			<a href="#">
 				<span class="fui-chat"></span> 评论管理<i id="arrow" class="fa fa-chevron-left"></i>
 			</a>
-			<ul class="nav nav-second-level collapse" aria-expanded="false"
-				style="height: 0px;">
+			<ul class="nav nav-second-level collapse" <?php if($controller!='comment') echo 'aria-expanded="false" style="height: 0px;"'?>>
 				<li>
-					<a href="#"><i class="fa fa-chain fa-fw"></i> 评论列表</a>
+					<a href="/admin/comment"><i class="fa fa-chain fa-fw"></i> 评论列表</a>
 				</li>
 				<li>
 					<a href="#"><i class="fa fa-chain fa-fw"></i> 回复列表</a>
