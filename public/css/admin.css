@@ -1,6 +1,7 @@
 @CHARSET "UTF-8";
 html, body {
 	background-color:#fff;
+	font-size:15px;
 }
 .navbar-default {
 	background-color:#fff;
@@ -63,12 +64,22 @@ html, body {
   background-color: #428bca;
 }
 .main {
-  padding: 20px;
+    padding: 20px 0px;
+    min-height: 568px;
+    background-color: #fff;
+	margin-top:1px;
 }
-@media (min-width: 768px) {
-  .main {
-    padding-right: 40px;
-    padding-left: 40px;
-  	margin-left:200px;
-  }
+
+@media(min-width:768px) {
+    .main {
+        position: inherit;
+        margin: 20px 0 0 200px;
+        padding: 0 30px;
+    	
+    }
+}
+
+/************* article ****************/
+tr.none {
+	
 }

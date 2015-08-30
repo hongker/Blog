@@ -22,7 +22,7 @@ class ArticleController extends BaseController
 	 * 资讯列表
 	 */
 	public function indexAction() {
-		$currentPage = $this->get('page','int')?$this->get('page','int'):1;
+		$currentPage = $this->getQuery('page','int')?$this->getQuery('page','int'):1;
 		
 		
 		$articles = $this->operation->findAll(array("order"=>"created_at desc"));
@@ -42,7 +42,7 @@ class ArticleController extends BaseController
 		
 		$articles = $this->operation->classify($id);
 		
-		$currentPage = $this->get('page','int')?$this->get('page','int'):1;
+		$currentPage = $this->getQuery('page','int')?$this->getQuery('page','int'):1;
 		
 		$page = $this->getPaginate($articles,$currentPage);
 		

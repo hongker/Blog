@@ -1,35 +1,35 @@
 <div class="page-header">
 	<i class="fui-document"></i>文章管理 > 文章列表
 </div>
-<div class="container">
-	<table class="table table-bordered">
+<div>
+	<table class="table table-bordered table-striped">
       <thead>
         <tr>
-          <th>#</th>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Username</th>
+          <th>序号</th>
+          <th>标题</th>
+          <th>类型</th>
+          <th>作者</th>
+          <th>状态</th>
+          <th>创建时间</th>
+          <th>操作</th>
         </tr>
       </thead>
       <tbody>
+      	<?php if($page->total_items==0):?>
+      	<tr class="none"><td colspan="7">暂无数据</td></tr>
+      	<?php else:?>
+      	<?php foreach($page->items as $key=>$article):?>
         <tr>
-          <th scope="row">1</th>
-          <td>Mark</td>
-          <td>Otto</td>
+          <th scope="row"><?php echo $key+1?></th>
+          <td><?php echo $article->title?></td>
+          <td><?php echo $article->getType()->name?></td>
+          <td><?php echo $article->getAuthor()->username?></td>
+          <td><?php echo $article->is_delete?></td>
+          <td><?php echo $article->created_at?></td>
           <td>@mdo</td>
         </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>@fat</td>
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <td>Larry</td>
-          <td>the Bird</td>
-          <td>@twitter</td>
-        </tr>
+        <?php endforeach;?>
+        <?php endif;?>
       </tbody>
     </table>
 </div>

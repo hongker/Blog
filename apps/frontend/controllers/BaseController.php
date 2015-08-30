@@ -83,8 +83,17 @@ class BaseController extends Controller
      * @param string $param
      * @param string $type
      */
-    protected function get($param,$type='string') {
+    protected function getQuery($param,$type='string') {
     	return $this->request->getQuery($param,$type);
+    }
+    
+    /**
+     * 获取POST数据
+     * @param string $param
+     * @param string $type
+     */
+    protected function getPost($param,$type='string') {
+    	return $this->request->getPost($param,$type);
     }
     
     /**

@@ -72,6 +72,43 @@ class BaseController extends Controller
     }
     
     /**
+     * 获取GET数据
+     * @param string $param
+     * @param string $type
+     */
+    protected function getQuery($param,$type='string') {
+    	return $this->request->getQuery($param,$type);
+    }
+    
+    /**
+     * 获取POST数据
+     * @param string $param
+     * @param string $type
+     */
+    protected function getPost($param,$type='string') {
+    	return $this->request->getPost($param,$type);
+    }
+    
+    /**
+     * 获取分页类
+     * @param unknown $data
+     * @param number $currentPage
+     * @param number $limit
+     * @return unknown
+     */
+    public function getPaginate($data,$currentPage=1,$limit = 10) {
+    	$paginator = new \Phalcon\Paginator\Adapter\Model(
+    			array(
+    					"data"  => $data,
+    					"limit" => $limit,
+    					"page"  => $currentPage,
+    			));
+    	$pageinate = $paginator->getPaginate();
+    	 
+    	return $pageinate;
+    }
+    
+    /**
      * 跳转到404页面
      */
     public function show404() {
