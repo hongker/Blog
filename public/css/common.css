@@ -321,6 +321,25 @@ ul.types {
   	letter-spacing: 0em;
 	font-size:20px;
 	color:#A6A6A6;
+	margin-top:25px;
+	
+}
+.header .item .login-btn {
+	margin-top:20px;
+	
+}
+.login-btn a {
+	color:#fff;
+	border:1px solid #fff;
+	padding:10px 40px;
+	border-radius:3px;
+	font-size:20px;
+	transition:1s;
+}
+.login-btn a:hover {
+	background:rgba(255,255,255,0.2);
+	color:#000;
+	
 }
 @media (min-width: 768px) {
 	.header {
@@ -328,10 +347,11 @@ ul.types {
 	}
 	.header .item .title {
 		font-size:40px;
-		padding:50px 100px;
+		padding:50px 100px 20px 100px;
 	}
 	.header .item .content {
 		font-size:25px;
+		
 	}
 }
 .banner {
