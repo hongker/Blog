@@ -286,7 +286,7 @@ ul.types {
 	background-image:url(../images/header.jpg);
 	
 	width:100%;
-	height:200px;
+	height:240px;
 	background-size:100% 100%;
 	margin-top:-20px;
 	color:#fff;
@@ -326,7 +326,6 @@ ul.types {
 }
 .header .item .login-btn {
 	margin-top:20px;
-	
 }
 .login-btn a {
 	color:#fff;
@@ -335,11 +334,6 @@ ul.types {
 	border-radius:3px;
 	font-size:20px;
 	transition:1s;
-}
-.login-btn a:hover {
-	background:rgba(255,255,255,0.2);
-	color:#000;
-	
 }
 @media (min-width: 768px) {
 	.header {
@@ -353,6 +347,11 @@ ul.types {
 		font-size:25px;
 		
 	}
+.login-btn a:hover {
+	background:rgba(255,255,255,0.2);
+	color:#000;
+	
+}
 }
 .banner {
 	width:100%;

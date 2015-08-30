@@ -1,0 +1,25 @@
+/******* css for user **********/
+.user-sidebar {
+	width:100%;
+}
+.user-sidebar ul {
+	width:100%;
+	padding:0px;
+}
+.user-sidebar ul li {
+	width:100%;
+	margin-bottom:5px;
+	background-color:#fff;
+}
+.user-sidebar ul li a.active,
+.user-sidebar ul li a:hover,
+.user-sidebar ul li a:focus {
+	color: #fff;
+  	background-color: #428bca;
+}
+.user-sidebar ul li a {
+	padding:5px 20px;
+	color:#337ab7;
+	display:block;
+	width:100%;
+}
