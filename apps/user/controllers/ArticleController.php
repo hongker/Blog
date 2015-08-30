@@ -23,7 +23,7 @@ class ArticleController extends BaseController
 		$currentPage = $this->getQuery('page','int')?$this->getQuery('page','int'):1;
 		
 		
-		$articles = $this->operation->findAll(array("order"=>"created_at desc"));
+		$articles = $this->operation->findAll(array("conditions"=>"is_delete=0","order"=>"created_at desc"));
 		
 		$page = $this->getPaginate($articles,$currentPage);
 		
