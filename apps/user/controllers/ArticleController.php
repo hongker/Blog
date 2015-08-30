@@ -31,6 +31,49 @@ class ArticleController extends BaseController
 		$this->view->setVar('currentType',0);
 	}
 	
+	/**
+	 * 添加文章
+	 */
+	public function addAction() {
+		if($this->isPost()) {
+			$return = array();
+			$this->json_return($return);
+		}
+	}
+	
+	/**
+	 * 编辑文章
+	 */
+	public function editAction() {
+		if($this->isPost()) {
+			$return = array();
+			$this->json_return($return);
+		}else {
+			
+		}
+	}
+	
+	/**
+	 * 删除文章
+	 */
+	public function deleteAction() {
+		$return = array();
+		if($this->isPost()) {
+			$id = $this->getPost('id','int');
+			
+			if($this->operation->checkIsAuthor($id,$this->user['id'])) {
+				if($this->operation->delete($id)) {
+					$return['errNo'] = 0;
+				}
+			}else {
+				$return['errNo'] = 1014;
+			}
+		}else {
+			$return['errNo'] = 1002;
+		}
+		$return['errMsg'] = $this->getErrorMessage($return['errNo']);
+		$this->json_return($return);
+	}
 	
 
 }

@@ -104,4 +104,19 @@ class ArticleOperation extends BaseOperation implements Operation {
 	public function classify($type) {
 		return $this->findAll(array("conditions"=>"type_id=$type"));
 	}
+	
+	/**
+	 * 判断用户是否为文章作者
+	 * @param int $id 文章id
+	 * @param int $user_id 用户id
+	 * @return boolean
+	 */
+	public function checkIsAuthor($id,$user_id) {
+		$article = $this->get($id);
+		if($article&&$article->author_id==$user_id) {
+			return true;
+		}
+		return false;
+		
+	}
 }
