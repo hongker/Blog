@@ -53,7 +53,7 @@ create table articles(
 )engine=myisam default charset=utf8;
 insert into articles(title,digest,author_id,type_id,content)
 values('This is article title','Either you run the day or the day runs for you',1,1,'Sed pretium, ligula sollicitudin laoreet viverra, tortor libero sodales leo eget. Excepteur sint occaecat cupidatat non proident, sunt'),
-('This is article title','Either you run the day or the day runs for you',3,2,'Sed pretium, ligula sollicitudin laoreet viverra, tortor libero sodales leo eget. Excepteur sint occaecat cupidatat non proident, sunt')
+('This is article title','Either you run the day or the day runs for you',1,2,'Sed pretium, ligula sollicitudin laoreet viverra, tortor libero sodales leo eget. Excepteur sint occaecat cupidatat non proident, sunt')
 ;
 
 

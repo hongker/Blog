@@ -34,6 +34,8 @@ class BaseController extends Controller
 	 */
 	protected $operation ;
 	
+	protected $user;
+	
 	protected function initialize() {
         //Prepend the application name to the title
         \Phalcon\Tag::prependTitle('Blog | ');
@@ -55,6 +57,10 @@ class BaseController extends Controller
     	$this->action = $dispatcher->getActionName();
     	$config = new \Phalcon\Config\Adapter\Ini ( "../apps/configs/config.ini" );
     	$this->error = $config->message->error;
+    	if($this->checkIsLogin()) {
+    		$this->user = $this->session->get('user');
+    	}
+    	
     }
     
     /**

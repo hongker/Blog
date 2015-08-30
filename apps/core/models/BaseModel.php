@@ -13,7 +13,7 @@ class BaseModel extends Model {
 	
 	const NOT_DELETED = 0;
 	
-	public $updated_at;
+	protected $updated_at;
 	/**
 	 * 模型初始化
 	 */
@@ -42,6 +42,7 @@ class BaseModel extends Model {
 	public function beforeUpdate() {
 		$this->updated_at = date('Y-m-d H:i:s');
 	}
+	
 	
 	/**
 	 * 验证字段是否合法

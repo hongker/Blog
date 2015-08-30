@@ -27,6 +27,7 @@ class Articles extends BaseModel {
 		$this->skipAttributesOnUpdate(array('author_id'));
 	}
 	
+	
 	/**
 	 * 验证字段是否合法
 	 * @return boolean
