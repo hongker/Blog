@@ -37,6 +37,13 @@ hr {
 .clear {
 	clear:both;
 }
+.breadcrumb {
+	background:#fff;
+	margin-bottom:10px;
+}
+.breadcrumb>.active{
+	font-size:13px;
+}
 /**
  * footer
  */

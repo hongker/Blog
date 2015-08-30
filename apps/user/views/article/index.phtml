@@ -1,0 +1,46 @@
+<div class="container">
+<div class="row">
+	<div class="col-sm-3">
+		<div class="box tile">
+            <img src="/images/icons/svg/loop.svg" alt="user-headimage" class="tile-image">
+            <h6 class="">hongker</h6>
+            <a class="btn btn-primary btn-large btn-block" href="/user/info/edit">修改信息</a>
+		</div>
+		<?php $this->view->partial('public/sidebar')?>
+	</div>
+	<div class="col-sm-9">
+		<ol class="breadcrumb">
+		  <li><a class="text-info" href="/user/article"><span class="fui-document"></span> 文章管理</a></li>
+		  <li class="active">文章列表</li>
+		</ol>
+		<div class="box">
+			<table class="table table-bordered ">
+      <thead>
+        <tr>
+          <th>序号</th>
+          <th>文章标题</th>
+          <th>文章类型</th>
+          <th>发布时间</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody>
+      	<?php if($page->total_items==0):?>
+      	<tr class="none"><td colspan="7">暂无数据</td></tr>
+      	<?php else:?>
+      	<?php foreach($page->items as $key=>$article):?>
+        <tr>
+          <th scope="row">1</th>
+          <td>Mark</td>
+          <td>Otto</td>
+          <td>@mdo</td>
+          <td>Otto</td>
+        </tr>
+        <?php endforeach;?>
+        <?php endif;?>
+      </tbody>
+    </table>
+		</div>
+	</div>
+</div>
+</div>

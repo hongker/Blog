@@ -1,4 +1,7 @@
 /******* css for user **********/
+.main {
+	font-size:15px;
+}
 .user-sidebar {
 	width:100%;
 }
