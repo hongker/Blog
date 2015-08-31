@@ -1,0 +1,72 @@
+<div class="container">
+	<div class="row">
+		<div class="col-sm-3">
+		<?php $this->view->partial('public/sidebar')?>
+	</div>
+		<div class="col-sm-9">
+			<ol class="breadcrumb">
+				<li><a class="text-info" href="/user/article"><span
+						class="fui-document"></span> 文章管理</a></li>
+				<li class="active">发表文章</li>
+			</ol>
+			<div class="box">
+				<form class="form-horizontal">
+					<div class="form-group">
+						<label for="inputEmail3" class="col-sm-2 control-label">文章标题</label>
+						<div class="col-sm-4">
+							<input type="text" class="form-control" id="title"
+								placeholder="请填入文章标题">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputEmail3" class="col-sm-2 control-label">文章摘要</label>
+						<div class="col-sm-8">
+							<textarea rows="4" class="form-control" id="digest"
+								placeholder="请填入文章摘要"></textarea>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="title" class="col-sm-2 control-label">文章类型</label>
+						<div class="col-sm-2">
+							<select name="type"
+								class="form-control select select-primary select-block mbl">
+								<option value="0">请选择文章类型</option>
+									<?php foreach ($types as $type):?>
+									<option value="<?php echo $type->id?>"><?php echo $type->name?></option>
+									<?php endforeach;?>
+								</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputPassword3" class="col-sm-2 control-label">文章内容</label>
+						<div class="col-sm-10">
+							<!-- 编辑器源码文件 -->
+							<script type="text/javascript" src="/editor/umeditor.config.js"></script>
+							<script type="text/javascript" src="/editor/umeditor.min.js"></script>
+							<script type="text/javascript" src="/editor/lang/zh-cn/zh-cn.js"></script>
+							<script type="text/plain" name="content" id="myEditor"
+								style="height: 240px;">
+    							<p>在这里输入内容</p>
+							</script>
+							<script type="text/javascript">
+							    //实例化编辑器
+							    var um = UM.getEditor('myEditor',{
+							    	initialFrameWidth:"100%",
+							        });
+			    
+							</script>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-offset-2 col-sm-10">
+							<button type="submit" class="btn btn-info">提 交 <i class="fa fa-upload"></i></button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+$("select").select2({dropdownCssClass: 'dropdown-inverse'});
+</script>

@@ -1,6 +1,7 @@
 <?php
 namespace Blog\User\Controllers;
 use Blog\Operations\ArticleOperation;
+use Blog\Operations\TypeOperation;
 /**
  * 用户文章管理首页控制器
  * @author hongker
@@ -8,12 +9,13 @@ use Blog\Operations\ArticleOperation;
  */
 class ArticleController extends BaseController
 {
+	protected $typeOperation;
 	public function initialize()
 	{
 		\Phalcon\Tag::setTitle('文章管理');
 		parent::initialize();
 		$this->operation = new ArticleOperation($this->di);
-		
+		$this->typeOperation = new TypeOperation($this->di);
 	}
 
 	/**
@@ -39,6 +41,7 @@ class ArticleController extends BaseController
 			$return = array();
 			$this->json_return($return);
 		}
+		$this->view->setVar('types',$this->typeOperation->findAll());
 	}
 	
 	/**
