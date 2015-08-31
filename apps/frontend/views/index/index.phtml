@@ -25,16 +25,30 @@
 </div>	
 </div>
 <div class="container">
-	<div class="row ">
-		<?php for($i=0;$i<6;$i++):?>
-		<div class="col-sm-4 article_rows">
-			<div class="article box" >
-				<div class="title text-center">This is Article Title</div>
-				<div class="content indent">This is Article content,This is Article content,This is Article content,This is Article content,This is Article content</div>
+	<div class="br"></div>
+	<div class="row">
+		<div class="col-sm-9">
+			<div class="box">
+				<?php for($i=1;$i<5;$i++):?>
+				<div class="article_rows">
+					<div class="title">This is article title</div>
+					<div class="notation">作者：hongker，发布时间：08-31 22:22</div>
+					<div class="part_of_content">
+						<p>Last Friday we emailed our users to tell them about an upcoming pricing change in our service. The change will be effective on August 31, 2015. On this post I explain why we had to change the price of the service and what users need to do next.</p>
+						<p>Our team has been operating Blimp for more than 4 years now. During that time we’ve grown our offering quite a lot with minimal changes to the price of the product. We want to be able to keep working hard on the product and provide even more functionality in the near future.</p>
+					</div>
+					<div class="text-left">
+						<a href="#" class="btn btn-info ">阅读更多<i class="fa fa-angle-double-right"></i></a>
+					</div>
+				</div>
+				<hr>
+				<?php endfor;?>
 			</div>
 		</div>
-		<?php endfor;?>
+		<div class="col-sm-3"></div>
 	</div>
+	
+	
 </div>
 <script type="text/javascript">
 <!--
