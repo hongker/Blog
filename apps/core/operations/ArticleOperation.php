@@ -25,24 +25,40 @@ class ArticleOperation extends BaseOperation implements Operation {
 	/**
 	 * 添加文章
 	 * @param array $data
-	 * @return boolean
+	 * @return array
 	 */
 	public function save(Array $data) {
+		if(empty($data['title'])) {
+			$return['errNo'] = 1016;
+			return $return;
+		}
+		
+		if(empty($data['digest'])) {
+			$return['errNo'] = 1017;
+			return $return;
+		}
+		
+		if($data['type_id']==0) {
+			$return['errNo'] = 1018;
+			return $return;
+		}
+		
 		$article = new Articles();
 		foreach ($data as $key=>$value) {
 			$article->$key = $value;
 		}
 	
 		if($article->save()==true) {
-			return true;
+			$return['errNo'] = 0;
 		}else {
+			$return['errNo'] = 1015;
 			foreach ($article->getMessages() as $message) {
 				$errorMessage = '用户:'.$article->author_id.'添加文章失败,提示内容:'.$message;
 				$this->log($errorMessage,'error');
 				$this->getDI()->get('flash')->error($message);
 			}
 		}
-		return false;
+		return $return;
 	}
 	
 	/**

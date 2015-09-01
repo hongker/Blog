@@ -38,7 +38,19 @@ class ArticleController extends BaseController
 	 */
 	public function addAction() {
 		if($this->isPost()) {
-			$return = array();
+			if(!$this->checkIsLogin()) {
+				$return['errNo'] = 1010;
+			}else {
+				$article = array();
+				$article['author_id'] = $this->user['id'];
+				$article['title'] = $this->getPost('title');
+				$article['digest'] = $this->getPost('digest');
+				$article['type_id'] = $this->getPost('type','int');
+				$article['content'] = $this->getPost('content');
+			}
+			
+			$return = $this->operation->save($article);
+			$return['errMsg'] = $this->getErrorMessage($return['errNo']);
 			$this->json_return($return);
 		}
 		$this->view->setVar('types',$this->typeOperation->findAll());

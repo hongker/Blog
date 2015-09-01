@@ -10,7 +10,7 @@
 				<li class="active">发表文章</li>
 			</ol>
 			<div class="box">
-				<form class="form-horizontal">
+				<div class="form-horizontal">
 					<div class="form-group">
 						<label for="inputEmail3" class="col-sm-2 control-label">文章标题</label>
 						<div class="col-sm-4">
@@ -28,7 +28,7 @@
 					<div class="form-group">
 						<label for="title" class="col-sm-2 control-label">文章类型</label>
 						<div class="col-sm-2">
-							<select name="type"
+							<select id="type"
 								class="form-control select select-primary select-block mbl">
 								<option value="0">请选择文章类型</option>
 									<?php foreach ($types as $type):?>
@@ -46,7 +46,7 @@
 							<script type="text/javascript" src="/editor/lang/zh-cn/zh-cn.js"></script>
 							<script type="text/plain" name="content" id="myEditor"
 								style="height: 240px;">
-    							<p>在这里输入内容</p>
+    							在这里输入内容
 							</script>
 							<script type="text/javascript">
 							    //实例化编辑器
@@ -59,14 +59,54 @@
 					</div>
 					<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-10">
-							<button type="submit" class="btn btn-info">提 交 <i class="fa fa-upload"></i></button>
+							<button class="btn btn-info" onclick="addArticle()">提 交 <i class="fa fa-upload"></i></button>
 						</div>
 					</div>
-				</form>
+				</div>
 			</div>
 		</div>
 	</div>
 </div>
 <script>
 $("select").select2({dropdownCssClass: 'dropdown-inverse'});
+function addArticle() {
+	var title = $("#title");
+	if(!title.val()) {
+		alertify.error("请填入文章标题");
+		title.focus();
+		return;
+	}
+
+	var digest = $("#digest");
+	if(!digest.val()) {
+		alertify.error("请填入文章摘要");
+		digest.focus();
+		return;
+	}
+
+	var type = $("#type");
+	if(type.val()==0) {
+		alertify.error("请选择文章类型");
+		type.focus();
+		return;
+	}
+
+	var content = um.getContent();
+	$.ajax({
+        type: "POST",
+        url: "/user/article/add",
+        data: {title:title.val(),digest:digest.val(),type:type.val(),content:content},
+        dataType:'json',
+        success: function(data){
+            console.log(data);
+            if(data.errNo==0) {
+            	alertify.success('文章发布成功');
+            	location.href='/user/article';
+            }else {
+            	alertify.error(data.errMsg);
+            }
+        	
+        },
+    });
+}
 </script>

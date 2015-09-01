@@ -21,8 +21,14 @@
   	background-color: #428bca;
 }
 .user-sidebar ul li a {
-	padding:5px 20px;
+	padding:10px 20px;
 	color:#337ab7;
 	display:block;
 	width:100%;
+}
+
+/************ form.input ************/
+input.form-control ,textarea.form-control  {
+	border: 1px solid #bdc3c7;
+	border-radius: 4px;
 }
