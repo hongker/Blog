@@ -94,6 +94,20 @@ class BaseController extends Controller
     }
     
     /**
+     * 判断是否上GET请求
+     */
+    protected function isGet() {
+    	return $this->request->isGet();
+    }
+    
+    /**
+     * 判断是否上POST请求
+     */
+    protected function isPost() {
+    	return $this->request->isPost();
+    }
+    
+    /**
      * 获取分页类
      * @param unknown $data
      * @param number $currentPage
@@ -118,6 +132,15 @@ class BaseController extends Controller
     public function show404() {
     	$this->response->redirect('404.html');
     	$this->response->send();
+    }
+    
+    /**
+     * 根据错误编号获取错误信息
+     * @param int $no
+     * @return string
+     */
+    protected function getErrorMessage($no) {
+    	return $this->error[$no];
     }
         
     

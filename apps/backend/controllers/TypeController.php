@@ -14,6 +14,9 @@ class TypeController extends BaseController
 		$this->operation = new TypeOperation($this->di);
 	}
 
+	/**
+	 * 分类列表
+	 */
 	public function indexAction() {
 		$currentPage = $this->getQuery('page','int')?$this->getQuery('page','int'):1;
 		
@@ -21,6 +24,18 @@ class TypeController extends BaseController
 		
 		$page = $this->getPaginate($types,$currentPage);
 		$this->view->setVar('page',$page);
+	}
+	
+	public function addAction() {
+		if($this->isPost()){
+			$type['name'] = $this->getPost('name');
+			
+			$return = $this->operation->save($type);
+		}else {
+			$return['errNo'] = 1002;
+		}
+		$return['errMsg'] = $this->getErrorMessage($return['errNo']);
+		$this->json_return($return);
 	}
 
 }

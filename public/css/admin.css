@@ -78,8 +78,17 @@ html, body {
     	
     }
 }
+.page-header {
+	margin-bottom:20px;
+}
 
 /************* article ****************/
 tr.none {
 	
+}
+
+/************* type *******************/
+.btn-header {
+	margin-top:0px;
+	margin-bottom:15px;
 }

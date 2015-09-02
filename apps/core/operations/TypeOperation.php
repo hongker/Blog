@@ -24,22 +24,26 @@ class TypeOperation extends BaseOperation implements Operation {
 	/**
 	 * 添加类型
 	 * @param array $data
-	 * @return boolean
+	 * @return array
 	 */
 	public function save(Array $data) {
 		$type = new Types();
+		
+		if(empty($data['name'])) {
+			$return['errNo'] = 1021;
+			return $return;
+		}
+		
 		foreach ($data as $key=>$value) {
 			$type->$key = $value;
 		}
 	
 		if($type->save()==true) {
-			return true;
+			$return['errNo'] = 0;
 		}else {
-			foreach ($type->getMessages() as $message) {
-				$this->getDI()->get('flash')->error($message);
-			}
+			$return['errNo'] = 1022;
 		}
-		return false;
+		return $return;
 	}
 	
 	/**
