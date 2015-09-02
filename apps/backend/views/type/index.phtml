@@ -99,7 +99,7 @@ function del(id) {
         success: function(data){
             if(data.errNo==0) {
             	alertify.success('删除成功');
-            	//location.reload();
+            	location.reload();
             }else {
             	alertify.error(data.errMsg);
             }

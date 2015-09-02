@@ -12,6 +12,9 @@ use Phalcon\Cache\Backend\File as FileCache;
 use Phalcon\Cache\Backend\Redis as RedisCache;
 use Phalcon\Cache\Frontend\Output as OutputFrontend;
 use Phalcon\Flash\Direct as FlashDirect;
+use Phalcon\Events\Manager as EventsManager; 
+use Phalcon\Logger\Adapter\File as FileLogger;
+use Phalcon\Logger;
 /**
  * 读取配置文件
  */
@@ -97,6 +100,17 @@ $di->set ( 'flash', function () {
 	return new FlashDirect ();
 } );
 $di->set ( 'db', function () use($config) {
+	/*
+	$eventsManager = new EventsManager();
+	$logger = new FileLogger(__DIR__."/../apps/logs/debug.log");
+	
+	// Listen all the database events
+	$eventsManager->attach('db', function ($event, $connection) use ($logger) {
+		
+			$logger->log($connection->getSQLStatement(), Logger::INFO);
+		
+	});
+	*/
 	
 	$connection = new DbAdapter ( array (
 			"host" => $config->database->host,
@@ -105,6 +119,8 @@ $di->set ( 'db', function () use($config) {
 			"dbname" => $config->database->dbname,
 			"charset" => $config->database->charset 
 	) );
+	
+	//$connection->setEventsManager($eventsManager);
 	
 	return $connection;
 } );

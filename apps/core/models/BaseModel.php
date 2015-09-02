@@ -18,9 +18,9 @@ class BaseModel extends Model {
 	 * 模型初始化
 	 */
 	public function initialize() {
-		$this->skipAttributes(array('created_at','is_delete'));
+		$this->skipAttributes(array('created_at'));
 		
-		$this->skipAttributesOnCreate(array('updated_at'));
+		$this->skipAttributesOnCreate(array('updated_at','is_delete'));
 		
 		$this->setup(
 				array('notNullValidations'=>false)

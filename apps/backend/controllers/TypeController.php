@@ -20,7 +20,7 @@ class TypeController extends BaseController
 	public function indexAction() {
 		$currentPage = $this->getQuery('page','int')?$this->getQuery('page','int'):1;
 		
-		$types = $this->operation->findAll();
+		$types = $this->operation->findAll(array("order"=>"is_delete"));
 		
 		$page = $this->getPaginate($types,$currentPage);
 		$this->view->setVar('page',$page);
