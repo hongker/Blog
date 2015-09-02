@@ -16,7 +16,7 @@ class ArticleController extends BaseController
 		parent::initialize();
 		$this->operation = new ArticleOperation($this->di);
 		$typeOperation = new TypeOperation($this->di);
-		$this->types = $typeOperation->findAll();
+		$this->types = $typeOperation->findAll(array("conditions"=>"is_delete=0"));
 	}
 
 	/**
@@ -26,7 +26,10 @@ class ArticleController extends BaseController
 		$currentPage = $this->getQuery('page','int')?$this->getQuery('page','int'):1;
 		
 		
-		$articles = $this->operation->findAll(array("conditions"=>"is_delete=0","order"=>"created_at desc"));
+		$articles = $this->operation->findAll(array(
+				"conditions"=>"is_delete=0 and author_id={$this->user['id']}",
+				"order"=>"created_at desc",
+		));
 		
 		$page = $this->getPaginate($articles,$currentPage);
 		

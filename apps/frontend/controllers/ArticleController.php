@@ -9,13 +9,14 @@ use Blog\Operations\TypeOperation;
  */
 class ArticleController extends BaseController
 {
-	protected $typeOperation;
+	protected $types;
 	public function initialize()
 	{
 		\Phalcon\Tag::setTitle('资讯');
 		parent::initialize();
 		$this->operation = new ArticleOperation($this->di);
-		$this->typeOperation = new TypeOperation($this->di);
+		$typeOperation = new TypeOperation($this->di);
+		$this->types = $typeOperation->findAll(array("conditions"=>"is_delete=0"));
 	}
 
 	/**
@@ -25,13 +26,13 @@ class ArticleController extends BaseController
 		$currentPage = $this->getQuery('page','int')?$this->getQuery('page','int'):1;
 		
 		
-		$articles = $this->operation->findAll(array("order"=>"created_at desc"));
+		$articles = $this->operation->findAll(array("conditions"=>"is_delete=0","order"=>"created_at desc"));
 		
 		$page = $this->getPaginate($articles,$currentPage);
 		
 		$this->view->setVar('page',$page);
 		$this->view->setVar('currentType',0);
-		$this->view->setVar('types',$this->typeOperation->findAll());
+		$this->view->setVar('types',$this->types);
 	}
 	
 	/**
@@ -49,7 +50,7 @@ class ArticleController extends BaseController
 		$this->view->setVar('page',$page);
 		
 		$this->view->setVar('currentType',$id);
-		$this->view->setVar('types',$this->typeOperation->findAll());
+		$this->view->setVar('types',$this->types);
 		$this->view->pick('article/index');
 	}
 	
