@@ -48,20 +48,33 @@ class TypeOperation extends BaseOperation implements Operation {
 	
 	/**
 	 * 根据id更改类型信息
-	 * @param unknown $id
+	 * @param array $id
 	 * @param array $array
-	 * @return 成功返回true,失败返回false
+	 * @return array 
 	 */
 	public function update($id,array $array) {
 		$type = $this->get($id);
-		foreach ($array as $key=>$value) {
-			$type->$key = $value;
+		
+		if($type) {
+			if(empty($array['name'])) {
+				$return['errNo'] = 1021;
+				return $return;
+			}
+			
+			foreach ($array as $key=>$value) {
+				$type->$key = $value;
+			}
+			
+			if($type->update()) {
+				$return['errNo'] = 0;
+			}else {
+				$return['errNo'] = 1026;
+			}
+		}else {
+			$return['errNo'] = 1025;
 		}
 		
-		if($type->save()) {
-			return true;
-		}
-		return false;
+		return $return;
 	}
 	
 	/**

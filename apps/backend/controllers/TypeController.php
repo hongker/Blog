@@ -59,5 +59,45 @@ class TypeController extends BaseController
 		$return['errMsg'] = $this->getErrorMessage($return['errNo']);
 		$this->json_return($return);
 	}
+	
+	/**
+	 * 获取分类名称
+	 */
+	public function getNameAction() {
+		$return = array();
+		if($this->isPost()) {
+			$id = $this->getPost('id','int');
+			
+			$type = $this->operation->get($id);
+			
+			if($type) {
+				$return['name'] = $type->name;
+				$return['errNo'] = 0;
+			}else {
+				$return['errNo'] = 1025;
+			}
+			
+		}else {
+			$return['errNo'] = 1002;
+		}
+		$return['errMsg'] = $this->getErrorMessage($return['errNo']);
+		$this->json_return($return);
+	}
+	
+	/**
+	 * 修改分类
+	 */
+	public function editAction() {
+		if($this->isPost()){
+			$id = $this->getPost('id','int');
+			$type['name'] = $this->getPost('name');
+				
+			$return = $this->operation->update($id,$type);
+		}else {
+			$return['errNo'] = 1002;
+		}
+		$return['errMsg'] = $this->getErrorMessage($return['errNo']);
+		$this->json_return($return);
+	}
 
 }

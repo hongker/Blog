@@ -2,7 +2,7 @@
 	<i class="fui-document"></i>文章管理 > 文章分类
 </div>
 <div class="btn-header">
-	<button class="btn btn-info btn-sm" id="addType">添加分类 <span class="fui-plus"></span></button>
+	<button class="btn btn-info btn-sm" id="add">添加分类 <span class="fui-plus"></span></button>
 </div>
 <div>
 	<table class="table table-bordered table-striped">
@@ -28,8 +28,8 @@
 				<td><?php echo $type->is_delete?></td>
 				<td><?php echo $type->created_at?></td>
 				<td data-id="<?php echo $type->id?>">
-					<a href="/user/type/edit/<?php echo $type->id?>"
-					class="btn btn-success btn-xs"><span class="fui-new"></span> 编辑</a>
+					<button
+					class="btn btn-success btn-xs" id="edit"><span class="fui-new"></span> 编辑</button>
 					<button id="del" class="btn btn-danger btn-xs">
 						<span class="fui-trash"></span> 删除
 					</button></td>
@@ -42,7 +42,7 @@
 	<?php $this->partial('public/page')?>
 </div>
 <script>
-$("#addType").click(function() {
+$("#add").click(function() {
 	alertify.prompt('请填入想要添加的分类名称：', '分类名称', 
 			function(evt, value){
 				addType(value);
@@ -65,6 +65,54 @@ function addType(name) {
         success: function(data){
             if(data.errNo==0) {
             	alertify.success('添加成功');
+            	location.reload();
+            }else {
+            	alertify.error(data.errMsg);
+            }
+        	
+        },
+    });
+}
+$('[id=edit]').click(function() {
+	var id = $(this).parent().attr('data-id');
+	$.ajax({
+        type: "POST",
+        url: "/admin/type/getName",
+        data: {id:id},
+        dataType:'json',
+        success: function(data){
+            if(data.errNo==0) {
+            	alertify.prompt('请填入想要修改的分类名称：', data.name, 
+            			function(evt, value){
+        					if(value==data.name) {
+								return;
+            				}
+            				editType(id,value);
+            	    	}
+            		).set({
+            			'title':'修改文章分类',
+            			'labels': {ok:'确定', cancel:'取消'},
+            		});            	
+            }else {
+            	alertify.error(data.errMsg);
+            }
+        	
+        },
+    });
+});
+function editType(id,name) {
+	if(!name) {
+		alertify.error("修改失败，分类名称不能为空");
+		return;
+	}
+	$.ajax({
+        type: "POST",
+        url: "/admin/type/edit",
+        data: {id:id,name:name},
+        dataType:'json',
+        success: function(data){
+            if(data.errNo==0) {
+            	alertify.success('修改成功');
             	location.reload();
             }else {
             	alertify.error(data.errMsg);
