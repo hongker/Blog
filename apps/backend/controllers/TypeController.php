@@ -48,7 +48,6 @@ class TypeController extends BaseController
 		$return = array();
 		if($this->isPost()) {
 			$id = $this->getPost('id','int');
-			
 			if($this->operation->delete($id)) {
 				$return['errNo'] = 0;
 			}else {

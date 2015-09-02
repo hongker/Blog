@@ -27,12 +27,12 @@ class BaseModel extends Model {
 		);
 		
 		$this->addBehavior(
-				new SoftDelete(
-						array(
-								'field' => 'is_delete',
-								'value' => self::DELETED
-						)
+			new SoftDelete(
+				array(
+					'field' => 'is_delete',
+					'value' => self::DELETED
 				)
+			)
 		);
 	}
 	

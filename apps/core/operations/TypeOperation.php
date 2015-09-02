@@ -71,7 +71,6 @@ class TypeOperation extends BaseOperation implements Operation {
 	 */
 	public function delete($id) {
 		$type = $this->get($id);
-		
 		if ($type != false) {
 			if ($type->delete() != false) {
 				return true;
@@ -83,8 +82,8 @@ class TypeOperation extends BaseOperation implements Operation {
 	/**
 	 * 获取所有类型
 	 */
-	public function findAll() {
-		return Types::find();
+	public function findAll($condition=null) {
+		return Types::find($condition);
 	}
 	
 	/**

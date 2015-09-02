@@ -10,6 +10,7 @@ class Comments extends BaseModel {
 	 * 模型初始化
 	 */
 	public function initialize() {
+		parent::initialize();
 		//关联users表
 		$this->belongsTo("author_id", "Blog\Models\Users", "id", array(
               'alias' => 'Author'
