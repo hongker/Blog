@@ -9,13 +9,14 @@ use Blog\Operations\TypeOperation;
  */
 class ArticleController extends BaseController
 {
-	protected $typeOperation;
+	protected $types;
 	public function initialize()
 	{
 		\Phalcon\Tag::setTitle('文章管理');
 		parent::initialize();
 		$this->operation = new ArticleOperation($this->di);
-		$this->typeOperation = new TypeOperation($this->di);
+		$typeOperation = new TypeOperation($this->di);
+		$this->types = $typeOperation->findAll();
 	}
 
 	/**
@@ -46,14 +47,14 @@ class ArticleController extends BaseController
 				$article['title'] = $this->getPost('title');
 				$article['digest'] = $this->getPost('digest');
 				$article['type_id'] = $this->getPost('type','int');
-				$article['content'] = $this->getPost('content');
+				$article['content'] = $this->getPost('content',false);
 			}
 			
 			$return = $this->operation->save($article);
 			$return['errMsg'] = $this->getErrorMessage($return['errNo']);
 			$this->json_return($return);
 		}
-		$this->view->setVar('types',$this->typeOperation->findAll());
+		$this->view->setVar('types',$this->types);
 	}
 	
 	/**
@@ -61,10 +62,25 @@ class ArticleController extends BaseController
 	 */
 	public function editAction() {
 		if($this->isPost()) {
-			$return = array();
+			if(!$this->checkIsLogin()) {
+				$return['errNo'] = 1010;
+			}else {
+				$article = array();
+				$id = $this->getPost('id','int');
+				$article['title'] = $this->getPost('title');
+				$article['digest'] = $this->getPost('digest');
+				$article['type_id'] = $this->getPost('type','int');
+				$article['content'] = $this->getPost('content',false);
+			}
+			
+			$return = $this->operation->update($id, $article);
 			$this->json_return($return);
 		}else {
+			$id = $this->dispatcher->getParam(0);
+			$article = $this->operation->get($id);
 			
+			$this->view->setVar('article',$article);
+			$this->view->setVar('types',$this->types);
 		}
 	}
 	

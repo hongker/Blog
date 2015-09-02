@@ -58,6 +58,12 @@ $di->set ( 'router', function () {
 			'controller' => 1,
 			'action' => 2
 	) );
+	$router->add ( '/user/:controller/:action/:params', array (
+			'module' => 'user',
+			'controller' => 1,
+			'action' => 2,
+			'params' => 3,
+	) );
 	
 	$router->add ( '/admin', array (
 			'module' => 'backend',

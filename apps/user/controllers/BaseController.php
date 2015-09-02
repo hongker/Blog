@@ -97,7 +97,12 @@ class BaseController extends Controller
      * @param string $type
      */
     protected function getPost($param,$type='string') {
-    	return $this->request->getPost($param,$type);
+    	if($type==false) {
+    		return $this->request->getPost($param);
+    	}else {
+    		return $this->request->getPost($param,$type);
+    	}
+    	
     }
     
     /**
