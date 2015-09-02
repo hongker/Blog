@@ -3,6 +3,7 @@ namespace Blog\Operations;
 use Phalcon\Logger\Adapter\File as FileLogger;
 use Phalcon\Logger\Formatter\Line as LineFormatter;
 use Phalcon\Logger;
+use Blog\Utils\Redis;
 /**
  * 基础操作类
  * @author hongker
@@ -12,7 +13,7 @@ class BaseOperation {
 	private $_di;
 	private $logDir = '../apps/logs/';
 	private $logFile = 'common.log';
-	
+	protected $redis;	
 	/**
 	 * 日志级别
 	 */
@@ -29,6 +30,7 @@ class BaseOperation {
 	public function __construct($di) {
 		$this->_di = $di;	
 		$this->ip = $this->_di->get('request')->getClientAddress();
+		$this->redis = new Redis();
 	}
 	
 	public function getDI() {

@@ -34,7 +34,7 @@ $di->set ( 'router', function () {
 			'controller' => 1,
 			'action' => 2,
 			"params" => 3 
-	) );
+	));
 	
 	$router->add ( "/login", array (
 			'module' => 'frontend',
@@ -136,7 +136,7 @@ $di->set ( 'viewCache', function () {
 	// Memcached connection settings
 	$cache = new RedisCache ( $frontCache, array (
 			"prefix" => 'cache_',
-			"host" => "118.244.201.40",
+			"host" => $config->redis->host,
 			"port" => "6379" 
 	) );
 	

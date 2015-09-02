@@ -19,7 +19,20 @@ class ArticleOperation extends BaseOperation implements Operation {
 	 * @return Users 返回文章
 	 */
 	public function get($id) {
-		return Articles::findFirst($id);
+		$article = Articles::findFirst($id);
+		if($article) {
+			$this->addView($id);
+		}
+		return $article;
+	}
+	
+	/**
+	 * 添加阅读量
+	 * @param unknown $id
+	 */
+	private function addView($id) {
+		$key = 'article_view';
+		$this->redis->zIncrBy($key,1,"artile_$id");
 	}
 	
 	/**
