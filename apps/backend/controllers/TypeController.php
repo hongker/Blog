@@ -26,11 +26,34 @@ class TypeController extends BaseController
 		$this->view->setVar('page',$page);
 	}
 	
+	/**
+	 * 添加分类
+	 */
 	public function addAction() {
 		if($this->isPost()){
 			$type['name'] = $this->getPost('name');
 			
 			$return = $this->operation->save($type);
+		}else {
+			$return['errNo'] = 1002;
+		}
+		$return['errMsg'] = $this->getErrorMessage($return['errNo']);
+		$this->json_return($return);
+	}
+	
+	/**
+	 * 删除分类
+	 */
+	public function deleteAction() {
+		$return = array();
+		if($this->isPost()) {
+			$id = $this->getPost('id','int');
+			
+			if($this->operation->delete($id)) {
+				$return['errNo'] = 0;
+			}else {
+				$return['errNo'] = 1024;
+			}
 		}else {
 			$return['errNo'] = 1002;
 		}

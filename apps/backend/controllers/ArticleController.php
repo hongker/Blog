@@ -56,13 +56,22 @@ class ArticleController extends BaseController
 	 * 删除文章
 	 */
 	public function deleteAction() {
-		$id = 1;
-		if($this->operation->delete($id)) {
-			echo 'true';
+		$return = array();
+		if($this->isPost()) {
+			$id = $this->getPost('id','int');
+			
+			
+			if($this->operation->delete($id)) {
+				$return['errNo'] = 0;
+			}else {
+				$return['errNo'] = 1023;
+			}
+			
 		}else {
-			echo 'false';
+			$return['errNo'] = 1002;
 		}
-		exit;
+		$return['errMsg'] = $this->getErrorMessage($return['errNo']);
+		$this->json_return($return);
 	}
 
 }
