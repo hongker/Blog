@@ -79,8 +79,14 @@ class ArticleController extends BaseController
 			$id = $this->dispatcher->getParam(0);
 			$article = $this->operation->get($id);
 			
-			$this->view->setVar('article',$article);
-			$this->view->setVar('types',$this->types);
+			if($article) {
+				$this->view->setVar('article',$article);
+				$this->view->setVar('types',$this->types);
+			}else {
+				$this->show404();
+			}
+			
+			
 		}
 	}
 	

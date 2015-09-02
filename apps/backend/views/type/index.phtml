@@ -1,1 +1,40 @@
-index.html
+<div class="page-header">
+	<i class="fui-document"></i>文章管理 > 文章分类
+</div>
+<div>
+	<table class="table table-bordered table-striped">
+		<thead>
+			<tr>
+				<th>序号</th>
+				<th>名称</th>
+				<th>状态</th>
+				<th>创建时间</th>
+				<th>操作</th>
+			</tr>
+		</thead>
+		<tbody>
+      	<?php if($page->total_items==0):?>
+      	<tr class="none">
+				<td colspan="7">暂无数据</td>
+			</tr>
+      	<?php else:?>
+      	<?php foreach($page->items as $key=>$type):?>
+        <tr>
+				<th scope="row"><?php echo $key+1?></th>
+				<td><?php echo $type->name?></td>
+				<td><?php echo $type->is_delete?></td>
+				<td><?php echo $type->created_at?></td>
+				<td data-id="<?php echo $type->id?>">
+					<a href="/user/type/edit/<?php echo $type->id?>"
+					class="btn btn-success btn-xs"><span class="fui-new"></span> 编辑</a>
+					<button id="del" class="btn btn-danger btn-xs">
+						<span class="fui-trash"></span> 删除
+					</button></td>
+			</tr>
+        <?php endforeach;?>
+        
+        <?php endif;?>
+      </tbody>
+	</table>
+	<?php $this->partial('public/page')?>
+</div>
