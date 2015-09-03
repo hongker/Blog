@@ -1,6 +1,7 @@
 <?php
 namespace Blog\Frontend\Controllers;
 use Blog\Operations\CommentOperation;
+use Blog\Operations\ReplyOperation;
 /**
  * 评论控制器
  * @author hongker
@@ -59,6 +60,27 @@ class CommentController extends BaseController
 			$return['errNo'] = 1002;
 		}
 		$return['errMsg'] = $this->error[$return['errNo']];
+		$this->json_return($return);
+	}
+	
+	public function replyAction() {
+		if($this->request->isPost()) {
+			if($this->checkIsLogin()) {
+				$author = $this->session->get('user');
+				$data['author_id'] = $author['id'];
+				$data['content'] = $this->request->getPost('content','string');
+				$data['target_id'] = $this->request->getPost('target_id','int');
+				$data['comment_id'] = $this->request->getPost('comment_id','int');
+		
+				$replyOperation = new ReplyOperation($this->di);
+				$return = $replyOperation->save($data);
+			}else {
+				$return['errNo'] = 1010;
+			}
+		}else {
+			$return['errNo'] = 1002;
+		}
+		$return['errMsg'] = $this->getErrorMessage($return['errNo']);
 		$this->json_return($return);
 	}
 	

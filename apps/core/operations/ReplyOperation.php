@@ -25,18 +25,38 @@ class ReplyOperation extends BaseOperation implements Operation {
 	/**
 	 * 添加回复
 	 * @param array $data
-	 * @return boolean
+	 * @return array
 	 */
 	public function save(Array $data) {
+		if(empty($data['author_id'])) {
+			$return['errNo'] = 1301;
+			return $return;
+		}
+		if(empty($data['target_id'])) {
+			$return['errNo'] = 1302;
+			return $return;
+		}
+		if(empty($data['comment_id'])) {
+			$return['errNo'] = 1303;
+			return $return;
+		}
+		if(empty($data['content'])) {
+			$return['errNo'] = 1304;
+			return $return;
+		}
+		
+		
 		$reply = new Replies();
 		foreach ($data as $key=>$value) {
 			$reply->$key = $value;
 		}
 		
 		if($reply->save()==true) {
-			return true;
+			$return['errNo'] = 0;
+		}else {
+			$return['errNo'] = 1305;
 		}
-		return false;
+		return $return;
 	}
 	
 	/**
@@ -51,7 +71,7 @@ class ReplyOperation extends BaseOperation implements Operation {
 			$reply->$key = $value;
 		}
 		
-		if($reply->save()) {
+		if($reply->update()) {
 			return true;
 		}
 		return false;
