@@ -75,7 +75,7 @@ class CommentController extends BaseController
 				$replyOperation = new ReplyOperation($this->di);
 				$return = $replyOperation->save($data);
 			}else {
-				$return['errNo'] = 1010;
+				$return['errNo'] = 1001;
 			}
 		}else {
 			$return['errNo'] = 1002;

@@ -112,10 +112,10 @@ class UserOperation extends BaseOperation implements Operation {
 					$return['errNo'] = 1008;
 				}
 			}else {
-				$return['errNo'] = 1001;
+				$return['errNo'] = 1011;
 			}
 		}else {
-			$return['errNo'] = 1000;
+			$return['errNo'] = 1010;
 		}
 		
 		$logString = "IP:{$this->ip},用户名:{$info['username']}登录，errNo：{$return['errNo']}";

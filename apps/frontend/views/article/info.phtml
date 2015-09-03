@@ -57,6 +57,26 @@
 											href="javascript:void(0)" id="reply">回复</a></span> <span
 											class=""><a href="#">点赞</a></span>
 									</div>
+									<?php $replies = $comment->getReplies();?>
+									<?php foreach ($replies as $reply):?>
+									<div class="media">
+										<div class="media-left">
+											<a href="#"> <img class="media-object"
+												src="/images/common_user.png"
+												style="width: 50px; height: 50px;">
+											</a>
+										</div>
+										<div class="media-body">
+											<p><?php echo $reply->content?></p>
+											<div class="comment-footer">
+												<span class=""><a 
+											href="javascript:void(0)" id="reply">回复</a></span> <span class=""><a
+													href="#">点赞</a></span>
+											</div>
+										</div>
+
+									</div>
+									<?php endforeach;?>
 									<div class="media" id="replyContainer" style="display: none;">
 										<div class="media-left">
 											<a href="#"> <img class="media-object"
@@ -78,56 +98,6 @@
 						<?php else:?>
 						<div class="none">暂无数据</div>
 						<?php endif;?>
-						<?php for($i=1;$i<1;$i++):?>
-						<div class="comment">
-								<div class="media-left">
-									<a href="#"> <img class="media-object"
-										src="/images/common_user.png"
-										style="width: 50px; height: 50px;">
-									</a>
-								</div>
-								<div class="media-body">
-									<p>这篇文章写得有品味！</p>
-									<div class="comment-footer">
-										<span class=""><a href="#">回复</a></span> <span class=""><a
-											href="#">点赞</a></span>
-									</div>
-									<div class="media">
-										<div class="media-left">
-											<a href="#"> <img class="media-object"
-												src="/images/common_user.png"
-												style="width: 50px; height: 50px;">
-											</a>
-										</div>
-										<div class="media-body">
-											<p>大兄弟说得不错。。</p>
-											<div class="comment-footer">
-												<span class=""><a href="#">回复</a></span> <span class=""><a
-													href="#">点赞</a></span>
-											</div>
-										</div>
-
-									</div>
-									<!-- Nested media object -->
-									<div class="media">
-										<div class="media-left">
-											<a href="#"> <img class="media-object"
-												src="/images/common_user.png"
-												style="width: 50px; height: 50px;">
-											</a>
-										</div>
-										<div class="media-body">
-											<p>我也认同楼上的</p>
-											<div class="comment-footer">
-												<span class=""><a href="#">回复</a></span> <span class=""><a
-													href="#">点赞</a></span>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<hr>
-						<?php endfor;?>
 						</div>
 					</div>
 				</div>
