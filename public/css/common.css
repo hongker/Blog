@@ -118,6 +118,9 @@ ul.atentions li a:hover {
 	background-color: #0a0a0a;
 	color:#666666;
 }
+blockquote.blockquote-info {
+	border-left: 2px solid #3B82ED;
+}
 .login-bg {
 	background:url('../images/bg1.jpg');
 	background-size:100% 100%;
@@ -285,13 +288,21 @@ ul.types {
 	font-size:16px;
 	margin-top:15px;
 	margin-bottom:15px;
+	word-wrap: break-word; 
+word-break: normal; 
 }
 .articleInfo .digest span {
 	font-weight:bold;
 	font-size:14px;
 }
-.articleInfo .content {
+.articleInfo .content img {
 	width:100%;
+}
+
+/************ .input ************/
+input.form-control ,textarea.form-control  {
+	border: 1px solid #bdc3c7;
+	border-radius: 4px;
 }
 
 /*------ index ------*/
@@ -365,6 +376,9 @@ ul.types {
 	color:#000;
 	
 }
+.media-body {
+	width:100%;
+}
 }
 .banner {
 	width:100%;
@@ -406,3 +420,15 @@ ul.types {
 	color:#515151;	
 }
 
+.comment {
+	margin-top:20px;
+}
+.comment-footer span a{
+	font-size:15px;
+	color:#9B9B9B;
+	transition:0.5s;
+	margin-right:10px;
+}
+.comment-footer span a:hover {
+	color: #3498DB;
+}

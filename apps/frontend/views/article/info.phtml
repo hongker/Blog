@@ -3,30 +3,101 @@
 		<div class="col-sm-9">
 			<div class="box">
 				<div class="articleInfo">
-				<div class="title"><?php echo $article->title?></div>
-				<div class="info">
-					<span class="author">
-						作者:<span class="username"><?php echo $article->author->username?></span>
-					</span>
-					<span class="created_at">
-						发布于：<span class="date"><?php echo substr($article->created_at,0,10)?></span>
-					</span>
+					<div class="title"><?php echo $article->title?></div>
+					<div class="info">
+						<span class="author"> 作者:<span class="username"><?php echo $article->author->username?></span>
+						</span> <span class="created_at"> 发布于：<span class="date"><?php echo substr($article->created_at,0,10)?></span>
+						</span>
+					</div>
+					<div class="digest">
+						<span>摘要：</span><?php echo $article->digest?>
 				</div>
-				<div class="digest">
-					<span>摘要：</span><?php echo $article->digest?>
-				</div>
-				<div class="content">
+					<hr>
+					<div class="content">
 					<?php echo $article->content?>
 				</div>
-				<div class="numbers">
-					<span class="view">阅读：<span class="count"><?php echo $article->view?></span></span>
-					<span class="comment">评论：<span class="count"><?php echo $article->comments->count()?></span></span>
-					<span class="praise">点赞：<span class="count">20</span></span>
+					<div class="numbers">
+						<span class="view">阅读：<span class="count"><?php echo $article->view?></span></span>
+						<span class="comment">评论：<span class="count"><?php echo $article->comments->count()?></span></span>
+						<span class="praise">点赞：<span class="count">20</span></span>
+					</div>
+					<hr>
+					<div class="commentContainer">
+						<div class="media">
+							<div class="media-left">
+								<a href="#"> <img class="media-object"
+									src="/images/common_user.png"
+									style="width: 50px; height: 50px;">
+								</a>
+							</div>
+							<div class="media-body">
+								<div class="form-horizontal">
+									<textarea class="form-control" rows="3" placeholder="评论内容。。。"></textarea>
+								</div>
+								<div class="text-right br">
+									<button class="btn btn-info btn-sm">发表评论</button>
+								</div>
+							</div>
+						</div>
+						<hr>
+						<blockquote class="blockquote-info">评论区</blockquote>
+						<div class="commentsList">
+						<?php for($i=1;$i<5;$i++):?>
+						<div class="comment">
+							<div class="media-left">
+								<a href="#"> <img class="media-object"
+									src="/images/common_user.png"
+									style="width: 50px; height: 50px;">
+								</a>
+							</div>
+							<div class="media-body">
+								<p>这篇文章写得有品味！</p>
+								<div class="comment-footer">
+									<span class=""><a href="#" >回复</a></span>
+									<span class=""><a href="#">点赞</a></span>
+								</div>
+								<div class="media">
+									<div class="media-left">
+										<a href="#"> <img class="media-object"
+											src="/images/common_user.png"
+											style="width: 50px; height: 50px;">
+										</a>
+									</div>
+									<div class="media-body">
+										<p>大兄弟说得不错。。</p>
+										<div class="comment-footer">
+											<span class=""><a href="#" >回复</a></span>
+											<span class=""><a href="#">点赞</a></span>
+										</div>
+									</div>
+									
+								</div>
+								<!-- Nested media object -->
+								<div class="media">
+									<div class="media-left">
+										<a href="#"> <img class="media-object"
+											src="/images/common_user.png"
+											style="width: 50px; height: 50px;">
+										</a>
+									</div>
+									<div class="media-body">
+										<p>我也认同楼上的</p>
+										<div class="comment-footer">
+											<span class=""><a href="#" >回复</a></span>
+											<span class=""><a href="#">点赞</a></span>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<hr>
+						<?php endfor;?>
+						</div>
+					</div>
 				</div>
-			</div>
 			</div>
 		</div>
 	</div>
-	
+
 </div>
 

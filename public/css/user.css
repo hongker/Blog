@@ -27,8 +27,3 @@
 	width:100%;
 }
 
-/************ form.input ************/
-input.form-control ,textarea.form-control  {
-	border: 1px solid #bdc3c7;
-	border-radius: 4px;
-}
