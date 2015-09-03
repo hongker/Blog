@@ -65,10 +65,10 @@ class ArticleController extends BaseController
 			$article->author = $article->getAuthor();
 			
 			$comments = $article->getComments();
-			$article->comments = $comments?$comments:0;
 			$article->view = $this->operation->addView($id);
 			
 			$this->view->setVar('article',$article);
+			$this->view->setVar('comments',$comments);
 			
 			//使用视图缓存
 			/*

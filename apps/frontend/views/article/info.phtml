@@ -41,7 +41,30 @@
 						<hr>
 						<blockquote class="blockquote-info">评论区</blockquote>
 						<div class="commentsList">
-						<?php for($i=1;$i<5;$i++):?>
+						<?php if($comments->count()):?>
+						<?php foreach ($comments as $comment):?>
+						<div class="comment">
+								<div class="media-left">
+									<a href="#"> <img class="media-object"
+										src="/images/common_user.png"
+										style="width: 50px; height: 50px;">
+									</a>
+								</div>
+								<div class="media-body">
+									<p><?php echo $comment->content?></p>
+									<div class="comment-footer">
+										<span class=""><a href="#">回复</a></span> <span class=""><a
+											href="#">点赞</a></span>
+									</div>
+								</div>
+						</div>
+						<?php endforeach;?>
+						<?php else:?>
+						<div class="none">
+							暂无数据
+						</div>
+						<?php endif;?>
+						<?php for($i=1;$i<1;$i++):?>
 						<div class="comment">
 								<div class="media-left">
 									<a href="#"> <img class="media-object"
