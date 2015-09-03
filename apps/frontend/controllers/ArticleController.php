@@ -82,31 +82,4 @@ class ArticleController extends BaseController
 		}
 	}
 	
-	/**
-	 * 添加文章
-	 */
-	public function addAction() {
-		$data['title'] = 'test for title';
-		$data['author_id'] = 1;
-		$data['type_id'] = 1;
-		$data['content'] = 'test for content';
-		
-		$this->operation->save($data);
-		$this->flashSession->output();
-		exit;
-	}
-	
-	/**
-	 * 编辑文章
-	 */
-	public function editAction() {
-		$id = 1;
-		$data['content'] = 'test for cache1';
-		
-		if($this->operation->update($id, $data)) {
-			echo 1;
-		}
-		exit;
-	}
-
 }

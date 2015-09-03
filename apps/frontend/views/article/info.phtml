@@ -53,16 +53,30 @@
 								<div class="media-body">
 									<p><?php echo $comment->content?></p>
 									<div class="comment-footer">
-										<span class=""><a href="#">回复</a></span> <span class=""><a
-											href="#">点赞</a></span>
+										<span class=""><a 
+											href="javascript:void(0)" id="reply">回复</a></span> <span
+											class=""><a href="#">点赞</a></span>
+									</div>
+									<div class="media" id="replyContainer" style="display: none;">
+										<div class="media-left">
+											<a href="#"> <img class="media-object"
+												src="/images/common_user.png"
+												style="width: 50px; height: 50px;">
+											</a>
+										</div>
+										<div class="media-body">
+											<textarea class="form-control" rows="3" placeholder="回复内容。。。"></textarea>
+											<div class="text-right br">
+												<button data-comment="<?php echo $comment->id?>"
+											data-author="<?php echo $comment->author_id?>" class="btn btn-info btn-sm" onclick="reply(this)">回复评论</button>
+											</div>
+										</div>
 									</div>
 								</div>
-						</div>
+							</div>
 						<?php endforeach;?>
 						<?php else:?>
-						<div class="none">
-							暂无数据
-						</div>
+						<div class="none">暂无数据</div>
 						<?php endif;?>
 						<?php for($i=1;$i<1;$i++):?>
 						<div class="comment">
@@ -131,7 +145,7 @@ function addComment(obj) {
 
 	if(!textarea.val()) {
 		textarea.focus();
-		alertify('请填入评论内容')
+		alertify.error('请填入评论内容')
 	}
 	$.ajax({
 	        type: "POST",
@@ -148,6 +162,38 @@ function addComment(obj) {
 	        	
 	        },
 	 });
+}
+$('[id=reply]').click(function() {
+	var parent = $(this).parent().parent().parent();
+	var replyContainer = parent.find('#replyContainer');
+	replyContainer.toggle('slow');
+});
+	
+
+function reply(obj) {
+	var comment_id = $(obj).attr('data-comment');
+	var target_id = $(obj).attr('data-author');
+	var textarea = $(obj).parent().parent().find('textarea');
+	if(!textarea.val()) {
+		textarea.focus();
+		alertify.error('请填入回复内容')
+	}
+	$.ajax({
+	        type: "POST",
+	        url: "/comment/reply",
+	        data: {comment_id:comment_id,target_id:target_id,content:textarea.val()},
+	        dataType:'json',
+	        success: function(data){
+	            if(data.errNo==0) {
+	            	alertify.success('回复成功');
+	            	location.reload();
+	            }else {
+	            	alertify.error(data.errMsg);
+	            }
+	        	
+	        },
+	 });
+	
 }
 //-->
 </script>
