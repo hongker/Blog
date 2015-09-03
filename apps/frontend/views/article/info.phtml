@@ -42,7 +42,7 @@
 						<blockquote class="blockquote-info">评论区</blockquote>
 						<div class="commentsList">
 						<?php if($comments->count()):?>
-						<?php foreach ($comments as $comment):?>
+						<?php foreach ($comments as $commentKey=> $comment):?>
 						<div class="comment">
 								<div class="media-left">
 									<a href="#"> <img class="media-object"
@@ -51,6 +51,10 @@
 									</a>
 								</div>
 								<div class="media-body">
+									<div class="comment-user">
+									<span class="floor">#<?php echo $commentKey+1?> </span>
+									<span class="username"><?php echo $comment->getAuthor()->username?></span>
+									</div>
 									<p><?php echo $comment->content?></p>
 									<div class="comment-footer">
 										<span class=""><a 
@@ -58,7 +62,7 @@
 											class=""><a href="#">点赞</a></span>
 									</div>
 									<?php $replies = $comment->getReplies();?>
-									<?php foreach ($replies as $reply):?>
+									<?php foreach ($replies as $replyKey=>$reply):?>
 									<div class="media">
 										<div class="media-left">
 											<a href="#"> <img class="media-object"
@@ -67,6 +71,10 @@
 											</a>
 										</div>
 										<div class="media-body">
+											<div class="comment-user">
+											<span class="floor">[<?php echo $replyKey+1?>] </span>
+											<span class="username"><?php echo $reply->getAuthor()->username?></span>
+											</div>
 											<p><?php echo $reply->content?></p>
 											<div class="comment-footer">
 												<span class=""><a 

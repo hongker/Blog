@@ -420,8 +420,11 @@ input.form-control ,textarea.form-control  {
 	color:#515151;	
 }
 
-.comment {
+.comment{
 	margin-top:20px;
+}
+.comment p {
+	font-size:15px;
 }
 .comment-footer span a{
 	font-size:15px;
@@ -431,4 +434,13 @@ input.form-control ,textarea.form-control  {
 }
 .comment-footer span a:hover {
 	color: #3498DB;
+}
+.comment-user {
+	font-size:15px;
+}
+.comment-user span {
+	margin-right:5px;
+}
+.comment-user .floor {
+	
 }

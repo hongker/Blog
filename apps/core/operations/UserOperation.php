@@ -180,6 +180,7 @@ class UserOperation extends BaseOperation implements Operation {
 	 */
 	public function register(Array $info) {
 		$return = array();
+		
 		if($info['username']) {
 			if(!$this->checkUserExist($info['username'])) {
 				if($info['email']) {
@@ -203,7 +204,7 @@ class UserOperation extends BaseOperation implements Operation {
 				$return['errNo'] = 1004;
 			}
 		}else {
-			$return['errNo'] = 1000;
+			$return['errNo'] = 1010;
 		}
 		
 		$logString = "IP:{$this->ip},用户名:{$info['username']}注册，errNo：{$return['errNo']}";
