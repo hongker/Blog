@@ -290,6 +290,9 @@ ul.types {
 	font-weight:bold;
 	font-size:14px;
 }
+.articleInfo .content {
+	width:100%;
+}
 
 /*------ index ------*/
 .header {
