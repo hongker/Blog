@@ -114,4 +114,13 @@ class BaseController extends Controller
     	
     	return $pageinate;
     }
+    
+    /**
+     * 根据错误编号获取错误信息
+     * @param int $no
+     * @return string
+     */
+    protected function getErrorMessage($no) {
+    	return $this->error[$no];
+    }
 }

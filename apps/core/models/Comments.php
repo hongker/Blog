@@ -6,6 +6,7 @@ namespace Blog\Models;
  *
  */
 class Comments extends BaseModel {
+	protected $type;
 	/**
 	 * 模型初始化
 	 */

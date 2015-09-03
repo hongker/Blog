@@ -32,19 +32,14 @@ class CommentController extends BaseController
 				$data['target'] = $this->request->getPost('target','int');
 				$data['type'] = $this->request->getPost('type','int');
 				
-				if($this->operation->save($data)) {
-					$return['errNo'] = 0;
-				}else {
-					$return['errNo'] = 1011; 
-				}
+				$return = $this->operation->save($data);
 			}else {
 				$return['errNo'] = 1010;
 			}
-			
 		}else {
 			$return['errNo'] = 1002;
 		}
-		$return['errMsg'] = $this->error[$return['errNo']];
+		$return['errMsg'] = $this->getErrorMessage($return['errNo']);
 		$this->json_return($return);
 	}
 	

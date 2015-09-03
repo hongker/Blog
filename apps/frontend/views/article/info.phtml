@@ -31,11 +31,10 @@
 								</a>
 							</div>
 							<div class="media-body">
-								<div class="form-horizontal">
-									<textarea class="form-control" rows="3" placeholder="评论内容。。。"></textarea>
-								</div>
+								<textarea class="form-control" rows="3" placeholder="评论内容。。。"></textarea>
 								<div class="text-right br">
-									<button class="btn btn-info btn-sm">发表评论</button>
+									<button data-type="1" data-target="<?php echo $article->id?>"
+										class="btn btn-info btn-sm" onclick="addComment(this)">发表评论</button>
 								</div>
 							</div>
 						</div>
@@ -44,53 +43,53 @@
 						<div class="commentsList">
 						<?php for($i=1;$i<5;$i++):?>
 						<div class="comment">
-							<div class="media-left">
-								<a href="#"> <img class="media-object"
-									src="/images/common_user.png"
-									style="width: 50px; height: 50px;">
-								</a>
-							</div>
-							<div class="media-body">
-								<p>这篇文章写得有品味！</p>
-								<div class="comment-footer">
-									<span class=""><a href="#" >回复</a></span>
-									<span class=""><a href="#">点赞</a></span>
+								<div class="media-left">
+									<a href="#"> <img class="media-object"
+										src="/images/common_user.png"
+										style="width: 50px; height: 50px;">
+									</a>
 								</div>
-								<div class="media">
-									<div class="media-left">
-										<a href="#"> <img class="media-object"
-											src="/images/common_user.png"
-											style="width: 50px; height: 50px;">
-										</a>
+								<div class="media-body">
+									<p>这篇文章写得有品味！</p>
+									<div class="comment-footer">
+										<span class=""><a href="#">回复</a></span> <span class=""><a
+											href="#">点赞</a></span>
 									</div>
-									<div class="media-body">
-										<p>大兄弟说得不错。。</p>
-										<div class="comment-footer">
-											<span class=""><a href="#" >回复</a></span>
-											<span class=""><a href="#">点赞</a></span>
+									<div class="media">
+										<div class="media-left">
+											<a href="#"> <img class="media-object"
+												src="/images/common_user.png"
+												style="width: 50px; height: 50px;">
+											</a>
+										</div>
+										<div class="media-body">
+											<p>大兄弟说得不错。。</p>
+											<div class="comment-footer">
+												<span class=""><a href="#">回复</a></span> <span class=""><a
+													href="#">点赞</a></span>
+											</div>
+										</div>
+
+									</div>
+									<!-- Nested media object -->
+									<div class="media">
+										<div class="media-left">
+											<a href="#"> <img class="media-object"
+												src="/images/common_user.png"
+												style="width: 50px; height: 50px;">
+											</a>
+										</div>
+										<div class="media-body">
+											<p>我也认同楼上的</p>
+											<div class="comment-footer">
+												<span class=""><a href="#">回复</a></span> <span class=""><a
+													href="#">点赞</a></span>
+											</div>
 										</div>
 									</div>
-									
-								</div>
-								<!-- Nested media object -->
-								<div class="media">
-									<div class="media-left">
-										<a href="#"> <img class="media-object"
-											src="/images/common_user.png"
-											style="width: 50px; height: 50px;">
-										</a>
-									</div>
-									<div class="media-body">
-										<p>我也认同楼上的</p>
-										<div class="comment-footer">
-											<span class=""><a href="#" >回复</a></span>
-											<span class=""><a href="#">点赞</a></span>
-										</div>
-									</div>
 								</div>
 							</div>
-						</div>
-						<hr>
+							<hr>
 						<?php endfor;?>
 						</div>
 					</div>
@@ -100,4 +99,32 @@
 	</div>
 
 </div>
+<script type="text/javascript">
+<!--
+function addComment(obj) {
+	var type = $(obj).attr('data-type');
+	var target = $(obj).attr('data-target');
+	var textarea = $(obj).parent().parent().find('textarea');
 
+	if(!textarea.val()) {
+		textarea.focus();
+		alertify('请填入评论内容')
+	}
+	$.ajax({
+	        type: "POST",
+	        url: "/comment/add",
+	        data: {target:target,type:type,content:textarea.val()},
+	        dataType:'json',
+	        success: function(data){
+	            if(data.errNo==0) {
+	            	alertify.success('评论成功');
+	            	location.reload();
+	            }else {
+	            	alertify.error(data.errMsg);
+	            }
+	        	
+	        },
+	 });
+}
+//-->
+</script>

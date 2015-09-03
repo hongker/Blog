@@ -25,18 +25,36 @@ class CommentOperation extends BaseOperation implements Operation {
 	/**
 	 * 添加评论
 	 * @param array $data
-	 * @return boolean
+	 * @return array
 	 */
 	public function save(Array $data) {
+		if(empty($data['author_id'])) {
+			$return['errNo'] = 1010;
+			return $return;
+		}
+		if(empty($data['content'])) {
+			$return['errNo'] = 1027;
+			return $return;
+		}
+		if(empty($data['target'])) {
+			$return['errNo'] = 1028;
+			return $return;
+		}
+		if(empty($data['type'])) {
+			$return['errNo'] = 1029;
+			return $return;
+		}
 		$comment = new Comments();
 		foreach ($data as $key=>$value) {
 			$comment->$key = $value;
 		}
 	
 		if($comment->save()==true) {
-			return true;
+			$return['errNo'] = 0;
+		}else {
+			$return['errNo'] = 1011;
 		}
-		return false;
+		return $return;
 	}
 	
 	/**

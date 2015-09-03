@@ -64,8 +64,8 @@ class ArticleController extends BaseController
 		if($article) {
 			$article->author = $article->getAuthor();
 			
-			$artiles->comments = $article->getComments();
-			
+			$comments = $article->getComments();
+			$article->comments = $comments?$comments:0;
 			$article->view = $this->operation->addView($id);
 			
 			$this->view->setVar('article',$article);
