@@ -6,23 +6,19 @@ namespace Blog\Utils;
  * @author hongker
  *
  */
-class Redis {
+class Redis extends \Redis{
 	
-	private $redis;
 	
 	/**
 	 * 初始化redis
 	 */
 	function __construct() {
-		$this->redis = new \Redis();
-		
-		$config = new \Phalcon\Config\Adapter\Ini ( "../../configs/config.ini" );
-		
-		$this->redis->connect($config->redis->host);
+		$config = new \Phalcon\Config\Adapter\Ini ( __DIR__."/../../configs/config.ini" );
+		$this->connect($config->redis->host);
 	}
 	
-	private function connect($host,$port=6379) {
-		$this->redis->pconnect($host);
+	public function connect($host,$port=6379) {
+		$this->pconnect($host);
 	}
 }
 

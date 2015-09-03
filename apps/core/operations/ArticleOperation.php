@@ -32,6 +32,7 @@ class ArticleOperation extends BaseOperation implements Operation {
 	 */
 	private function addView($id) {
 		$key = 'article_view';
+		var_dump($this->redis);
 		$this->redis->zIncrBy($key,1,"artile_$id");
 	}
 	
