@@ -25,6 +25,7 @@ class Articles extends BaseModel {
 				'alias' => 'Comments'
 		));
 		$this->skipAttributesOnUpdate(array('author_id'));
+		
 	}
 	
 	
@@ -58,4 +59,5 @@ class Articles extends BaseModel {
 		}
 	
 	}
+	
 }

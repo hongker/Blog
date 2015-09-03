@@ -9,7 +9,7 @@
 						作者:<span class="username"><?php echo $article->author->username?></span>
 					</span>
 					<span class="created_at">
-						发布于：<span class="date"><?php echo $article->created_at?></span>
+						发布于：<span class="date"><?php echo substr($article->created_at,0,10)?></span>
 					</span>
 				</div>
 				<div class="digest">
@@ -19,8 +19,8 @@
 					<?php echo $article->content?>
 				</div>
 				<div class="numbers">
-					<span class="view">阅读：<span class="count">20</span></span>
-					<span class="comment">评论：<span class="count">20</span></span>
+					<span class="view">阅读：<span class="count"><?php echo $article->view?></span></span>
+					<span class="comment">评论：<span class="count"><?php echo $article->comments->count()?></span></span>
 					<span class="praise">点赞：<span class="count">20</span></span>
 				</div>
 			</div>

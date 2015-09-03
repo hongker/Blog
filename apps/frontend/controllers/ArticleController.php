@@ -25,7 +25,6 @@ class ArticleController extends BaseController
 	public function indexAction() {
 		$currentPage = $this->getQuery('page','int')?$this->getQuery('page','int'):1;
 		
-		
 		$articles = $this->operation->findAll(array("conditions"=>"is_delete=0","order"=>"created_at desc"));
 		
 		$page = $this->getPaginate($articles,$currentPage);
@@ -66,6 +65,9 @@ class ArticleController extends BaseController
 			$article->author = $article->getAuthor();
 			
 			$artiles->comments = $article->getComments();
+			
+			$article->view = $this->operation->addView($id);
+			
 			$this->view->setVar('article',$article);
 			
 			//使用视图缓存

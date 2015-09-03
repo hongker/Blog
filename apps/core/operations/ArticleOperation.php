@@ -20,9 +20,7 @@ class ArticleOperation extends BaseOperation implements Operation {
 	 */
 	public function get($id) {
 		$article = Articles::findFirst($id);
-		if($article) {
-			$this->addView($id);
-		}
+		
 		return $article;
 	}
 	
@@ -30,10 +28,9 @@ class ArticleOperation extends BaseOperation implements Operation {
 	 * 添加阅读量
 	 * @param unknown $id
 	 */
-	private function addView($id) {
+	public function addView($id) {
 		$key = 'article_view';
-		var_dump($this->redis);
-		$this->redis->zIncrBy($key,1,"artile_$id");
+		return $this->redis->zIncrBy($key,1,"artile_$id");
 	}
 	
 	/**
