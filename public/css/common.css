@@ -231,6 +231,15 @@ blockquote.blockquote-info {
 .article .created_at {
 	float:right;
 }
+.article-picture img {
+	width:100%;
+}
+@media (min-width: 768px) {
+	.article-picture img{
+		width:590px;
+		height:300px;
+	}
+}
   .numbers {
 	margin:10px 0px;
 }
@@ -420,8 +429,9 @@ input.form-control ,textarea.form-control  {
 	font-size:14px;
 	margin-bottom:20px;
 }
-.article_rows .part_of_content {
+.article_rows .article_content {
 	color:#515151;	
+	margin-top:20px;
 }
 
 .comment{

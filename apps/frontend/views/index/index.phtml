@@ -29,20 +29,22 @@
 	<div class="row">
 		<div class="col-sm-9">
 			<div class="box">
-				<?php for($i=1;$i<5;$i++):?>
+				<?php foreach($articles as $article):?>
 				<div class="article_rows">
-					<div class="title">This is article title</div>
-					<div class="notation">作者：hongker，发布时间：08-31 22:22</div>
-					<div class="part_of_content">
-						<p>Last Friday we emailed our users to tell them about an upcoming pricing change in our service. The change will be effective on August 31, 2015. On this post I explain why we had to change the price of the service and what users need to do next.</p>
-						<p>Our team has been operating Blimp for more than 4 years now. During that time we’ve grown our offering quite a lot with minimal changes to the price of the product. We want to be able to keep working hard on the product and provide even more functionality in the near future.</p>
+					<div class="title"><?php echo $article->title?></div>
+					<div class="notation">作者：<span><?php echo $article->getAuthor()->username?></span>，发布时间：<span><?php echo $article->created_at?></span></div>
+					<div class="article-picture">
+						<img alt="" src="<?php echo $article->picture?>">
+					</div>
+					<div class="article_content">
+						<p class="indent"><?php echo $article->digest?></p>
 					</div>
 					<div class="text-left">
-						<a href="#" class="btn btn-info ">阅读更多<i class="fa fa-angle-double-right"></i></a>
+						<a href="#" class="btn btn-info ">阅读全文<i class="fa fa-angle-double-right"></i></a>
 					</div>
 				</div>
 				<hr>
-				<?php endfor;?>
+				<?php endforeach;?>
 			</div>
 		</div>
 		<div class="col-sm-3"></div>
