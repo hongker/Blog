@@ -23,6 +23,14 @@ class CommentOperation extends BaseOperation implements Operation {
 	}
 	
 	/**
+	 * 查找记录
+	 * @param string $condition
+	 */
+	public function findAll($condition=null) {
+		return Comments::find($condition);
+	}
+	
+	/**
 	 * 添加评论
 	 * @param array $data
 	 * @return array
@@ -69,7 +77,7 @@ class CommentOperation extends BaseOperation implements Operation {
 			$comment->$key = $value;
 		}
 		
-		if($comment->save()) {
+		if($comment->update()) {
 			return true;
 		}
 		return false;

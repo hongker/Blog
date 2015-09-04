@@ -26,4 +26,15 @@
 	display:block;
 	width:100%;
 }
+.comment blockquote {
+	margin:0px;
+	
+}
+.comment blockquote p {
+	font-size:18px;
+}
+blockquote footer {
+	background:#fff;
+	margin-top:5px;
+}
 

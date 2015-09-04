@@ -1,0 +1,32 @@
+<div class="container">
+	<div class="row">
+		<div class="col-sm-3">
+		<?php $this->view->partial('public/sidebar')?>
+	</div>
+		<div class="col-sm-9">
+			<ol class="breadcrumb">
+				<li><a class="text-info" href="/user/article"><span
+						class="fui-document"></span> 评论管理</a></li>
+				<li class="active">评论列表</li>
+			</ol>
+			<?php if($page->total_items==0):?>
+			<div class="none">
+				暂无数据
+			</div>
+			<?php else:?>
+		    <?php foreach($page->items as $key=>$comment):?>
+			<div class="box comment">
+				<blockquote>
+					<p><?php echo $comment->content?></p>
+					<footer class="">
+						<?php echo $comment->getArticle()->title?> <cite title="date"><?php echo $comment->created_at?></cite>
+					</footer>
+				</blockquote>
+			</div>
+			<?php endforeach;?>
+			<?php $this->partial('public/page')?>
+		    <?php endif;?>
+		    
+		</div>
+	</div>
+</div>
