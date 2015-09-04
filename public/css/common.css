@@ -151,6 +151,11 @@ blockquote.blockquote-info {
 .article {
 	margin:5px 0px 0px 0px;
 }
+.article-left {
+}
+.article-left img {
+	width:100%;
+}
 .article .title {
 	  font-family: Lato;
   text-transform: none;
@@ -228,12 +233,11 @@ blockquote.blockquote-info {
 }
   .numbers {
 	margin:10px 0px;
-	text-align:right;
 }
  .numbers span{
 	font-size:14px;
 	color:#777;
-	margin-left:15px;
+	margin-right:10px;
 }
 .numbers span .count {
 	margin-left:2px;
