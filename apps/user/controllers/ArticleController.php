@@ -43,11 +43,12 @@ class ArticleController extends BaseController
 	public function addAction() {
 		if($this->isPost()) {
 			if(!$this->checkIsLogin()) {
-				$return['errNo'] = 1010;
+				$return['errNo'] = 1001;
 			}else {
 				$article = array();
 				$article['author_id'] = $this->user['id'];
 				$article['title'] = $this->getPost('title');
+				$article['picture'] = $this->getPost('picture');
 				$article['digest'] = $this->getPost('digest');
 				$article['type_id'] = $this->getPost('type','int');
 				$article['content'] = $this->getPost('content',false);

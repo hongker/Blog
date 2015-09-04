@@ -31,6 +31,7 @@ values('hongker','xiaok2013@live.com',1,'$2a$12$0Y8tnffNb6PMCBi7SmlAHe8jFNYBvtFE
  * articles 文章表
  * id 主键
  * title 标题
+ * picture 封面图片
  * digest 摘要
  * author_id 作者id
  * type_id 类型id
@@ -43,6 +44,7 @@ drop table if exists articles;
 create table articles(
 	id int not null primary key auto_increment,
 	title varchar(100) not null,
+	picture varchar(100) not null,
 	digest varchar(255) not null,
 	author_id int not null,
 	type_id int not null,
@@ -51,10 +53,7 @@ create table articles(
 	created_at timestamp not null default current_timestamp,
 	updated_at timestamp not null default '0000-00-00 00:00:00'
 )engine=myisam default charset=utf8;
-insert into articles(title,digest,author_id,type_id,content)
-values('This is article title','Either you run the day or the day runs for you',1,1,'Sed pretium, ligula sollicitudin laoreet viverra, tortor libero sodales leo eget. Excepteur sint occaecat cupidatat non proident, sunt'),
-('This is article title','Either you run the day or the day runs for you',1,2,'Sed pretium, ligula sollicitudin laoreet viverra, tortor libero sodales leo eget. Excepteur sint occaecat cupidatat non proident, sunt')
-;
+
 
 
 

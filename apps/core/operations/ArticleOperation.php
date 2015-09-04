@@ -40,17 +40,22 @@ class ArticleOperation extends BaseOperation implements Operation {
 	 */
 	public function save(Array $data) {
 		if(empty($data['title'])) {
-			$return['errNo'] = 1016;
+			$return['errNo'] = 1102;
+			return $return;
+		}
+		
+		if(empty($data['picture'])) {
+			$return['errNo'] = 1106;
 			return $return;
 		}
 		
 		if(empty($data['digest'])) {
-			$return['errNo'] = 1017;
+			$return['errNo'] = 1103;
 			return $return;
 		}
 		
 		if($data['type_id']==0) {
-			$return['errNo'] = 1018;
+			$return['errNo'] = 1104;
 			return $return;
 		}
 		

@@ -444,3 +444,12 @@ input.form-control ,textarea.form-control  {
 .comment-user .floor {
 	
 }
+/******* 上传按钮 *********/
+#picker {
+	float:left;
+	
+	margin-right:20px;
+}
+#picker .webuploader-pick {
+	padding: 8px 15px;
+}
