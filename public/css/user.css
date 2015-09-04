@@ -33,6 +33,10 @@
 .comment blockquote p {
 	font-size:18px;
 }
+.comment blockquote a {
+	font-weight:300;
+	margin-left:10px;
+}
 blockquote footer {
 	background:#fff;
 	margin-top:5px;

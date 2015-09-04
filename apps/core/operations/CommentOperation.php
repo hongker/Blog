@@ -126,4 +126,19 @@ class CommentOperation extends BaseOperation implements Operation {
 		$comment =$this->get($id);
 		return $comment->getReplies();
 	}
+	
+	/**
+	 * 判断用户是否为评论作者
+	 * @param int $id 评论id
+	 * @param int $user_id 用户id
+	 * @return boolean
+	 */
+	public function checkIsAuthor($id,$user_id) {
+		$comment = $this->get($id);
+		if($comment&&$comment->author_id==$user_id) {
+			return true;
+		}
+		return false;
+	
+	}
 }
