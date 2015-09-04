@@ -1,0 +1,164 @@
+<div class="commentContainer">
+	<!-- 评论Container/start -->
+	<div class="media">
+		<div class="media-left">
+			<a href="#"> <img class="media-object" src="/images/common_user.png"
+				style="width: 50px; height: 50px;">
+			</a>
+		</div>
+		<div class="media-body">
+			<textarea class="form-control" rows="3" placeholder="评论内容。。。"></textarea>
+			<div class="text-right br">
+				<button data-type="1" data-target="<?php echo $article->id?>"
+					class="btn btn-info btn-sm" onclick="addComment(this)">发表评论</button>
+			</div>
+		</div>
+	</div>
+	<!-- 评论Container/end -->
+	<hr>
+	<blockquote class="blockquote-info">评论区</blockquote>
+	<div class="commentsList">
+	<?php if($comments->count()):?>
+	<?php foreach ($comments as $commentKey=> $comment):?>
+	<div class="comment">
+			<div class="media-left">
+				<a href="#"> <img class="media-object" src="/images/common_user.png"
+					style="width: 50px; height: 50px;">
+				</a>
+			</div>
+			<div class="media-body">
+				<div class="comment-user">
+					<span class="floor">#<?php echo $commentKey+1?> </span> <span
+						class="username"><?php echo $comment->getAuthor()->username?></span>
+				</div>
+				<p><?php echo $comment->content?></p>
+				<div class="comment-footer">
+					<span class=""><a href="javascript:void(0)" id="reply">回复</a></span>
+					<span class=""><a href="#">点赞</a></span>
+				</div>
+				<div class="media" id="replyContainer" style="display: none;">
+					<div class="media-left">
+						<a href="#"> <img class="media-object"
+							src="/images/common_user.png" style="width: 50px; height: 50px;">
+						</a>
+					</div>
+					<div class="media-body">
+						<textarea class="form-control" rows="3" placeholder="回复内容。。。"></textarea>
+						<div class="text-right br">
+							<button data-comment="<?php echo $comment->id?>"
+								data-author="<?php echo $comment->author_id?>"
+								class="btn btn-info btn-sm" onclick="reply(this)">回复评论</button>
+						</div>
+					</div>
+				</div>
+				<?php $replies = $comment->getReplies();?>
+				<?php foreach ($replies as $replyKey=>$reply):?>
+				<!-- replyList/start -->
+				<div class="media">
+					<div class="media-left">
+						<a href="#"> <img class="media-object"
+							src="/images/common_user.png" style="width: 50px; height: 50px;">
+						</a>
+					</div>
+					<div class="media-body">
+						<div class="comment-user">
+							<span class="floor">[<?php echo $replyKey+1?>] </span> <span
+								class="username"><?php echo $reply->getAuthor()->username?></span>
+						</div>
+						<p><span>回复<?php echo $reply->getTarget()->username?>:</span><?php echo $reply->content?></p>
+						<div class="comment-footer">
+							<span class=""><a href="javascript:void(0)" id="reply">回复</a></span>
+							<span class=""><a href="#">点赞</a></span>
+						</div>
+						<div class="media" id="replyContainer" style="display: none;">
+					<div class="media-left">
+						<a href="#"> <img class="media-object"
+							src="/images/common_user.png" style="width: 50px; height: 50px;">
+						</a>
+					</div>
+					<div class="media-body">
+						<textarea class="form-control" rows="3" placeholder="回复内容。。。"></textarea>
+						<div class="text-right br">
+							<button data-comment="<?php echo $comment->id?>"
+								data-author="<?php echo $reply->author_id?>"
+								class="btn btn-info btn-sm" onclick="reply(this)">回复评论</button>
+						</div>
+					</div>
+				</div>
+					</div>
+
+				</div>
+				<!-- replyList/end -->
+				<?php endforeach;?>
+				
+			</div>
+		</div>
+	<?php endforeach;?>
+	<?php else:?>
+	<div class="none">暂无数据</div>
+	<?php endif;?>
+	</div>
+</div>
+<script type="text/javascript">
+<!--
+function addComment(obj) {
+	var type = $(obj).attr('data-type');
+	var target = $(obj).attr('data-target');
+	var textarea = $(obj).parent().parent().find('textarea');
+
+	if(!textarea.val()) {
+		textarea.focus();
+		alertify.error('请填入评论内容')
+	}
+	$.ajax({
+	        type: "POST",
+	        url: "/comment/add",
+	        data: {target:target,type:type,content:textarea.val()},
+	        dataType:'json',
+	        success: function(data){
+	            if(data.errNo==0) {
+	            	alertify.success('评论成功');
+	            	location.reload();
+	            }else {
+	            	alertify.error(data.errMsg);
+	            }
+	        	
+	        },
+	 });
+}
+$('[id=reply]').click(function() {
+	var parent = $(this).parent().parent().parent();
+	
+	var replyContainer = parent.find('#replyContainer');
+	replyContainer.toggle('slow');
+	replyContainer.find('textarea').focus();
+});
+	
+
+function reply(obj) {
+	var comment_id = $(obj).attr('data-comment');
+	var target_id = $(obj).attr('data-author');
+	var textarea = $(obj).parent().parent().find('textarea');
+	if(!textarea.val()) {
+		textarea.focus();
+		alertify.error('请填入回复内容')
+	}
+	$.ajax({
+	        type: "POST",
+	        url: "/comment/reply",
+	        data: {comment_id:comment_id,target_id:target_id,content:textarea.val()},
+	        dataType:'json',
+	        success: function(data){
+	            if(data.errNo==0) {
+	            	alertify.success('回复成功');
+	            	location.reload();
+	            }else {
+	            	alertify.error(data.errMsg);
+	            }
+	        	
+	        },
+	 });
+	
+}
+//-->
+</script>
