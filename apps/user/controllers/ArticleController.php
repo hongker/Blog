@@ -72,12 +72,13 @@ class ArticleController extends BaseController
 				$article = array();
 				$id = $this->getPost('id','int');
 				$article['title'] = $this->getPost('title');
+				$article['picture'] = $this->getPost('picture');
 				$article['digest'] = $this->getPost('digest');
 				$article['type_id'] = $this->getPost('type','int');
 				$article['content'] = $this->getPost('content',false);
+				$return = $this->operation->update($id, $article);
 			}
-			
-			$return = $this->operation->update($id, $article);
+			$return['errMsg'] = $this->getErrorMessage($return['errNo']);
 			$this->json_return($return);
 		}else {
 			$id = $this->dispatcher->getParam(0);

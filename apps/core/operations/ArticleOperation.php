@@ -91,6 +91,11 @@ class ArticleOperation extends BaseOperation implements Operation {
 				return $return;
 			}
 			
+			if(empty($array['picture'])) {
+				$return['errNo'] = 1105;
+				return $return;
+			}
+			
 			if(empty($array['digest'])) {
 				$return['errNo'] = 1017;
 				return $return;
