@@ -8,6 +8,7 @@
           <th>序号</th>
           <th>作者</th>
           <th>内容</th>
+          <th>回复</th>
           <th>状态</th>
           <th>创建时间</th>
           <th>操作</th>
@@ -22,6 +23,7 @@
           <th scope="row"><?php echo $key+1?></th>
           <td><?php echo $comment->getAuthor()->username?></td>
           <td><?php echo $comment->content?></td>
+          <td><?php echo $comment->getReplies()->count()?>条</td>
           <td><?php echo $comment->is_delete?></td>
           <td><?php echo $comment->created_at?></td>
           <td data-id="<?php echo $comment->id?>">
