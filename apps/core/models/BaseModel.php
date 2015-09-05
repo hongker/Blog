@@ -2,6 +2,9 @@
 namespace Blog\Models;
 use Phalcon\Mvc\Model;
 use Phalcon\Mvc\Model\Behavior\SoftDelete;
+use Phalcon\Mvc\Model\Validator\Uniqueness;
+use Phalcon\Mvc\Model\Validator\PresenceOf;
+use Phalcon\Mvc\Model\Validator\Email as EmailValidator;
 
 /**
  * 基础Model类
@@ -70,6 +73,45 @@ class BaseModel extends Model {
 			return false;
 		}
 		return true;
+	}
+	
+	/**
+	 * 设置验证字段不能为空
+	 * @param string $field 字段名称
+	 * @param int $errNo 错误代码
+	 * @return \Phalcon\Mvc\Model\Validator\PresenceOf
+	 */
+	protected function setPresenceOf($field,$errNo) {
+		return new PresenceOf(array(
+				"field" => $field,
+				"message" => $errNo,
+		));
+	}
+	
+	/**
+	 * 设置验证字段类型为邮箱
+	 * @param string $field 字段名称
+	 * @param int $errNo 错误代码
+	 * @return \Phalcon\Mvc\Model\Validator\Email
+	 */
+	protected function setEmailValidator($field,$errNo) {
+		return new EmailValidator(array(
+				"field" => $field,
+				"message" => $errNo,
+		));
+	}
+	
+	/**
+	 * 设置验证字段不能重复
+	 * @param string $field 字段名称
+	 * @param int $errNo 错误代码
+	 * @return \Phalcon\Mvc\Model\Validator\Uniqueness;
+	 */
+	protected function setUniqueness($field,$errNo) {
+		return new Uniqueness(array(
+				"field" => $field,
+				"message" => $errNo,
+		));
 	}
 	
 }

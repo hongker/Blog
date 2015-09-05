@@ -11,6 +11,7 @@ class AdviceOperation extends BaseOperation implements Operation {
 	
 	public function __construct($di) {
 		parent::__construct($di);
+		$this->setLogFile('advice.log');
 	}
 	
 	/**
@@ -51,6 +52,8 @@ class AdviceOperation extends BaseOperation implements Operation {
 			$return['errNo'] = 0;
 		}else {
 			$return['errNo'] = 1504;
+			$logString = "IP:{$this->ip},提交建议，errNo：{$return['errNo']}";
+			$this->log($logString, 'error');
 		}
 		return $return;
 		
@@ -80,6 +83,8 @@ class AdviceOperation extends BaseOperation implements Operation {
 		
 		if ($advice != false) {
 			if ($advice->delete() != false) {
+				$logString = $this->getLogString('删除建议', 0);
+				$this->log($logString, 'info');
 				return true;
 			}
 		}

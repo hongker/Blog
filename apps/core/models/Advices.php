@@ -22,23 +22,10 @@ class Advices extends BaseModel {
 	 */
 	public function validation() {
 		$validates = array();
-		$validates[] = new PresenceOf(array(
-				"field" => 'email',
-				"message" => 1501,
-		));
-		$validates[] = new PresenceOf(array(
-				"field" => 'name',
-				"message" => 1502,
-		));
-		$validates[] = new PresenceOf(array(
-				"field" => 'content',
-				"message" => 1503
-		));
-		$validates[] = new EmailValidator(array(
-				'field' => 'email',
-				'message' => 1505,
-		));
-		
+		$validates[] = $this->setPresenceOf('email', 1501);
+		$validates[] = $this->setPresenceOf('name', 1502);
+		$validates[] = $this->setPresenceOf('content', 1503);
+		$validates[] = $this->setEmailValidator('email', 1505);
 	
 		if($this->validateAll($validates)==false) {
 			return false;

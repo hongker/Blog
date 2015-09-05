@@ -76,4 +76,15 @@ class BaseOperation {
 		return false;
 	}
 	
+	/**
+	 * 组织保存日志信息格式
+	 * @param string $action
+	 * @param int $errNo
+	 * @return string
+	 */
+	public function getLogString($action,$errNo) {
+		$logString = "IP:{$this->ip},操作：{$action}，errNo：{$errNo}";
+		return $logString;
+	}
+	
 }
