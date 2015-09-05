@@ -66,12 +66,13 @@ class ArticleOperation extends BaseOperation implements Operation {
 	
 		if($article->save()==true) {
 			$return['errNo'] = 0;
+			$logString = $this->getLogString('添加文章', 0);
+			$this->log($logString, 'info');
 		}else {
 			$return['errNo'] = 1015;
 			foreach ($article->getMessages() as $message) {
-				$errorMessage = '用户:'.$article->author_id.'添加文章失败,提示内容:'.$message;
-				$this->log($errorMessage,'error');
-				$this->getDI()->get('flash')->error($message);
+				$logString = $this->getLogString('添加文章', $message);
+				$this->log($logString,'error');
 			}
 		}
 		return $return;
@@ -132,6 +133,8 @@ class ArticleOperation extends BaseOperation implements Operation {
 		
 		if ($article != false) {
 			if ($article->delete() != false) {
+				$logString = $this->getLogString('删除文章');
+				$this->log($logString, 'info');
 				return true;
 			}
 		}

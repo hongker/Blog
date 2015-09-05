@@ -47,13 +47,13 @@ class BaseOperation {
 	
 	/**
 	 * 保存日志
-	 * @param unknown $string
-	 * @param unknown $level
+	 * @param string $logString 日志信息
+	 * @param string $level 日志级别
 	 */
-	public function log($string,$level) {
+	public function log($logString,$level = 'info') {
 		$logger = new FileLogger($this->logDir.$this->logFile);
 		//$logger->setFormatter(new LineFormatter("%date%:%message%"));
-		$logger->log ( $string, $this->log_level[$level]);
+		$logger->log ( $logString, $this->log_level[$level]);
 	}
 	
 	/**
@@ -82,7 +82,7 @@ class BaseOperation {
 	 * @param int $errNo
 	 * @return string
 	 */
-	public function getLogString($action,$errNo) {
+	public function getLogString($action,$errNo = 0) {
 		$logString = "IP:{$this->ip},操作：{$action}，errNo：{$errNo}";
 		return $logString;
 	}
