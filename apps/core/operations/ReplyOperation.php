@@ -16,7 +16,7 @@ class ReplyOperation extends BaseOperation implements Operation {
 	/**
 	 * 根据id获取回复信息
 	 * @param int $id
-	 * @return Users 返回文章
+	 * @return Users 返回回复
 	 */
 	public function get($id) {
 		return Replies::findFirst($id);
