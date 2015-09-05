@@ -24,7 +24,7 @@ class Articles extends BaseModel {
 				'alias' => 'Comments'
 		));
 		$this->skipAttributesOnUpdate(array('author_id'));
-		
+		$this->skipAttributesOnCreate(array('status'));
 	}
 	
 	

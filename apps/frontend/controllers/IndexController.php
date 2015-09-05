@@ -19,7 +19,7 @@ class IndexController extends BaseController
 		$articleOperation = new ArticleOperation($this->di);
 		
 		$articles = $articleOperation->findAll(array(
-				"conditions"=>"is_delete=0",
+				"conditions"=>"is_delete=0 and status=1",
 				"order"=>"created_at desc",
 				"limit"=>5,
 		));

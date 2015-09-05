@@ -226,6 +226,9 @@ blockquote.blockquote-info {
 	font-size:16px;
 	margin-right:10px;
 }
+.article .picture a img{
+	width:100%;
+}
 .username {
 	color:#7B5C0C;
 	margin-left:5px;

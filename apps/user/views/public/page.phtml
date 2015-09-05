@@ -1,3 +1,4 @@
+<?php if($page->total_pages>0):?>
 <div class="holder">
 <a class="jp-previous <?php if($page->current==1) echo 'jp-disabled'?>" 
 	<?php if($page->current!=1):?>
@@ -33,4 +34,4 @@
 	 href="<?php echo '?page='.$page->next?>"
 	<?php endif;?>>下一页</a>
 </div>
-
+<?php endif;?>

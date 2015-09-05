@@ -11,7 +11,6 @@
 		</ul>
 		<div class="clear"></div>
 		</div>
-		<div class="box">Second box</div>
 	</div>
 	<div class="col-sm-9">
 	<div class="box">
@@ -23,7 +22,7 @@
 			<?php else:?>
 			<?php foreach ($page->items as $article):?>
 			<div class="col-sm-12 article">
-				<div class="col-sm-4 article-left">
+				<div class="col-sm-4 article-left visible-md-block visible-lg-block">
 					<a href="/article/info/<?php echo $article->id?>"><img alt="" src="<?php echo $article->picture?>"></a>
 					<div class="numbers">
 						<span class="view">阅读：<span class="count">20</span></span>
@@ -33,17 +32,21 @@
 				</div>
 				<div class="col-sm-8 article-right">
 					<div class="title"><a class="text-info" href="/article/info/<?php echo $article->id?>"><?php echo $article->title?></a></div>
+					
 					<div class="info">
 						<span class="author">作者：<span class="username"><?php echo $article->getAuthor()->username?></span></span>
 						<span class="created_at"><?php echo substr($article->created_at,5,11)?></span>
 					</div>
+					<!-- 仅小屏幕可见 -->
+					<div class="picture"><a class="visible-xs-block visible-sm-block" href="/article/info/<?php echo $article->id?>"><img alt="" src="<?php echo $article->picture?>"></a></div>
 					<p class="digest"><?php echo $article->digest?></p>
+					<!-- 仅小屏幕可见 -->
+					<div class="numbers visible-xs-block visible-sm-block">
+						<span class="view">阅读：<span class="count">20</span></span>
+						<span class="comment">评论：<span class="count">20</span></span>
+						<span class="praise">点赞：<span class="count">20</span></span>
+					</div>
 				</div>
-				
-				<!-- 
-				
-				
-				-->
 			</div>
 			 <div class="col-sm-12">
 			 	<hr>

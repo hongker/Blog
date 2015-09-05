@@ -13,8 +13,9 @@
 		      <thead>
 		        <tr>
 		          <th>序号</th>
-		          <th>文章标题</th>
+		          <th >文章标题</th>
 		          <th>文章类型</th>
+		          <th>状态</th>
 		          <th>发布时间</th>
 		          <th>操作</th>
 		        </tr>
@@ -26,8 +27,9 @@
 		      	<?php foreach($page->items as $key=>$article):?>
 		        <tr>
 		          <th scope="row"><?php echo $key+1?></th>
-		          <td><?php echo $article->title?></td>
+		          <td class="article_title_td"><?php echo $article->title?></td>
 		          <td><?php echo $article->getType()->name?></td>
+		          <td><?php echo $article->status?'已审核':'待审核'?></td>
 		          <td><?php echo substr($article->created_at,2,14)?></td>
 		          <td data-id="<?php echo $article->id?>">
 		          	<a href="/user/article/info/<?php echo $article->id?>" class="btn btn-info btn-xs"><span class="fui-info-circle"></span> 查看</a>
