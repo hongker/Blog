@@ -11,8 +11,8 @@
 			<ul class="nav navbar-nav">
 				<li class="<?php if($controller=='index') echo 'active'?>"><a href="/">主页</a></li>
 				<li class="<?php if($controller=='article') echo 'active'?>"><a href="/article">资讯</a></li>
-				<li><a href="/contact">联系我们</a></li>
-				<li><a href="/about">关于Blog</a></li>
+				<li class="<?php if($controller=='contact') echo 'active'?>"><a href="/contact">联系我们</a></li>
+				<li class="<?php if($controller=='about') echo 'active'?>"><a href="/about">关于Blog</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 			<?php if($this->session->has('user')):?>

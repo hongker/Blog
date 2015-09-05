@@ -1,15 +1,15 @@
 <?php
 namespace Blog\Frontend\Controllers;
 /**
- * 联系我们控制器
+ * 关于Blog控制器
  * @author hongker
  * @version 1.0
  */
-class ContactController extends BaseController
+class AboutController extends BaseController
 {
 	public function initialize()
 	{
-		\Phalcon\Tag::setTitle('联系我们');
+		\Phalcon\Tag::setTitle('关于Blog');
 		parent::initialize();
 		
 	}

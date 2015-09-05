@@ -472,7 +472,10 @@ input.form-control ,textarea.form-control  {
 }
 
 
-.contact-header {
+.page-header{
 	margin-top:20px;
 	color: #3C3C3C;
+}
+p {
+	font-size:16px;
 }
