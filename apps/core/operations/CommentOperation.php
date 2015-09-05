@@ -24,7 +24,7 @@ class CommentOperation extends BaseOperation implements Operation {
 	
 	/**
 	 * 查找记录
-	 * @param string $condition
+	 * @param array $condition
 	 */
 	public function findAll($condition=null) {
 		return Comments::find($condition);
