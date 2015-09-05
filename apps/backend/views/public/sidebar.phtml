@@ -62,6 +62,17 @@
 
 			</ul> <!-- /.nav-second-level -->
 		</li>
+		<li class="<?php if($controller=='advice') echo 'active'?>">
+			<a href="">
+				<span class="fui-document"></span> 意见管理<i class="fa arrow"></i>
+			</a>
+			<ul class="nav nav-second-level collapse "
+				<?php if($controller!='advice') echo 'aria-expanded="false" style="height: 0px;"'?>>
+				<li class="<?php if($controller=='advice'&&$action=='index') echo 'active'?>">
+					<a href="/admin/advice" ><i class="fa fa-chain fa-fw"></i> 意见列表</a>
+				</li>
+			</ul> <!-- /.nav-second-level -->
+		</li>
 		<li class="">
 			<a href="#">
 				<span class="fui-gear"></span> 系统配置<i class="fa arrow"></i>
