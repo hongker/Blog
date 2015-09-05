@@ -318,7 +318,7 @@ word-break: normal;
 /************ .input ************/
 input.form-control ,textarea.form-control  {
 	border: 1px solid #bdc3c7;
-	border-radius: 4px;
+	border-radius: 2px;
 }
 
 /*------ index ------*/
@@ -469,4 +469,10 @@ input.form-control ,textarea.form-control  {
 }
 #picker .webuploader-pick {
 	padding: 8px 15px;
+}
+
+
+.contact-header {
+	margin-top:20px;
+	color: #3C3C3C;
 }
