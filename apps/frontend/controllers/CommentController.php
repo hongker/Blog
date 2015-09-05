@@ -35,7 +35,7 @@ class CommentController extends BaseController
 				
 				$return = $this->operation->save($data);
 			}else {
-				$return['errNo'] = 1010;
+				$return['errNo'] = 1001;
 			}
 		}else {
 			$return['errNo'] = 1002;

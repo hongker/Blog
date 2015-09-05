@@ -37,7 +37,7 @@ class CommentOperation extends BaseOperation implements Operation {
 	 */
 	public function save(Array $data) {
 		if(empty($data['author_id'])) {
-			$return['errNo'] = 1203;
+			$return['errNo'] = 1001;
 			return $return;
 		}
 		if(empty($data['target'])) {
