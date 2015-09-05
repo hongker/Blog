@@ -123,6 +123,29 @@ insert into types(name)
 values('科技'),('经济'),('工业'),('历史'),('文学'),('健康');
 
 /**
+ * messages 消息表
+ * id 主键
+ * email 邮箱
+ * name 姓名
+ * content 内容
+ * type 类型(1:反馈意见)
+ * is_delete 是否删除
+ * created_at 创建时间
+ * updated_at 更改时间
+ */
+drop table if exists messages;
+create table messages(
+	id int not null primary key auto_increment,
+	email varchar(50) not null,
+	name varchar(20) not null,
+	content varchar(255) not null,
+	type tinyint not null default 1,
+	created_at timestamp not null default current_timestamp,
+	updated_at timestamp not null default '0000-00-00 00:00:00'
+)engine=myisam default charset=utf8;
+
+
+/**
  * tables 表模板
  * id 主键
  * created_at 创建时间
