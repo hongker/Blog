@@ -4,6 +4,7 @@ I want to use pjax and nprogress to display the content.Please waiting for the c
 
 #架构说明
  -----
+ 
  项目主文件夹：apps，用于存放逻辑代码，配置文件，日志等内容，系统一共有三个模块，分别是frontend(前台),user(用户),backend(后台).core目录下是模型类(models),操作类(operations)和工具类(utils).
  ~~~
  apps/  项目主文件夹
@@ -24,9 +25,13 @@ I want to use pjax and nprogress to display the content.Please waiting for the c
     
     user/ 用户模块
  ~~~
-   
-  cache/ 缓存
  
+ 缓存目录：cache,缓存文件存放位置，分别包括视图缓存等内容
+  ~~~
+  cache/ 缓存
+    views/ 视图缓存
+  ~~~
+  
  公共目录：public,保存项目的静态文件，如css,js,images等内容
   ~~~
   public/ 公共目录
