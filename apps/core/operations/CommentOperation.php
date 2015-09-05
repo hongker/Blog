@@ -37,19 +37,20 @@ class CommentOperation extends BaseOperation implements Operation {
 	 */
 	public function save(Array $data) {
 		if(empty($data['author_id'])) {
-			$return['errNo'] = 1010;
-			return $return;
-		}
-		if(empty($data['content'])) {
-			$return['errNo'] = 1027;
+			$return['errNo'] = 1203;
 			return $return;
 		}
 		if(empty($data['target'])) {
-			$return['errNo'] = 1028;
+			$return['errNo'] = 1204;
 			return $return;
 		}
+		if(empty($data['content'])) {
+			$return['errNo'] = 1205;
+			return $return;
+		}
+		
 		if(empty($data['type'])) {
-			$return['errNo'] = 1029;
+			$return['errNo'] = 1206;
 			return $return;
 		}
 		$comment = new Comments();
@@ -60,7 +61,11 @@ class CommentOperation extends BaseOperation implements Operation {
 		if($comment->save()==true) {
 			$return['errNo'] = 0;
 		}else {
-			$return['errNo'] = 1011;
+			foreach ($comment->getMessages() as $message) {
+				$logString = $this->getLogString('添加评论', $message);
+				$this->log($logString,'error');
+			}
+			$return['errNo'] = 1208;
 		}
 		return $return;
 	}
