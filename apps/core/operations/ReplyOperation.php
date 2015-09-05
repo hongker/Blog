@@ -54,6 +54,10 @@ class ReplyOperation extends BaseOperation implements Operation {
 		if($reply->save()==true) {
 			$return['errNo'] = 0;
 		}else {
+			foreach ($reply->getMessages() as $message) {
+				$logString = $this->getLogString('添加回复', $message);
+				$this->log($logString,'error');
+			}
 			$return['errNo'] = 1305;
 		}
 		return $return;

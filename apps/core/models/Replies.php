@@ -23,4 +23,22 @@ class Replies extends BaseModel {
 				'alias' => 'Comment'
 		));
 	}
+	
+	/**
+	 * 验证字段是否合法
+	 * @return boolean
+	 */
+	public function validation() {
+		$validates = array();
+		$validates[] = $this->setPresenceOf('author_id', 1301);
+		$validates[] = $this->setPresenceOf('target_id', 1302);
+		$validates[] = $this->setPresenceOf('comment_id', 1303);
+		$validates[] = $this->setPresenceOf('content', 1304);
+		
+	
+		if($this->validateAll($validates)==false) {
+			return false;
+		}
+	
+	}
 }
