@@ -2,7 +2,7 @@
 
 I want to use pjax and nprogress to display the content.Please waiting for the cool thing.
 
-架构说明
+#架构说明
  -----
  apps/  项目主文件夹
     backend/ 后台模块
@@ -25,7 +25,12 @@ I want to use pjax and nprogress to display the content.Please waiting for the c
   cache/ 缓存
   
   public/ 公共目录
-  
+    css/ css文件
+    editor/ 编辑器
+    js/ js文件
+    fonts/ 字体
+    images/ 图片
+	index.php 引导文件  
 
     
   
