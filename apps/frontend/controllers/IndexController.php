@@ -1,7 +1,5 @@
 <?php
 namespace Blog\Frontend\Controllers;
-use Blog\Operations\UserOperation;
-use Blog\Utils\Email;
 use Blog\Operations\ArticleOperation;
 /**
  * 首页控制器
