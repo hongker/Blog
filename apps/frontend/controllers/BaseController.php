@@ -97,6 +97,20 @@ class BaseController extends Controller
     }
     
     /**
+     * 判断是否上GET请求
+     */
+    protected function isGet() {
+    	return $this->request->isGet();
+    }
+    
+    /**
+     * 判断是否上POST请求
+     */
+    protected function isPost() {
+    	return $this->request->isPost();
+    }
+    
+    /**
      * 获取分页类
      * @param unknown $data
      * @param number $currentPage

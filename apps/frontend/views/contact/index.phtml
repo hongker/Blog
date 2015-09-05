@@ -16,7 +16,7 @@
 					<div class="form-group">
 						<label for="name" class="col-sm-2 control-label">姓名：</label>
 						<div class="col-sm-4">
-							<input type="email" class="form-control" id="name"
+							<input type=text class="form-control" id="name"
 								placeholder="请填写您的姓名">
 						</div>
 					</div>
@@ -29,7 +29,7 @@
 					</div>
 					<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-10">
-							<button type="submit" class="btn btn-info btn-sm"><i class="fa fa-upload"></i> 提 交</button>
+							<button onclick="add()" class="btn btn-info btn-sm"><i class="fa fa-upload"></i> 提 交</button>
 						</div>
 					</div>
 				</div>
@@ -49,3 +49,43 @@
 		</div>
 	</div>
 </div>
+<script>
+function add() {
+	var email = $("#email");
+	if(!email.val()) {
+		alertify.error("请填入您的邮箱");
+		email.focus();
+		return;
+	}
+
+	var name = $("#name");
+	if(!name.val()) {
+		alertify.error("请填入您的姓名");
+		name.focus();
+		return;
+	}
+
+	var content = $("#content");
+	if(!content.val()) {
+		alertify.error("请填入内容");
+		content.focus();
+		return;
+	}
+
+	$.ajax({
+        type: "POST",
+        url: "/contact/add",
+        data: {email:email.val(),name:name.val(),content:content.val()},
+        dataType:'json',
+        success: function(data){
+            if(data.errNo==0) {
+            	alertify.success('提交成功');
+            	location.href='/';
+            }else {
+            	alertify.error(data.errMsg);
+            }
+        	
+        },
+    });
+}
+</script>
