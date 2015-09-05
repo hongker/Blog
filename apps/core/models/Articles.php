@@ -1,6 +1,5 @@
 <?php
 namespace Blog\Models;
-use Phalcon\Mvc\Model\Validator\PresenceOf;
 /**
  * Articles模型
  * @author hongker
@@ -35,25 +34,13 @@ class Articles extends BaseModel {
 	 */
 	public function validation() {
 		$validates = array();
-		$validates[] = new PresenceOf(array(
-				"field" => 'title',
-				"message" => '文章标题不能为空'
-		));
-		$validates[] = new PresenceOf(array(
-				"field" => 'content',
-				"message" => '文章内容不能为空'
-		));
-		$validates[] = new PresenceOf(array(
-				"field" => 'author_id',
-				"message" => '作者不能为空'
-		));
-		$validates[] = new PresenceOf(array(
-				"field" => 'type_id',
-				"message" => '文章类型不能为空'
-		));
-	
+		$validates[] = $this->setPresenceOf('title', 1102);
+		$validates[] = $this->setPresenceOf('digest', 1103);
+		$validates[] = $this->setPresenceOf('type_id', 1104);
+		$validates[] = $this->setPresenceOf('picture', 1105);
+		$validates[] = $this->setPresenceOf('author_id', 1106);
+		$validates[] = $this->setPresenceOf('content', 1108);
 		
-	
 		if($this->validateAll($validates)==false) {
 			return false;
 		}
