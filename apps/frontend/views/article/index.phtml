@@ -25,8 +25,8 @@
 				<div class="col-sm-4 article-left visible-md-block visible-lg-block">
 					<a href="/article/info/<?php echo $article->id?>"><img alt="" src="<?php echo $article->picture?>"></a>
 					<div class="numbers">
-						<span class="view">阅读：<span class="count">20</span></span>
-						<span class="comment">评论：<span class="count">20</span></span>
+						<span class="view">阅读：<span class="count"><?php echo $article->getView()?></span></span>
+						<span class="comment">评论：<span class="count"><?php echo $article->getComments()->count()?></span></span>
 						<span class="praise">点赞：<span class="count">20</span></span>
 					</div>
 				</div>
@@ -42,8 +42,8 @@
 					<p class="digest"><?php echo $article->digest?></p>
 					<!-- 仅小屏幕可见 -->
 					<div class="numbers visible-xs-block visible-sm-block">
-						<span class="view">阅读：<span class="count">20</span></span>
-						<span class="comment">评论：<span class="count">20</span></span>
+						<span class="view">阅读：<span class="count"><?php echo $article->getView()?></span></span>
+						<span class="comment">评论：<span class="count"><?php echo $article->getComments()->count()?></span></span>
 						<span class="praise">点赞：<span class="count">20</span></span>
 					</div>
 				</div>

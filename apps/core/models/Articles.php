@@ -1,15 +1,18 @@
 <?php
 namespace Blog\Models;
+use Blog\Utils\Redis;
 /**
  * Articles模型
  * @author hongker
  *
  */
 class Articles extends BaseModel {
+	public $id;
 	/**
 	 * 模型初始化
 	 */
 	public function initialize() {
+		
 		parent::initialize();
 		//关联users表
 		$this->belongsTo("author_id", "Blog\Models\Users", "id", array(
@@ -45,6 +48,20 @@ class Articles extends BaseModel {
 			return false;
 		}
 	
+	}
+	
+	/**
+	 * 获取阅读量
+	 * @return number
+	 */
+	public function getView() {
+		$key = 'article_view';
+		$redis = new Redis();
+		$view = $redis->zScore($key, 'article_'.$this->id);
+		if($view) {
+			return $view;
+		}
+		return 0;
 	}
 	
 }
