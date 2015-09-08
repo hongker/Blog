@@ -214,7 +214,10 @@ class ArticleOperation extends BaseOperation implements Operation {
 	 * @param unknown $type
 	 */
 	public function classify($type) {
-		return $this->findAll(array("conditions"=>"type_id=$type"));
+		return $this->findAll(array(
+				"conditions"=>"type_id=$type and status=1 and is_delete=0",
+				"order"=>"created_at desc",
+		));
 	}
 	
 	/**
