@@ -24,11 +24,17 @@
           <td><?php echo $article->title?></td>
           <td><?php echo $article->getType()->name?></td>
           <td><?php echo $article->getAuthor()->username?></td>
-          <td><?php echo $article->is_delete?></td>
+          <td><?php echo $article->status?></td>
           <td><?php echo $article->created_at?></td>
           <td data-id="<?php echo $article->id?>">
 		          	<a href="/user/article/info/<?php echo $article->id?>" class="btn btn-info btn-xs"><span class="fui-info-circle"></span> 查看</a>
 		          	<a href="/user/article/edit/<?php echo $article->id?>" class="btn btn-success btn-xs"><span class="fui-new"></span> 编辑</a>
+		          	<?php if($article->status):?>
+		          	<button id="reject" class="btn btn-warning btn-xs"><span class="fui-cross"></span> 驳回</button>
+		          	<?php else:?>
+		          	<button id="check" class="btn btn-primary btn-xs"><span class="fui-check"></span> 过审</button>
+		          	<?php endif;?>
+		          	
 		          	<button id="del" class="btn btn-danger btn-xs"><span class="fui-trash"></span> 删除</button>
 		          </td>
         </tr>
@@ -65,6 +71,76 @@ function del(id) {
         success: function(data){
             if(data.errNo==0) {
             	alertify.success('删除成功');
+            	location.reload();
+            }else {
+            	alertify.error(data.errMsg);
+            }
+        	
+        },
+    });
+}
+
+$('[id=reject]').click(function() {
+	var id = $(this).parent().attr('data-id');
+
+	var closable = alertify.dialog('confirm').setting('closable');
+	//grab the dialog instance and set multiple settings at once.
+	alertify.dialog('confirm')
+	  .set({
+		'title':'驳回审核',
+	    'labels':{ok:'确定', cancel:'取消'},
+	    'message': '驳回审核后前台将不显示该文章，确定要驳回么？' ,
+	    'onok': function(){
+	    	reject(id);
+		    },
+	    'oncancel': function(){ alertify.error('取消操作!');}
+	  }).show();
+});
+
+function reject(id) {
+	$.ajax({
+        type: "POST",
+        url: "/admin/article/reject",
+        data: {id:id},
+        dataType:'json',
+        success: function(data){
+            if(data.errNo==0) {
+            	alertify.success('驳回成功');
+            	location.reload();
+            }else {
+            	alertify.error(data.errMsg);
+            }
+        	
+        },
+    });
+}
+
+$('[id=check]').click(function() {
+	var id = $(this).parent().attr('data-id');
+
+	var closable = alertify.dialog('confirm').setting('closable');
+	//grab the dialog instance and set multiple settings at once.
+	alertify.dialog('confirm')
+	  .set({
+		'title':'通过审核',
+	    'labels':{ok:'确定', cancel:'取消'},
+	    'message': '通过审核后前台将显示该文章，确定要通过审核么？' ,
+	    'onok': function(){
+	    	check(id);
+		    },
+	    'oncancel': function(){ alertify.error('取消操作!');}
+	  }).show();
+});
+
+function check(id) {
+	$.ajax({
+        type: "POST",
+        url: "/admin/article/check",
+        data: {id:id},
+        dataType:'json',
+        success: function(data){
+            if(data.errNo==0) {
+            	alertify.success('通过审核成功');
             	location.reload();
             }else {
             	alertify.error(data.errMsg);

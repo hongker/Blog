@@ -117,9 +117,59 @@ class ArticleOperation extends BaseOperation implements Operation {
 				$return['errNo'] = 1020;
 			}
 		}else {
-			$return['errNo'] = 1019;
+			$return['errNo'] = 1110;
 		}
 		
+		return $return;
+	}
+	
+	/**
+	 * 通过审核
+	 * @param int $id
+	 * @return array
+	 */
+	public function check($id) {
+		$article = $this->get($id);
+		
+		if($article) {
+			if($article->status==1) {
+				$return['errNo'] = 1111;
+			}else {
+				$article->status = 1;
+				if($article->update()) {
+					$return['errNo'] = 0;
+				}else {
+					$return['errNo'] = 1112;
+				}
+			}
+		}else {
+			$return['errNo'] = 1110;
+		}
+		return $return;
+	}
+	
+	/**
+	 * 驳回审核
+	 * @param int $id
+	 * @return array
+	 */
+	public function  reject($id) {
+		$article = $this->get($id);
+	
+		if($article) {
+			if($article->status==0) {
+				$return['errNo'] = 1113;
+			}else {
+				$article->status = 0;
+				if($article->update()) {
+					$return['errNo'] = 0;
+				}else {
+					$return['errNo'] = 1114;
+				}
+			}
+		}else {
+			$return['errNo'] = 1110;
+		}
 		return $return;
 	}
 	

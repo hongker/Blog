@@ -23,7 +23,10 @@ class ArticleController extends BaseController
 		$currentPage = $this->getQuery('page','int')?$this->getQuery('page','int'):1;
 		
 		
-		$articles = $this->operation->findAll(array("order"=>"created_at desc"));
+		$articles = $this->operation->findAll(array(
+				"conditions"=>"is_delete=0",
+				"order"=>"created_at desc",
+		));
 		
 		$page = $this->getPaginate($articles,$currentPage);
 		
@@ -60,13 +63,44 @@ class ArticleController extends BaseController
 		if($this->isPost()) {
 			$id = $this->getPost('id','int');
 			
-			
 			if($this->operation->delete($id)) {
 				$return['errNo'] = 0;
 			}else {
-				$return['errNo'] = 1023;
+				$return['errNo'] = 1109;
 			}
 			
+		}else {
+			$return['errNo'] = 1002;
+		}
+		$return['errMsg'] = $this->getErrorMessage($return['errNo']);
+		$this->json_return($return);
+	}
+	
+	/**
+	 * 通过审核
+	 */
+	public function checkAction() {
+		$return = array();
+		if($this->isPost()) {
+			$id = $this->getPost('id','int');
+	
+			$return = $this->operation->check($id);
+		}else {
+			$return['errNo'] = 1002;
+		}
+		$return['errMsg'] = $this->getErrorMessage($return['errNo']);
+		$this->json_return($return);
+	}
+	
+	/**
+	 * 驳回审核
+	 */
+	public function rejectAction() {
+		$return = array();
+		if($this->isPost()) {
+			$id = $this->getPost('id','int');
+	
+			$return = $this->operation->reject($id);
 		}else {
 			$return['errNo'] = 1002;
 		}
