@@ -8,6 +8,7 @@
 						<span class="author"> 作者:<span class="username"><?php echo $article->author->username?></span>
 						</span> <span class="created_at"> 发布于：<span class="date"><?php echo substr($article->created_at,0,10)?></span>
 						</span>
+						<span class="collect"><a href="javascript:void(0)" onclick="addCollect(<?php echo $article->id?>,1)" class="text-danger">收藏 <i class="fa fa-bookmark-o "></i></a> </span>
 					</div>
 					<div class="digest">
 						<span>摘要：</span><?php echo $article->digest?>
