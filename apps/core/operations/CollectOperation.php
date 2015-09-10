@@ -56,6 +56,38 @@ class CollectOperation extends BaseOperation implements Operation {
 	}
 	
 	/**
+	 * 获取收藏状态
+	 * @param array $data
+	 * @return Array [errNo=>错误代码,status=>0(未收藏),1(已收藏),2(已取消)]
+	 */
+	public function getStatus(Array $data) {
+		//
+		$return['status'] = 0;
+		if(empty($data['user_id'])) {
+			$return['errNo'] = 1605;
+			return $return;
+		}
+		
+		if(empty($data['target_id'])) {
+			$return['errNo'] = 1602;
+			return $return;
+		}
+		
+		if(empty($data['type'])) {
+			$return['errNo'] = 1603;
+			return $return;
+		}
+		
+		$collect = Collects::findFirst("user_id={$data['user_id']} and target_id={$data['target_id']}");
+		
+		$return['errNo'] = 0;
+		if($collect) {
+			$return['status'] = $collect->status;
+		}
+		return $return;
+	}
+	
+	/**
 	 * 根据id更改收藏
 	 * @param array $id
 	 * @param array $array
@@ -74,6 +106,35 @@ class CollectOperation extends BaseOperation implements Operation {
 				$return['errNo'] = 0;
 			}else {
 				$return['errNo'] = 1607;
+			}
+		}else {
+			$return['errNo'] = 1606;
+		}
+		
+		return $return;
+	}
+	
+	/**
+	 * 修改收藏状态
+	 * @param array $data
+	 * @param int $status
+	 * @return array
+	 */
+	public function changeStatus(Array $data,$status=1) {
+		
+		$collect = Collects::findFirst($data);
+		
+		if($collect) {
+			if($collect->status==$status) {
+				$return['errNo'] = 1609;
+			}else {
+				$collect->status = $status;
+				
+				if($collect->update()) {
+					$return['errNo'] = 0;
+				}else {
+					$return['errNo'] = 1607;
+				}
 			}
 		}else {
 			$return['errNo'] = 1606;

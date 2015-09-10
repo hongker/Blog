@@ -174,7 +174,7 @@ create table advices(
  * target_id 目标id
  * user_id 用户id
  * type 类型(1:文章，2....)
- * status 状态(1:已关注,0:已取消)
+ * status 状态(1:已关注,2:已取消)
  * is_delete 是否删除
  * created_at 创建时间
  * updated_at 更改时间
