@@ -6,7 +6,7 @@ use Phalcon\Mvc\Model\Validator\Email as EmailValidator;
 /**
  * Users模型
  * @author hongker
- *
+ * @version 1.0
  */
 class Users extends BaseModel {
 	

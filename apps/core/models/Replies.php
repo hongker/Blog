@@ -3,7 +3,7 @@ namespace Blog\Models;
 /**
  * Replies模型
  * @author hongker
- *
+ * @version 1.0
  */
 class Replies extends BaseModel {
 	/**

@@ -1,6 +1,5 @@
 <?php
 namespace Blog\Models;
-use Blog\Utils\Redis;
 /**
  * Collects模型
  * @author hongker

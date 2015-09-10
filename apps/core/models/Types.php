@@ -3,7 +3,7 @@ namespace Blog\Models;
 /**
  * Types模型
  * @author hongker
- *
+ * @version 1.0
  */
 class Types extends BaseModel {
 	/**

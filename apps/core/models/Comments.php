@@ -3,7 +3,7 @@ namespace Blog\Models;
 /**
  * Comments模型
  * @author hongker
- *
+ * @version 1.0
  */
 class Comments extends BaseModel {
 	protected $type;

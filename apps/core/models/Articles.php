@@ -4,7 +4,7 @@ use Blog\Utils\Redis;
 /**
  * Articles模型
  * @author hongker
- *
+ * @version 1.0
  */
 class Articles extends BaseModel {
 	public $id;

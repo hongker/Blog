@@ -3,7 +3,7 @@ namespace Blog\Models;
 /**
  * Advices模型
  * @author hongker
- *
+ * @version 1.0
  */
 class Advices extends BaseModel {
 	/**
