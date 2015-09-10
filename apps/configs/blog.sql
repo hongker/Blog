@@ -169,6 +169,29 @@ create table advices(
 )engine=myisam default charset=utf8;
 
 /**
+ * collects 收藏表
+ * id 主键
+ * target_id 目标id
+ * user_id 用户id
+ * type 类型(1:文章，2....)
+ * status 状态(1:已关注,0:已取消)
+ * is_delete 是否删除
+ * created_at 创建时间
+ * updated_at 更改时间
+ */
+drop table if exists collects;
+create table collects(
+	id int not null primary key auto_increment,
+	target_id int not null,
+	user_id int not null,
+	type tinyint not null default 1,
+	status tinyint not null default 1,
+	is_delete tinyint not null default 0,
+	created_at timestamp not null default current_timestamp,
+	updated_at timestamp not null default '0000-00-00 00:00:00'
+)engine=myisam default charset=utf8;
+
+/**
  * tables 表模板
  * id 主键
  * is_delete 是否删除

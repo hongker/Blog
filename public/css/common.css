@@ -482,3 +482,13 @@ input.form-control ,textarea.form-control  {
 p {
 	font-size:16px;
 }
+.back-to-top {
+	display: none;
+    position: fixed;
+    bottom: 5px;
+    right: 5px;
+    width: 64px;
+    height: 64px;
+	background:#333;
+    opacity: 0.4;
+}
