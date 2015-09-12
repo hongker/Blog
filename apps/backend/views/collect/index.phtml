@@ -1,0 +1,74 @@
+<div class="page-header">
+	<i class="fui-document"></i>收藏管理 > 收藏列表
+</div>
+<div>
+	<table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>序号</th>
+          <th>作者</th>
+          <th>收藏目标</th>
+          <th>收藏类型</th>
+          <th>状态</th>
+          <th>创建时间</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody>
+      	<?php if($page->total_items==0):?>
+      	<tr class="none"><td colspan="7">暂无数据</td></tr>
+      	<?php else:?>
+      	<?php foreach($page->items as $key=>$collect):?>
+        <tr>
+          <th scope="row"><?php echo $key+1?></th>
+          <td><?php echo $collect->getAuthor()->username?></td>
+          <td><?php echo $collect->getTarget()->title?></td>
+          <td><?php echo $collect->type?></td>
+          <td><?php echo $collect->status?></td>
+          <td><?php echo $collect->created_at?></td>
+          <td data-id="<?php echo $collect->id?>">
+		    <button id="del" class="btn btn-danger btn-xs"><span class="fui-trash"></span> 删除</button>
+		  </td>
+        </tr>
+        <?php endforeach;?>
+        <?php endif;?>
+      </tbody>
+    </table>
+    <?php $this->partial('public/page')?>
+</div>
+<script type="text/javascript">
+$('[id=del]').click(function() {
+	var id = $(this).parent().attr('data-id');
+
+	var closable = alertify.dialog('confirm').setting('closable');
+	//grab the dialog instance and set multiple settings at once.
+	alertify.dialog('confirm')
+	  .set({
+		'title':'删除收藏',
+	    'labels':{ok:'确定', cancel:'取消'},
+	    'message': '确定要删除该收藏么？' ,
+	    'onok': function(){
+	    	del(id);
+		    },
+	    'oncancel': function(){ alertify.error('取消操作!');}
+	  }).show();
+});
+
+function del(id) {
+	$.ajax({
+        type: "POST",
+        url: "/admin/collect/delete",
+        data: {id:id},
+        dataType:'json',
+        success: function(data){
+            if(data.errNo==0) {
+            	alertify.success('删除成功');
+            	location.reload();
+            }else {
+            	alertify.error(data.errMsg);
+            }
+        	
+        },
+    });
+}
+</script>

@@ -45,6 +45,17 @@
 
 			</ul> <!-- /.nav-second-level -->
 		</li>
+		<li class="<?php if($controller=='collect') echo 'active'?>">
+			<a href="">
+				<span class="fui-document"></span> 收藏管理<i class="fa arrow"></i>
+			</a>
+			<ul class="nav nav-second-level collapse "
+				<?php if($controller!='collect') echo 'aria-expanded="false" style="height: 0px;"'?>>
+				<li class="<?php if($controller=='collect'&&$action=='index') echo 'active'?>">
+					<a href="/admin/collect" ><i class="fa fa-chain fa-fw"></i> 收藏列表</a>
+				</li>
+			</ul> <!-- /.nav-second-level -->
+		</li>
 		<li class="">
 			<a href="#">
 				<span class="fui-chat"></span> 评论管理<i class="fa arrow"></i>
