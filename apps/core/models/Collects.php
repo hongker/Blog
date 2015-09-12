@@ -6,7 +6,8 @@ namespace Blog\Models;
  * @version 1.0
  */
 class Collects extends BaseModel {
-	
+	public $type;
+	public $target;
 	/**
 	 * 模型初始化
 	 */
@@ -20,6 +21,14 @@ class Collects extends BaseModel {
 		
 		$this->skipAttributesOnUpdate(array('user_id','target_id'));
 		$this->skipAttributesOnCreate(array('status'));
+	}
+	
+	public function getTarget() {
+		if($this->type==1) {
+			$this->target = Articles::findFirst($this->target_id);
+		}
+		
+		return $this->target;
 	}
 	
 	/**

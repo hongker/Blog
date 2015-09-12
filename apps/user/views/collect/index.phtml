@@ -1,0 +1,106 @@
+<div class="container">
+	<div class="row">
+		<div class="col-sm-3">
+		<?php $this->view->partial('public/sidebar')?>
+	</div>
+		<div class="col-sm-9">
+			<ol class="breadcrumb">
+				<li><a class="text-info" href="/user/collect"><span
+						class="fui-document"></span> 收藏管理</a></li>
+				<li class="active">收藏列表</li>
+			</ol>
+			<?php if($page->total_items==0):?>
+			<div class="none">
+				暂无数据
+			</div>
+			<?php else:?>
+		    <?php foreach($page->items as $key=>$collect):?>
+			<div class="box comment">
+				<blockquote>
+					<a class="text-info" href="#"><?php echo $collect->getTarget()->title?></a>
+					<footer class="">
+						 <cite title="date"><?php echo substr($collect->created_at,0,10)?></cite>
+						<div class="text-right" data-id="<?php echo $collect->id?>">
+							<a id="cancelCollect" href="javascript:void(0)" class="text-info"><span class="fui-cross"></span> 取消</a>
+							<a id="delCollect" href="javascript:void(0)" class="text-danger"><span class="fui-trash"></span> 删除</a>
+						</div>
+					</footer>
+				</blockquote>
+			</div>
+			<?php endforeach;?>
+			<?php $this->partial('public/page')?>
+		    <?php endif;?>
+		    
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+$('[id=cancelCollect]').click(function() {
+	var id = $(this).parent().attr('data-id');
+
+	var closable = alertify.dialog('confirm').setting('closable');
+	//grab the dialog instance and set multiple settings at once.
+	alertify.dialog('confirm')
+	  .set({
+		'title':'取消收藏',
+	    'labels':{ok:'确定', cancel:'取消'},
+	    'message': '确定要取消该收藏么？' ,
+	    'onok': function(){
+	    	cancelCollect(id);
+		    },
+	    'oncancel': function(){ alertify.error('取消操作!');}
+	  }).show();
+});
+
+function cancelCollect(id) {
+	$.ajax({
+        type: "POST",
+        url: "/user/collect/cancel",
+        data: {id:id},
+        dataType:'json',
+        success: function(data){
+            if(data.errNo==0) {
+            	alertify.success('删除成功');
+            	location.reload();
+            }else {
+            	alertify.error(data.errMsg);
+            }
+        	
+        },
+    });
+}
+$('[id=delCollect]').click(function() {
+	var id = $(this).parent().attr('data-id');
+
+	var closable = alertify.dialog('confirm').setting('closable');
+	//grab the dialog instance and set multiple settings at once.
+	alertify.dialog('confirm')
+	  .set({
+		'title':'删除收藏',
+	    'labels':{ok:'确定', cancel:'取消'},
+	    'message': '确定要删除该收藏么？' ,
+	    'onok': function(){
+	    	delCollect(id);
+		    },
+	    'oncancel': function(){ alertify.error('取消操作!');}
+	  }).show();
+});
+
+function delCollect(id) {
+	$.ajax({
+        type: "POST",
+        url: "/user/collect/delete",
+        data: {id:id},
+        dataType:'json',
+        success: function(data){
+            if(data.errNo==0) {
+            	alertify.success('删除成功');
+            	location.reload();
+            }else {
+            	alertify.error(data.errMsg);
+            }
+        	
+        },
+    });
+}
+</script>

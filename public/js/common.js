@@ -164,6 +164,10 @@ function addCollect(target_id,type) {
         success: function(data){
             if(data.errNo==0) {
             	alertify.success('收藏成功');
+            	
+            	/**
+            	 * @todo 修改为“取消收藏”
+            	 */
             }else {
             	alertify.error(data.errMsg);
             }

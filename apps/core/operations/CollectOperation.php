@@ -1,6 +1,7 @@
 <?php
 namespace Blog\Operations;
 use Blog\Models\Collects;
+use Blog\Models\Articles;
 /**
  * 收藏操作类
  * @author hongker
@@ -160,9 +161,21 @@ class CollectOperation extends BaseOperation implements Operation {
 	
 	/**
 	 * 获取所有收藏
+	 * @param array $condition
+	 * @return array
 	 */
 	public function findAll($condition=null) {
-		return Collects::find($condition);
+		$collects = Collects::find($condition);
+		/*
+		$return = array();
+		foreach ($collects as $collect) {
+			if($collect->type==1) {
+				$collect->target = Articles::findFirst($collect->id);
+			}
+			$return[] = $collect->toArray();
+		}
+		*/
+		return $collects;
 	}
 	
 	/**
