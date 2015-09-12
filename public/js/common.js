@@ -176,28 +176,3 @@ function addCollect(target_id,type) {
     });
 }
 
-/**
- * 取消收藏
- * @param target_id
- * @param type
- */
-function cancelCollect(id) {
-	if(!id) {
-		alertify.error('参数错误');
-		return;
-	}
-	$.ajax({
-        type: "POST",
-        url: "/collect/cancel",
-        data: {id:id},
-        dataType:'json',
-        success: function(data){
-            if(data.errNo==0) {
-            	alertify.success('取消收藏成功');
-            }else {
-            	alertify.error(data.errMsg);
-            }
-        	
-        },
-    });
-}

@@ -21,8 +21,8 @@
 					<footer class="">
 						 <cite title="date"><?php echo substr($collect->created_at,0,10)?></cite>
 						<div class="text-right" data-id="<?php echo $collect->id?>">
-							<a id="cancelCollect" href="javascript:void(0)" class="text-info"><span class="fui-cross"></span> 取消</a>
-							<a id="delCollect" href="javascript:void(0)" class="text-danger"><span class="fui-trash"></span> 删除</a>
+							<a id="cancel" href="javascript:void(0)" class="text-info"><span class="fui-cross"></span> 取消</a>
+							<a id="del" href="javascript:void(0)" class="text-danger"><span class="fui-trash"></span> 删除</a>
 						</div>
 					</footer>
 				</blockquote>
@@ -35,7 +35,7 @@
 	</div>
 </div>
 <script type="text/javascript">
-$('[id=cancelCollect]').click(function() {
+$('[id=cancel]').click(function() {
 	var id = $(this).parent().attr('data-id');
 
 	var closable = alertify.dialog('confirm').setting('closable');
@@ -46,13 +46,13 @@ $('[id=cancelCollect]').click(function() {
 	    'labels':{ok:'确定', cancel:'取消'},
 	    'message': '确定要取消该收藏么？' ,
 	    'onok': function(){
-	    	cancelCollect(id);
+	    	cancel(id);
 		    },
 	    'oncancel': function(){ alertify.error('取消操作!');}
 	  }).show();
 });
 
-function cancelCollect(id) {
+function cancel(id) {
 	$.ajax({
         type: "POST",
         url: "/user/collect/cancel",
@@ -60,7 +60,7 @@ function cancelCollect(id) {
         dataType:'json',
         success: function(data){
             if(data.errNo==0) {
-            	alertify.success('删除成功');
+            	alertify.success('取消收藏成功');
             	location.reload();
             }else {
             	alertify.error(data.errMsg);
@@ -69,7 +69,7 @@ function cancelCollect(id) {
         },
     });
 }
-$('[id=delCollect]').click(function() {
+$('[id=del]').click(function() {
 	var id = $(this).parent().attr('data-id');
 
 	var closable = alertify.dialog('confirm').setting('closable');
@@ -80,13 +80,13 @@ $('[id=delCollect]').click(function() {
 	    'labels':{ok:'确定', cancel:'取消'},
 	    'message': '确定要删除该收藏么？' ,
 	    'onok': function(){
-	    	delCollect(id);
+	    	del(id);
 		    },
 	    'oncancel': function(){ alertify.error('取消操作!');}
 	  }).show();
 });
 
-function delCollect(id) {
+function del(id) {
 	$.ajax({
         type: "POST",
         url: "/user/collect/delete",

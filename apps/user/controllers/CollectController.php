@@ -23,21 +23,41 @@ class CollectController extends BaseController
 		$currentPage = $this->getQuery('page','int')?$this->getQuery('page','int'):1;
 		
 		$collects = $this->operation->findAll(array(
-				"conditions"=>"is_delete=0 and user_id={$this->user['id']} and status=1",
+				"conditions"=>"is_delete=0 and author_id={$this->user['id']} and status=1",
 				"order"=>"created_at desc",
 		));
 		
 		$page = $this->getPaginate($collects,$currentPage);
 		
 		$this->view->setVar('page',$page);
-		$this->view->setVar('currentType',0);
 	}
 	
 	/**
 	 * 取消收藏
 	 */
 	public function cancelAction() {
-		
+		$return = array();
+		if($this->isPost()) {
+			$id = $this->getPost('id','int');
+			if($this->operation->checkIsExist($id)) {
+				if($this->operation->checkIsAuthor($id,$this->user['id'])) {
+					if($this->operation->cancel($id)) {
+						$return['errNo'] = 0;
+					}else {
+						$return['errNo'] = 1611;
+					}
+				}else {
+					$return['errNo'] = 1610;
+				}
+			}else {
+				$return['errNo'] = 1606;
+			}
+			
+		}else {
+			$return['errNo'] = 1002;
+		}
+		$return['errMsg'] = $this->getErrorMessage($return['errNo']);
+		$this->json_return($return);
 	}
 	
 	
@@ -48,13 +68,16 @@ class CollectController extends BaseController
 		$return = array();
 		if($this->isPost()) {
 			$id = $this->getPost('id','int');
-			
-			if($this->operation->checkIsAuthor($id,$this->user['id'])) {
-				if($this->operation->delete($id)) {
-					$return['errNo'] = 0;
+			if($this->operation->checkIsExist($id)) {
+				if($this->operation->checkIsAuthor($id,$this->user['id'])) {
+					if($this->operation->delete($id)) {
+						$return['errNo'] = 0;
+					}
+				}else {
+				$return['errNo'] = 1610;
 				}
 			}else {
-				$return['errNo'] = 1014;
+				$return['errNo'] = 1606;
 			}
 		}else {
 			$return['errNo'] = 1002;

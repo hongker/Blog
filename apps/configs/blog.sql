@@ -171,7 +171,7 @@ create table advices(
 /**
  * collects 收藏表
  * id 主键
- * target_id 目标id
+ * author_id 目标id
  * user_id 用户id
  * type 类型(1:文章，2....)
  * status 状态(1:已关注,2:已取消)
@@ -183,7 +183,7 @@ drop table if exists collects;
 create table collects(
 	id int not null primary key auto_increment,
 	target_id int not null,
-	user_id int not null,
+	author_id int not null,
 	type tinyint not null default 1,
 	status tinyint not null default 1,
 	is_delete tinyint not null default 0,

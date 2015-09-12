@@ -15,7 +15,7 @@ class Collects extends BaseModel {
 		
 		parent::initialize();
 		//关联users表
-		$this->belongsTo("user_id", "Blog\Models\Users", "id", array(
+		$this->belongsTo("author_id", "Blog\Models\Users", "id", array(
               'alias' => 'Author'
           ));
 		
@@ -37,7 +37,7 @@ class Collects extends BaseModel {
 	 */
 	public function validation() {
 		$validates = array();
-		$validates[] = $this->setPresenceOf('user_id', 1601);
+		$validates[] = $this->setPresenceOf('author_id', 1601);
 		$validates[] = $this->setPresenceOf('target_id', 1602);
 		$validates[] = $this->setPresenceOf('type', 1603);
 		

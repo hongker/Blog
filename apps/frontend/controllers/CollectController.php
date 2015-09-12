@@ -29,19 +29,17 @@ class CollectController extends BaseController
 	}
 	
 	/**
-	 * 发表评论
+	 * 添加收藏
 	 */
 	public function addAction() {
 		if($this->request->isPost()) {
 			if($this->checkIsLogin()) {
-				
 				$user = $this->session->get('user');
-				$data['user_id'] = $user['id'];
+				$data['author_id'] = $user['id'];
 				$data['target_id'] = $this->request->getPost('target_id','int');
 				$data['type'] = $this->request->getPost('type','int');
 				
 				$return = $this->operation->getStatus($data);
-				
 				if($return['errNo']==0) {
 					$status = $return['status'];
 					
@@ -65,34 +63,6 @@ class CollectController extends BaseController
 		$return['errMsg'] = $this->getErrorMessage($return['errNo']);
 		$this->json_return($return);
 	}
-	
-	/**
-	 * 删除评论
-	 */
-	public function delAction() {
-		if($this->request->isPost()) {
-			$id = $this->request->getPost('id','int');
-			
-			if($this->operation->delete($id)) {
-				$return['errNo'] = 0;
-			}else {
-				$return['errNo'] = 1012;
-			}
-		}else {
-			$return['errNo'] = 1002;
-		}
-		$return['errMsg'] = $this->error[$return['errNo']];
-		$this->json_return($return);
-	}
-	
-	
-	/**
-	 * 取消收藏
-	 */
-	public function cancelAction() {
-		
-	}
-	
 	
 
 }

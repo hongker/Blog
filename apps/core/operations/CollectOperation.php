@@ -10,6 +10,7 @@ use Blog\Models\Articles;
 class CollectOperation extends BaseOperation implements Operation {
 	public function __construct($di) {
 		parent::__construct($di);
+		$this->setLogFile('collect.log');
 	}
 	
 	/**
@@ -29,7 +30,7 @@ class CollectOperation extends BaseOperation implements Operation {
 	public function save(Array $data) {
 		$collect = new Collects();
 		
-		if(empty($data['user_id'])) {
+		if(empty($data['author_id'])) {
 			$return['errNo'] = 1605;
 			return $return;
 		}
@@ -64,7 +65,7 @@ class CollectOperation extends BaseOperation implements Operation {
 	public function getStatus(Array $data) {
 		//
 		$return['status'] = 0;
-		if(empty($data['user_id'])) {
+		if(empty($data['author_id'])) {
 			$return['errNo'] = 1605;
 			return $return;
 		}
@@ -79,7 +80,7 @@ class CollectOperation extends BaseOperation implements Operation {
 			return $return;
 		}
 		
-		$collect = Collects::findFirst("user_id={$data['user_id']} and target_id={$data['target_id']}");
+		$collect = Collects::findFirst("author_id={$data['author_id']} and target_id={$data['target_id']}");
 		
 		$return['errNo'] = 0;
 		if($collect) {
@@ -179,13 +180,55 @@ class CollectOperation extends BaseOperation implements Operation {
 	}
 	
 	/**
-	 * 根据user_id查找全部收藏
+	 * 根据author_id查找全部收藏
 	 * @param int $id
 	 */
 	public function getCollects($id) {
 		$collects = $this->findAll(array(
-			"conditions"=>"user_id=$id and is_delete=0 and status=1",
+			"conditions"=>"author_id=$id and is_delete=0 and status=1",
 		));
 		return $collects;
+	}
+	
+	/**
+	 * 检查收藏是否存在
+	 * @param unknown $id
+	 * @return boolean
+	 */
+	public function checkIsExist($id) {
+		$collect = $this->get($id);
+		
+		if($collect) {
+			return true;
+		}
+		return false;
+	}
+	
+	/**
+	 * 检查是否是作者本人
+	 * @param int $id
+	 * @param int $author_id
+	 * @return boolean
+	 */
+	public function checkIsAuthor($id,$author_id) {
+		$collect = $this->get($id);
+		if($collect&&$collect->author_id==$author_id) {
+			return true;
+		}
+		return false;
+	}
+	
+	/**
+	 * 取消收藏
+	 * @param int $id
+	 * @return boolean
+	 */
+	public function cancel($id) {
+		$data['status'] = 2;
+		if($this->update($id, $data)) {
+			return true;
+		}
+		
+		return false;
 	}
 }

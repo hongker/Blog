@@ -228,6 +228,7 @@ class ArticleOperation extends BaseOperation implements Operation {
 	 */
 	public function checkIsAuthor($id,$user_id) {
 		$article = $this->get($id);
+		
 		if($article&&$article->author_id==$user_id) {
 			return true;
 		}
