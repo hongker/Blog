@@ -1,7 +1,6 @@
 <?php
 namespace Blog\User\Controllers;
-use Blog\Operations\UserOperation;
-use Blog\Utils\Email;
+use Blog\Operations\ArticleOperation;
 /**
  * 个人中心首页控制器
  * @author hongker
@@ -17,7 +16,14 @@ class HomeController extends BaseController
 	}
 
 	public function indexAction(){
-			
+		$articleOperation = new ArticleOperation($this->di);
+		$systemArticles = $articleOperation->findAll(array(
+			"conditions"=>"is_delete=0 and class=2",
+			"order"=>"created_at desc",
+			"limit"=>5
+		));
+		
+		$this->view->setVar('systemArticles',$systemArticles);
 	}
 	
 	

@@ -5,8 +5,27 @@
 	</div>
 	<div class="col-sm-9">
 		<div class="box">
+			<blockquote class="blockquote-info">个人信息</blockquote>
 			<div>
-				Welcome to home,hongker
+				这里是个人信息列表
+			</div>
+		</div>
+		<div class="box">
+			<blockquote class="blockquote-danger">系统公告</blockquote>
+			<div class="systemArticles">
+				<?php if($systemArticles->count()):?>
+				<?php foreach($systemArticles as $article):?>
+				<div><a href="/article/info/<?php echo $article->id?>"><?php echo $article->title?></a></div>
+				<?php endforeach;?>
+				<?php else:?>
+				<div class="none">暂无数据</div>
+				<?php endif;?>
+			</div>
+		</div>
+		<div class="box">
+			<blockquote class="blockquote-primary">最新评论</blockquote>
+			<div>
+				这里是最新评论列表
 			</div>
 		</div>
 	</div>

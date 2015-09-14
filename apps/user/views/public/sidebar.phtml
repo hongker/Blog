@@ -6,7 +6,7 @@
 </div>
 <div class="user-sidebar">
 	<ul>
-		<li><a href="#">个人信息管理</a></li>
+		<li><a <?php if($controller=='home') echo 'class="active"'?> href="/user/home">个人信息管理</a></li>
 		<li><a <?php if($controller=='article') echo 'class="active"'?> href="/user/article">文章管理</a></li>
 		<li><a <?php if($controller=='comment') echo 'class="active"'?> href="/user/comment">评论管理</a></li>
 		<li><a <?php if($controller=='collect') echo 'class="active"'?> href="/user/collect">收藏管理</a></li>
