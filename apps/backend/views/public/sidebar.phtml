@@ -32,8 +32,8 @@
 				<li class="<?php if($controller=='article'&&$action=='index') echo 'active'?>">
 					<a href="/admin/article" ><i class="fa fa-chain fa-fw"></i> 文章列表</a>
 				</li>
-				<li>
-					<a href="#"><i class="fa fa-chain fa-fw"></i> 添加文章</a>
+				<li class="<?php if($controller=='article'&&$action=='add') echo 'active'?>">
+					<a href="/admin/article/add"><i class="fa fa-chain fa-fw"></i> 添加文章</a>
 				</li>
 				<li>
 					<a href="/admin/type"><i class="fa fa-chain fa-fw"></i> 文章分类</a>

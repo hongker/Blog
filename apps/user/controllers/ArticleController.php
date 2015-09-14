@@ -10,8 +10,7 @@ use Blog\Operations\TypeOperation;
 class ArticleController extends BaseController
 {
 	protected $types;
-	public function initialize()
-	{
+	public function initialize() {
 		\Phalcon\Tag::setTitle('文章管理');
 		parent::initialize();
 		$this->operation = new ArticleOperation($this->di);

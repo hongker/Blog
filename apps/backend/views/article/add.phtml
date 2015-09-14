@@ -1,16 +1,8 @@
-<div class="container">
-	<div class="row">
-		<div class="col-sm-3">
-		<?php $this->view->partial('public/sidebar')?>
-	</div>
-		<div class="col-sm-9">
-			<ol class="breadcrumb">
-				<li><a class="text-info" href="/user/article"><span
-						class="fui-document"></span> 文章管理</a></li>
-				<li class="active">发表文章</li>
-			</ol>
-			<div class="box">
-				<div class="form-horizontal">
+<div class="page-header">
+	<i class="fui-document"></i>文章管理 > 添加文章
+</div>
+<div>
+	<div class="form-horizontal">
 					<div class="form-group">
 						<label for="inputEmail3" class="col-sm-2 control-label">文章标题</label>
 						<div class="col-sm-4">
@@ -26,7 +18,7 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="title" class="col-sm-2 control-label">文章类型</label>
+						<label for="type" class="col-sm-2 control-label">文章类型</label>
 						<div class="col-sm-2">
 							<select id="type"
 								class="form-control select select-primary select-block mbl">
@@ -41,22 +33,27 @@
 						<label for="inputEmail3" class="col-sm-2 control-label">封面图片</label>
 						<div class="col-sm-8">
 							<div id="uploader" class="wu-example">
+								<div class="rows">
+								<div class="col-sm-12">
 								<div class="btns">
 									<div id="picker">选择文件</div>
 									<!-- 
 									<button id="ctlBtn" class="btn btn-default">开始上传</button>
 									 -->
 								</div>
+								</div>
+								<div class="col-sm-12">
 								<!--用来存放文件信息-->
 								<div id="thelist" class="uploader-list"></div>
+								</div>
 								<input type="hidden" id="picture">
+								</div>
 							</div>
 
 						</div>
 					</div>
-					
 					<div class="form-group">
-						<label for="inputPassword3" class="col-sm-2 control-label">文章内容</label>
+						<label for="content" class="col-sm-2 control-label">文章内容</label>
 						<div class="col-sm-10">
 							<!-- 编辑器源码文件 -->
 							<script type="text/javascript" src="/editor/umeditor.config.js"></script>
@@ -76,6 +73,17 @@
 						</div>
 					</div>
 					<div class="form-group">
+						<label for="class" class="col-sm-2 control-label">文章模块</label>
+						<div class="col-sm-2">
+							<select id="class"
+								class="form-control select select-primary select-block mbl">
+								<option value="0">请选择文章所属模块</option>
+									<option value="1">普通文章</option>
+									<option value="2">系统公告</option>
+								</select>
+						</div>
+					</div>
+					<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-10">
 							<button class="btn btn-info" onclick="addArticle()">
 								提 交 <i class="fa fa-upload"></i>
@@ -83,9 +91,6 @@
 						</div>
 					</div>
 				</div>
-			</div>
-		</div>
-	</div>
 </div>
 <script>
 $("select").select2({dropdownCssClass: 'dropdown-inverse'});
