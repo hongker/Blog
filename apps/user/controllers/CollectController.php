@@ -23,7 +23,7 @@ class CollectController extends BaseController
 		$currentPage = $this->getQuery('page','int')?$this->getQuery('page','int'):1;
 		
 		$collects = $this->operation->findAll(array(
-				"conditions"=>"is_delete=0 and author_id={$this->user['id']} and status=1",
+				"conditions"=>"is_delete=0 and author_id={$this->user['id']}",
 				"order"=>"created_at desc",
 		));
 		
@@ -41,7 +41,7 @@ class CollectController extends BaseController
 			$id = $this->getPost('id','int');
 			if($this->operation->checkIsExist($id)) {
 				if($this->operation->checkIsAuthor($id,$this->user['id'])) {
-					if($this->operation->cancel($id)) {
+					if($this->operation->delete($id)) {
 						$return['errNo'] = 0;
 					}else {
 						$return['errNo'] = 1611;
@@ -60,31 +60,4 @@ class CollectController extends BaseController
 		$this->json_return($return);
 	}
 	
-	
-	/**
-	 * 删除收藏
-	 */
-	public function deleteAction() {
-		$return = array();
-		if($this->isPost()) {
-			$id = $this->getPost('id','int');
-			if($this->operation->checkIsExist($id)) {
-				if($this->operation->checkIsAuthor($id,$this->user['id'])) {
-					if($this->operation->delete($id)) {
-						$return['errNo'] = 0;
-					}
-				}else {
-				$return['errNo'] = 1610;
-				}
-			}else {
-				$return['errNo'] = 1606;
-			}
-		}else {
-			$return['errNo'] = 1002;
-		}
-		$return['errMsg'] = $this->getErrorMessage($return['errNo']);
-		$this->json_return($return);
-	}
-	
-
 }

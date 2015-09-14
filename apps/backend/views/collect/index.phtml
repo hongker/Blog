@@ -24,7 +24,7 @@
           <td><?php echo $collect->getAuthor()->username?></td>
           <td><?php echo $collect->getTarget()->title?></td>
           <td><?php echo $collect->type?></td>
-          <td><?php echo $collect->status?></td>
+          <td><?php echo $collect->is_delete?></td>
           <td><?php echo $collect->created_at?></td>
           <td data-id="<?php echo $collect->id?>">
 		    <button id="del" class="btn btn-danger btn-xs"><span class="fui-trash"></span> 删除</button>

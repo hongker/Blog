@@ -59,6 +59,7 @@ class CollectOperation extends BaseOperation implements Operation {
 	
 	/**
 	 * 获取收藏状态
+	 * @todo 设计收藏
 	 * @param array $data
 	 * @return Array [errNo=>错误代码,status=>0(未收藏),1(已收藏),2(已取消)]
 	 */
@@ -84,7 +85,7 @@ class CollectOperation extends BaseOperation implements Operation {
 		
 		$return['errNo'] = 0;
 		if($collect) {
-			$return['status'] = $collect->status;
+			$return['status'] = $collect->is_delete?1:2;
 		}
 		return $return;
 	}
@@ -116,34 +117,6 @@ class CollectOperation extends BaseOperation implements Operation {
 		return $return;
 	}
 	
-	/**
-	 * 修改收藏状态
-	 * @param array $data
-	 * @param int $status
-	 * @return array
-	 */
-	public function changeStatus(Array $data,$status=1) {
-		
-		$collect = Collects::findFirst($data);
-		
-		if($collect) {
-			if($collect->status==$status) {
-				$return['errNo'] = 1609;
-			}else {
-				$collect->status = $status;
-				
-				if($collect->update()) {
-					$return['errNo'] = 0;
-				}else {
-					$return['errNo'] = 1607;
-				}
-			}
-		}else {
-			$return['errNo'] = 1606;
-		}
-		
-		return $return;
-	}
 	
 	/**
 	 * 根据id删除收藏
@@ -219,16 +192,26 @@ class CollectOperation extends BaseOperation implements Operation {
 	}
 	
 	/**
-	 * 取消收藏
-	 * @param int $id
-	 * @return boolean
+	 * 修改状态
+	 * @param array $condition
+	 * @return number
 	 */
-	public function cancel($id) {
-		$data['status'] = 2;
-		if($this->update($id, $data)) {
-			return true;
+	public function changeStatus(Array $condition) {
+		$collect = Collects::findFirst($condition);
+		
+		if($collect) {
+			if($collect->is_delete==1) {
+				$data['is_delete'] = 0;
+				$return = $this->update($collect->id, $data);
+			}else {
+				$data['is_delete'] = 1;
+				$return = $this->update($collect->id, $data);
+			}
+		}else {
+			$return['errNo'] = 1606;
 		}
 		
-		return false;
+		return $return;
 	}
+	
 }

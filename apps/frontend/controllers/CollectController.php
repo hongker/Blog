@@ -40,9 +40,9 @@ class CollectController extends BaseController
 				$data['type'] = $this->request->getPost('type','int');
 				
 				$return = $this->operation->getStatus($data);
+				
 				if($return['errNo']==0) {
 					$status = $return['status'];
-					
 					if($status==0) {
 						//未收藏
 						$return = $this->operation->save($data);

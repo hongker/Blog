@@ -10,7 +10,7 @@
 				<li class="active">收藏列表</li>
 			</ol>
 			<?php if($page->total_items==0):?>
-			<div class="none">
+			<div class="box none">
 				暂无数据
 			</div>
 			<?php else:?>
@@ -21,8 +21,7 @@
 					<footer class="">
 						 <cite title="date"><?php echo substr($collect->created_at,0,10)?></cite>
 						<div class="text-right" data-id="<?php echo $collect->id?>">
-							<a id="cancel" href="javascript:void(0)" class="text-info"><span class="fui-cross"></span> 取消</a>
-							<a id="del" href="javascript:void(0)" class="text-danger"><span class="fui-trash"></span> 删除</a>
+							<a id="cancel" href="javascript:void(0)" class="text-danger"><span class="fui-cross"></span> 取消</a>
 						</div>
 					</footer>
 				</blockquote>
