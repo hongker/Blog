@@ -9,6 +9,7 @@
           <th>标题</th>
           <th>类型</th>
           <th>作者</th>
+          <th>模块</th>
           <th>状态</th>
           <th>创建时间</th>
           <th>操作</th>
@@ -25,6 +26,7 @@
           <td><?php echo $article->getType()->name?></td>
           <td><?php echo $article->getAuthor()->username?></td>
           <td><?php echo $article->status?></td>
+          <td><?php echo $article->getClass()?></td>
           <td><?php echo $article->created_at?></td>
           <td data-id="<?php echo $article->id?>">
 		          	<a href="/user/article/info/<?php echo $article->id?>" class="btn btn-info btn-xs"><span class="fui-info-circle"></span> 查看</a>

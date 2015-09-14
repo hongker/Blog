@@ -8,6 +8,7 @@ use Blog\Utils\Redis;
  */
 class Articles extends BaseModel {
 	public $id;
+	public $class;
 	/**
 	 * 模型初始化
 	 */
@@ -63,6 +64,19 @@ class Articles extends BaseModel {
 			return $view;
 		}
 		return 0;
+	}
+	
+	/**
+	 * 获取所属模块名称
+	 */
+	public function getClass() {
+		$class = '普通文章';
+		if($this->class==2) {
+			$class = '系统公告';
+		}
+		
+		return $class;
+			
 	}
 	
 }

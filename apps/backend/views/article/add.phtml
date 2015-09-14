@@ -123,10 +123,18 @@ function addArticle() {
 	}
 
 	var content = um.getContent();
+
+	var className = $("#class");
+	if(className.val()==0) {
+		alertify.error("请选择文章模块");
+		className.focus();
+		return;
+	}
+	
 	$.ajax({
         type: "POST",
         url: "/user/article/add",
-        data: {title:title.val(),digest:digest.val(),type:type.val(),picture:picture.val(),content:content},
+        data: {title:title.val(),digest:digest.val(),type:type.val(),picture:picture.val(),content:content,className:className.val()},
         dataType:'json',
         success: function(data){
             console.log(data);
