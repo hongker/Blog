@@ -26,7 +26,7 @@ class Articles extends BaseModel {
 		$this->hasMany("id", "Blog\Models\Comments", "target", array(
 				'alias' => 'Comments'
 		));
-		$this->skipAttributesOnUpdate(array('author_id'));
+		$this->skipAttributesOnUpdate(array('author_id','class'));
 		$this->skipAttributesOnCreate(array('status'));
 	}
 	
@@ -40,6 +40,7 @@ class Articles extends BaseModel {
 		$validates[] = $this->setPresenceOf('title', 1102);
 		$validates[] = $this->setPresenceOf('digest', 1103);
 		$validates[] = $this->setPresenceOf('type_id', 1104);
+		$validates[] = $this->setPresenceOf('class', 1108);
 		$validates[] = $this->setPresenceOf('picture', 1105);
 		$validates[] = $this->setPresenceOf('author_id', 1106);
 		$validates[] = $this->setPresenceOf('content', 1108);

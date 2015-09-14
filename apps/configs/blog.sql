@@ -35,6 +35,7 @@ values('hongker','xiaok2013@live.com',1,'$2a$12$0Y8tnffNb6PMCBi7SmlAHe8jFNYBvtFE
  * digest 摘要
  * author_id 作者id
  * type_id 类型id
+ * class 分类(1:普通文章,2:系统公告。。。)
  * content 内容
  * status 是否通过审核(1:是，0：否)
  * is_delete 是否删除(1:是，0：否)
@@ -49,6 +50,7 @@ create table articles(
 	digest varchar(255) not null,
 	author_id int not null,
 	type_id int not null,
+	class tinyint not null default 1,
 	content text not null,
 	status tinyint not null default 1,
 	is_delete tinyint not null default 0,

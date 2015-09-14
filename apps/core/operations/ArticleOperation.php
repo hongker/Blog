@@ -54,10 +54,16 @@ class ArticleOperation extends BaseOperation implements Operation {
 			return $return;
 		}
 		
-		if($data['type_id']==0) {
+		if(empty($data['type_id'])) {
 			$return['errNo'] = 1104;
 			return $return;
 		}
+		
+		if(empty($data['class'])) {
+			$return['errNo'] = 1115;
+			return $return;
+		}
+		
 		
 		$article = new Articles();
 		foreach ($data as $key=>$value) {

@@ -52,6 +52,7 @@ class ArticleController extends BaseController
 				$article['digest'] = $this->getPost('digest');
 				$article['type_id'] = $this->getPost('type','int');
 				$article['content'] = $this->getPost('content',false);
+				$article['class'] = 1;
 			}
 			
 			$return = $this->operation->save($article);
