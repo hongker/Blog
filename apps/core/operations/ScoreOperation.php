@@ -38,11 +38,21 @@ class ScoreOperation extends BaseOperation implements Operation {
 
 	/** 评分
 	 * @see \Blog\Operations\Operation::delete()
+	 * @param int $id
+	 * @return boolean
 	 */
 	public function delete($id) {
-		// TODO Auto-generated method stub
+		$score = $this->get($id);
 		
+		if ($score != false) {
+			if ($score->delete() != false) {
+				$logString = $this->getLogString('删除评分');
+				$this->log($logString, 'info');
+				return true;
+			}
+		}
+		return false;
 	}
-
+	
 	
 }
