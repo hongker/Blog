@@ -127,7 +127,7 @@ insert into types(name)
 values('科技'),('经济'),('工业'),('历史'),('文学'),('健康');
 
 /**
- * messages 消息表
+ * messages 消息通知表
  * id 主键
  * author_id 发送人Id
  * target_id 接收人Id
@@ -190,6 +190,32 @@ create table collects(
 	created_at timestamp not null default current_timestamp,
 	updated_at timestamp not null default '0000-00-00 00:00:00'
 )engine=myisam default charset=utf8;
+
+
+
+/**
+ * scores 评分表
+ * id 主键
+ * author_id 评分者id
+ * target_id 评分目标id
+ * type 类型(1:文章,2...)
+ * score 分值(0,1,2...10)
+ * is_delete 是否删除
+ * created_at 创建时间
+ * updated_at 更改时间
+ */
+drop table if exists scores;
+create table scores(
+	id int not null primary key auto_increment,
+	author_id int not null,
+	target_id int not null,
+	type int not null default 1,
+	score tinyint not null default 0,
+	is_delete tinyint not null default 0,
+	created_at timestamp not null default current_timestamp,
+	updated_at timestamp not null default '0000-00-00 00:00:00'
+)engine=myisam default charset=utf8;
+
 
 /**
  * tables 表模板

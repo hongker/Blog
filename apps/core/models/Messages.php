@@ -12,5 +12,15 @@ class Messages extends BaseModel {
 	public function initialize() {
 		parent::initialize();
 		
+		//关联users表
+		$this->belongsTo("author_id", "Blog\Models\Users", "id", array(
+				'alias' => 'Author'
+		));
+		
+		//关联users表
+		$this->belongsTo("target_id", "Blog\Models\Users", "id", array(
+				'alias' => 'Target'
+		));
+		$this->skipAttributesOnCreate(array('status'));
 	}
 }
