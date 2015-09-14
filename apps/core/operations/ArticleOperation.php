@@ -1,6 +1,5 @@
 <?php
 namespace Blog\Operations;
-
 use Blog\Models\Articles;
 /**
  * 文章操作类
