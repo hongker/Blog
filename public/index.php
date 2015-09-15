@@ -99,6 +99,10 @@ $di->set ( 'router', function () {
 $di->set ( 'flash', function () {
 	return new FlashDirect ();
 } );
+
+/**
+ * 设置数据库连接
+ */
 $di->set ( 'db', function () use($config) {
 	/*
 	$eventsManager = new EventsManager();
@@ -126,7 +130,7 @@ $di->set ( 'db', function () use($config) {
 } );
 
 // Set the views cache service
-$di->set ( 'viewCache', function () {
+$di->set ( 'viewCache', function () use($config){
 	
 	// Cache data for one day by default
 	$frontCache = new OutputFrontend ( array (
@@ -146,7 +150,7 @@ $di->set ( 'viewCache', function () {
 /**
  * 多级缓存
  */
-$di->set ( 'cache', function () {
+$di->set ( 'cache', function () use($config){
 	
 	$ultraFastFrontend = new DataFrontend ( array (
 			"lifetime" => 3600 
@@ -162,15 +166,15 @@ $di->set ( 'cache', function () {
 	
 	$cache = new Multiple ( array (
 			new Xcache ( $ultraFastFrontend, array (
-					"prefix" => 'cache' 
+					"prefix" => 'cache_' 
 			) ),
 			new RedisCache ( $fastFrontend, array (
-					"prefix" => 'cache',
-					"host" => "118.244.201.40",
-					"port" => "6379" 
+					"prefix" => 'cache_',
+					"host" => $config->redis->host,
+					"port" => $config->redis->port, 
 			) ),
 			new FileCache ( $slowFrontend, array (
-					"prefix" => 'cache',
+					"prefix" => 'cache_',
 					"cacheDir" => "../apps/cache/" 
 			) ) 
 	) );

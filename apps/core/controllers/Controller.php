@@ -138,4 +138,38 @@ class Controller extends \Phalcon\Mvc\Controller {
 	protected function getErrorMessage($no) {
 		return $this->error[$no];
 	}
+	
+	/**
+	 * 根据唯一键值返回视图key
+	 * @param unknown $type
+	 * @param unknown $primaryKey
+	 * @return string
+	 */
+	protected function getViewKey($primaryKey) {
+		$key = $this->controller.'_'.$this->action.'_'.$primaryKey;
+		return $key;
+	}
+	
+	/**
+	 * 设置视图缓存
+	 * @param string $key 视图缓存Key
+	 * @param int $lifetime 缓存时间，默认: one day
+	 */
+	protected function setViewCache($key,$lifetime=86400) {
+		$this->view->cache(
+				array(
+						'key' => $key,
+						'lifetime' => $lifetime,
+				)
+		);
+	}
+	
+	/**
+	 * 查看视图缓存是否存在
+	 * @param string $key
+	 * @return boolean
+	 */
+	protected function checkViewCacheExist($key) {
+		return $this->view->getCache()->exists($key);
+	}
 }

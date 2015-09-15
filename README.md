@@ -44,5 +44,6 @@ I want to use pjax and nprogress to display the content.Please waiting for the c
 	index.php 引导文件  
  ~~~
     
+项目将使用Echarts来显示数据图表
   
 

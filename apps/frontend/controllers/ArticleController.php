@@ -61,28 +61,24 @@ class ArticleController extends BaseController
 	 */
 	public function infoAction() {
 		$id =  $this->dispatcher->getParam(0);
-		
-		$article = $this->operation->get($id);
-		
-		if($article) {
-			$article->author = $article->getAuthor();
+		if (!$this->checkViewCacheExist($this->getViewKey($id))) {
+			$article = $this->operation->get($id);
 			
-			$comments = $article->getComments();
-			$article->view = $this->operation->addView($id);
-			
-			$this->view->setVar('article',$article);
-			$this->view->setVar('comments',$comments);
-			
-			//使用视图缓存
-			/*
-			$this->view->cache(array(
-					"lifetime" => 300,
-					"key"=>$this->controller.'_'.$this->action.'_'.$id,
-			));
-			*/
-		}else {
-			$this->show404();
+			if($article) {
+				$article->author = $article->getAuthor();
+					
+				$comments = $article->getComments();
+				$article->view = $this->operation->addView($id);
+					
+				$this->view->setVar('article',$article);
+				$this->view->setVar('comments',$comments);
+					
+			}else {
+				$this->show404();
+			}
 		}
+		
+		$this->setViewCache($this->getViewKey($id),300);
 	}
 	
 }

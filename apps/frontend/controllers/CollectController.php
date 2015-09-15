@@ -21,7 +21,10 @@ class CollectController extends BaseController
 	 * @todo 统计数据并使用Echart显示
 	 */
 	public function indexAction(){
-		
+		if ($this->view->getCache()->exists()) {
+			echo 123;exit;
+		}
+		$this->view->cache(true);
 	}
 	
 	/**
