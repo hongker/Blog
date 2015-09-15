@@ -14,7 +14,7 @@ class Redis extends \Redis{
 	 */
 	function __construct() {
 		$config = new \Phalcon\Config\Adapter\Ini ( __DIR__."/../../configs/config.ini" );
-		$this->connect($config->redis->host);
+		$this->connect($config->redis->host,$config->redis->port);
 	}
 	
 	public function connect($host,$port=6379) {
