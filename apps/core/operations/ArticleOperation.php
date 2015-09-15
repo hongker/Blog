@@ -92,26 +92,6 @@ class ArticleOperation extends BaseOperation implements Operation {
 	public function update($id,array $array) {
 		$article = $this->get($id);
 		if($article) {
-			if(empty($array['title'])) {
-				$return['errNo'] = 1016;
-				return $return;
-			}
-			
-			if(empty($array['picture'])) {
-				$return['errNo'] = 1105;
-				return $return;
-			}
-			
-			if(empty($array['digest'])) {
-				$return['errNo'] = 1017;
-				return $return;
-			}
-			
-			if($array['type_id']==0) {
-				$return['errNo'] = 1018;
-				return $return;
-			}
-			
 			foreach ($array as $key=>$value) {
 				$article->$key = $value;
 			}
