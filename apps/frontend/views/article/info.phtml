@@ -31,5 +31,18 @@
 	</div>
 
 </div>
-<a href="#top" class="back-to-top">Top</a>
-<script src="/js/scrollToTop.js"></script>
+<div class="go-top">
+	<i class="fa fa-chevron-up"></i>
+</div>
+<script type="text/javascript" src="/js/gotoTop.js"></script>
+<script type="text/javascript">
+      $(function(){ 
+        $(".go-top").goToTop(); 
+        $(window).bind('scroll resize',function(){ 
+            $(".go-top").goToTop({
+              pageWidthJg:50,
+              pageHeightJg:50
+            }); 
+        }); 
+    }); 
+    </script>

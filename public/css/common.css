@@ -279,11 +279,13 @@ blockquote.blockquote-danger {
 	text-indent:2em;
 }
 ul.types {
-	padding:0px;
+	padding:10px;
+	padding-bottom:20px;
 }
 .types li{
 	float:left;
 	width:45px;
+	margin-left:5px;
 }
 .types li a {
 	font-size:16px;
@@ -511,6 +513,7 @@ p {
 #wrapper {
 	background:#fff;
 	position:relative;
+	margin-top:-20px;
 }
 
 a {
@@ -582,7 +585,7 @@ a:hover {
     position: relative;
     background: #fff;
     width: 188px;
-    height: 6px;
+    height: 3px;
     float: left;
     -webkit-transition: background 0.1s linear;
     -moz-transition: color, background 0.1s linear;
@@ -783,4 +786,35 @@ a:hover {
     border-radius: 3px;
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
+}
+
+.right {
+	float:right;
+}
+.left {
+	float:left;
+}
+.go-top {
+	width: 50px;
+	height: 50px;
+	background: rgb(229, 64, 64);
+	color: white;
+	font-size: 20px;
+	line-height: 50px;
+	text-align: center;
+	border-radius: 50%;
+	-moz-box-shadow: 0px 0px 10px #909090; /*firefox*/
+	-webkit-box-shadow: 0px 0px 10px #909090; /*safari或chrome*/
+	box-shadow: 0px 0px 10px #909090; /*opera或ie9*/
+	display: none;
+	transition: all 0.5s ease;
+	-moz-transition: all 0.5s ease; /* Firefox 4 */
+	-webkit-transition: all 0.5s ease; /* Safari 和 Chrome */
+	-o-transition: all 0.5s ease; /* Opera */
+}
+.go-top:hover {
+	cursor: pointer;
+	-moz-box-shadow: 0px 0px 20px #343434; /*firefox*/
+	-webkit-box-shadow: 0px 0px 20px #343434; /*safari或chrome*/
+	box-shadow: 0px 0px 20px #343434; /*opera或ie9*/
 }
