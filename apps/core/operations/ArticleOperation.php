@@ -220,4 +220,26 @@ class ArticleOperation extends BaseOperation implements Operation {
 		return false;
 		
 	}
+	
+	/**
+	 * 获取推荐文章
+	 * @param unknown $id
+	 * @param number $count
+	 * @return Ambigous <number, unknown>
+	 */
+	public function getRecommends($id,$count = 5) {
+		$article = $this->get($id);
+		
+		if($article) {
+			$articles = $this->findAll(array(
+				'conditions'=>"is_delete=0 and type_id={$article->type_id} and id !={$id}",
+				'limit'=>$count,
+			));
+			$return['errNo'] = 0;
+			$return['articles'] = $articles;
+		}else {
+			$return['errNo'] = 1110;
+		}
+		return $return;
+	}
 }

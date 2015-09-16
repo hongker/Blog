@@ -7,8 +7,10 @@
 					<div class="info">
 						<span class="author"> 作者:<span class="username"><?php echo $article->author->username?></span>
 						</span> <span class="created_at"> 发布于：<span class="date"><?php echo substr($article->created_at,0,10)?></span>
-						</span>
-						<span class="collect"><a href="javascript:void(0)" onclick="addCollect(<?php echo $article->id?>,1)" id="addCollectBtn" class="text-danger">收藏 <i class="fa fa-bookmark-o "></i></a> </span>
+						</span> <span class="collect"><a href="javascript:void(0)"
+							onclick="addCollect(<?php echo $article->id?>,1)"
+							id="addCollectBtn" class="text-danger">收藏 <i
+								class="fa fa-bookmark-o "></i></a> </span>
 					</div>
 					<div class="digest">
 						<span>摘要：</span><?php echo $article->digest?>
@@ -18,14 +20,38 @@
 					<?php echo $article->content?>
 				</div>
 					<div class="numbers">
-						<span class="view">阅读：<span class="count"><?php echo $article->view?></span></span>
-						<span class="comment">评论：<span class="count"><?php echo $article->comments->count()?></span></span>
-						<span class="praise">点赞：<span class="count">20</span></span>
+						<span class="view">阅读：<span class="count text-danger"><?php echo $article->view?></span></span>
+						<span class="comment">评论：<span class="count text-success"><?php echo $article->comments->count()?></span></span>
+						<span class="praise">点赞：<span class="count text-primary">20</span></span>
 					</div>
 					<hr>
 					<?php $this->partial('public/comment')?>
 						
 				</div>
+			</div>
+		</div>
+		<div class="col-sm-3">
+			<div class="box">
+				<blockquote class="blockquote-info">其他相似的文章</blockquote>
+				<?php if(count($recommendArticles)==0):?>
+				<div class="none">暂无数据</div>
+				<?php else:?>
+				<?php foreach ($recommendArticles as $article):?>
+				<div class="media">
+					<div class="media-left">
+						<a href="/article/info/<?php echo $article->id?>"> <img class="media-object img-circle" src="<?php echo $article->picture?>" style="width: 64px; height: 64px;">
+						</a>
+					</div>
+					<div class="media-body">
+						<p class="media-heading"><a class="text-info" href="/article/info/<?php echo $article->id?>"><?php echo $article->title?></a></p>
+						<div class="title-footer">
+							<span class="view">阅读：<span class="count text-danger"><?php echo $article->getView()?></span></span>
+							<span class="comment">评论：<span class="count text-success"><?php echo $article->getComments()->count()?></span></span>
+						</div>
+					</div>
+				</div>
+				<?php endforeach;?>
+				<?php endif;?>
 			</div>
 		</div>
 	</div>

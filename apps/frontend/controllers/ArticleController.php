@@ -61,7 +61,7 @@ class ArticleController extends BaseController
 	 */
 	public function infoAction() {
 		$id =  $this->dispatcher->getParam(0);
-		if (!$this->checkViewCacheExist($this->getViewKey($id))) {
+		//if (!$this->checkViewCacheExist($this->getViewKey($id))) {
 			$article = $this->operation->get($id);
 			
 			if($article) {
@@ -70,15 +70,22 @@ class ArticleController extends BaseController
 				$comments = $article->getComments();
 				$article->view = $this->operation->addView($id);
 					
+				$result = $this->operation->getRecommends($id);
+				if($result['errNo']==0) {
+					$recommendArticles = $result['articles'];
+				}else {
+					$recommendArticles = array();
+				}
 				$this->view->setVar('article',$article);
+				$this->view->setVar('recommendArticles',$recommendArticles);
 				$this->view->setVar('comments',$comments);
 					
 			}else {
 				$this->show404();
 			}
-		}
+		//}
 		
-		$this->setViewCache($this->getViewKey($id),300);
+		//$this->setViewCache($this->getViewKey($id),300);
 	}
 	
 }
