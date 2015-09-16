@@ -22,11 +22,11 @@ class MessageOperation extends BaseOperation implements Operation {
 		return Messages::findFirst($id);
 	}
 	
-	/** (non-PHPdoc)
+	/** 消息
 	 * @see \Blog\Operations\Operation::save()
 	 */
 	public function save(array $data) {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
