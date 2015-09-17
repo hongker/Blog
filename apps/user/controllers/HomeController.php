@@ -26,6 +26,20 @@ class HomeController extends BaseController
 		$this->view->setVar('systemArticles',$systemArticles);
 	}
 	
+	/**
+	 * 个人信息详情
+	 */
+	public function infoAction() {
+		
+	}
+	
+	/**
+	 * 修改个人信息
+	 */
+	public function editAction() {
+		
+	}
+	
 	
 
 }

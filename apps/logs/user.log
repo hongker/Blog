@@ -49,3 +49,6 @@ Tue, 25 Aug 15 20:07:36 +0800:IP:127.0.0.1,用户名:hongker登录，errNo：100
 [Thu, 17 Sep 15 22:25:20 +0800][ERROR] IP:127.0.0.1,用户名:hongker登录，errNo：1008
 [Thu, 17 Sep 15 22:30:50 +0800][INFO] IP:127.0.0.1,用户名:hongker注册，errNo：0
 [Thu, 17 Sep 15 22:30:58 +0800][INFO] IP:127.0.0.1,用户名:hongker登录，errNo：0
+[Thu, 17 Sep 15 22:32:42 +0800][INFO] IP:127.0.0.1,用户名:ubuntu注册，errNo：0
+[Thu, 17 Sep 15 22:32:57 +0800][INFO] IP:127.0.0.1,用户名:linux注册，errNo：0
+[Thu, 17 Sep 15 22:33:08 +0800][INFO] IP:127.0.0.1,用户名:hongker登录，errNo：0
