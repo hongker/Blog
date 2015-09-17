@@ -172,9 +172,8 @@ class UserOperation extends BaseOperation implements Operation {
 	 * @return boolean
 	 */
 	public function checkPassword(Array $condition) {
-			$user = Users::findFirst(array("username='$condition[username]'"));
-			
-			if($this->getDI()->get('security')->checkHash($condition['password'],$user->password)) {
+			$user = $this->findOne("username='{$condition['username']}'");
+			if($this->getService('security')->checkHash($condition['password'],$user->password)) {
 				return true;
 			}
 		

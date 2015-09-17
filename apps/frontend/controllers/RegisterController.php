@@ -30,7 +30,7 @@ class RegisterController extends BaseController
 		if($this->request->isPost()) {
 			$data['username'] = $this->request->getPost('username','string');
 			$data['email'] = $this->request->getPost('email','email');
-			$data['password'] = $this->security->hash($this->request->getPost('password','string'));
+			$data['password'] = $this->request->getPost('password','string');
 			
 			$return = $this->operation->register($data);
 			

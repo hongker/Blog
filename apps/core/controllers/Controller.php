@@ -186,7 +186,6 @@ class Controller extends \Phalcon\Mvc\Controller {
 	 */
 	protected function setCache($key, $value) {
 		
-		
 		if($this->redis->set($key, $value)) {
 			return true;
 		}
