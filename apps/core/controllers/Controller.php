@@ -1,6 +1,7 @@
 <?php
 namespace Blog\Controllers;
 
+use Blog\Utils\Redis;
 /**
  * 公共控制器
  * @author hongker
@@ -31,12 +32,16 @@ class Controller extends \Phalcon\Mvc\Controller {
 	 */
 	protected $operation ;
 	
+	protected $redis;
+	
 	/**
 	 * 初始化
 	 */
 	protected function initialize() {
 		$this->view->setVar('action',$this->action);
 		$this->view->setVar('controller',$this->controller);
+		
+		$this->redis = new Redis();
 	}
 	/**
 	 * @param unknown $dispatcher
@@ -171,5 +176,29 @@ class Controller extends \Phalcon\Mvc\Controller {
 	 */
 	protected function checkViewCacheExist($key) {
 		return $this->view->getCache()->exists($key);
+	}
+	
+	/**
+	 * 保存到Redis缓存
+	 * @param string $key
+	 * @param unknown $value
+	 * @return boolean
+	 */
+	protected function setCache($key, $value) {
+		
+		
+		if($this->redis->set($key, $value)) {
+			return true;
+		}
+		return false;
+	}
+	
+	/**
+	 * 获取Redis缓存中的变量
+	 * @param string $key
+	 * @return unknown
+	 */
+	protected function getCache($key) {
+		return $this->redis->get($key);
 	}
 }
