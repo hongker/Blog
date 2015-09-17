@@ -23,6 +23,11 @@ class Users extends BaseModel {
 		$this->skipAttributesOnUpdate(array('email','username'));
 	}
 	
+	public function beforeCreate() {
+		parent::beforeCreate();
+		$this->picture = '/images/common_user.png';
+	}
+	
 	public function beforeUpdate() {
 		parent::beforeUpdate();
 		$this->age = 0;

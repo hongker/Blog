@@ -40,6 +40,13 @@ class BaseModel extends Model {
 	}
 	
 	/**
+	 * 插入前的操作
+	 */
+	public function beforeCreate() {
+		
+	}
+	
+	/**
 	 * 更新前的操作
 	 */
 	public function beforeUpdate() {
