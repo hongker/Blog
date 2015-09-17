@@ -126,18 +126,23 @@ blockquote {
 }
 blockquote.blockquote-info {
 	border-left: 3px solid #3B82ED;
+	color: #3B82ED;
 }
 blockquote.blockquote-primary {
 	border-left: 3px solid #1ABC9C;
+	color: #1ABC9C;
 }
 blockquote.blockquote-success {
 	border-left: 3px solid #2ECC71;
+	color: #2ECC71;
 }
 blockquote.blockquote-warning {
 	border-left: 3px solid #F1C40F;
+	color: #F1C40F;
 }
 blockquote.blockquote-danger {
 	border-left: 3px solid #E74C3C;
+	color: #E74C3C;
 }
 .login-bg {
 	background:url('../images/bg1.jpg');
