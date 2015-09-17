@@ -48,6 +48,14 @@ class UserOperation extends BaseOperation implements Operation {
 	}
 	
 	/**
+	 * 查找某个用户
+	 * @param int|string $param
+	 */
+	public function findOne($param) {
+		return Users::findFirst($param);
+	}
+	
+	/**
 	 * 根据用户id更改用户信息
 	 * @param unknown $id
 	 * @param array $array
@@ -210,6 +218,7 @@ class UserOperation extends BaseOperation implements Operation {
 		$logString = "IP:{$this->ip},用户名:{$info['username']}注册，errNo：{$return['errNo']}";
 		
 		if($return['errNo']==0) {
+			
 			$this->log($logString,'info');
 		}else {
 			$this->log($logString,'error');
@@ -227,6 +236,44 @@ class UserOperation extends BaseOperation implements Operation {
 			return true;
 		}
 		return false;
+	}
+	
+	/**
+	 * 修改密码
+	 * @param array $data
+	 */
+	public function changePass(Array $data) {
+		if(empty($data['email'])) {
+			$return['errNo'] = 1003;
+			return $return;
+		}
+		
+		if(empty($data['password'])) {
+			$return['errNo'] = 1007;
+			return $return;
+		}
+		
+		$user = $this->findOne("email='{$data['email']}'");
+		
+		if(!$user) {
+			$return['errNo'] = 1011;
+			return $return;
+		}
+		
+		$user->password = $this->getService('security')->hash($data['password']);
+		
+		if($user->update()==true) {
+			$return['errNo'] = 0;
+			$logString = $this->getLogString('修改密码',$return['errNo']);
+			$this->log($logString,'info');
+		}else {
+			$return['errNo'] = 1012;
+			$logString = $this->getLogString('修改密码',$return['errNo']);
+			$this->log($logString,'error');
+		}
+		
+		return $return;
+		
 	}
 	
 }

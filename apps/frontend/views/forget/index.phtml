@@ -2,10 +2,70 @@
 	<div class="row">
 		<div class="col-sm-8">
 			<div class="box">
-				<div class="page-header">忘记密码</div>
+				<blockquote class="blockquote-danger">
+					忘记密码 <i class="fa fa-unlock-alt"></i>
+				</blockquote>
+				<div class="form-horizontal">
+					<div class="form-group">
+						<label for="email" class="col-sm-2 col-xs-12 control-label">邮箱</label>
+						<div class="col-sm-4 col-xs-8">
+							<input type="email" class="form-control" id="email"
+								placeholder="请输入您的邮箱">
+						</div>
+						<div class="col-sm-4 col-xs-4">
+							<button class="btn btn-danger" onclick="getCode()">获取验证码</button>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="code" class="col-sm-2 control-label">验证码</label>
+						<div class="col-sm-4">
+							<input type="text" class="form-control" id="code"
+								placeholder="请填写获取到的验证码">
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<div class="col-sm-offset-2 col-sm-10">
+							<button class="btn btn-info" onclick="next()">下一步</button>
+						</div>
+					</div>
+				</div>
 			</div>
-			
+
 		</div>
-		
+
 	</div>
 </div>
+<script>
+function getCode() {
+	var email = $("#email");
+
+	if(!email.val()) {
+		alertify.error('请填写您的邮箱');
+		email.focus();
+		return;
+	}
+	alertify.alert('暂无此功能，请期待');
+	return;
+		
+}
+
+function next() {
+	var email = $("#email");
+
+	if(!email.val()) {
+		alertify.error('请填写您的邮箱');
+		email.focus();
+		return;
+	}
+
+	var code = $("#code");
+
+	if(!code.val()) {
+		alertify.error('请填写验证码');
+		code.focus();
+		return;
+	}
+		
+}
+</script>

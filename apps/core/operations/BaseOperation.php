@@ -87,4 +87,12 @@ class BaseOperation {
 		return $logString;
 	}
 	
+	/**
+	 * 获取服务
+	 * @param string $service
+	 */
+	public function getService($service) {
+		return $this->getDI()->get($service);
+	}
+	
 }

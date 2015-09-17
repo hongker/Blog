@@ -9,8 +9,7 @@ use Blog\Operations\UserOperation;
  */
 class ForgetController extends BaseController
 {
-	public function initialize()
-	{
+	public function initialize() {
 		\Phalcon\Tag::setTitle('忘记密码');
 		parent::initialize();
 		$this->operation = new UserOperation($this->di);
@@ -18,5 +17,19 @@ class ForgetController extends BaseController
 
 	public function indexAction() {
 
+	}
+	
+	/**
+	 * 填写新密码
+	 */
+	public function newPassAction() {
+		
+	}
+	
+	/**
+	 * 修改密码
+	 */
+	public function changePassAction() {
+		
 	}
 }
