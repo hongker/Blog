@@ -19,6 +19,7 @@ I want to use pjax and nprogress to display the content.Please waiting for the c
       operations/ 操作类
       utils/ 工具类
       controllers/ 控制器类
+      components/ 组件
       
     frontend/ 前台模块
     
