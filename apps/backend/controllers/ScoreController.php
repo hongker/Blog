@@ -8,7 +8,6 @@ use Blog\Operations\ScoreOperation;
  */
 class ScoreController extends BaseController
 {
-	protected $types;
 	public function initialize()
 	{
 		\Phalcon\Tag::setTitle('评分管理');
