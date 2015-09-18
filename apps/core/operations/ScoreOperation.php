@@ -110,5 +110,13 @@ class ScoreOperation extends BaseOperation implements Operation {
 		return false;
 	}
 	
+	/**
+	 * 根据条件查找评分数据
+	 * @param string $condition
+	 */
+	public function findAll(Array $condition = null) {
+		return Scores::find($condition);
+	}
+	
 	
 }
