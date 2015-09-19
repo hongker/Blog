@@ -248,7 +248,7 @@ create table tags(
 /**
  * address 地址表
  * id 主键
- * title 名称
+ * name 名称
  * level 等级(0:国,1:省,2:市,3:县(区))
  * parent_id 父级id
  * is_delete 是否删除
@@ -258,7 +258,7 @@ create table tags(
 drop table if exists address;
 create table address(
 	id int not null primary key auto_increment,
-	title varchar(120) not null default '',
+	name varchar(120) not null default '',
 	parent_id smallint(5) unsigned not null default 0,
 	level tinyint(1) not null default 2,
 	is_delete tinyint not null default 0,

@@ -20,6 +20,11 @@ class Users extends BaseModel {
               'alias' => 'Articles'
          ));
 		
+		//关联地址表
+		$this->hasMany("id", "Blog\Models\Articles", "author_id", array(
+				'alias' => 'Articles'
+		));
+		
 		$this->skipAttributesOnUpdate(array('email','username'));
 	}
 	
