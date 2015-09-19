@@ -3,11 +3,13 @@
 html,body {
 	font-family: microsoft yahei, Tahoma, Helvetica, arial, sans-serif;
 	background:#ddd;
+	color:#333;
 }
 hr {
 	border-top:1px solid #D5D5D5;
 	margin-bottom:10px;
 }
+
 .main {
 	padding-top:20px;
 }
@@ -786,4 +788,5 @@ a:hover {
 }
 .header {
 	font-size: 20px;
+	margin-bottom:10px;
 }
