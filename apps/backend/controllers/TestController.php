@@ -15,7 +15,7 @@ class TestController extends BaseController
 
 	public function indexAction()
 	{
-		phpinfo();exit;
+		
 	}
 
 }

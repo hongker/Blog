@@ -1,12 +1,12 @@
 create database blog charset=utf8;
 use blog;
 /**
- * 1.users用户表
+ * 1.users用户表(保存用户基本信息)
  * id 主键
  * username 用户名
+ * password 密码
  * email 邮箱
  * type 用户类型(1:普通用户,2:管理员)
- * password 密码
  * age 年龄
  * sex 性别(M:男,F:女,N:保密)
  * picture 头像
@@ -19,9 +19,9 @@ drop table if exists users;
 create table users(
 	id int not null primary key auto_increment,
 	username varchar(30) not null,
+	password char(60) not null,
 	email varchar(50) not null,
 	type tinyint not null default 1,
-	password char(60) not null,
 	age tinyint not null default 0,
 	sex char(1) not null default 'N',
 	picture varchar(100) not null,
@@ -34,7 +34,7 @@ insert into users(username,email,type,password,age)
 values('hongker','xiaok2013@live.com',1,'$2a$12$0Y8tnffNb6PMCBi7SmlAHe8jFNYBvtFEodUav6YiaJbnnMmaAMAw6',21);
 
 /**
- * articles 文章表
+ * articles 文章表(保存文章信息)
  * id 主键
  * title 标题
  * picture 封面图片
@@ -64,15 +64,12 @@ create table articles(
 	updated_at timestamp not null default '0000-00-00 00:00:00'
 )engine=myisam default charset=utf8;
 
-
-
-
 /**
- * comments 评论表
+ * comments 评论表（保存用户评论内容）
  * id 主键
  * author_id 作者id
  * content 评论内容
- * target 评论目标
+ * target_id 评论目标
  * type 评论类型(1:文章评论)
  * is_delete 是否删除(1:是，0：否)
  * created_at 创建时间
@@ -83,7 +80,7 @@ create table comments(
 	id int not null primary key auto_increment,
 	author_id int not null,
 	content varchar(255) not null,
-	target int not null,
+	target_id int not null,
 	type tinyint not null default 1,
 	is_delete tinyint not null default 0,
 	created_at timestamp not null default current_timestamp,

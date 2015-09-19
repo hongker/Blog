@@ -24,7 +24,7 @@ class Articles extends BaseModel {
 				'alias' => 'Type'
 		));
 		
-		$this->hasMany("id", "Blog\Models\Comments", "target", array(
+		$this->hasMany("id", "Blog\Models\Comments", "target_id", array(
 				'alias' => 'Comments'
 		));
 		$this->skipAttributesOnUpdate(array('author_id','class'));

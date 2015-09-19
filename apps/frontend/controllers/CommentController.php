@@ -30,7 +30,7 @@ class CommentController extends BaseController
 				$author = $this->session->get('user');
 				$data['author_id'] = $author['id'];
 				$data['content'] = $this->request->getPost('content','string');
-				$data['target'] = $this->request->getPost('target','int');
+				$data['target_id'] = $this->request->getPost('target','int');
 				$data['type'] = $this->request->getPost('type','int');
 				
 				$return = $this->operation->save($data);

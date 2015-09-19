@@ -1,8 +1,8 @@
 <div class="box tile">
 	<img src="/images/icons/svg/loop.svg" alt="user-headimage"
 		class="tile-image">
-	<h6 class="">hongker</h6>
-	<a class="btn btn-primary btn-large btn-block" href="/user/info/edit"><span class="fui-new"></span> 修改信息</a>
+	<h6 class=""><?php echo $this->session->get('user')['username']?></h6>
+	<a class="btn btn-primary btn-large btn-block" href="/user/home/info"><span class="fui-new"></span> 修改信息</a>
 </div>
 <div class="user-sidebar">
 	<ul>

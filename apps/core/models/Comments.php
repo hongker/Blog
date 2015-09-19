@@ -18,7 +18,7 @@ class Comments extends BaseModel {
          ));
 		
 		//关联articles表
-		$this->belongsTo("target", "Blog\Models\Articles", "id", array(
+		$this->belongsTo("target_id", "Blog\Models\Articles", "id", array(
 				'alias' => 'Article'
 		));
 		
@@ -35,7 +35,7 @@ class Comments extends BaseModel {
 	public function validation() {
 		$validates = array();
 		$validates[] = $this->setPresenceOf('author_id', 1203);
-		$validates[] = $this->setPresenceOf('target', 1204);
+		$validates[] = $this->setPresenceOf('target_id', 1204);
 		$validates[] = $this->setPresenceOf('content', 1205);
 	
 		if($this->validateAll($validates)==false) {

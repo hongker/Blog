@@ -40,7 +40,7 @@ class CommentOperation extends BaseOperation implements Operation {
 			$return['errNo'] = 1001;
 			return $return;
 		}
-		if(empty($data['target'])) {
+		if(empty($data['target_id'])) {
 			$return['errNo'] = 1204;
 			return $return;
 		}
