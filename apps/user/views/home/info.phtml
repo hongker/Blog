@@ -11,27 +11,111 @@
 			</ol>
 			<div class="box">
 				<div class="row">
-					<div class="col-sm-4">
+					<div class="col-sm-3">
 						<img alt="" class="" src="/images/common_user.png">
 					</div>
-					<div class="col-sm-8">
-						<div class="form-horizontal">
-							<div class="form-group">
-								<label for="inputEmail3" class="col-sm-2 control-label">用户名：</label>
-								<div class="col-sm-10">
-									<p class="form-control-static">hongker</p>
+					<div class="col-sm-9">
+						<div class="row no-margin">
+							<div class="col-sm-6">
+								<div class="header text-danger">
+									<i class="fa fa-unlock-alt"></i> 用户信息
 								</div>
+								<p>用户基本信息，不可修改。</p>
 							</div>
-							<div class="form-group">
-								<label for="inputEmail3" class="col-sm-2 control-label">邮箱：</label>
-								<div class="col-sm-10">
-									<p class="form-control-static">xiaok2013@live.com</p>
+							<div class="col-sm-6">
+								<div class="form-group">
+									<label for="username">用户名：</label>
+									<p class="form-control-static indent noun"><?php echo $userinfo->username?></p>
+								</div>
+								<div class="form-group">
+									<label for="email">邮箱：</label>
+									<p class="form-control-static indent noun"><?php echo $userinfo->email?></p>
+								</div>
+
+							</div>
+						</div>
+						<hr>
+						<div class="row no-margin">
+							<div class="col-sm-6">
+								<div class="header text-danger">
+									<i class="fa fa-user"></i> 个人资料
+								</div>
+								<p>用户可以自定义其他的个人资料信息。</p>
+							</div>
+							<div class="col-sm-6">
+								<div class="form-group">
+									<label for="age">年龄：</label> <input type="text"
+										class="form-control" id="age"
+										value="<?php echo $userinfo->age?>" placeholder="年龄">
+								</div>
+								<div class="form-group">
+									<label for="sex">性别：</label> 
+									<label class="radio">
+										<input type="radio" name="sex" value="M" 
+										data-toggle="radio" class="custom-radio" <?php if($userinfo->sex=='M') echo 'checked'?>>
+										男
+									</label>
+									<label class="radio" >
+										<input type="radio" name="sex" value="F" 
+										data-toggle="radio" class="custom-radio" <?php if($userinfo->sex=='F') echo 'checked'?>>
+										女
+									</label>
+									<label class="radio" >
+										<input type="radio" name="sex" value="N" 
+										data-toggle="radio" class="custom-radio" <?php if($userinfo->sex=='N') echo 'checked'?>>
+										保密
+									</label>
+									
+								</div>
+								<div class="form-group">
+									<label for="email">地址：</label>
+									<p class="form-control-static indent noun"><?php echo $userinfo->getAddress()->name?></p>
+								</div>
+								<hr>
+								<div class="right">
+									<button class="btn btn-info" onclick="editInfo()">
+										<i class="fa fa-save"></i> 保 存
+									</button>
 								</div>
 							</div>
 						</div>
+
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
+<script>
+$(':radio').radiocheck();
+function editInfo() {
+	var age = $("#age");
+	if(!age.val()) {
+		alertify.error("请填入您的年龄");
+		age.focus();
+		return;
+	}
+
+	var sex = $("input:radio[name='sex']:checked");
+	if(!sex.val()) {
+		alertify.error("请选择性别");
+		return;
+	}
+	$.ajax({
+        type: "POST",
+        url: "/user/home/edit",
+        data: {age:age.val(),sex:sex.val()},
+        dataType:'json',
+        success: function(data){
+            console.log(data);
+            if(data.errNo==0) {
+            	alertify.success('个人资料修改成功');
+            	location.href='/user/home';
+            }else {
+            	alertify.error(data.errMsg);
+            }
+        	
+        },
+    });
+}
+</script>

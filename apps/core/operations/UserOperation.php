@@ -63,14 +63,21 @@ class UserOperation extends BaseOperation implements Operation {
 	 */
 	public function update($id,array $array) {
 		$user = $this->get($id);
-		foreach ($array as $key=>$value) {
-			$user->$key = $value;
+		if($user) {
+			foreach ($array as $key=>$value) {
+				$user->$key = $value;
+			}
+			
+			if($user->update()==true) {
+				$return['errNo'] = 0;
+			}else {
+				$return['errNo'] = 1013;
+			}
+		}else {
+			$return['errNo'] = 1011;
 		}
 		
-		if($user->update()==true) {
-			return true;
-		}
-		return false;
+		return $return;
 	}
 	
 	/**

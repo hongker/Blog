@@ -794,3 +794,9 @@ a:hover {
 	margin-left:10px;
 	color: #676767;
 }
+.mbl, .mvl, .mal {
+	margin-bottom:0px;
+}
+.no-margin .form-group{
+	margin-bottom: 5px;
+}

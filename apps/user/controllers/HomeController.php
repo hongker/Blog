@@ -9,18 +9,20 @@ use Blog\Operations\UserOperation;
  */
 class HomeController extends BaseController
 {
+	protected $userOperation;
+	protected $articleOperation;
 	public function initialize()
 	{
 		\Phalcon\Tag::setTitle('个人中心');
 		parent::initialize();
-		$userOperation = new UserOperation($this->di);
-		$this->view->setVar('userinfo', $userOperation->get($this->user['id']));
+		$this->userOperation = new UserOperation($this->di);
+		$this->articleOperation = new ArticleOperation($this->di);
+		$this->view->setVar('userinfo', $this->userOperation->get($this->user['id']));
 		
 	}
 
 	public function indexAction(){
-		$articleOperation = new ArticleOperation($this->di);
-		$systemArticles = $articleOperation->findAll(array(
+		$systemArticles = $this->articleOperation->findAll(array(
 			"conditions"=>"is_delete=0 and class=2",
 			"order"=>"created_at desc",
 			"limit"=>5
@@ -40,7 +42,22 @@ class HomeController extends BaseController
 	 * 修改个人信息
 	 */
 	public function editAction() {
-		
+		if($this->isPost()) {
+			if(!$this->checkIsLogin()) {
+				$return['errNo'] = 1010;
+			}else {
+				$userinfo = array();
+				$id = $this->user['id'];
+				$userinfo['age'] = $this->getPost('age','int');
+				$userinfo['sex'] = $this->getPost('sex','string');
+				
+				$return = $this->userOperation->update($id, $userinfo);
+			}
+		}else {
+			$return['errNo'] = 1002;
+		}
+		$return['errMsg'] = $this->getErrorMessage($return['errNo']);
+		$this->json_return($return);
 	}
 	
 	
