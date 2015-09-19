@@ -8,7 +8,9 @@ use blog;
  * type 用户类型(1:普通用户,2:管理员)
  * password 密码
  * age 年龄
+ * sex 性别(M:男,F:女)
  * picture 头像
+ * address_id 地址
  * is_delete 是否删除(1:是，0：否)
  * created_at 创建时间
  * updated_at 更改时间
@@ -21,7 +23,9 @@ create table users(
 	type tinyint not null default 1,
 	password char(60) not null,
 	age tinyint not null default 0,
+	sex char(1) not null default 'M',
 	picture varchar(100) not null,
+	address_id int not null default 1,
 	is_delete tinyint not null default 0,
 	created_at timestamp not null default current_timestamp,
 	updated_at timestamp not null default '0000-00-00 00:00:00'
@@ -236,6 +240,27 @@ create table tags(
 	target_id int not null,
 	content varchar(20) not null,
 	type tinyint not null default 1,
+	is_delete tinyint not null default 0,
+	created_at timestamp not null default current_timestamp,
+	updated_at timestamp not null default '0000-00-00 00:00:00'
+)engine=myisam default charset=utf8;
+
+/**
+ * address 地址表
+ * id 主键
+ * title 名称
+ * level 等级(0:国,1:省,2:市,3:县(区))
+ * parent_id 父级id
+ * is_delete 是否删除
+ * created_at 创建时间
+ * updated_at 更改时间
+ */
+drop table if exists address;
+create table address(
+	id int not null primary key auto_increment,
+	title varchar(120) not null default '',
+	parent_id smallint(5) unsigned not null default 0,
+	level tinyint(1) not null default 2,
 	is_delete tinyint not null default 0,
 	created_at timestamp not null default current_timestamp,
 	updated_at timestamp not null default '0000-00-00 00:00:00'

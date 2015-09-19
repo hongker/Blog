@@ -1,6 +1,5 @@
 <?php
 namespace Blog\Operations;
-use Blog\Models\Scores;
 use Blog\Models\Tags;
 /**
  * 标签操作类
