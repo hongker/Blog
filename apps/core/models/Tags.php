@@ -23,6 +23,22 @@ class Tags extends BaseModel {
 	}
 	
 	/**
+	 * 验证字段是否合法
+	 * @return boolean
+	 */
+	public function validation() {
+		$validates = array();
+		$validates[] = $this->setPresenceOf('author_id', 1901);
+		$validates[] = $this->setPresenceOf('target_id', 1902);
+		$validates[] = $this->setPresenceOf('content', 1903);
+	
+		if($this->validateAll($validates)==false) {
+			return false;
+		}
+	
+	}
+	
+	/**
 	 * 获取标签目标信息
 	 * @return unknown
 	 */
