@@ -21,21 +21,32 @@ class Users extends BaseModel {
          ));
 		
 		//关联地址表
-		$this->hasMany("id", "Blog\Models\Articles", "author_id", array(
-				'alias' => 'Articles'
+		$this->belongsTo("id", "Blog\Models\Address", "address_id", array(
+				'alias' => 'Address'
 		));
 		
 		$this->skipAttributesOnUpdate(array('email','username'));
 	}
 	
+	/**
+	 * 添加用户信息
+	 * @see \Blog\Models\BaseModel::beforeCreate()
+	 */
 	public function beforeCreate() {
 		parent::beforeCreate();
+		$this->age = 0;
+		$this->sex = 'N'; //默认保密
 		$this->picture = '/images/common_user.png';
+		$this->address_id = 1;
 	}
 	
+	/**
+	 * 修改用户信息
+	 * @see \Blog\Models\BaseModel::beforeUpdate()
+	 */
 	public function beforeUpdate() {
 		parent::beforeUpdate();
-		$this->age = 0;
+		
 	}
 	
 	/**

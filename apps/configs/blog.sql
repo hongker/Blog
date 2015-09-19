@@ -8,7 +8,7 @@ use blog;
  * type 用户类型(1:普通用户,2:管理员)
  * password 密码
  * age 年龄
- * sex 性别(M:男,F:女)
+ * sex 性别(M:男,F:女,N:保密)
  * picture 头像
  * address_id 地址
  * is_delete 是否删除(1:是，0：否)
@@ -23,7 +23,7 @@ create table users(
 	type tinyint not null default 1,
 	password char(60) not null,
 	age tinyint not null default 0,
-	sex char(1) not null default 'M',
+	sex char(1) not null default 'N',
 	picture varchar(100) not null,
 	address_id int not null default 1,
 	is_delete tinyint not null default 0,
