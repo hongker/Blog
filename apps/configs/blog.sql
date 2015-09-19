@@ -218,6 +218,28 @@ create table scores(
 	updated_at timestamp not null default '0000-00-00 00:00:00'
 )engine=myisam default charset=utf8;
 
+/**
+ * tags 标签表
+ * id 主键
+ * author_id 标签者
+ * target_id 标签对象
+ * content 标签内容
+ * type 类型(1:文章，2：用户)
+ * is_delete 是否删除
+ * created_at 创建时间
+ * updated_at 更改时间
+ */
+drop table if exists tags;
+create table tags(
+	id int not null primary key auto_increment,
+	author_id int not null,
+	target_id int not null,
+	content varchar(20) not null,
+	type tinyint not null default 1,
+	is_delete tinyint not null default 0,
+	created_at timestamp not null default current_timestamp,
+	updated_at timestamp not null default '0000-00-00 00:00:00'
+)engine=myisam default charset=utf8;
 
 /**
  * tables 表模板
