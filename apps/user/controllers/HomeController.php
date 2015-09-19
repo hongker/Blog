@@ -1,6 +1,7 @@
 <?php
 namespace Blog\User\Controllers;
 use Blog\Operations\ArticleOperation;
+use Blog\Operations\UserOperation;
 /**
  * 个人中心首页控制器
  * @author hongker
@@ -12,6 +13,8 @@ class HomeController extends BaseController
 	{
 		\Phalcon\Tag::setTitle('个人中心');
 		parent::initialize();
+		$userOperation = new UserOperation($this->di);
+		$this->view->setVar('userinfo', $userOperation->get($this->user['id']));
 		
 	}
 

@@ -13,19 +13,19 @@
 			</div>
 			<div class="row">
 				<div class="col-sm-4">
-					<span>用户名:<span>hongker</span></span>
+					<span>用户名:<span class="noun"><?php echo $userinfo->username?></span></span>
 				</div>
 				<div class="col-sm-4">
-					<span>邮箱:<span>774601526@qq.com</span></span>
+					<span>邮箱:<span class="noun "><?php echo $userinfo->email?></span></span>
 				</div>
 				<div class="col-sm-4">
-					<span>地址:<span>中国四川省成都市</span></span>
+					<span>地址:<span class="noun "><?php echo $userinfo->getAddress()->name?></span></span>
 				</div>
 				<div class="col-sm-4">
-					<span>年龄:<span>20</span></span>
+					<span>年龄:<span class="noun"><?php echo $userinfo->age?></span></span>
 				</div>
 				<div class="col-sm-4">
-					<span>性别:<span>男</span></span>
+					<span>性别:<span class="noun"><?php echo $userinfo->getSex()?></span></span>
 				</div>
 			</div>
 			

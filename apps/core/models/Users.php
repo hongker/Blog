@@ -21,7 +21,7 @@ class Users extends BaseModel {
          ));
 		
 		//关联地址表
-		$this->belongsTo("id", "Blog\Models\Address", "address_id", array(
+		$this->belongsTo("address_id", "Blog\Models\Address", "id", array(
 				'alias' => 'Address'
 		));
 		
@@ -46,6 +46,16 @@ class Users extends BaseModel {
 	 */
 	public function beforeUpdate() {
 		parent::beforeUpdate();
+	}
+	
+	public function getSex() {
+		if($this->sex=='M') {
+			return '男';
+		}elseif($this->sex=='F') {
+			return '女';
+		}if($this->sex=='N') {
+			return '保密';
+		}
 		
 	}
 	
