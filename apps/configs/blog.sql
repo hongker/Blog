@@ -264,6 +264,29 @@ create table address(
 )engine=myisam default charset=utf8;
 
 /**
+ * configs 系统配置表(保存系统配置信息)
+ * id 主键
+ * name 配置名称
+ * ckey 配置项
+ * cvalue 配置值
+ * description 配置说明
+ * is_delete 是否删除
+ * created_at 创建时间
+ * updated_at 更改时间
+ */
+drop table if exists configs;
+create table configs(
+	id int not null primary key auto_increment,
+	name varchar(20) not null,
+	ckey varchar(20) not null,
+	cvalue varchar(20) not null,
+	description varchar(50) not null,
+	is_delete tinyint not null default 0,
+	created_at timestamp not null default current_timestamp,
+	updated_at timestamp not null default '0000-00-00 00:00:00'
+)engine=myisam default charset=utf8;
+
+/**
  * tables 表模板
  * id 主键
  * is_delete 是否删除
