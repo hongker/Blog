@@ -61,7 +61,17 @@ class UserController extends BaseController
 	 * 添加用户
 	 */
 	public function addAction() {
-		
+		if($this->isPost()) {
+			$user = array();
+			$user['username'] = $this->getPost('username','string');
+			$user['password'] = $this->getPost('password','string');
+			$user['email'] = $this->getPost('email','email');
+			$user['type'] = $this->getPost('type','string');
+			
+			$return = $this->operation->register($user);
+			$return['errMsg'] = $this->getErrorMessage($return['errNo']);
+			$this->json_return($return);
+		}
 	}
 	
 	/**

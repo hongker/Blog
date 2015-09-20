@@ -47,6 +47,9 @@ html, body {
   color:#1ca8dd;
   font-size:16px;
 }
+.nav-second-level a {
+	color: #2F2F2F;
+}
 
 
 .nav-sidebar .arrow {
