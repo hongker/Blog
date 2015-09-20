@@ -36,7 +36,7 @@ class ConfigOperation extends BaseOperation implements Operation {
 			return $return;
 		}
 		
-		if(isset($data['cvalue'])) {
+		if(empty($data['cvalue'])) {
 			$return['errNo'] = 2103;
 			return $return;
 		}

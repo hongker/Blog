@@ -39,7 +39,7 @@
 					
 					<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-10">
-							<button class="btn btn-info" onclick="addArticle()">
+							<button class="btn btn-info" onclick="addConfig()">
 								提 交 <i class="fa fa-upload"></i>
 							</button>
 						</div>
@@ -48,53 +48,50 @@
 </div>
 <script>
 $("select").select2({dropdownCssClass: 'dropdown-inverse'});
-function addArticle() {
-	var title = $("#title");
-	if(!title.val()) {
-		alertify.error("请填入文章标题");
-		title.focus();
+function addConfig() {
+	var name = $("#name");
+	if(!name.val()) {
+		alertify.error("请填入配置名称");
+		name.focus();
 		return;
 	}
 
-	var digest = $("#digest");
-	if(!digest.val()) {
-		alertify.error("请填入文章摘要");
-		digest.focus();
+	var ckey = $("#ckey");
+	if(!ckey.val()) {
+		alertify.error("请填入配置键值");
+		ckey.focus();
 		return;
 	}
-
-	var type = $("#type");
-	if(type.val()==0) {
-		alertify.error("请选择文章类型");
-		type.focus();
-		return;
-	}
-
-	var picture = $("#picture");
-	if(picture.val()==0) {
-		alertify.error("请选择封面图片");
-		return;
-	}
-
-	var content = um.getContent();
-
-	var className = $("#class");
-	if(className.val()==0) {
+	
+	var cvalue = $("#cvalue");
+	if(cvalue.val()==0) {
 		alertify.error("请选择文章模块");
-		className.focus();
+		cvalue.focus();
+		return;
+	}
+
+	var description = $("#description");
+	if(description.val()==0) {
+		alertify.error("请填入配置说明");
+		description.focus();
 		return;
 	}
 	
 	$.ajax({
         type: "POST",
-        url: "/user/article/add",
-        data: {title:title.val(),digest:digest.val(),type:type.val(),picture:picture.val(),content:content,className:className.val()},
+        url: "/admin/config/add",
+        data: {
+            name : name.val(),
+            ckey : ckey.val(),
+            cvalue : cvalue.val(),
+            description : description.val(),
+        },
         dataType:'json',
         success: function(data){
             console.log(data);
             if(data.errNo==0) {
-            	alertify.success('文章发布成功');
-            	location.href='/user/article';
+            	alertify.success('添加配置成功');
+            	location.href='/admin/config';
             }else {
             	alertify.error(data.errMsg);
             }

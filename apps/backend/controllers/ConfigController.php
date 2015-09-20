@@ -36,7 +36,18 @@ class ConfigController extends BaseController
 	 * 添加配置
 	 */
 	public function addAction() {
+		if($this->isPost()) {
+			
+			$config = array();
+			$config['name'] = $this->getPost('name','string');
+			$config['ckey'] = $this->getPost('ckey','string');
+			$config['cvalue'] = $this->getPost('cvalue','string');
+			$config['description'] = $this->getPost('description','string');
 		
+			$return = $this->operation->save($config);
+			$return['errMsg'] = $this->getErrorMessage($return['errNo']);
+			$this->json_return($return);
+		}
 	}
 	
 	/**
