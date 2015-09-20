@@ -278,6 +278,7 @@ blockquote.blockquote-danger {
 		width:590px;
 		height:300px;
 	}
+	
 }
   .numbers {
 	margin:10px 0px;
@@ -811,21 +812,17 @@ a:hover {
 .no-margin .form-group{
 	margin-bottom: 5px;
 }
-
 .headimg {
 	width:100px;
 	height:100px;
 	margin-top:20px;
 	margin-bottom:20px;
 }
-#uploader .placeholder {
-    min-height: 350px;
-    padding-top: 178px;
-    text-align: center;
-    background: url(../images/image.png) center 93px no-repeat;
-    color: #cccccc;
-    font-size: 18px;
-    position: relative;
+
+@media (max-width: 768px) {
+	.uploader-list img {
+		width:100%;
+	}
 }
 .uploader-list {
 	margin-bottom:10px;
