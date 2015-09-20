@@ -267,8 +267,8 @@ create table address(
  * configs 系统配置表(保存系统配置信息)
  * id 主键
  * name 配置名称
- * ckey 配置项
- * cvalue 配置值
+ * ckey 配置键名
+ * cvalue 配置键值
  * description 配置说明
  * is_delete 是否删除
  * created_at 创建时间
