@@ -1,21 +1,32 @@
 <?php
 namespace Blog\Backend\Controllers;
+use Blog\Operations\UserOperation;
 /**
  * 用户管理控制器
  * @author hongker
  * @version 1.0
  */
-class IndexController extends BaseController
+class UserController extends BaseController
 {
 	public function initialize()
 	{
 		\Phalcon\Tag::setTitle('用户管理');
 		parent::initialize();
+		$this->operation = new UserOperation($this->di);
 	}
 
-	public function indexAction()
-	{
-		echo "<h1>admin!</h1>";
+	public function indexAction() {
+		$currentPage = $this->getQuery('page','int')?$this->getQuery('page','int'):1;
+		
+		
+		$config = $this->operation->findAll(array(
+				"conditions"=>"is_delete=0 and type=1",
+				"order"=>"created_at desc",
+		));
+		
+		$page = $this->getPaginate($config,$currentPage);
+		
+		$this->view->setVar('page',$page);
 	}
 	
 	/**

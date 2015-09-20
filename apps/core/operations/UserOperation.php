@@ -56,6 +56,14 @@ class UserOperation extends BaseOperation implements Operation {
 	}
 	
 	/**
+	 * 根据条件查找用户信息
+	 * @param string $condition
+	 */
+	public function findAll(Array $condition = null) {
+		return Users::find($condition);
+	}
+	
+	/**
 	 * 根据用户id更改用户信息
 	 * @param unknown $id
 	 * @param array $array

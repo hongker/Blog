@@ -8,8 +8,8 @@
 				<span class="fui-user"></span> 用户管理<i class="fa arrow"></i>
 			</a>
 			<ul class="nav nav-second-level collapse" <?php if($controller!='user') echo 'aria-expanded="false" style="height: 0px;"'?>>
-				<li>
-					<a href="#"><i class="fa fa-chain fa-fw"></i> 用户列表</a>
+				<li class="<?php if($controller=='user'&&$action=='index') echo 'active'?>">
+					<a href="/admin/user"><i class="fa fa-chain fa-fw"></i> 用户列表</a>
 				</li>
 				<li>
 					<a href="#"><i class="fa fa-chain fa-fw"></i> 管理员列表</a>
