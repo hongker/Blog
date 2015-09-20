@@ -1,0 +1,145 @@
+<div class="page-header">
+	<i class="fui-document"></i>系统配置 > 配置列表
+</div>
+<div>
+	<table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>序号</th>
+          <th>配置名称</th>
+          <th>配置键名</th>
+          <th>配置键值</th>
+          <th>说明</th>
+          <th>创建时间</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody>
+      	<?php if($page->total_items==0):?>
+      	<tr class="none"><td colspan="7">暂无数据</td></tr>
+      	<?php else:?>
+      	<?php foreach($page->items as $key=>$config):?>
+        <tr>
+          <th scope="row"><?php echo $key+1?></th>
+          <td><?php echo $config->name?></td>
+          <td><?php echo $config->ckey?></td>
+          <td><?php echo $config->cvalue?></td>
+          <td><?php echo $config->description?></td>
+          <td><?php echo $config->created_at?></td>
+          <td data-id="<?php echo $config->id?>">
+		      <a href="/admin/config/edit/<?php echo $config->id?>" class="btn btn-success btn-xs"><span class="fui-new"></span> 编辑</a>
+		      <button id="del" class="btn btn-danger btn-xs"><span class="fui-trash"></span> 删除</button>
+		  </td>
+        </tr>
+        <?php endforeach;?>
+        <?php endif;?>
+      </tbody>
+    </table>
+    <?php $this->partial('public/page')?>
+</div>
+<script type="text/javascript">
+$('[id=del]').click(function() {
+	var id = $(this).parent().attr('data-id');
+
+	var closable = alertify.dialog('confirm').setting('closable');
+	//grab the dialog instance and set multiple settings at once.
+	alertify.dialog('confirm')
+	  .set({
+		'title':'删除配置',
+	    'labels':{ok:'确定', cancel:'取消'},
+	    'message': '删除后将不能恢复，确定要删除么？' ,
+	    'onok': function(){
+	    		del(id);
+		    },
+	    'oncancel': function(){ alertify.error('取消操作!');}
+	  }).show();
+});
+
+function del(id) {
+	$.ajax({
+        type: "POST",
+        url: "/admin/config/delete",
+        data: {id:id},
+        dataType:'json',
+        success: function(data){
+            if(data.errNo==0) {
+            	alertify.success('删除成功');
+            	location.reload();
+            }else {
+            	alertify.error(data.errMsg);
+            }
+        	
+        },
+    });
+}
+
+$('[id=reject]').click(function() {
+	var id = $(this).parent().attr('data-id');
+
+	var closable = alertify.dialog('confirm').setting('closable');
+	//grab the dialog instance and set multiple settings at once.
+	alertify.dialog('confirm')
+	  .set({
+		'title':'驳回审核',
+	    'labels':{ok:'确定', cancel:'取消'},
+	    'message': '驳回审核后前台将不显示该文章，确定要驳回么？' ,
+	    'onok': function(){
+	    	reject(id);
+		    },
+	    'oncancel': function(){ alertify.error('取消操作!');}
+	  }).show();
+});
+
+function reject(id) {
+	$.ajax({
+        type: "POST",
+        url: "/admin/article/reject",
+        data: {id:id},
+        dataType:'json',
+        success: function(data){
+            if(data.errNo==0) {
+            	alertify.success('驳回成功');
+            	location.reload();
+            }else {
+            	alertify.error(data.errMsg);
+            }
+        	
+        },
+    });
+}
+
+$('[id=check]').click(function() {
+	var id = $(this).parent().attr('data-id');
+
+	var closable = alertify.dialog('confirm').setting('closable');
+	//grab the dialog instance and set multiple settings at once.
+	alertify.dialog('confirm')
+	  .set({
+		'title':'通过审核',
+	    'labels':{ok:'确定', cancel:'取消'},
+	    'message': '通过审核后前台将显示该文章，确定要通过审核么？' ,
+	    'onok': function(){
+	    	check(id);
+		    },
+	    'oncancel': function(){ alertify.error('取消操作!');}
+	  }).show();
+});
+
+function check(id) {
+	$.ajax({
+        type: "POST",
+        url: "/admin/article/check",
+        data: {id:id},
+        dataType:'json',
+        success: function(data){
+            if(data.errNo==0) {
+            	alertify.success('通过审核成功');
+            	location.reload();
+            }else {
+            	alertify.error(data.errMsg);
+            }
+        	
+        },
+    });
+}
+</script>
