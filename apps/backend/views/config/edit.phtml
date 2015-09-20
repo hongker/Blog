@@ -1,5 +1,5 @@
 <div class="page-header">
-	<span class="fui-gear"></span> 系统配置 > 添加配置
+	<span class="fui-gear"></span> 系统配置 > 修改配置
 </div>
 <div>
 	<div class="form-horizontal">
@@ -7,14 +7,14 @@
 						<label for="name" class="col-sm-2 control-label">配置名称</label>
 						<div class="col-sm-2">
 							<input type="text" class="form-control" id="name"
-								placeholder="请填入配置名称">
+								placeholder="请填入配置名称" value="<?php echo $config->name?>">
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="ckey" class="col-sm-2 control-label">配置键名</label>
 						<div class="col-sm-2">
 							<input type="text" class="form-control" id="ckey"
-								placeholder="请填入配置键名">
+								placeholder="请填入配置键名" value="<?php echo $config->ckey?>">
 						</div>
 					</div>
 					<div class="form-group">
@@ -23,8 +23,8 @@
 							<select id="cvalue"
 								class="form-control select select-primary select-block mbl">
 								<option value="0">请选择配置键值</option>
-									<option value="1">启用</option>
-									<option value="2">停用</option>
+								<option value="1" <?php if($config->cvalue==1) echo 'selected'?>>启用</option>
+								<option value="2" <?php if($config->cvalue==2) echo 'selected'?>>停用</option>
 								</select>
 						</div>
 					</div>
@@ -32,15 +32,16 @@
 						<label for="description" class="col-sm-2 control-label">配置说明</label>
 						<div class="col-sm-8">
 							<textarea rows="4" class="form-control" id="description"
-								placeholder="请填入配置说明"></textarea>
+								placeholder="请填入配置说明"><?php echo $config->description?></textarea>
 						</div>
 					</div>
 					
 					
 					<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-10">
-							<button class="btn btn-info" onclick="addConfig()">
-								提 交 <i class="fa fa-upload"></i>
+							<input type="hidden" value="<?php echo $config->id?>" id="id">
+							<button class="btn btn-info" onclick="editConfig()">
+								保 存 <i class="fa fa-save"></i>
 							</button>
 						</div>
 					</div>
@@ -48,7 +49,7 @@
 </div>
 <script>
 $("select").select2({dropdownCssClass: 'dropdown-inverse'});
-function addConfig() {
+function editConfig() {
 	var name = $("#name");
 	if(!name.val()) {
 		alertify.error("请填入配置名称");
@@ -76,11 +77,14 @@ function addConfig() {
 		description.focus();
 		return;
 	}
+
+	var id = $("#id");
 	
 	$.ajax({
         type: "POST",
-        url: "/admin/config/add",
+        url: "/admin/config/edit",
         data: {
+        	id : id.val(),
             name : name.val(),
             ckey : ckey.val(),
             cvalue : cvalue.val(),
@@ -90,7 +94,7 @@ function addConfig() {
         success: function(data){
             console.log(data);
             if(data.errNo==0) {
-            	alertify.success('添加配置成功');
+            	alertify.success('修改配置成功');
             	location.href='/admin/config';
             }else {
             	alertify.error(data.errMsg);

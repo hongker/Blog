@@ -37,7 +37,6 @@ class ConfigController extends BaseController
 	 */
 	public function addAction() {
 		if($this->isPost()) {
-			
 			$config = array();
 			$config['name'] = $this->getPost('name','string');
 			$config['ckey'] = $this->getPost('ckey','string');
@@ -54,7 +53,29 @@ class ConfigController extends BaseController
 	 * 修改配置
 	 */
 	public function editAction() {
-	
+		if($this->isPost()) {
+			$config = array();
+			$id = $this->getPost('id','int');
+			$config['name'] = $this->getPost('name','string');
+			$config['ckey'] = $this->getPost('ckey','string');
+			$config['cvalue'] = $this->getPost('cvalue','string');
+			$config['description'] = $this->getPost('description','string');
+		
+			$return = $this->operation->update($id,$config);
+			$return['errMsg'] = $this->getErrorMessage($return['errNo']);
+			$this->json_return($return);
+		}else {
+			$id = $this->dispatcher->getParam(0);
+			
+			$config = $this->operation->get($id);
+			
+			if($config) {
+				$this->view->setVar('config',$config);
+			}else {
+				$this->show404();
+			}
+		}
+		
 	}
 	
 	/**
