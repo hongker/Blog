@@ -69,7 +69,15 @@ class HomeController extends BaseController
 			$id = $this->user['id'];
 			$userinfo['picture'] = $this->getPost('picture','string');
 			$return = $this->userOperation->update($id, $userinfo);
-			
+			if($return['errNo']==0) {
+				//修改头像后更新session
+				$userSession = array(
+						'id'=>$this->user['id'],
+						'username'=>$this->user['username'],
+						'picture'=>$userinfo['picture'],
+				);
+				$this->store('user',$userSession);
+			}
 			$return['errMsg'] = $this->getErrorMessage($return['errNo']);
 			$this->json_return($return);
 		}

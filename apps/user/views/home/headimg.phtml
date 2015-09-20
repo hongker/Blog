@@ -25,9 +25,6 @@
 									<button style="display: none" id="submitBtn" class="btn btn-primary" onclick="changeHeadimg()">
 										保 存 <i class="fa fa-upload"></i>
 									</button>
-									<!-- 
-									<button id="ctlBtn" class="btn btn-default">开始上传</button>
-									 -->
 								</div>
 								<!--用来存放文件信息-->
 								
@@ -64,7 +61,7 @@ function changeHeadimg() {
             console.log(data);
             if(data.errNo==0) {
             	alertify.success('头像修改成功');
-            	//location.href='/user/home';
+            	location.href='/user/home';
             }else {
             	alertify.error(data.errMsg);
             }
