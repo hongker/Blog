@@ -52,7 +52,9 @@ class BaseOperation {
 	 */
 	public function log($logString,$level = 'info') {
 		$logger = new FileLogger($this->logDir.$this->logFile);
-		//$logger->setFormatter(new LineFormatter("%date%:%message%"));
+		$lineFormatter = new LineFormatter();
+		$lineFormatter->setDateFormat('Y-m-d H:i:s');
+		$logger->setFormatter($lineFormatter);
 		$logger->log ( $logString, $this->log_level[$level]);
 	}
 	
