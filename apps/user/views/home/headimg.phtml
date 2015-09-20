@@ -1,28 +1,79 @@
-/**
- * 退出
- */
-$("#logout").click(function() {
-	$.post("/login/logout", function(data) {
-		var result = $.parseJSON(data);
-		if (result.errNo == 0) {
-			alertify.success('退出成功');
-			//跳转
-			location.href = '/';
-		} else {
-			alertify.error(result.errMsg);
-		}
-	});
-});
-$('.form-group').on('focus', '.form-control', function() {
-	$(this).closest('.input-group, .form-group').addClass('focus');
-}).on('blur', '.form-control', function() {
-	$(this).closest('.input-group, .form-group').removeClass('focus');
-});
+<link href="/css/cropper.min.css" rel="stylesheet">
+<script src="/js/cropper.min.js"></script>
+<div class="container">
+	<div class="row">
+		<div class="col-sm-3">
+		<?php $this->view->partial('public/sidebar')?>
+	</div>
+		<div class="col-sm-9">
+			<ol class="breadcrumb">
+				<li><a class="text-info" href="/user/article"><span
+						class="fui-document"></span> 个人信息管理</a></li>
+				<li class="active">修改头像</li>
+			</ol>
+			<div class="box">
 
-/**
- * 实例化上传按钮
- */
-function uploadImg() {
+				<div class="form-horizontal">
+
+					<div class="form-group">
+						<div class="col-sm-8">
+							<div id="uploader" class="wu-example">
+								<div id="thelist" class="uploader-list"></div>
+								<div class="btns">
+								
+									<div id="picker">选择图片</div>
+									<button style="display: none" id="submitBtn" class="btn btn-primary" onclick="changeHeadimg()">
+										保 存 <i class="fa fa-upload"></i>
+									</button>
+									<!-- 
+									<button id="ctlBtn" class="btn btn-default">开始上传</button>
+									 -->
+								</div>
+								<!--用来存放文件信息-->
+								
+								<input type="hidden" id="picture">
+							</div>
+
+						</div>
+					</div>
+					
+
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+</div>
+<script>
+$(function() {
+	uploadHeadimg();
+});
+function changeHeadimg() {
+	var picture = $("#picture");
+	if(!picture.val()) {
+		alertify.error("请先选择图片");
+		return;
+	}
+	$.ajax({
+        type: "POST",
+        url: "/user/home/headimg",
+        data: {picture:picture.val()},
+        dataType:'json',
+        success: function(data){
+            console.log(data);
+            if(data.errNo==0) {
+            	alertify.success('头像修改成功');
+            	//location.href='/user/home';
+            }else {
+            	alertify.error(data.errMsg);
+            }
+        	
+        },
+    });
+}
+
+function uploadHeadimg() {
 	var $ = jQuery, $list = $('#thelist'), $btn = $('#ctlBtn'), state = 'pending', ratio = window.devicePixelRatio || 1,
 
 	// 缩略图大小
@@ -42,6 +93,29 @@ function uploadImg() {
 
 		// 文件接收服务端。
 		server : '/upload/img',
+		compress : {
+			 width: 400,
+			    height: 400,
+
+			    // 图片质量，只有type为`image/jpeg`的时候才有效。
+			    quality: 90,
+
+			    // 是否允许放大，如果想要生成小图的时候不失真，此选项应该设置为false.
+			    allowMagnify: false,
+
+			    // 是否允许裁剪。
+			    crop: false,
+
+			    // 是否保留头部meta信息。
+			    preserveHeaders: true,
+
+			    // 如果发现压缩后文件大小比原来还大，则使用原来图片
+			    // 此属性可能会影响图片自动纠正功能
+			    noCompressIfLarger: false,
+
+			    // 单位字节，如果图片大小小于此值，不会采用压缩。
+			    compressSize: 0
+		},
 
 		// 选择文件的按钮。可选。
 		// 内部根据当前运行是创建，可能是input元素，也可能是flash.
@@ -70,6 +144,7 @@ function uploadImg() {
 							}
 
 							$img.attr('src', src);
+							$("#submitBtn").show();
 						}, thumbnailWidth, thumbnailHeight);
 
 					});
@@ -139,40 +214,4 @@ function uploadImg() {
 		}
 	});
 }
-
-/**
- * 添加收藏
- * @param target_id
- * @param type
- */
-function addCollect(target_id,type) {
-	if(!target_id) {
-		alertify.error('收藏目标不能为空');
-		return;
-	}
-	
-	if(!type) {
-		alertify.error('收藏类型不能为空');
-		return;
-	}
-	
-	$.ajax({
-        type: "POST",
-        url: "/collect/add",
-        data: {target_id:target_id,type:type},
-        dataType:'json',
-        success: function(data){
-            if(data.errNo==0) {
-            	alertify.success('收藏成功');
-            	
-            	/**
-            	 * @todo 修改为“取消收藏”
-            	 */
-            }else {
-            	alertify.error(data.errMsg);
-            }
-        	
-        },
-    });
-}
-
+</script>

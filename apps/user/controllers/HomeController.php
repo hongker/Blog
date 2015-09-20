@@ -60,6 +60,21 @@ class HomeController extends BaseController
 		$this->json_return($return);
 	}
 	
+	/**
+	 * 头像设置
+	 */
+	public function headimgAction() {
+		if($this->isPost()) {
+			$userinfo = array();
+			$id = $this->user['id'];
+			$userinfo['picture'] = $this->getPost('picture','string');
+			$return = $this->userOperation->update($id, $userinfo);
+			
+			$return['errMsg'] = $this->getErrorMessage($return['errNo']);
+			$this->json_return($return);
+		}
+	}
+	
 	
 
 }

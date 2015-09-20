@@ -75,7 +75,6 @@ class UserOperation extends BaseOperation implements Operation {
 			foreach ($array as $key=>$value) {
 				$user->$key = $value;
 			}
-			
 			if($user->update()==true) {
 				$return['errNo'] = 0;
 			}else {
@@ -128,6 +127,7 @@ class UserOperation extends BaseOperation implements Operation {
 					$userSession = array(
 						'id'=>$user->id,
 						'username'=>$user->username,
+						'picture'=>$user->picture,
 					);
 					$this->store('user',$userSession);
 					$return['errNo'] = 0;
