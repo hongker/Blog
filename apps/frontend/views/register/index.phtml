@@ -6,21 +6,24 @@
 				<div id="register-tip" class="text-danger"></div>
 				<div class="form-group has-feedback">
 					<input type="text" id="username"
-						placeholder="Please input your username" class="form-control" /> <span
+						placeholder="请填写您的用户名" class="form-control" /> <span
 						class="form-control-feedback fui-user"></span>
 				</div>
 				<div class="form-group has-feedback">
 					<input type="email" id="email"
-						placeholder="Please input your email" class="form-control" /> <span
+						placeholder="请填写您的邮箱" class="form-control" /> <span
 						class="form-control-feedback fui-mail"></span>
 				</div>
 				<div class="form-group has-feedback">
 					<input type="password" id="password"
-						placeholder="Please input your password" class="form-control" /> <span
+						placeholder="请填写您的密码" class="form-control" /> <span
 						class="form-control-feedback fui-lock"></span>
 				</div>
+				<input type="hidden" id="token" data-key="<?php echo $this->security->getTokenKey() ?>"
+        value="<?php echo $this->security->getToken() ?>"/>
 				<button id="register-btn" class="btn btn-info btn-lg btn-block"
-					type="submit">Sign up</button>
+					type="submit">注 册</button>
+				<a class="login-link text-info" href="/login">已经有帐号？直接登录!</a>
 			</form>
 		</div>
 	</div>
@@ -53,7 +56,16 @@ $(function() {
 			return false;
 		}
 
-		$.post("/register/addUser",{username:username,email:email,password:password},function(data){
+		$.post(
+			"/register/addUser",
+			{
+				username:username,
+				email:email,
+				password:password,
+				token_key:token_key,
+				token_value:token_value
+			},
+			function(data){
 		    var result = $.parseJSON(data);
 		    if(result.errNo==0) {
 				alert('注册成功');

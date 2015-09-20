@@ -24,9 +24,16 @@ class LoginController extends BaseController
 	public function checkAction() {
 		$return = array();
 		if($this->request->isPost()) {
-			$user['username'] = $this->request->getPost('username','string');
-			$user['password'] = $this->request->getPost('password','string');
-			$return = $this->operation->login($user);
+			$token_key = $this->getPost('token_key','string');
+			$token_value = $this->getPost('token_value','string');
+			if ($this->security->checkToken($token_key, $token_value)) {
+				$user['username'] = $this->getPost('username','string');
+				$user['password'] = $this->getPost('password','string');
+				$return = $this->operation->login($user);
+			}else {
+				$return['errNo'] = 1015;
+			}
+			
 		}else {
 			$return['errNo'] = 1002;
 		}

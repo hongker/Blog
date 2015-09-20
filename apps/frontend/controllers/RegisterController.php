@@ -28,12 +28,17 @@ class RegisterController extends BaseController
 	public function addUserAction() {
 		$return = array();
 		if($this->request->isPost()) {
-			$data['username'] = $this->request->getPost('username','string');
-			$data['email'] = $this->request->getPost('email','email');
-			$data['password'] = $this->request->getPost('password','string');
-			
-			$return = $this->operation->register($data);
-			
+			$token_key = $this->getPost('token_key','string');
+			$token_value = $this->getPost('token_value','string');
+			if ($this->security->checkToken($token_key, $token_value)) {
+				$data['username'] = $this->request->getPost('username','string');
+				$data['email'] = $this->request->getPost('email','email');
+				$data['password'] = $this->request->getPost('password','string');
+				
+				$return = $this->operation->register($data);
+			}else {
+				$return['errNo'] = 1015;
+			}
 		}else {
 			$return['errNo'] = 1002;
 		}

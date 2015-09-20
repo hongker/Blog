@@ -13,8 +13,11 @@
 						class="form-control" /> <span
 						class="form-control-feedback fui-lock"></span>
 				</div>
+				<input type="hidden" id="token" data-key="<?php echo $this->security->getTokenKey() ?>"
+        value="<?php echo $this->security->getToken() ?>"/>
 				<button id="login-btn" class="btn btn-primary btn-lg btn-block" type="submit">Sign in</button>
-				<a class="login-link" href="/forget">Lost your password?</a>
+				<a class="login-link" href="/forget">忘记密码?</a>
+				<a class="login-link text-info" href="/register">如果还没有注册，请点这里!</a>
 			</form>
 		</div>
 	</div>
@@ -38,8 +41,20 @@ $(function() {
 			loginBtn.html('Sign in');
 			return false;
 		}
+		var token = $("#token");
+		var token_key = token.attr('data-key');
+		
+		var token_value = token.val();
 
-		$.post("/login/check",{username:username,password:password},function(data){
+		$.post(
+			"/login/check",
+			{
+				username:username,
+				password:password,
+				token_key:token_key,
+				token_value:token_value
+			},
+			function(data){
 		    var result = $.parseJSON(data);
 		    if(result.errNo==0) {
 				alertify.success('登录成功');
