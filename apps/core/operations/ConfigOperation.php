@@ -6,7 +6,7 @@ use Blog\Models\Configs;
  * @author hongker
  * @version 1.0
  */
-class TagOperation extends BaseOperation implements Operation {
+class ConfigOperation extends BaseOperation implements Operation {
 	public function __construct($di) {
 		parent::__construct($di);
 		$this->setLogFile('config.log');

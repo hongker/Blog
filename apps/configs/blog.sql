@@ -280,11 +280,13 @@ create table configs(
 	name varchar(20) not null,
 	ckey varchar(20) not null,
 	cvalue varchar(20) not null,
-	description varchar(50) not null,
+	description varchar(255) not null,
 	is_delete tinyint not null default 0,
 	created_at timestamp not null default current_timestamp,
 	updated_at timestamp not null default '0000-00-00 00:00:00'
 )engine=myisam default charset=utf8;
+insert into configs(name,ckey,cvalue,description)
+values('用户注册','user_register',1,'用户注册配置项(0:未开通,1:已开通)');
 
 /**
  * tables 表模板

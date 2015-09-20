@@ -1,5 +1,6 @@
 <?php
 namespace Blog\Backend\Controllers;
+use Blog\Operations\ConfigOperation;
 /**
  * 系统配置控制器
  * @author hongker
@@ -11,14 +12,24 @@ class ConfigController extends BaseController
 	{
 		\Phalcon\Tag::setTitle('系统配置');
 		parent::initialize();
-		
+		$this->operation = new ConfigOperation($this->di);
 	}
 
 	/**
 	 * 配置列表
 	 */
 	public function indexAction() {
+		$currentPage = $this->getQuery('page','int')?$this->getQuery('page','int'):1;
 		
+		
+		$config = $this->operation->findAll(array(
+				"conditions"=>"is_delete=0",
+				"order"=>"created_at desc",
+		));
+		
+		$page = $this->getPaginate($config,$currentPage);
+		
+		$this->view->setVar('page',$page);
 	}
 	
 	/**
