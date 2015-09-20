@@ -15,6 +15,9 @@ class UserController extends BaseController
 		$this->operation = new UserOperation($this->di);
 	}
 
+	/**
+	 * 用户列表
+	 */
 	public function indexAction() {
 		$currentPage = $this->getQuery('page','int')?$this->getQuery('page','int'):1;
 		
@@ -27,6 +30,24 @@ class UserController extends BaseController
 		$page = $this->getPaginate($config,$currentPage);
 		
 		$this->view->setVar('page',$page);
+	}
+	
+	/**
+	 * 管理员列表
+	 */
+	public function adminAction() {
+		$currentPage = $this->getQuery('page','int')?$this->getQuery('page','int'):1;
+		
+		
+		$config = $this->operation->findAll(array(
+				"conditions"=>"is_delete=0 and type=2",
+				"order"=>"created_at desc",
+		));
+		
+		$page = $this->getPaginate($config,$currentPage);
+		
+		$this->view->setVar('page',$page);
+		$this->view->pick('user/index');
 	}
 	
 	/**
