@@ -15,7 +15,7 @@
 				</div>
 				<input type="hidden" id="token" data-key="<?php echo $this->security->getTokenKey() ?>"
         value="<?php echo $this->security->getToken() ?>"/>
-				<button id="login-btn" class="btn btn-primary btn-lg btn-block" type="submit">Sign in</button>
+				<button id="login-btn" class="btn btn-primary btn-lg btn-block" type="submit">登 录 <i id="loading" class="fa fa-spinner fa-pulse fa-fw margin-bottom"></i></button>
 				<a class="login-link" href="/forget">忘记密码?</a>
 				<a class="login-link text-info" href="/register">如果还没有注册，请点这里!</a>
 			</form>
@@ -24,26 +24,25 @@
 </div>
 <script>
 $(function() {
+	$("#loading").hide();
 	$("#loginForm").submit(function(e){
 		var loginBtn = $("#login-btn");
-		loginBtn.html('Sign in<i class="fa fa-spinner fa-pulse fa-fw margin-bottom"></i>');
 		var username = $("#username").val();
+		
 		if(!username) {
 			$("#login-tip").html('*请填写用户名');
 			$("#username").focus();
-			loginBtn.html('Sign in');
 			return false;
 		}
 		var password = $("#password").val();
 		if(!password) {
 			$("#login-tip").html('*请填写您的密码');
 			$("#password").focus();
-			loginBtn.html('Sign in');
 			return false;
 		}
+		$("#loading").show();
 		var token = $("#token");
 		var token_key = token.attr('data-key');
-		
 		var token_value = token.val();
 
 		$.post(
@@ -61,10 +60,10 @@ $(function() {
 				//跳转
 				location.href='/';
 			}else {
+				$("#loading").hide();
 				$("#login-tip").html(result.errMsg);
 			}
 		});
-		loginBtn.html('Sign in');
 		return false;
 		
 	});

@@ -22,7 +22,7 @@
 				<input type="hidden" id="token" data-key="<?php echo $this->security->getTokenKey() ?>"
         value="<?php echo $this->security->getToken() ?>"/>
 				<button id="register-btn" class="btn btn-info btn-lg btn-block"
-					type="submit">注 册</button>
+					type="submit">注 册 <i id="loading" class="fa fa-spinner fa-pulse fa-fw margin-bottom"></i></button>
 				<a class="login-link text-info" href="/login">已经有帐号？直接登录!</a>
 			</form>
 		</div>
@@ -30,31 +30,33 @@
 </div>
 <script>
 $(function() {
+	$("#loading").hide();
 	$("#registerForm").submit(function(e){
 		var registerBtn = $("#register-btn");
-		registerBtn.html('Sign up<i class="fa fa-spinner fa-pulse fa-fw margin-bottom"></i>');
 		var username = $("#username").val();
 		
 		if(!username) {
 			$("#register-tip").html('*请填写用户名');
 			$("#username").focus();
-			registerBtn.html('Sign up');
 			return false;
 		}
 		var email = $("#email").val();
 		if(!email) {
 			$("#register-tip").html('*请填写您的邮箱');
 			$("#email").focus();
-			registerBtn.html('Sign up');
 			return false;
 		}
 		var password = $("#password").val();
 		if(!password) {
 			$("#register-tip").html('*请填写您的密码');
 			$("#password").focus();
-			registerBtn.html('Sign up');
 			return false;
 		}
+
+		$("#loading").show();
+		var token = $("#token");
+		var token_key = token.attr('data-key');
+		var token_value = token.val();
 
 		$.post(
 			"/register/addUser",
@@ -73,9 +75,9 @@ $(function() {
 				location.href='/';
 			}else {
 				$("#register-tip").html(result.errMsg);
+				$("#loading").hide();
 			}
 		});
-		registerBtn.html('Sign up');
 		return false;
 		
 	});

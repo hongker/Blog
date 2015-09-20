@@ -61,3 +61,9 @@ Tue, 25 Aug 15 20:07:36 +0800:IP:127.0.0.1,用户名:hongker登录，errNo：100
 [Sun, 20 Sep 15 15:47:15 +0800][ERROR] IP:127.0.0.1,用户名:test注册，errNo：1003
 [Sun, 20 Sep 15 15:47:46 +0800][INFO] IP:127.0.0.1,用户名:test注册，errNo：0
 [Sun, 20 Sep 15 16:25:13 +0800][INFO] IP:127.0.0.1,用户名:hongker登录，errNo：0
+[Sun, 20 Sep 15 16:37:01 +0800][ERROR] IP:127.0.0.1,用户名:test登录，errNo：1008
+[Sun, 20 Sep 15 16:37:47 +0800][ERROR] IP:127.0.0.1,用户名:test登录，errNo：1008
+[Sun, 20 Sep 15 16:38:17 +0800][ERROR] IP:127.0.0.1,用户名:hongker登录，errNo：1008
+[Sun, 20 Sep 15 16:39:14 +0800][ERROR] IP:127.0.0.1,用户名:hongker登录，errNo：1008
+[Sun, 20 Sep 15 16:41:54 +0800][ERROR] IP:127.0.0.1,用户名:hongker登录，errNo：1008
+[Sun, 20 Sep 15 16:44:39 +0800][INFO] IP:127.0.0.1,用户名:elementaryos注册，errNo：0
