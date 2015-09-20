@@ -50,7 +50,21 @@ class ConfigController extends BaseController
 	 * 删除配置
 	 */
 	public function deleteAction() {
-		
+		$return = array();
+		if($this->isPost()) {
+			$id = $this->getPost('id','int');
+				
+			if($this->operation->delete($id)) {
+				$return['errNo'] = 0;
+			}else {
+				$return['errNo'] = 2108;
+			}
+				
+		}else {
+			$return['errNo'] = 2106;
+		}
+		$return['errMsg'] = $this->getErrorMessage($return['errNo']);
+		$this->json_return($return);
 	}
 	
 	
