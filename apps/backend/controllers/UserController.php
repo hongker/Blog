@@ -85,7 +85,21 @@ class UserController extends BaseController
 	 * 删除用户
 	 */
 	public function deleteAction() {
+		$return = array();
+		if($this->isPost()) {
+			$id = $this->getPost('id','int');
 		
+			if($this->operation->delete($id)) {
+				$return['errNo'] = 0;
+			}else {
+				$return['errNo'] = 1014;
+			}
+		
+		}else {
+			$return['errNo'] = 1011;
+		}
+		$return['errMsg'] = $this->getErrorMessage($return['errNo']);
+		$this->json_return($return);
 	}
 
 }

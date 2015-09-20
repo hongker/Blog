@@ -59,7 +59,7 @@ $('[id=del]').click(function() {
 function del(id) {
 	$.ajax({
         type: "POST",
-        url: "/admin/config/delete",
+        url: "/admin/user/delete",
         data: {id:id},
         dataType:'json',
         success: function(data){
