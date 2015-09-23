@@ -2,6 +2,7 @@
 namespace Blog\Operations;
 
 use Blog\Models\Users;
+use Blog\Utils\Redis;
 /**
  * 用户信息操作类
  * @author hongker
@@ -130,6 +131,7 @@ class UserOperation extends BaseOperation implements Operation {
 						'picture'=>$user->picture,
 					);
 					$this->store('user',$userSession);
+					$this->storeLoginTimes($user->id);
 					$return['errNo'] = 0;
 				}else {
 					$return['errNo'] = 1008;
@@ -289,5 +291,36 @@ class UserOperation extends BaseOperation implements Operation {
 		return $return;
 		
 	}
+	
+	/**
+	 * 记录登陆次数
+	 * @param unknown $user_id
+	 */
+	public function storeLoginTimes($user_id) {
+		$redis = new Redis();
+		$key = 'user_login';
+		$redis->zIncrBy($key, 1, "user:$user_id");
+	}
+	
+	/**
+	 * 获取活跃用户
+	 * @param int $limit
+	 */
+	public function getActives($limit = 5) {
+		$redis = new Redis();
+		$key = 'user_login';
+		$result = $redis->zrevrange($key,0,$limit);
+		$users = array();
+		foreach ($result as $value) {
+			$user_id = explode(':', $value)[1];
+			$user = $this->get($user_id);
+			if($user) {
+				$users[] = $user;
+			}
+		}
+		
+		return $users;
+	}
+	
 	
 }

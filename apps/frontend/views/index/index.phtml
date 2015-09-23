@@ -49,15 +49,22 @@
 			<div class="box">
 				<blockquote class="blockquote-primary">活跃用户榜</blockquote>
 				<div class="user-ranks">
+					<?php if(count($users)==0):?>
+					<div class="none">暂无数据</div>
+					<?php else:?>
+					<?php foreach ($users as $user):?>
 					<div class="media">
 						<div class="media-left media-middle">
-							<a href="#"> <img class="media-object img-circle" src="/images/common_user.png" style="width: 64px; height: 64px;">
+							<a href="#"> <img class="media-object img-circle" src="<?php echo $user->picture?>" style="width: 64px; height: 64px;">
 							</a>
 						</div>
 						<div class="media-body">
-							<p class="media-heading username">hongker</p>
+							<p class="media-heading username"><?php echo $user->username?></p>
 						</div>
 					</div>
+					<?php endforeach;?>
+					<?php endif;?>
+					
 				</div>
 			</div>
 		</div>

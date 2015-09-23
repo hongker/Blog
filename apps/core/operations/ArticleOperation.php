@@ -1,6 +1,7 @@
 <?php
 namespace Blog\Operations;
 use Blog\Models\Articles;
+use Blog\Models\Users;
 /**
  * 文章操作类
  * @author hongker
@@ -241,5 +242,31 @@ class ArticleOperation extends BaseOperation implements Operation {
 			$return['errNo'] = 1110;
 		}
 		return $return;
+	}
+	
+	/**
+	 * 根据文章发布数量获取用户
+	 * @param number $limit
+	 * @return multitype:unknown
+	 */
+	public function getUsersByCount($limit = 5) {
+		$articles = Articles::count(array(
+			'conditions' => 'is_delete=0',
+			'group' => 'author_id',
+			'order' => 'rowcount desc',
+			'columns' => 'author_id',
+			'limit' => $limit,
+		));
+		
+		$users = array();
+		foreach ($articles as $article) {
+			
+			$user = Users::findFirst($article->author_id);
+			if($user) {
+				$users[] = $user;
+			}
+		}
+		
+		return $users;
 	}
 }

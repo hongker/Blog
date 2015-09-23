@@ -32,9 +32,12 @@ class ArticleController extends BaseController
 		
 		$page = $this->getPaginate($articles,$currentPage);
 		
+		$users = $this->operation->getUsersByCount();
+		
 		$this->view->setVar('page',$page);
 		$this->view->setVar('currentType',0);
 		$this->view->setVar('types',$this->types);
+		$this->view->setVar('users',$users);
 	}
 	
 	/**

@@ -13,12 +13,11 @@
 				<div class="row">
 					<div class="col-sm-3">
 						<div class="tile">
-							<img alt="" class="headimg img-circle" src="<?php echo $userinfo->picture?>">
-							<a class="btn btn-danger btn-large btn-block" href="/user/home/headimg">修改头像</a>
+							<img alt="" class="headimg img-circle"
+								src="<?php echo $userinfo->picture?>"> <a
+								class="btn btn-danger btn-large btn-block"
+								href="/user/home/headimg">修改头像</a>
 						</div>
-						
-						
-						
 					</div>
 					<div class="col-sm-9">
 						<div class="row no-margin">
@@ -55,27 +54,33 @@
 										value="<?php echo $userinfo->age?>" placeholder="年龄">
 								</div>
 								<div class="form-group">
-									<label for="sex">性别：</label> 
-									<label class="radio">
-										<input type="radio" name="sex" value="M" 
-										data-toggle="radio" class="custom-radio" <?php if($userinfo->sex=='M') echo 'checked'?>>
-										男
+									<label for="sex">性别：</label> <label class="radio"> <input
+										type="radio" name="sex" value="M" data-toggle="radio"
+										class="custom-radio"
+										<?php if($userinfo->sex=='M') echo 'checked'?>> 男
+									</label> <label class="radio"> <input type="radio" name="sex"
+										value="F" data-toggle="radio" class="custom-radio"
+										<?php if($userinfo->sex=='F') echo 'checked'?>> 女
+									</label> <label class="radio"> <input type="radio" name="sex"
+										value="N" data-toggle="radio" class="custom-radio"
+										<?php if($userinfo->sex=='N') echo 'checked'?>> 保密
 									</label>
-									<label class="radio" >
-										<input type="radio" name="sex" value="F" 
-										data-toggle="radio" class="custom-radio" <?php if($userinfo->sex=='F') echo 'checked'?>>
-										女
-									</label>
-									<label class="radio" >
-										<input type="radio" name="sex" value="N" 
-										data-toggle="radio" class="custom-radio" <?php if($userinfo->sex=='N') echo 'checked'?>>
-										保密
-									</label>
-									
+
 								</div>
 								<div class="form-group">
 									<label for="email">地址：</label>
-									<p class="form-control-static indent noun"><?php echo $userinfo->getAddress()->name?></p>
+									
+									<div class="select-group">
+										<select id="country">
+											
+										</select>
+										<select id="province">
+											<option>四川</option>
+										</select>
+										<select id="city">
+											<option>成都</option>
+										</select>
+									</div>
 								</div>
 								<hr>
 								<div class="right">
@@ -124,4 +129,26 @@ function editInfo() {
         },
     });
 }
+$(function() {
+	var countries,provinces,citys;
+	$.ajax({
+        type: "POST",
+        url: "/address/getCountries",
+        success: function(data){
+            alert(data);
+            if(data.errNo==0) {
+            	$.each(data.data, function(value) {
+					alert(value);
+                });
+            }else {
+            	alertify.error(data.errMsg);
+            }
+        	
+        },
+    });
+});
+
+$("#country").click(function() {
+	alert($(this).val());
+});
 </script>

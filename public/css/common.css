@@ -827,3 +827,19 @@ a:hover {
 .uploader-list {
 	margin-bottom:10px;
 }
+.select-group select {
+	padding: 5px 10px;
+	width:30%;
+	color:#fff;
+	background-color: #1abc9c;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+	transition: 0.5s all;
+}
+.select-group select:focus ,.select-group select:hover{
+	cursor: pointer;
+	border: 1px solid #1abc9c;
+	background-color: #48c9b0;
+    border-color: #48c9b0;
+}

@@ -1,6 +1,7 @@
 <?php
 namespace Blog\Frontend\Controllers;
 use Blog\Operations\ArticleOperation;
+use Blog\Operations\UserOperation;
 /**
  * 首页控制器
  * @author hongker
@@ -23,8 +24,11 @@ class IndexController extends BaseController
 				"order"=>"created_at desc",
 				"limit"=>5,
 		));
+		$userOperation = new UserOperation($this->di);
+		$users = $userOperation->getActives();
 		
 		$this->view->setVar('articles',$articles);
+		$this->view->setVar('users',$users);
 	}
 	
 	
