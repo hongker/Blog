@@ -6,5 +6,5 @@ namespace Blog\Observers;
  * @version 1.0
  */
 interface Observer {
-	
+	public function update();
 }
