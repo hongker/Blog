@@ -14,6 +14,10 @@ I want to use pjax and nprogress to display the content.Please waiting for the c
      
     configs/ 配置
     
+    observers/ 观察者模块
+    
+    subjects/ 观察对象类
+    
     core/ 核心功能模块
       models/ 模型
       operations/ 操作类
