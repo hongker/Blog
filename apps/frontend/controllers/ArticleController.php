@@ -52,8 +52,10 @@ class ArticleController extends BaseController
 		
 		$page = $this->getPaginate($articles,$currentPage);
 		
-		$this->view->setVar('page',$page);
+		$users = $this->operation->getUsersByCount();
 		
+		$this->view->setVar('users',$users);
+		$this->view->setVar('page',$page);
 		$this->view->setVar('currentType',$id);
 		$this->view->setVar('types',$this->types);
 		$this->view->pick('article/index');
