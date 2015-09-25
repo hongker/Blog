@@ -11,16 +11,16 @@ interface Subject {
 	 * 添加观察者
 	 * @param Observer $observer
 	 */
-	public function attach(Observer $observer);
+	public function attach($observer, $type);
 	
 	/**
 	 * 删除观察者
 	 * @param Observer $observer
 	 */
-	public function detach(Observer $observer);
+	public function detach($observer, $type);
 	
 	/**
 	 * 通知
 	 */
-	public function notify();
+	public function notify( $type);
 }

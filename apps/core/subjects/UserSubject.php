@@ -1,29 +1,24 @@
 <?php
 namespace Blog\Subjects;
-use Blog\Observers\UserObserver;
 /**
- * 用户观察对象类
+ * 用户观察对象
  * @author hongker
- * @version 1.0
+ *
  */
-class UserSubject extends BaseSubject {
+class UserSubject extends BaseSubject implements Subject{
 	public $observers = array();
-	
-	const OBSERVER_TYPE_LOGIN = 1; //登录
-	const OBSERVER_TYPE_REGISTER = 2; //注册
-	const OBSERVER_TYPE_CHANGE_PASS = 3;
 	
 	/**
 	 * @see \Blog\Subjects\BaseSubject::attach()
 	 */
-	public function attach(UserObserver $observer, $type) {
+	public function attach($observer,$type) {
 		$this->observers[$type][] = $observer;
 	}
 	
 	/**
 	 * @see \Blog\Subjects\BaseSubject::detach()
 	 */
-	public function detach(UserObserver $observer, $type) {
+	public function detach($observer,$type) {
 		$index = array_search($observer, $this->observers[$type], true);
 		
 		if($index) {

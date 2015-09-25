@@ -40,6 +40,11 @@ class TestController extends BaseController
 		echo $this->request->getClientAddress();exit;
 	}
 	
+	public function observerAction() {
+		$user = new UserOperation($this->di);
+		$user->testObserver();exit;
+	}
+	
 	
 
 }

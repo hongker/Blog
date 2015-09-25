@@ -3,16 +3,24 @@ namespace Blog\Operations;
 
 use Blog\Models\Users;
 use Blog\Utils\Redis;
+use Blog\Observers\SendMailObserver;
+use Blog\Subjects\UserSubject;
 /**
  * 用户信息操作类
  * @author hongker
  * @version 1.0
  */
 class UserOperation extends BaseOperation implements Operation {
+	protected $subject;
+	
+	const OBSERVER_TYPE_LOGIN = 1; //登录
+	const OBSERVER_TYPE_REGISTER = 2; //注册
+	const OBSERVER_TYPE_CHANGE_PASS = 3; //修改密码
 	
 	public function __construct($di) {
 		parent::__construct($di);
 		$this->setLogFile('user.log');
+		$this->subject = new UserSubject();
 	}
 	
 	/**
@@ -322,5 +330,11 @@ class UserOperation extends BaseOperation implements Operation {
 		return $users;
 	}
 	
+	public function testObserver() {
+		$observer = new SendMailObserver('xiaok2013@qq.com', '中秋', '去哪儿玩？');
+		$this->subject->attach($observer,self::OBSERVER_TYPE_REGISTER);
+		
+		$this->subject->notify(self::OBSERVER_TYPE_REGISTER);
+	}
 	
 }
