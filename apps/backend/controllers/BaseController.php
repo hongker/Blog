@@ -8,6 +8,7 @@ use Blog\Controllers\Controller;
  */
 class BaseController extends Controller
 {
+	protected $admin;
 	/**
 	 * 初始化
 	 */
@@ -16,9 +17,12 @@ class BaseController extends Controller
         //Prepend the application name to the title
         \Phalcon\Tag::prependTitle('Blog | ');
         
-        if($this->checkIsLogin()==false) {
-        	echo '请先登录';exit;
+        if($this->checkIsLogin()) {
+        	$this->admin = $this->session->get('admin');
+        }else {
+        	$this->response->redirect('/login',true);
         }
+        
         $this->view->setTemplateAfter('common');
     }
     
@@ -27,7 +31,6 @@ class BaseController extends Controller
      * @return boolean
      */
     protected function checkIsLogin() {
-    	return true;
     	if($this->session->has('admin')) {
     		return true;
     	}

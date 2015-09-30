@@ -31,7 +31,7 @@ create table users(
 	updated_at timestamp not null default '0000-00-00 00:00:00'
 )engine=myisam default charset=utf8;
 insert into users(username,email,type,password,age)
-values('hongker','xiaok2013@live.com',1,'$2a$12$0Y8tnffNb6PMCBi7SmlAHe8jFNYBvtFEodUav6YiaJbnnMmaAMAw6',21);
+values('admin','xiaok2013@live.com',2,'$2a$12$omJ0WXB97BKwNIsdWcK7gOC4G8OjeHegDFEdc1rROYplV8EFgFK4.',21);
 
 /**
  * articles 文章表(保存文章信息)
@@ -287,6 +287,33 @@ create table configs(
 )engine=myisam default charset=utf8;
 insert into configs(name,ckey,cvalue,description)
 values('用户注册','user_register',1,'用户注册配置项(0:未开通,1:已开通)');
+
+/**
+ * tasks 任务表
+ * id 主键
+ * author_id 任务创建者
+ * title 标题
+ * content 任务内容
+ * status 执行状态(1:等待执行,2:正在执行,3:已完成,4:未完成)
+ * start_date 起始日期
+ * end_date 完成日期
+ * is_delete 是否删除
+ * created_at 创建时间
+ * updated_at 更改时间
+ */
+drop table if exists tasks;
+create table tasks(
+	id int not null primary key auto_increment,
+	author_id int not null,
+	title varchar(50) not null,
+	content text not null,
+	status tinyint not null default 1,
+	start_date timestamp not null default '0000-00-00 00:00:00',
+	end_date timestamp not null default '0000-00-00 00:00:00',
+	is_delete tinyint not null default 0,
+	created_at timestamp not null default current_timestamp,
+	updated_at timestamp not null default '0000-00-00 00:00:00'
+)engine=myisam default charset=utf8;
 
 /**
  * tables 表模板

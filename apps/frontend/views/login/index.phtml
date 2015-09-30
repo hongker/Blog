@@ -58,7 +58,12 @@ $(function() {
 		    if(result.errNo==0) {
 				alertify.success('登录成功');
 				//跳转
-				location.href='/';
+				if(result.isAdmin==1) {
+					location.href='/admin';
+				}else {
+					location.href='/';
+				}
+				
 			}else {
 				$("#loading").hide();
 				$("#login-tip").html(result.errMsg);

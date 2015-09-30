@@ -5,6 +5,11 @@ html,body {
 	background:#ddd;
 	color:#333;
 }
+.datetimepicker[readonly] {
+	background-color: #fff;
+	cursor:pointer;
+	color:#333;
+}
 hr {
 	border-top:1px solid #D5D5D5;
 	margin-bottom:10px;
@@ -156,6 +161,9 @@ blockquote.blockquote-warning {
 blockquote.blockquote-danger {
 	border-left: 3px solid #E74C3C;
 	color: #E74C3C;
+}
+.input-group-btn .btn {
+	border:1px solid #bdc3c7;
 }
 .login-bg {
 	background:url('../images/bg-login.jpg');
@@ -842,4 +850,20 @@ a:hover {
 	border: 1px solid #1abc9c;
 	background-color: #48c9b0;
     border-color: #48c9b0;
+}
+.task {
+	width: 100%;
+	height:100%;
+	cursor: all-scroll;
+}
+ul#ul-task>li:hover .task .operations i{
+	display:inline;
+}
+.task .operations {
+	margin-right:15px;
+}
+.task .operations  i{
+	padding-left:15px;
+	display: none;
+	cursor: pointer;
 }

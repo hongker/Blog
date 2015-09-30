@@ -84,6 +84,20 @@
 				</li>
 			</ul> <!-- /.nav-second-level -->
 		</li>
+		<li class="<?php if($controller=='task') echo 'active'?>">
+			<a href="">
+				<i class="fa fa-tasks"></i> 任务管理<i class="fa arrow"></i>
+			</a>
+			<ul class="nav nav-second-level collapse "
+				<?php if($controller!='task') echo 'aria-expanded="false" style="height: 0px;"'?>>
+				<li class="<?php if($controller=='task'&&$action=='index') echo 'active'?>">
+					<a href="/admin/task" ><i class="fa fa-chain fa-fw"></i> 任务列表</a>
+				</li>
+				<li class="<?php if($controller=='task'&&$action=='add') echo 'active'?>">
+					<a href="/admin/task/add" ><i class="fa fa-chain fa-fw"></i> 新建任务</a>
+				</li>
+			</ul> <!-- /.nav-second-level -->
+		</li>
 		<li class="<?php if($controller=='config') echo 'active'?>">
 			<a href="#">
 				<span class="fui-gear"></span> 系统配置<i class="fa arrow"></i>

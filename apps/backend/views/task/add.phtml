@@ -1,0 +1,125 @@
+<div class="page-header">
+	<i class="fa fa-tasks"></i>任务管理 > 新建任务
+</div>
+<div>
+	<div class="form-horizontal">
+		<div class="form-group">
+			<label for="title" class="col-sm-2 control-label">任务标题</label>
+			<div class="col-sm-4">
+				<input type="text" class="form-control" id="title"
+					placeholder="请填入任务标题">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="start_date" class="col-md-2 control-label">起始日期</label>
+			<div class="col-md-3">
+				<input type="text" class="form-control datetimepicker" readonly  placeholder="请选择起始日期" id="start_date">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="end_date" class="col-md-2 control-label">结束日期</label>
+			<div class="col-md-3">
+				<input type="text" class="form-control datetimepicker" readonly placeholder="请选择结束日期" id="end_date">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="content" class="col-sm-2 control-label">任务内容</label>
+			<div class="col-sm-10">
+				<!-- 编辑器源码文件 -->
+				<script type="text/javascript" src="/editor/umeditor.config.js"></script>
+				<script type="text/javascript" src="/editor/umeditor.min.js"></script>
+				<script type="text/javascript" src="/editor/lang/zh-cn/zh-cn.js"></script>
+				<script type="text/plain" name="content" id="myEditor"
+					style="height: 240px;">
+    					在这里输入内容
+				</script>
+				<script type="text/javascript">
+					//实例化编辑器
+					var um = UM.getEditor('myEditor',{
+						initialFrameWidth:"100%",
+					});
+			    </script>
+			</div>
+		</div>
+		
+
+		<div class="form-group">
+			<div class="col-sm-offset-2 col-sm-10">
+				<button class="btn btn-info" onclick="addTask()">
+					提 交 <i class="fa fa-upload"></i>
+				</button>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript" src="/js/jquery-1.8.3.min.js"
+	charset="UTF-8"></script>
+<script type="text/javascript" src="/js/bootstrap-datetimepicker.min.js"
+	charset="UTF-8"></script>
+<script type="text/javascript"
+	src="/js/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
+<script>
+function addTask() {
+	var title = $("#title");
+	if(!title.val()) {
+		alertify.error("请填入任务标题");
+		title.focus();
+		return;
+	}
+
+	var start_date = $("#start_date");
+	if(!start_date.val()) {
+		alertify.error("请选择任务起始日期");
+		start_date.focus();
+		return;
+	}
+
+	var end_date = $("#end_date");
+	if(!end_date.val()) {
+		alertify.error("请选择任务结束日期");
+		end_date.focus();
+		return;
+	}
+	
+	var content = um.getContent();
+	
+	$.ajax({
+        type: "POST",
+        url: "/admin/task/add",
+        data: {
+            title : title.val(),
+            start_date : start_date.val(),
+            end_date : end_date.val(),
+            content : content,
+        },
+        dataType:'json',
+        success: function(data){
+            console.log(data);
+            if(data.errNo==0) {
+            	alertify.success('新建成功');
+            	location.href='/admin/task';
+            }else {
+            	alertify.error(data.errMsg);
+            }
+        	
+        },
+    });
+}
+$('#start_date').datetimepicker({
+    language:  'zh-CN',
+    autoclose: 1,
+    format:'yyyy-mm-dd hh:ii:ss',
+    todayHighlight:true,
+    minView:0,
+    
+});
+$('#end_date').datetimepicker({
+    language:  'zh-CN',
+    autoclose: 1,
+    format:'yyyy-mm-dd hh:ii:ss',
+    todayHighlight:true,
+    minView:0,
+    
+});
+
+</script>

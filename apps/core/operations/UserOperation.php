@@ -138,8 +138,15 @@ class UserOperation extends BaseOperation implements Operation {
 						'username'=>$user->username,
 						'picture'=>$user->picture,
 					);
-					$this->store('user',$userSession);
-					$this->storeLoginTimes($user->id);
+					if($user->type==1) {
+						$this->store('user',$userSession);
+						$this->storeLoginTimes($user->id);
+						$return['isAdmin'] = 0;
+					}elseif($user->type==2) {
+						$this->store('admin',$userSession);
+						$return['isAdmin'] = 1;
+					}
+					
 					$return['errNo'] = 0;
 				}else {
 					$return['errNo'] = 1008;

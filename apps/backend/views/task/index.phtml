@@ -1,0 +1,123 @@
+<div class="page-header">
+	<i class="fa fa-tasks"></i>任务管理 > 任务列表
+</div>
+<div>
+	<div class="alert alert-info alert-dismissible" role="alert">
+		<button type="button" class="close" data-dismiss="alert"
+			aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+		<strong>今日任务</strong> 暂时没有正在进行的任务.
+	</div>
+	<div class="row tasks">
+		<div class="col-sm-12">
+			<div class="form-group">
+				<div class="input-group">
+					<input type="text" class="form-control" placeholder="Search Task..."
+						id="search-query-3" onkeydown="mySearch(this)"> <span class="input-group-btn">
+						<button type="submit" class="btn">
+							<span class="fui-search"></span>
+						</button>
+					</span>
+				</div>
+			</div>
+			<?php if($page->total_items==0):?>
+			<div class="none">暂无数据</div>
+			<?php else:?>
+			<ul class="list-group" id="ul-task">
+			<?php foreach($page->items as $key=>$task):?>
+			<li class="list-group-item">
+				<div class="task">
+					<span id="title"><?php echo $task->title?></span>
+					<span class="right operations" data-id="<?php echo $task->id?>">
+						<i  data-toggle="tooltip" data-placement="top" title="编辑" class="fa fa-pencil text-warning" id="edit"></i>
+						<i  data-toggle="tooltip" data-placement="top" title="删除" class="fa fa-close text-danger"  id="del" ></i>
+						<i data-toggle="tooltip" data-placement="top" title="详情" class="fa fa-bookmark-o text-info" style="display: inline"></i>
+					</span>
+				</div>
+			</li>
+			<?php endforeach;?>
+			</ul>
+			<?php $this->partial('public/page')?>
+			<?php endif;?>
+		</div>
+	</div>
+</div>
+<script>
+function editTask(id) {
+	
+}
+
+$('[id=del]').click(function() {
+	var id = $(this).parent().attr('data-id');
+
+	var closable = alertify.dialog('confirm').setting('closable');
+	//grab the dialog instance and set multiple settings at once.
+	alertify.dialog('confirm')
+	  .set({
+		'title':'删除任务',
+	    'labels':{ok:'确定', cancel:'取消'},
+	    'message': '删除后将不能恢复，确定要删除么？' ,
+	    'onok': function(){
+	    		del(id);
+		    },
+	    'oncancel': function(){ alertify.error('取消操作!');}
+	  }).show();
+});
+
+function del(id) {
+	$.ajax({
+        type: "POST",
+        url: "/admin/task/delete",
+        data: {id:id},
+        dataType:'json',
+        success: function(data){
+            if(data.errNo==0) {
+            	alertify.success('删除成功');
+            	location.reload();
+            }else {
+            	alertify.error(data.errMsg);
+            }
+        	
+        },
+    });
+}
+function onSearch(obj){//js函数开始  
+    setTimeout(function(){//因为是即时查询，需要用setTimeout进行延迟，让值写入到input内，再读取  
+        var tasks = $("#ul-task");//获取table的id标识  
+        var rowsLength = storeId.rows.length;//表格总共有多少行  
+        var key = obj.value;//获取输入框的值  
+  		
+        var searchCol = 0;//要搜索的哪一列，这里是第一列，从0开始数起  
+  
+        for(var i=1;i<rowsLength;i++){//按表的行数进行循环，本例第一行是标题，所以i=1，从第二行开始筛选（从0数起）  
+            var searchText = storeId.rows[i].cells[searchCol].innerHTML;//取得table行，列的值  
+  
+            if(searchText.match(key)){//用match函数进行筛选，如果input的值，即变量 key的值为空，返回的是ture，  
+                storeId.rows[i].style.display='';//显示行操作，  
+            }else{  
+                storeId.rows[i].style.display='none';//隐藏行操作  
+            }  
+        }  
+    },200);//200为延时时间  
+}  
+
+function mySearch(obj) {
+	setTimeout(function(){//因为是即时查询，需要用setTimeout进行延迟，让值写入到input内，再读取 
+		var key = obj.value;//获取输入框的值  
+		
+		$("#ul-task  li").each(function(index){
+			var searchText = $(this).find('#title').html();
+			if(searchText.match(key)){
+				$(this).show();
+			}else {
+				$(this).hide();
+			}
+		});
+	},200);//200为延时时间  
+}
+
+$(function () {
+	 $('[data-toggle="tooltip"]').tooltip();
+})
+</script>
