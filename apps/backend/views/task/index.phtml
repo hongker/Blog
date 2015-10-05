@@ -13,8 +13,8 @@
 		<div class="col-sm-12">
 			<div class="form-group">
 				<div class="input-group">
-					<input type="text" class="form-control" placeholder="Search Task..."
-						id="search-query-3" onkeydown="mySearch(this)"> <span class="input-group-btn">
+					<input type="text" class="form-control" placeholder="搜索任务 ..."
+						id="search-query-3" onkeydown="onSearch(this)"> <span class="input-group-btn">
 						<button type="submit" class="btn">
 							<span class="fui-search"></span>
 						</button>
@@ -35,6 +35,10 @@
 						<i data-toggle="tooltip" data-placement="top" title="详情" class="fa fa-bookmark-o text-info" style="display: inline"></i>
 					</span>
 				</div>
+				<p class="task-date">执行时间:<?php echo $task->start_date?>~<?php echo $task->end_date?></p>
+				<div class="task-content">
+					<?php echo $task->content?>
+				</div>
 			</li>
 			<?php endforeach;?>
 			</ul>
@@ -44,10 +48,10 @@
 	</div>
 </div>
 <script>
-function editTask(id) {
-	
-}
-
+$('[id=edit]').click(function() {
+	var id = $(this).parent().attr('data-id');
+	location.href='/admin/task/edit/'+id;
+});
 $('[id=del]').click(function() {
 	var id = $(this).parent().attr('data-id');
 
@@ -82,27 +86,9 @@ function del(id) {
         },
     });
 }
-function onSearch(obj){//js函数开始  
-    setTimeout(function(){//因为是即时查询，需要用setTimeout进行延迟，让值写入到input内，再读取  
-        var tasks = $("#ul-task");//获取table的id标识  
-        var rowsLength = storeId.rows.length;//表格总共有多少行  
-        var key = obj.value;//获取输入框的值  
-  		
-        var searchCol = 0;//要搜索的哪一列，这里是第一列，从0开始数起  
-  
-        for(var i=1;i<rowsLength;i++){//按表的行数进行循环，本例第一行是标题，所以i=1，从第二行开始筛选（从0数起）  
-            var searchText = storeId.rows[i].cells[searchCol].innerHTML;//取得table行，列的值  
-  
-            if(searchText.match(key)){//用match函数进行筛选，如果input的值，即变量 key的值为空，返回的是ture，  
-                storeId.rows[i].style.display='';//显示行操作，  
-            }else{  
-                storeId.rows[i].style.display='none';//隐藏行操作  
-            }  
-        }  
-    },200);//200为延时时间  
-}  
 
-function mySearch(obj) {
+
+function onSearch(obj) {
 	setTimeout(function(){//因为是即时查询，需要用setTimeout进行延迟，让值写入到input内，再读取 
 		var key = obj.value;//获取输入框的值  
 		
@@ -114,7 +100,7 @@ function mySearch(obj) {
 				$(this).hide();
 			}
 		});
-	},200);//200为延时时间  
+	},1000);//200为延时时间  
 }
 
 $(function () {

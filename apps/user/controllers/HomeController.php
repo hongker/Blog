@@ -76,7 +76,7 @@ class HomeController extends BaseController
 						'username'=>$this->user['username'],
 						'picture'=>$userinfo['picture'],
 				);
-				$this->store('user',$userSession);
+				$this->userOperation->store('user',$userSession);
 			}
 			$return['errMsg'] = $this->getErrorMessage($return['errNo']);
 			$this->json_return($return);

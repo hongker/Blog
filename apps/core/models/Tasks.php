@@ -12,6 +12,7 @@ class Tasks extends BaseModel {
 	public function initialize() {
 		parent::initialize();
 		
+		$this->skipAttributesOnUpdate(array('author_id'));
 	}
 	
 	/**

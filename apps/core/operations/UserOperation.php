@@ -3,24 +3,16 @@ namespace Blog\Operations;
 
 use Blog\Models\Users;
 use Blog\Utils\Redis;
-use Blog\Observers\SendMailObserver;
-use Blog\Subjects\UserSubject;
 /**
  * 用户信息操作类
  * @author hongker
  * @version 1.0
  */
 class UserOperation extends BaseOperation implements Operation {
-	protected $subject;
-	
-	const OBSERVER_TYPE_LOGIN = 1; //登录
-	const OBSERVER_TYPE_REGISTER = 2; //注册
-	const OBSERVER_TYPE_CHANGE_PASS = 3; //修改密码
 	
 	public function __construct($di) {
 		parent::__construct($di);
 		$this->setLogFile('user.log');
-		$this->subject = new UserSubject();
 	}
 	
 	/**
@@ -35,25 +27,41 @@ class UserOperation extends BaseOperation implements Operation {
 	/**
 	 * 添加用户信息
 	 * @param array $data
-	 * @return boolean
+	 * @return array
 	 */
 	public function save(Array $data) {
+		if(empty($data['username'])) {
+			$return['errNo'] = 1010;
+			return $return;
+		}
+		
+		if(empty($data['email'])) {
+			$return['errNo'] = 1003;
+			return $return;
+		}
+		
+		if(empty($data['password'])) {
+			$return['errNo'] = 1007;
+			return $return;
+		}
+		
 		$user = new Users();
 		foreach ($data as $key=>$value) {
 			$user->$key = $value;
 		}
+		
 		if(!isset($data['type'])) {
 			$user->type = 1;
 		}
-		
+		$return['errNo'] = 0;
 		if($user->save()==true) {
-			return true;
+			$return['user_id'] = $user->id;
 		}else {
 			foreach ($user->getMessages() as $message) {
-				$this->getDI()->get('flash')->error($message);
+				$return['errNo'] = $message;
 			}
 		}
-		return false;
+		return $return;
 	}
 	
 	/**
@@ -226,9 +234,8 @@ class UserOperation extends BaseOperation implements Operation {
 					if(!$this->checkEmailExist($info['email'])) {
 						if($info['password']) {
 							$info['password'] = $this->getDI()->get('security')->hash($info['password']);
-							if($this->save($info)) {
-								$return['errNo'] = 0;
-							}
+							$return = $this->save($info);
+							
 						}else {
 							$return['errNo'] = 1007;
 						}
@@ -246,9 +253,20 @@ class UserOperation extends BaseOperation implements Operation {
 			$return['errNo'] = 1010;
 		}
 		
-		$logString = "IP:{$this->ip},用户名:{$info['username']}注册，errNo：{$return['errNo']}";
+		$logString = $this->getLogString('用户注册',$return['errNo']);
 		
 		if($return['errNo']==0) {
+			$user = $this->get($return['user_id']);
+			$userSession = array(
+					'id'=>$user->id,
+					'username'=>$user->username,
+					'picture'=>$user->picture,
+			);
+			if($user->type==1) {
+				$this->store('user',$userSession);
+				$this->storeLoginTimes($user->id);
+				$return['isAdmin'] = 0;
+			}
 			
 			$this->log($logString,'info');
 		}else {

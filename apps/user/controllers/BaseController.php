@@ -30,9 +30,14 @@ class BaseController extends Controller
      * @param unknown $dispatcher
      */
     public function beforeExecuteRoute($dispatcher) {
+    	$public_controller = array('index');
     	parent::beforeExecuteRoute($dispatcher);
     	if($this->checkIsLogin()) {
     		$this->user = $this->session->get('user');
+    	}else {
+    		if(!in_array($this->controller, $public_controller)) {
+    			$this->response->redirect('/login',true);
+    		}
     	}
     	
     }

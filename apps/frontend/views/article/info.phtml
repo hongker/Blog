@@ -24,10 +24,11 @@
 						<span class="comment">评论：<span class="count text-success"><?php echo $article->comments->count()?></span></span>
 						<span class="praise">点赞：<span class="count text-primary">20</span></span>
 					</div>
-					<hr>
-					<?php $this->partial('public/comment')?>
 						
 				</div>
+			</div>
+			<div class="box">
+				<?php $this->partial('public/comment')?>
 			</div>
 		</div>
 		<div class="col-sm-3">

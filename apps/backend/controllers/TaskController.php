@@ -68,6 +68,34 @@ class TaskController extends BaseController
 		$this->json_return($return);
 	}
 	
+	/**
+	 * 编辑任务
+	 */
+	public function editAction() {
+		if($this->isPost()) {
+			$task = array();
+			$id = $this->getPost('id','int');
+			$task['title'] = $this->getPost('title');
+			$task['start_date'] = $this->getPost('start_date');
+			$task['end_date'] = $this->getPost('end_date');
+			$task['content'] = $this->getPost('content',null);
+			
+			$return = $this->operation->update($id,$task);
+			$return['errMsg'] = $this->getErrorMessage($return['errNo']);
+			$this->json_return($return);
+		}else {
+			$id = $this->dispatcher->getParam(0);
+				
+			$task = $this->operation->get($id);
+				
+			if($task) {
+				$this->view->setVar('task',$task);
+			}else {
+				$this->show404();
+			}
+		}
+	}
+	
 	
 
 }

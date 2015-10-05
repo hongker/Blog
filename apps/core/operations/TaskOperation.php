@@ -82,9 +82,13 @@ class TaskOperation extends BaseOperation implements Operation {
 		}
 		
 		if($task->update()) {
-			return true;
+			$return['errNo'] = 0;
+		}else {
+			foreach ($task->getMessages() as $message) {
+				$return['errNo'] = $message;
+			}
 		}
-		return false;
+		return $return;
 		
 	}
 

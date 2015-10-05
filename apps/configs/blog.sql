@@ -6,7 +6,7 @@ use blog;
  * username 用户名
  * password 密码
  * email 邮箱
- * type 用户类型(1:普通用户,2:管理员)
+ * type 用户类型(1:普通用户,2:超级管理员,3:普通管理员)
  * age 年龄
  * sex 性别(M:男,F:女,N:保密)
  * picture 头像

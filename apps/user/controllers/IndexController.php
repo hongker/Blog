@@ -20,6 +20,13 @@ class IndexController extends BaseController
 		echo 'user';exit;		
 	}
 	
+	/**
+	 * 用户主页
+	 */
+	public function infoAction() {
+		echo '用户主页';exit;
+	}
+	
 	
 
 }

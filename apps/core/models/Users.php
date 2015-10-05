@@ -67,7 +67,7 @@ class Users extends BaseModel {
 		$validates = array();
 		$validates[] = new PresenceOf(array(
 				"field" => 'username',
-				"message" => 1000,
+				"message" => 1010,
 		));
 		$validates[] = new PresenceOf(array(
 				"field" => 'email',

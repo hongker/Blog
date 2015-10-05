@@ -134,11 +134,12 @@ $(function() {
 	$.ajax({
         type: "POST",
         url: "/address/getCountries",
+        dataType:'json',
         success: function(data){
-            alert(data);
+            console.log(data);
             if(data.errNo==0) {
             	$.each(data.data, function(value) {
-					alert(value);
+					//alert(value);
                 });
             }else {
             	alertify.error(data.errMsg);
