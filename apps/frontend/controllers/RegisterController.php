@@ -44,6 +44,12 @@ class RegisterController extends BaseController
 		}
 		$return['errMsg'] = $this->error[$return['errNo']];
 		
+		if($return['errNo']!=0) {
+			//生成token并返回
+			$return['tokenKey'] = $this->security->getTokenKey();
+			$return['tokenVal'] = $this->security->getToken();
+		}
+		
 		$this->json_return($return);
 	}
 

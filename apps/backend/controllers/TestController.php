@@ -13,8 +13,7 @@ class TestController extends BaseController
 		parent::initialize();
 	}
 
-	public function indexAction()
-	{
+	public function indexAction() {
 		
 	}
 

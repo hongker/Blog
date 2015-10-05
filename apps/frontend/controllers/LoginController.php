@@ -39,9 +39,17 @@ class LoginController extends BaseController
 		}
 		$return['errMsg'] = $this->error[$return['errNo']];
 		
+		if($return['errNo']!=0) {
+			//生成token并返回
+			$return['tokenKey'] = $this->security->getTokenKey();
+			$return['tokenVal'] = $this->security->getToken();
+		}
 		$this->json_return($return);
 	}
 	
+	/**
+	 * 退出
+	 */
 	public function logoutAction() {
 		if($this->request->isPost()) {
 			if($this->operation->logout()) {

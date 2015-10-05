@@ -75,6 +75,8 @@ $(function() {
 				location.href='/';
 			}else {
 				$("#register-tip").html(result.errMsg);
+				token.attr('data-key',result.tokenKey);
+				token.val(result.tokenVal);
 				$("#loading").hide();
 			}
 		});

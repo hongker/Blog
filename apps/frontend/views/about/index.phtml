@@ -3,6 +3,22 @@
 		<div class="col-sm-8">
 			<div class="box">
 				<div class="page-header">
+					<i class="fui-document text-danger"></i> 文章统计
+				</div>
+				<div id="articleStatistics" style="height:400px"></div>
+				<p>以上数据纯属虚构，以待处理</p>
+			</div>
+			<div class="box">
+				<div class="page-header">
+					<i class="fui-user text-primary"></i> 用户统计
+				</div>
+				<div id="userStatistics" style="height:400px"></div>
+				<p>以上数据纯属虚构，以待处理</p>
+			</div>
+		</div>
+		<div class="col-sm-4">
+			<div class="box">
+				<div class="page-header">
 					<i class="fa fa-globe text-info"></i> 关于Blog
 				</div>
 				<p class="indent">完全是基于个人兴趣开发的博客</p>
@@ -20,8 +36,324 @@
 					<i class="fa fa-user-plus text-info"></i> 你想加入开发团队？
 				</div>
 				<p class="indent">非常欢迎.....请联系：</p>
-				<p class="indent"><i class="fa fa-qq"></i>774601526</p>
+				<p class="indent"><i class="fa fa-envelope"></i> xiaok2013@live.com</p>
 			</div>
 		</div>
 	</div>
 </div>
+<script src="/echarts/build/dist/echarts.js"></script>
+<script type="text/javascript">
+        // 路径配置
+        require.config({
+            paths: {
+                echarts: '/echarts/build/dist'
+            }
+        });
+        // 使用
+        require(
+            [
+                'echarts',
+                'echarts/chart/pie' // 按需加载
+            ],
+            function (ec) {
+                // 基于准备好的dom，初始化echarts图表
+              var myChart = ec.init(document.getElementById('articleStatistics')); 
+                
+              var labelTop = {
+          		    normal : {
+          		        label : {
+          		            show : true,
+          		            position : 'center',
+          		            formatter : '{b}',
+          		            textStyle: {
+          		                baseline : 'bottom'
+          		            }
+          		        },
+          		        labelLine : {
+          		            show : false
+          		        }
+          		    }
+          		};
+          		var labelFromatter = {
+          		    normal : {
+          		        label : {
+          		            formatter : function (params){
+          		                return 100 - params.value + '%'
+          		            },
+          		            textStyle: {
+          		                baseline : 'top'
+          		            }
+          		        }
+          		    },
+          		}
+          		var labelBottom = {
+          		    normal : {
+          		        color: '#ccc',
+          		        label : {
+          		            show : true,
+          		            position : 'center'
+          		        },
+          		        labelLine : {
+          		            show : false
+          		        }
+          		    },
+          		    emphasis: {
+          		        color: 'rgba(0,0,0,0)'
+          		    }
+          		};
+          		var radius = [40, 55];
+          		option = {
+          		    legend: {
+          		        x : 'center',
+          		        y : 'center',
+          		        data:[
+          		            '科技','经济','工业','历史','文学',
+          		            '健康', '设计', '心理', '旅游', '政治'
+          		        ]
+          		    },
+          		    title : {
+          		        text: '本月文章发布量',
+          		        subtext: '数据来自网站',
+          		        x: 'center'
+          		    },
+          		    toolbox: {
+          		        show : false,
+          		        feature : {
+          		            dataView : {show: false, readOnly: false},
+          		            magicType : {
+          		                show: false, 
+          		                type: ['pie', 'funnel'],
+          		                option: {
+          		                    funnel: {
+          		                        width: '20%',
+          		                        height: '30%',
+          		                        itemStyle : {
+          		                            normal : {
+          		                                label : {
+          		                                    formatter : function (params){
+          		                                        return 'other\n' + params.value + '%\n'
+          		                                    },
+          		                                    textStyle: {
+          		                                        baseline : 'middle'
+          		                                    }
+          		                                }
+          		                            },
+          		                        } 
+          		                    }
+          		                }
+          		            },
+          		            restore : {show: true},
+          		            saveAsImage : {show: true}
+          		        }
+          		    },
+          		    series : [
+          		        {
+          		            type : 'pie',
+          		            center : ['10%', '30%'],
+          		            radius : radius,
+          		            x: '0%', // for funnel
+          		            itemStyle : labelFromatter,
+          		            data : [
+          		                {name:'other', value:46, itemStyle : labelBottom},
+          		                {name:'科技', value:54,itemStyle : labelTop}
+          		            ]
+          		        },
+          		        {
+          		            type : 'pie',
+          		            center : ['30%', '30%'],
+          		            radius : radius,
+          		            x:'20%', // for funnel
+          		            itemStyle : labelFromatter,
+          		            data : [
+          		                {name:'other', value:56, itemStyle : labelBottom},
+          		                {name:'经济', value:44,itemStyle : labelTop}
+          		            ]
+          		        },
+          		        {
+          		            type : 'pie',
+          		            center : ['50%', '30%'],
+          		            radius : radius,
+          		            x:'40%', // for funnel
+          		            itemStyle : labelFromatter,
+          		            data : [
+          		                {name:'other', value:65, itemStyle : labelBottom},
+          		                {name:'工业', value:35,itemStyle : labelTop}
+          		            ]
+          		        },
+          		        {
+          		            type : 'pie',
+          		            center : ['70%', '30%'],
+          		            radius : radius,
+          		            x:'60%', // for funnel
+          		            itemStyle : labelFromatter,
+          		            data : [
+          		                {name:'other', value:70, itemStyle : labelBottom},
+          		                {name:'历史', value:30,itemStyle : labelTop}
+          		            ]
+          		        },
+          		        {
+          		            type : 'pie',
+          		            center : ['90%', '30%'],
+          		            radius : radius,
+          		            x:'80%', // for funnel
+          		            itemStyle : labelFromatter,
+          		            data : [
+          		                {name:'other', value:73, itemStyle : labelBottom},
+          		                {name:'文学', value:27,itemStyle : labelTop}
+          		            ]
+          		        },
+          		        {
+          		            type : 'pie',
+          		            center : ['10%', '70%'],
+          		            radius : radius,
+          		            y: '55%',   // for funnel
+          		            x: '0%',    // for funnel
+          		            itemStyle : labelFromatter,
+          		            data : [
+          		                {name:'other', value:78, itemStyle : labelBottom},
+          		                {name:'健康', value:22,itemStyle : labelTop}
+          		            ]
+          		        },
+          		        {
+          		            type : 'pie',
+          		            center : ['30%', '70%'],
+          		            radius : radius,
+          		            y: '55%',   // for funnel
+          		            x:'20%',    // for funnel
+          		            itemStyle : labelFromatter,
+          		            data : [
+          		                {name:'other', value:78, itemStyle : labelBottom},
+          		                {name:'设计', value:22,itemStyle : labelTop}
+          		            ]
+          		        },
+          		        {
+          		            type : 'pie',
+          		            center : ['50%', '70%'],
+          		            radius : radius,
+          		            y: '55%',   // for funnel
+          		            x:'40%', // for funnel
+          		            itemStyle : labelFromatter,
+          		            data : [
+          		                {name:'other', value:78, itemStyle : labelBottom},
+          		                {name:'旅游', value:22,itemStyle : labelTop}
+          		            ]
+          		        },
+          		        {
+          		            type : 'pie',
+          		            center : ['70%', '70%'],
+          		            radius : radius,
+          		            y: '55%',   // for funnel
+          		            x:'60%', // for funnel
+          		            itemStyle : labelFromatter,
+          		            data : [
+          		                {name:'other', value:83, itemStyle : labelBottom},
+          		                {name:'政治', value:17,itemStyle : labelTop}
+          		            ]
+          		        },
+          		        {
+          		            type : 'pie',
+          		            center : ['90%', '70%'],
+          		            radius : radius,
+          		            y: '55%',   // for funnel
+          		            x:'80%', // for funnel
+          		            itemStyle : labelFromatter,
+          		            data : [
+          		                {name:'other', value:89, itemStyle : labelBottom},
+          		                {name:'心理', value:11,itemStyle : labelTop}
+          		            ]
+          		        }
+          		    ]
+          		};
+          		                  
+        
+                // 为echarts对象加载数据 
+                myChart.setOption(option); 
+            }
+        );
+
+        require(
+                [
+                    'echarts',
+                    'echarts/chart/line' // 按需加载
+                ],
+                function (ec) {
+                    // 基于准备好的dom，初始化echarts图表
+                  var myChart = ec.init(document.getElementById('userStatistics')); 
+                    
+                    var option = {
+                    	    title : {
+                    	        text: '本月活跃用户',
+                    	        subtext: '来源于网站'
+                    	    },
+                    	    tooltip : {
+                    	        trigger: 'axis'
+                    	    },
+                    	    legend: {
+                    	        data:['登录','注册']
+                    	    },
+                    	    toolbox: {
+                    	        show : true,
+                    	        feature : {
+                    	            mark : {show: true},
+                    	            dataView : {show: false, readOnly: false},
+                    	            magicType : {show: false, type: ['line', 'bar']},
+                    	            restore : {show: false},
+                    	            saveAsImage : {show: true}
+                    	        }
+                    	    },
+                    	    calculable : true,
+                    	    xAxis : [
+                    	        {
+                    	            type : 'category',
+                    	            boundaryGap : false,
+                    	            data : ['周一','周二','周三','周四','周五','周六','周日']
+                    	        }
+                    	    ],
+                    	    yAxis : [
+                    	        {
+                    	            type : 'value',
+                    	            axisLabel : {
+                    	                formatter: '{value} 次数'
+                    	            }
+                    	        }
+                    	    ],
+                    	    series : [
+                    	        {
+                    	            name:'登录',
+                    	            type:'line',
+                    	            data:[11, 11, 15, 13, 12, 13, 10],
+                    	            markPoint : {
+                    	                data : [
+                    	                    {type : 'max', name: '最大值'},
+                    	                    {type : 'min', name: '最小值'}
+                    	                ]
+                    	            },
+                    	            markLine : {
+                    	                data : [
+                    	                    {type : 'average', name: '平均值'}
+                    	                ]
+                    	            }
+                    	        },
+                    	        {
+                    	            name:'注册',
+                    	            type:'line',
+                    	            data:[1, -2, 2, 5, 3, 2, 0],
+                    	            markPoint : {
+                    	                data : [
+                    	                    {name : '周最低', value : -2, xAxis: 1, yAxis: -1.5}
+                    	                ]
+                    	            },
+                    	            markLine : {
+                    	                data : [
+                    	                    {type : 'average', name : '平均值'}
+                    	                ]
+                    	            }
+                    	        }
+                    	    ]
+                    	};
+            
+                    // 为echarts对象加载数据 
+                    myChart.setOption(option); 
+                }
+            );
+    </script>

@@ -212,6 +212,9 @@ blockquote.blockquote-danger {
   font-style: normal;
   font-size: 1.5em;
 }
+.title a {
+	font-size:20px;
+}
 #loginForm input,#registerForm input {
 	border-style:none none solid none;
 	background:none;
@@ -488,7 +491,7 @@ p {
 }
 
 #wrapper {
-	background:#fff;
+	background:#ddd;
 	position:relative;
 	margin-top:-20px;
 }
@@ -504,7 +507,9 @@ a {
 a:focus , a:link, a:active {
 	outline:none;
 }
-
+.media-body {
+	width:100%;
+}
 a:hover {
 	color:#444;
 }

@@ -54,20 +54,22 @@ $(function() {
 				token_value:token_value
 			},
 			function(data){
-		    var result = $.parseJSON(data);
-		    if(result.errNo==0) {
-				alertify.success('登录成功');
-				//跳转
-				if(result.isAdmin==1) {
-					location.href='/admin';
+		    	var result = $.parseJSON(data);
+		    	if(result.errNo==0) {
+					alertify.success('登录成功');
+					//跳转
+					if(result.isAdmin==1) {
+						location.href='/admin';
+					}else {
+						location.href='/';
+					}
+					
 				}else {
-					location.href='/';
+					$("#loading").hide();
+					token.attr('data-key',result.tokenKey);
+					token.val(result.tokenVal);
+					$("#login-tip").html(result.errMsg);
 				}
-				
-			}else {
-				$("#loading").hide();
-				$("#login-tip").html(result.errMsg);
-			}
 		});
 		return false;
 		
