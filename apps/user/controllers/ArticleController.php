@@ -47,7 +47,7 @@ class ArticleController extends BaseController
 				$article = array();
 				$article['author_id'] = $this->user['id'];
 				$article['title'] = $this->getPost('title');
-				$article['picture'] = $this->getPost('picture');
+				$article['picture'] = $this->getPost('picture')?$this->getPost('picture'):'';
 				$article['digest'] = $this->getPost('digest');
 				$article['type_id'] = $this->getPost('type','int');
 				$article['content'] = $this->getPost('content',false);

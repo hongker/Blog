@@ -30,16 +30,20 @@
 				<?php foreach($articles as $article):?>
 				<div class="article_rows">
 					<div class="title"><a class="text-info" href="/article/info/<?php echo $article->id?>"><?php echo $article->title?></a></div>
-					<div class="notation">作者：<span><?php echo $article->getAuthor()->username?></span>，发布时间：<span><?php echo $article->created_at?></span></div>
+					<div class="notation">作者：<span><?php echo $article->getAuthor()->username?></span>，发布时间：<span><?php echo $article->getCreatedAt()?></span></div>
+					<?php if($article->isSetPicture()):?>
 					<div class="article-picture">
 						<img alt="" src="<?php echo $article->picture?>">
 					</div>
+					<?php endif;?>
 					<div class="article_content">
 						<p class="indent"><?php echo $article->digest?></p>
 					</div>
+					<!-- 
 					<div class="text-left">
 						<a href="/article/info/<?php echo $article->id?>" class="btn btn-info ">阅读全文<i class="fa fa-angle-double-right"></i></a>
 					</div>
+					 -->
 				</div>
 				<hr>
 				<?php endforeach;?>

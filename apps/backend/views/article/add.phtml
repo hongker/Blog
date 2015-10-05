@@ -117,10 +117,6 @@ function addArticle() {
 	}
 
 	var picture = $("#picture");
-	if(picture.val()==0) {
-		alertify.error("请选择封面图片");
-		return;
-	}
 
 	var content = um.getContent();
 
@@ -133,14 +129,14 @@ function addArticle() {
 	
 	$.ajax({
         type: "POST",
-        url: "/user/article/add",
+        url: "/admin/article/add",
         data: {title:title.val(),digest:digest.val(),type:type.val(),picture:picture.val(),content:content,className:className.val()},
         dataType:'json',
         success: function(data){
             console.log(data);
             if(data.errNo==0) {
             	alertify.success('文章发布成功');
-            	location.href='/user/article';
+            	location.href='/admin/article';
             }else {
             	alertify.error(data.errMsg);
             }

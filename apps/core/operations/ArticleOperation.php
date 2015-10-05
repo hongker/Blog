@@ -45,9 +45,9 @@ class ArticleOperation extends BaseOperation implements Operation {
 		}
 		
 		if(empty($data['picture'])) {
-			$return['errNo'] = 1106;
-			return $return;
+			$data['picture'] = '/images/article/article_'.rand(1, 5).'.jpg';
 		}
+		
 		
 		if(empty($data['digest'])) {
 			$return['errNo'] = 1103;
@@ -78,6 +78,7 @@ class ArticleOperation extends BaseOperation implements Operation {
 			$return['errNo'] = 1015;
 			foreach ($article->getMessages() as $message) {
 				$logString = $this->getLogString('添加文章', $message);
+				$return['errNo'] = $message;
 				$this->log($logString,'error');
 			}
 		}

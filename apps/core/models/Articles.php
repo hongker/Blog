@@ -9,6 +9,8 @@ use Blog\Utils\Redis;
 class Articles extends BaseModel {
 	public $id;
 	public $class;
+	public $picture;
+	public $created_at;
 	/**
 	 * 模型初始化
 	 */
@@ -77,6 +79,26 @@ class Articles extends BaseModel {
 		
 		return $class;
 			
+	}
+	
+	/**
+	 * 返回格式化后的创建时间
+	 * @return string
+	 */
+	public function getCreatedAt() {
+		return substr($this->created_at,0,10);
+	}
+	
+	/**
+	 * 判断新建文章时是否设置封面图片
+	 * @return boolean
+	 */
+	public function isSetPicture() {
+		$img = explode('/', $this->picture);
+		if($img[1]=='images') {
+			return false;
+		}
+		return true;
 	}
 	
 }

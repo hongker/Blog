@@ -110,14 +110,10 @@ function addArticle() {
 		type.focus();
 		return;
 	}
-
+	
 	var picture = $("#picture");
-	if(picture.val()==0) {
-		alertify.error("请选择封面图片");
-		return;
-	}
-
 	var content = um.getContent();
+	
 	$.ajax({
         type: "POST",
         url: "/user/article/add",
