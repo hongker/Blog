@@ -61,7 +61,7 @@ class Articles extends BaseModel {
 	public function getView() {
 		$key = 'article_view';
 		$redis = new Redis();
-		$view = $redis->zScore($key, 'article_'.$this->id);
+		$view = $redis->zScore($key, 'article:'.$this->id);
 		if($view) {
 			return $view;
 		}

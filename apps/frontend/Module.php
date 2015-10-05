@@ -21,8 +21,7 @@ class Module implements ModuleDefinitionInterface {
 				'Blog\Operations' => '../apps/core/operations/',
 				'Blog\Utils' => '../apps/core/utils/',
 				'Blog\Controllers' => '../apps/core/controllers/',
-				'Blog\Subjects' => '../apps/core/subjects/',
-				'Blog\Observers' => '../apps/core/observers/',
+				'Blog\Components' => '../apps/core/components/',
 		) );
 		
 		$loader->register ();

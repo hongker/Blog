@@ -54,7 +54,7 @@ class ArticleController extends BaseController
 				$return['errNo'] = 1001;
 			}else {
 				$article = array();
-				$article['author_id'] = $this->user['id'];
+				$article['author_id'] = $this->admin['id'];
 				$article['title'] = $this->getPost('title');
 				$article['picture'] = $this->getPost('picture')?$this->getPost('picture'):'';
 				$article['digest'] = $this->getPost('digest');

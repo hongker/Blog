@@ -10,8 +10,7 @@ use Blog\Operations\TypeOperation;
 class ArticleController extends BaseController
 {
 	protected $types;
-	public function initialize()
-	{
+	public function initialize() {
 		\Phalcon\Tag::setTitle('资讯');
 		parent::initialize();
 		$this->operation = new ArticleOperation($this->di);
@@ -33,6 +32,10 @@ class ArticleController extends BaseController
 		$page = $this->getPaginate($articles,$currentPage);
 		
 		$users = $this->operation->getUsersByCount();
+		
+		//获取今日点击榜
+		$day_ranks = $this->operation->getToDayRanks();
+		$this->view->setVar('day_ranks',$day_ranks);
 		
 		$this->view->setVar('page',$page);
 		$this->view->setVar('currentType',0);

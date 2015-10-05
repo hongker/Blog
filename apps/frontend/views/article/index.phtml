@@ -33,6 +33,28 @@
 					
 				</div>
 			</div>
+			<div class="box article_ranks">
+				<blockquote class="blockquote-primary">今日点击榜</blockquote>
+				<?php if(count($day_ranks)==0):?>
+				<div class="none">暂无数据</div>
+				<?php else:?>
+				<?php foreach ($day_ranks as $article):?>
+				<div class="media">
+					<div class="media-left">
+						<a href="/article/info/<?php echo $article->id?>"> <img class="media-object img-circle" src="<?php echo $article->picture?>" style="width: 64px; height: 64px;">
+						</a>
+					</div>
+					<div class="media-body">
+						<p class="media-heading"><a class="text-info" href="/article/info/<?php echo $article->id?>"><?php echo $article->title?></a></p>
+						<div class="title-footer">
+							<span class="view">类型：<span class="count text-danger"><?php echo $article->getType()->name?></span></span>
+							<span class="comment">评论：<span class="count text-success"><?php echo $article->getComments()->count()?></span></span>
+						</div>
+					</div>
+				</div>
+				<?php endforeach;?>
+				<?php endif;?>
+			</div>
 		</div>
 		<div class="col-sm-9">
 			<div class="box">

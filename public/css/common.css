@@ -894,3 +894,17 @@ ul#ul-task>li:hover .task-content {
 	display: none;
 	cursor: pointer;
 }
+.article_ranks .media a {
+	font-size:15px;
+}
+.view-more {
+	text-align: center;
+	font-size:14px;
+}
+.view-more a {
+	color:#969696;
+	transition: 1s;
+}
+.view-more a:hover {
+	color: #3498DB;
+}

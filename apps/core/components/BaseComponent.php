@@ -5,6 +5,6 @@ namespace Blog\Components;
  * @author hongker
  * @version 1.0
  */
-class BaseComponent {
+class BaseComponent implements Component{
 	
 }

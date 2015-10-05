@@ -2,6 +2,7 @@
 namespace Blog\Operations;
 use Blog\Models\Articles;
 use Blog\Models\Users;
+use Blog\Components\DateComponent;
 /**
  * 文章操作类
  * @author hongker
@@ -26,11 +27,21 @@ class ArticleOperation extends BaseOperation implements Operation {
 	
 	/**
 	 * 添加阅读量
-	 * @param unknown $id
+	 * @param int $id
 	 */
 	public function addView($id) {
 		$key = 'article_view';
-		return $this->redis->zIncrBy($key,1,"article_$id");
+		$this->addTodayView($id);
+		return $this->redis->zIncrBy($key,1,"article:$id");
+	}
+	
+	/**
+	 * 根据天数保存阅读量，以备统计之用
+	 * @param int $id
+	 */
+	public function addTodayView($id) {
+		$key = 'article_view:'.date('Ymd');
+		$this->redis->zIncrBy($key,1,"article:$id");
 	}
 	
 	/**
@@ -269,5 +280,117 @@ class ArticleOperation extends BaseOperation implements Operation {
 		}
 		
 		return $users;
+	}
+	
+	/**
+	 * 获取阅读榜
+	 * @param string $type
+	 * @param number $limit
+	 * @return multitype:\Blog\Models\Users
+	 */
+	public function getArticesRank($type = 'day', $limit = 5) {
+		$articles = array();
+		if($type=='day') {
+			//获取日榜
+			$key = 'article_view:'.date('Ymd');
+			$result = $this->redis->zrevrange($key,0,$limit);
+			
+			foreach ($result as $value) {
+				$article_id = explode(':', $value)[1];
+				$article = $this->get($article_id);
+				if($article) {
+					$articles[] = $article;
+				}
+			}
+		}elseif($type=='week') {
+			//获取周榜
+		}elseif($type=='month') {
+			//获取月榜
+		}elseif($type=='year') {
+			//获取年榜
+		}
+		
+		return $articles;
+	}
+	
+	/**
+	 * 获取某一天的点击排名
+	 * @param date $date (格式: 20151005)
+	 * @param int $start 开始下标
+	 * @param int $stop 结束下标
+	 * @return array
+	 */
+	private function getOneDayRankings($date, $start=0, $stop=5) {
+		$articles = array();
+		$key = 'article_view:'.$date;
+		$result = $this->redis->zrevrange($key,$start,$stop);
+		foreach ($result as $value) {
+			$article_id = explode(':', $value)[1];
+			$article = $this->get($article_id);
+			if($article) {
+				$articles[] = $article;
+			}
+		}
+		return $articles;
+	}
+	
+	/**
+	 * 获取某段时间内的点击量排行
+	 * @param array $dates 日期数组(格式：('20151001','20151002'))
+	 * @param string $outKey 临时生成的key
+	 * @param int $start
+	 * @param int $stop
+	 * @return array
+	 */
+	private function getMultiDaysRankings($dates, $outKey, $start=0, $stop=5) {
+		$articles = array();
+		
+		$keys = array_map(function($date) {
+			return 'article_view:'.$date;
+		}, $dates);
+		
+		//权重因子
+		$weights = array_fill(0, count($keys), 1);
+		
+		//生成集合
+		$this->redis->zUnion($outKey, $keys, $weights);
+		$result = $this->redis->zRevRange($outKey, $start, $stop);
+		
+		foreach ($result as $value) {
+			$article_id = explode(':', $value)[1];
+			
+			$article = $this->get($article_id);
+			if($article) {
+				$articles[] = $article;
+			}
+		}
+		
+		return $articles;
+	}
+	
+	/**
+	 * 获取今日点击排行榜
+	 * @param int $limit
+	 * @return array
+	 */
+	public function getTodayRanks($limit = 5) {
+		$date = date('Ymd');
+		
+		$articles = $this->getOneDayRankings($date,0,$limit);
+		
+		return $articles;
+	}
+	
+	/**
+	 * 获取本周点击排行
+	 * @param number $limit
+	 * @return array
+	 */
+	public function getWeekRanks($limit = 5) {
+		$daysOfCurrentWeek = DateComponent::getDaysOfCurrentWeek();
+		
+		$articles = $this->getMultiDaysRankings($daysOfCurrentWeek, 'rank:current_week',0,$limit);
+		
+		return $articles;
 	}
 }
