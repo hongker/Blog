@@ -1,0 +1,58 @@
+<div class="container">
+	<div class="row">
+		<div class="col-sm-3">
+		<?php $this->view->partial('public/sidebar')?>
+	</div>
+		<div class="col-sm-9">
+			<ol class="breadcrumb">
+				<li><a class="text-info" href="/user/question"><span
+						class="fui-document"></span> 问答管理</a></li>
+				<li class="active">问题详情</li>
+			</ol>
+			<div class="box">
+				<div class="questionInfo">
+					<div class="title"><?php echo $question->title?></div>
+					<div class="content">
+					<?php echo $question->content?>
+					</div>
+					<div class="numbers">
+						<span class="created_at"> 提问时间：<span class="date"><?php echo $question->getCreatedAt()?></span></span> 
+						<span class="view">阅读：<span class="count text-danger"><?php echo $question->view?></span></span>
+						<span class="answer">答复：<span class="count text-info"><?php echo $question->getAnswers()->count()?></span></span>
+					</div>
+						
+				</div>
+			</div>
+			<div class="box">
+				<blockquote class="blockquote-danger">答复列表</blockquote>
+				<div class="answersList">
+					<?php if($answers->count()):?>
+					<?php foreach ($answers as $key=> $answer):?>
+					<div class="answer">
+							<div class="media-left">
+								<a href="#"> <img class="media-object img-circle" src="<?php echo $answer->getAuthor()->picture?>"
+									style="width: 50px; height: 50px;">
+								</a>
+							</div>
+							<div class="media-body">
+								<div class="comment-user">
+									<span class="floor">#<?php echo $key+1?> </span> <span
+										class="username"><?php echo $answer->getAuthor()->username?></span>
+								</div>
+								<p><?php echo $answer->content?></p>
+								<div class="footer">
+									答复时间：<?php echo $answer->getCreatedAt()?>
+								</div>
+							</div>
+							
+						</div>
+						<hr>
+					<?php endforeach;?>
+					<?php else:?>
+					<div class="none">暂无数据</div>
+					<?php endif;?>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

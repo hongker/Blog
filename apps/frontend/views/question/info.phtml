@@ -1,0 +1,125 @@
+<div class="container">
+	<div class="row">
+		<div class="col-sm-9">
+			<div class="box">
+				<div class="questionInfo">
+					<div class="title"><?php echo $question->title?></div>
+					<div class="info">
+						<span class="author"> 作者:<span class="username"><?php echo $question->getAuthor()->username?></span>
+						</span> <span class="created_at"> 发布于：<span class="date"><?php echo $question->getCreatedAt()?></span>
+						</span> <span class="collect"><a href="javascript:void(0)"
+							onclick="addCollect(<?php echo $question->id?>,2)"
+							id="addCollectBtn" class="text-danger">收藏 <i
+								class="fa fa-bookmark-o "></i></a> </span>
+					</div>
+					<div class="content">
+					<?php echo $question->content?>
+					</div>
+					<div class="numbers">
+						<span class="view">阅读：<span class="count text-danger"><?php echo $question->view?></span></span>
+						<span class="answer">答复：<span class="count text-info"><?php echo $question->getAnswers()->count()?></span></span>
+					</div>
+						
+				</div>
+			</div>
+			<div class="box">
+				<blockquote class="blockquote-danger">答复列表</blockquote>
+				<!-- 评论Container/start -->
+				<div class="media">
+					<div class="media-left">
+						<a href="#"> <img class="media-object" src="/images/common_user.png"
+							style="width: 50px; height: 50px;">
+						</a>
+					</div>
+					<div class="media-body">
+						<textarea class="form-control" rows="3" placeholder="我要解答。。。"></textarea>
+						<div class="text-right br">
+							<button data-type="1" data-target="<?php echo $question->id?>"
+								class="btn btn-info btn-sm" onclick="addAnswer(this)">提交解答</button>
+						</div>
+					</div>
+				</div>
+				<!-- 评论Container/end -->
+				<hr>
+				<div class="answersList">
+					<?php if($answers->count()):?>
+					<?php foreach ($answers as $key=> $answer):?>
+					<div class="answer">
+							<div class="media-left">
+								<a href="#"> <img class="media-object img-circle" src="<?php echo $answer->getAuthor()->picture?>"
+									style="width: 50px; height: 50px;">
+								</a>
+							</div>
+							<div class="media-body">
+								<div class="comment-user">
+									<span class="floor">#<?php echo $key+1?> </span> <span
+										class="username"><?php echo $answer->getAuthor()->username?></span>
+								</div>
+								<p><?php echo $answer->content?></p>
+								<div class="footer">
+									时间：<?php echo $answer->getCreatedAt()?>
+								</div>
+							</div>
+							
+						</div>
+						<hr>
+					<?php endforeach;?>
+					<?php else:?>
+					<div class="none">暂无数据</div>
+					<?php endif;?>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-3">
+			<div class="box">
+				<blockquote class="blockquote-info">其他相似的问题</blockquote>
+				
+			</div>
+			
+		</div>
+	</div>
+
+</div>
+<div class="go-top">
+	<i class="fa fa-chevron-up"></i>
+</div>
+<script type="text/javascript" src="/js/gotoTop.js"></script>
+<script type="text/javascript">
+      $(function(){ 
+        $(".go-top").goToTop(); 
+        $(window).bind('scroll resize',function(){ 
+            $(".go-top").goToTop({
+              pageWidthJg:50,
+              pageHeightJg:50
+            }); 
+        }); 
+    }); 
+
+      function addAnswer(obj) {
+  		var question = $(obj).attr('data-target');
+  		var textarea = $(obj).parent().parent().find('textarea');
+
+  		if(!textarea.val()) {
+  			textarea.focus();
+  			alertify.error('请填入解答内容')
+  		}
+  		$.ajax({
+  		        type: "POST",
+  		        url: "/question/addAnswer",
+  		        data: {
+  	  		        question:question,
+  	  		        content:textarea.val()
+  	  		    },
+  		        dataType:'json',
+  		        success: function(data){
+  		            if(data.errNo==0) {
+  		            	alertify.success('提交成功');
+  		            	location.reload();
+  		            }else {
+  		            	alertify.error(data.errMsg);
+  		            }
+  		        	
+  		        },
+  		 });
+  	}
+</script>

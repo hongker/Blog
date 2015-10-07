@@ -109,7 +109,8 @@ function addComment(obj) {
 
 	if(!textarea.val()) {
 		textarea.focus();
-		alertify.error('请填入评论内容')
+		alertify.error('请填入评论内容');
+		return;
 	}
 	$.ajax({
 	        type: "POST",

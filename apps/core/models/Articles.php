@@ -82,14 +82,6 @@ class Articles extends BaseModel {
 	}
 	
 	/**
-	 * 返回格式化后的创建时间
-	 * @return string
-	 */
-	public function getCreatedAt() {
-		return substr($this->created_at,0,10);
-	}
-	
-	/**
 	 * 判断新建文章时是否设置封面图片
 	 * @return boolean
 	 */

@@ -45,6 +45,24 @@
 
 			</ul> <!-- /.nav-second-level -->
 		</li>
+		<li class="<?php if($controller=='question') echo 'active'?>">
+			<a href="">
+				<span class="fui-document"></span> 问答管理<i class="fa arrow"></i>
+			</a>
+			<ul class="nav nav-second-level collapse "
+				<?php if($controller!='question') echo 'aria-expanded="false" style="height: 0px;"'?>>
+				<li class="<?php if($controller=='question'&&$action=='index') echo 'active'?>">
+					<a href="/admin/question" ><i class="fa fa-chain fa-fw"></i> 问题列表</a>
+				</li>
+				<li class="<?php if($controller=='question'&&$action=='add') echo 'active'?>">
+					<a href="/admin/question/add"><i class="fa fa-chain fa-fw"></i> 添加问题</a>
+				</li>
+				<li>
+					<a href="#"><i class="fa fa-chain fa-fw"></i> 数据统计</a>
+				</li>
+
+			</ul> <!-- /.nav-second-level -->
+		</li>
 		<li class="<?php if($controller=='collect') echo 'active'?>">
 			<a href="">
 				<span class="fui-document"></span> 收藏管理<i class="fa arrow"></i>

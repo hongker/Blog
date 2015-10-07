@@ -1,0 +1,76 @@
+<div class="container">
+	<div class="row">
+		<div class="col-sm-3">
+		<?php $this->view->partial('public/sidebar')?>
+	</div>
+		<div class="col-sm-9">
+			<ol class="breadcrumb">
+				<li><a class="text-info" href="/user/question"><span
+						class="fui-document"></span> 问答管理</a></li>
+				<li class="active">问题列表</li>
+			</ol>
+			<?php if($page->total_items==0):?>
+			<div class="box none">
+				暂无数据
+			</div>
+			<?php else:?>
+		    <?php foreach($page->items as $key=>$question):?>
+			<div class="box questions-list">
+				<a class="text-info" href="/user/question/info/<?php echo $question->code?>"><i class="fa fa-question-circle text-info"></i> <?php echo $question->title?></a>
+				<div class="notation text-right">
+					阅读数：<span class=""><?php echo $question->getView()?></span>，
+					回答数：<span class=""><?php echo $question->getAnswers()->count()?></span>
+				</div>
+				<div class="content">
+					<?php echo $question->content?>
+				</div>
+				
+				<div class="text-right operations" data-id="<?php echo $question->id?>">
+					<a id="edit" href="/user/question/edit/<?php echo $question->id?>" class="text-edit"><span class="fui-new"></span> 编辑</a>
+					<a id="del" href="javascript:void(0)" class="text-danger"><span class="fui-cross"></span> 删除</a>
+				</div>
+			</div>
+			<?php endforeach;?>
+			<?php $this->partial('public/page')?>
+		    <?php endif;?>
+		    <a href="/user/question/add" class="btn btn-primary btn-sm">我要提问 <span class="fui-plus"></span></a>
+		    
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+$('[id=del]').click(function() {
+	var id = $(this).parent().attr('data-id');
+
+	var closable = alertify.dialog('confirm').setting('closable');
+	//grab the dialog instance and set multiple settings at once.
+	alertify.dialog('confirm')
+	  .set({
+		'title':'删除问题',
+	    'labels':{ok:'确定', cancel:'取消'},
+	    'message': '确定要删除该问题么？' ,
+	    'onok': function(){
+	    	del(id);
+		    },
+	    'oncancel': function(){ alertify.error('取消操作!');}
+	  }).show();
+});
+
+function del(id) {
+	$.ajax({
+        type: "POST",
+        url: "/user/question/delete",
+        data: {id:id},
+        dataType:'json',
+        success: function(data){
+            if(data.errNo==0) {
+            	alertify.success('删除成功');
+            	location.reload();
+            }else {
+            	alertify.error(data.errMsg);
+            }
+        	
+        },
+    });
+}
+</script>

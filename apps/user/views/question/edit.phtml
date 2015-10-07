@@ -1,0 +1,89 @@
+<div class="container">
+	<div class="row">
+		<div class="col-sm-3">
+		<?php $this->view->partial('public/sidebar')?>
+	</div>
+		<div class="col-sm-9">
+			<ol class="breadcrumb">
+				<li><a class="text-info" href="/user/question"><span
+						class="fui-document"></span> 问答管理</a></li>
+				<li class="active">问题编辑</li>
+			</ol>
+			<div class="box">
+				<div class="form-horizontal">
+					<div class="form-group">
+						<label for="title" class="col-sm-2 control-label">问题标题</label>
+						<div class="col-sm-4">
+							<input type="text" class="form-control" id="title"
+								placeholder="请填入文章标题" value="<?php echo $question->title?>">
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label for="inputPassword3" class="col-sm-2 control-label">问题内容</label>
+						<div class="col-sm-10">
+							<!-- 编辑器源码文件 -->
+							<script type="text/javascript" src="/editor/umeditor.config.js"></script>
+							<script type="text/javascript" src="/editor/umeditor.min.js"></script>
+							<script type="text/javascript" src="/editor/lang/zh-cn/zh-cn.js"></script>
+							<script type="text/plain" name="content" id="myEditor"
+								style="height: 240px;">
+    							<?php echo $question->content?>
+							</script>
+							<script type="text/javascript">
+							    //实例化编辑器
+							    var um = UM.getEditor('myEditor',{
+							    	initialFrameWidth:"100%",
+							        });
+			    
+							</script>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-offset-2 col-sm-10">
+							<button class="btn btn-info" onclick="editQuestion()">
+								提 交 <i class="fa fa-upload"></i>
+							</button>
+							<input type="hidden" value="<?php echo $question->id?>" id="id">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+function editQuestion() {
+	var id = $("#id").val();
+	var title = $("#title");
+	if(!title.val()) {
+		alertify.error("请填入问题标题");
+		title.focus();
+		return;
+	}
+
+	var content = um.getContent();
+	
+	$.ajax({
+        type: "POST",
+        url: "/user/question/edit",
+        data: {
+        	id:id,
+            title:title.val(),
+            content:content
+        },
+        dataType:'json',
+        success: function(data){
+            console.log(data);
+            if(data.errNo==0) {
+            	alertify.success('修改成功');
+            	location.href='/user/question';
+            }else {
+            	alertify.error(data.errMsg);
+            }
+        	
+        },
+    });
+}
+
+</script>

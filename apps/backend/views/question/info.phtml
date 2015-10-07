@@ -1,0 +1,53 @@
+<div class="page-header">
+	<i class="fui-document"></i>问答管理 > 问题详情
+</div>
+<div>
+	<div class="questionInfo">
+		<div class="title"><?php echo $question->title?></div>
+		<div class="info">
+			<span class="author"> 作者:<span class="username"><?php echo $question->getAuthor()->username?></span>
+			</span> <span class="created_at"> 发布于：<span class="date"><?php echo $question->getCreatedAt()?></span>
+			</span> <span class="collect"><a href="javascript:void(0)"
+				onclick="addCollect(<?php echo $question->id?>,2)"
+				id="addCollectBtn" class="text-danger">收藏 <i
+					class="fa fa-bookmark-o "></i></a> </span>
+		</div>
+		<div class="content">
+					<?php echo $question->content?>
+					</div>
+		<div class="numbers">
+			<span class="view">阅读：<span class="count text-danger"><?php echo $question->view?></span></span>
+			<span class="answer">答复：<span class="count text-info"><?php echo $question->getAnswers()->count()?></span></span>
+		</div>
+
+	</div>
+	<blockquote class="blockquote-danger">答复列表</blockquote>
+	<div class="answersList">
+		<?php if($answers->count()):?>
+		<?php foreach ($answers as $key=> $answer):?>
+		<div class="answer">
+			<div class="media-left">
+				<a href="#"> <img class="media-object img-circle"
+					src="<?php echo $answer->getAuthor()->picture?>"
+					style="width: 50px; height: 50px;">
+				</a>
+			</div>
+			<div class="media-body">
+				<div class="comment-user">
+					<span class="floor">#<?php echo $key+1?> </span> <span
+						class="username"><?php echo $answer->getAuthor()->username?></span>
+				</div>
+				<p><?php echo $answer->content?></p>
+				<div class="footer">
+									时间：<?php echo $answer->getCreatedAt()?>
+								</div>
+			</div>
+
+		</div>
+		<hr>
+		<?php endforeach;?>
+		<?php else:?>
+			<div class="none">暂无数据</div>
+		<?php endif;?>
+	</div>
+</div>

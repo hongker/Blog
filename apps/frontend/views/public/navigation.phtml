@@ -11,13 +11,29 @@
 			<ul class="nav navbar-nav">
 				<li class="<?php if($controller=='index') echo 'active'?>"><a href="/">主页</a></li>
 				<li class="<?php if($controller=='article') echo 'active'?>"><a href="/article">资讯</a></li>
+				<li class="<?php if($controller=='question') echo 'active'?>"><a href="/question">问答</a></li>
 				<li class="<?php if($controller=='contact') echo 'active'?>"><a href="/contact">联系我们</a></li>
 				<li class="<?php if($controller=='about') echo 'active'?>"><a href="/about">关于Blog</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 			<?php if($this->session->has('user')):?>
-				<li><a href="/user/home"><?php echo $this->session->get('user')['username']?></a></li>
+				<li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $this->session->get('user')['username']?> <i class="fa fa-angle-down"></i></a>
+                  <span class="dropdown-arrow"></span>
+                  <ul class="dropdown-menu">
+                  	<li><a href="/user/home">个人中心</a></li>
+                    <li><a href="/user/article">文章管理</a></li>
+                    <li><a href="/user/comment">评论管理</a></li>
+                    <li><a href="/user/collect">收藏管理</a></li>
+                    <li><a href="/user/question">问答管理</a></li>
+                    <li class="divider"></li>
+                    <li><a href="javascript:void(0)" id="logout">退出</a></li>
+                  </ul>
+                </li>
+				<li class="nav-picture"><a href="/user/home" ><img class="img-circle" src="<?php echo $this->session->get('user')['picture']?>" /></a></li>
+				<!-- 
 				<li><a href="javascript:void(0)" id="logout">退出</a></li>
+				 -->
 			<?php else:?>
 				<li><a href="/login">登录</a></li>
 				<li><a href="/register">注册</a></li>

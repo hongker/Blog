@@ -316,6 +316,50 @@ create table tasks(
 )engine=myisam default charset=utf8;
 
 /**
+ * questions 问题表
+ * id 主键
+ * code 唯一编号
+ * author_id 作者id
+ * title 标题
+ * content 内容
+ * is_delete 是否删除
+ * created_at 创建时间
+ * updated_at 更改时间
+ */
+drop table if exists questions;
+create table questions(
+	id int not null primary key auto_increment,
+	code char(40) not null,
+	author_id int not null,
+	title varchar(50) not null,
+	content text not null,
+	is_delete tinyint not null default 0,
+	created_at timestamp not null default current_timestamp,
+	updated_at timestamp not null default '0000-00-00 00:00:00'
+)engine=myisam default charset=utf8;
+
+/**
+ * answers 回答表
+ * id 主键
+ * author_id 作者id
+ * question_id 问题id
+ * content 回答内容
+ * is_delete 是否删除
+ * created_at 创建时间
+ * updated_at 更改时间
+ */
+drop table if exists answers;
+create table answers(
+	id int not null primary key auto_increment,
+	author_id int not null,
+	question_id int not null,
+	content text not null,
+	is_delete tinyint not null default 0,
+	created_at timestamp not null default current_timestamp,
+	updated_at timestamp not null default '0000-00-00 00:00:00'
+)engine=myisam default charset=utf8;
+
+/**
  * tables 表模板
  * id 主键
  * is_delete 是否删除

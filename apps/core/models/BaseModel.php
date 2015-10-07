@@ -16,6 +16,7 @@ class BaseModel extends Model {
 	
 	const NOT_DELETED = 0;
 	
+	protected $created_at;
 	protected $updated_at;
 	/**
 	 * 模型初始化
@@ -39,11 +40,14 @@ class BaseModel extends Model {
 		);
 	}
 	
+	
 	/**
-	 * 插入前的操作
+	 * 生成唯一code
+	 * @return string
 	 */
-	public function beforeCreate() {
-		
+	protected function getCode() {
+		$str = uniqid('blog_');
+		return sha1($str);
 	}
 	
 	/**
@@ -119,6 +123,14 @@ class BaseModel extends Model {
 				"field" => $field,
 				"message" => $errNo,
 		));
+	}
+	
+	/**
+	 * 返回格式化后的创建时间
+	 * @return string
+	 */
+	public function getCreatedAt() {
+		return substr($this->created_at,0,10);
 	}
 	
 }
