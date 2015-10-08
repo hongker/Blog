@@ -2,5 +2,57 @@
 	<i class="fa fa-dashboard"></i>系统首页
 </div>
 <div>
-	<p>欢迎登录后台管理系统，管理员：admin</p>
+	<div class="row">
+		<div class="col-sm-8">
+			<blockquote class="blockquote-info">最新文章 </blockquote>
+			
+			<?php foreach($articles as $article):?>
+				<div class="article_rows">
+					<div class="title"><a class="text-info" href="/article/info/<?php echo $article->id?>"><?php echo $article->title?></a></div>
+					<div class="notation">作者：<span><?php echo $article->getAuthor()->username?></span>，发布时间：<span><?php echo $article->getCreatedAt()?></span></div>
+					<div class="article_content">
+						<p class="indent"><?php echo $article->digest?></p>
+					</div>
+					<!-- 
+					<div class="text-left">
+						<a href="/article/info/<?php echo $article->id?>" class="btn btn-info ">阅读全文<i class="fa fa-angle-double-right"></i></a>
+					</div>
+					 -->
+				</div>
+				<hr>
+				<?php endforeach;?>
+			<div class="view-more">
+				<a href="/admin/article">查看更多</a>
+			</div>
+		</div>
+		<div class="col-sm-4">
+			<blockquote class="blockquote-danger">最新评论</blockquote>
+			<div class="commentsList">
+				<?php if($comments->count()):?>
+				<?php foreach ($comments as $comment):?>
+				<div class="answer">
+					<div class="media-left">
+						<a href="#"> <img class="media-object img-circle"
+							src="<?php echo $comment->getAuthor()->picture?>"
+							style="width: 50px; height: 50px;">
+						</a>
+					</div>
+					<div class="media-body">
+						<div class="comment-user">
+							 <span class="username"><?php echo $comment->getAuthor()->username?></span>
+						</div>
+						<p><?php echo $comment->content?></p>
+						<div class="footer">
+							时间：<?php echo $comment->getCreatedAt()?>
+						</div>
+					</div>
+		
+				</div>
+				<?php endforeach;?>
+				<?php else:?>
+					<div class="none">暂无数据</div>
+				<?php endif;?>
+			</div>
+		</div>
+	</div>
 </div>

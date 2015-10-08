@@ -77,13 +77,13 @@ html, body {
     .main {
         position: inherit;
         margin: 20px 0 0 200px;
-        padding: 0 30px;
+        padding: 20px 30px;
     	
     }
 }
 .page-header {
 	margin-bottom:20px;
-	margin-top:60px;
+	margin-top:20px;
 }
 
 /************* article ****************/
