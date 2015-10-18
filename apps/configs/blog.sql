@@ -321,6 +321,7 @@ create table tasks(
  * code 唯一编号
  * author_id 作者id
  * title 标题
+ * type_id 问题类型ID
  * content 内容
  * is_delete 是否删除
  * created_at 创建时间
@@ -333,6 +334,7 @@ create table questions(
 	author_id int not null,
 	title varchar(50) not null,
 	content text not null,
+	type_id tinyint not null default 1,
 	is_delete tinyint not null default 0,
 	created_at timestamp not null default current_timestamp,
 	updated_at timestamp not null default '0000-00-00 00:00:00'

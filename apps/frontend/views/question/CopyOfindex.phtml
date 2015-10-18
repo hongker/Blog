@@ -1,0 +1,37 @@
+<div class="container">
+	<div class="row">
+		<div class="col-sm-8">
+			<div class="box">
+				<div class="page-header">
+					<i class="fa fa-question-circle text-info"></i> 最新提问
+				</div>
+				<?php if($page->total_items==0):?>
+				<div class="none">暂无数据</div>
+				<?php else:?>
+				<?php foreach ($page->items as $question):?>
+				<div class="questions-list">
+					<div class="title"><a href="/question/info/<?php echo $question->code?>" class="text-info"><?php echo $question->title?></a></div>
+					<div class="notation">
+						提问者：<span class=""><?php echo $question->getAuthor()->username?></span>，
+						时间：<span class=""><?php echo $question->getCreatedAt()?></span>
+					</div>
+					<div class="content">
+						<?php echo $question->content?>
+					</div>
+					<div class="notation text-right">
+						阅读数：<span class=""><?php echo $question->getView()?></span>，
+						回答数：<span class=""><?php echo $question->getAnswers()->count()?></span>
+					</div>
+				</div>
+				<?php endforeach;?>
+				<?php $this->partial('public/page')?>
+				<?php endif;?>
+			</div>
+		</div>
+		<div class="col-sm-4">
+			<div class="box">
+				<blockquote class="blockquote-danger">热门问答</blockquote>
+			</div>
+		</div>
+	</div>
+</div>

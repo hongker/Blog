@@ -2,6 +2,7 @@
 namespace Blog\Frontend\Controllers;
 use Blog\Operations\QuestionOperation;
 use Blog\Operations\AnswerOperation;
+use Blog\Operations\TypeOperation;
 /**
  * 问答控制器
  * @author hongker
@@ -13,6 +14,8 @@ class QuestionController extends BaseController
 		\Phalcon\Tag::setTitle('问答');
 		parent::initialize();
 		$this->operation = new QuestionOperation($this->di);
+		$typeOperation = new TypeOperation($this->di);
+		$this->types = $typeOperation->findAll(array("conditions"=>"is_delete=0"));
 		
 	}
 
@@ -29,6 +32,7 @@ class QuestionController extends BaseController
 		
 		$page = $this->getPaginate($questions,$currentPage);
 		$this->view->setVar('page',$page);
+		
 	}
 	
 	/**
@@ -70,6 +74,8 @@ class QuestionController extends BaseController
 	
 			$return['errMsg'] = $this->getErrorMessage($return['errNo']);
 			$this->json_return($return);
+		}else {
+			$this->view->setVar('types',$this->types);
 		}
 	}
 }

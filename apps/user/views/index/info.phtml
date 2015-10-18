@@ -1,0 +1,45 @@
+<div class="container">
+	<div class="box">
+		<div class="row">
+		
+			<div class="col-sm-9">
+				<blockquote class="blockquote-info">他的个人信息 <i class="fa fa-user"></i></blockquote>
+				<div class="row">
+					<div class="col-sm-4">
+						<span>用户名:<span class="noun"><?php echo $userinfo->username?></span></span>
+					</div>
+					<div class="col-sm-4">
+						<span>邮箱:<span class="noun "><?php echo $userinfo->email?></span></span>
+					</div>
+					<div class="col-sm-4">
+						<span>地址:<span class="noun "><?php echo $userinfo->getAddress()->name?></span></span>
+					</div>
+					<div class="col-sm-4">
+						<span>年龄:<span class="noun"><?php echo $userinfo->age?></span></span>
+					</div>
+					<div class="col-sm-4">
+						<span>性别:<span class="noun"><?php echo $userinfo->getSex()?></span></span>
+					</div>
+				</div>
+				<blockquote class="blockquote-danger">他的最新文章</blockquote>
+				<?php foreach($articles as $article):?>
+				<div class="article_rows">
+					<div class="title"><a class="text-info" href="/article/info/<?php echo $article->id?>"><?php echo $article->title?></a></div>
+					<div class="notation">作者：<span><?php echo $article->getAuthor()->username?></span>，发布时间：<span><?php echo $article->getCreatedAt()?></span></div>
+					<div class="article_content">
+						<p class="indent"><?php echo $article->digest?></p>
+					</div>
+					<!-- 
+					<div class="text-left">
+						<a href="/article/info/<?php echo $article->id?>" class="btn btn-info ">阅读全文<i class="fa fa-angle-double-right"></i></a>
+					</div>
+					 -->
+				</div>
+				<hr>
+				<?php endforeach;?>
+				
+				<blockquote class="blockquote-warning">他的最新问答</blockquote>
+			</div>
+		</div>
+	</div>
+</div>

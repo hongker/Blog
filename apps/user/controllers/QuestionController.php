@@ -1,6 +1,7 @@
 <?php
 namespace Blog\User\Controllers;
 use Blog\Operations\QuestionOperation;
+use Blog\Operations\TypeOperation;
 /**
  * 问答控制器
  * @author hongker
@@ -13,6 +14,9 @@ class QuestionController extends BaseController
 		\Phalcon\Tag::setTitle('问答管理');
 		parent::initialize();
 		$this->operation = new QuestionOperation($this->di);
+		$typeOperation = new TypeOperation($this->di);
+		$this->types = $typeOperation->findAll(array("conditions"=>"is_delete=0"));
+		
 	}
 
 	/**
@@ -60,6 +64,7 @@ class QuestionController extends BaseController
 				$question = array();
 				$question['author_id'] = $this->user['id'];
 				$question['title'] = $this->getPost('title');
+				$question['type_id'] = $this->getPost('type','int');
 				$question['content'] = $this->getPost('content',false);
 				
 				$return = $this->operation->save($question);
@@ -67,6 +72,8 @@ class QuestionController extends BaseController
 				
 			$return['errMsg'] = $this->getErrorMessage($return['errNo']);
 			$this->json_return($return);
+		}else {
+			$this->view->setVar('types',$this->types);
 		}
 	}
 	
@@ -82,6 +89,7 @@ class QuestionController extends BaseController
 				
 				$id = $this->getPost('id','int');
 				$question['title'] = $this->getPost('title');
+				$question['type_id'] = $this->getPost('type','int');
 				$question['content'] = $this->getPost('content',false);
 				
 				$return = $this->operation->update($id, $question);
@@ -91,7 +99,8 @@ class QuestionController extends BaseController
 		}else {
 			$id = $this->dispatcher->getParam(0);
 			$question = $this->operation->get($id);
-				
+			
+			$this->view->setVar('types',$this->types);
 			if($question) {
 				$this->view->setVar('question',$question);
 			}else {

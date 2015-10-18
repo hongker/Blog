@@ -117,6 +117,7 @@ ul li{
 .center-footer ul li a {
 	color:#E0E0E0;
 	transition: 0.5s all;
+	font-size: 14px;
 }
 .center-footer ul li a:hover {
 	color:#ffffff;
@@ -131,14 +132,14 @@ ul.atentions li {
 ul.atentions li a{
 	height:50px;
 	width:50px;
-	background-color: #fff;
+	background-color: #ccc;
   	border-radius: 50%;
   	padding: 10px;
 	color:#000000;
 }
 ul.atentions li a:hover {
-	background-color: rgba(211, 211, 211, 0.56);
-	color:#fff;
+	background-color: #fff;
+	color: #049EE4;
 }
 .bottom-footer {
 	padding:20px;
@@ -968,4 +969,57 @@ li.nav-picture  a{
 .nav-picture a img {
 	width: 42px;
 	height: 42px;
+}
+.banner {
+	background-attachment: scroll, fixed;
+	background-image: url("/images/black.png"), url(../images/footer-photo1.jpg);
+	background-position: center center, center center;
+	background-repeat: repeat, no-repeat;
+	background-size:  auto auto, cover;
+	color: rgba(255, 255, 255, 0.8);
+	padding: 5em 0 10em 0;
+	position: relative;
+	text-align: center;
+	height: 400px;
+	width: 100%;
+}
+.banner .content {
+	color: #fff;
+	font-size: 2em;
+	font-family: "Lato", sans-serif;
+}
+.banner a {
+	background:0 0;
+	color: #fff;
+	display: block;
+	border: 2px solid #CCC;
+	margin: 10px auto;
+	width: 140px;
+	padding: 10px 15px;
+	font-size: 16px;
+	transition: 1s all;
+	border-radius: 3px;
+}
+.banner a:hover {
+	background: #fff;
+	border-color: #fff;
+	color: #1787CB;
+}
+.questions {
+	background:#fff;
+	width:100%;
+	padding: 10px 30px;
+	margin-top: 20px;
+}
+.questions .header {
+	font-size: 2em;
+    font-weight: 700;
+    padding: 0 10px 0;
+}
+.questions .lists .title {
+	padding: 10px 10px;
+	border-bottom: 1px solid #E6E6E6;
+}
+.questions .lists a {
+	font-size: 18px;
 }

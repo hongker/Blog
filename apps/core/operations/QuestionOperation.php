@@ -66,6 +66,11 @@ class QuestionOperation extends BaseOperation implements Operation {
 			return $return;
 		}
 		
+		if(empty($data['type_id'])) {
+			$return['errNo'] = 2309;
+			return $return;
+		}
+		
 		if(empty($data['content'])) {
 			$return['errNo'] = 2303;
 			return $return;

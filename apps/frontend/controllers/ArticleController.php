@@ -29,7 +29,7 @@ class ArticleController extends BaseController
 				"order"=>"created_at desc"
 		));
 		
-		$page = $this->getPaginate($articles,$currentPage);
+		$page = $this->getPaginate($articles,$currentPage,5);
 		
 		$users = $this->operation->getUsersByCount();
 		
@@ -53,10 +53,13 @@ class ArticleController extends BaseController
 		
 		$currentPage = $this->getQuery('page','int')?$this->getQuery('page','int'):1;
 		
-		$page = $this->getPaginate($articles,$currentPage);
+		$page = $this->getPaginate($articles,$currentPage,5);
 		
 		$users = $this->operation->getUsersByCount();
 		
+		//获取今日点击榜
+		$day_ranks = $this->operation->getToDayRanks();
+		$this->view->setVar('day_ranks',$day_ranks);
 		$this->view->setVar('users',$users);
 		$this->view->setVar('page',$page);
 		$this->view->setVar('currentType',$id);
