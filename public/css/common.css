@@ -1021,5 +1021,22 @@ li.nav-picture  a{
 	border-bottom: 1px solid #E6E6E6;
 }
 .questions .lists a {
-	font-size: 18px;
+	font-size: 15px;
+}
+.questions .type {
+	color: #333;
+	margin-right: 10px;
+	
+}
+.descriptions {
+	padding-bottom: 30px;
+}
+.description {
+	padding: 20px 10px;
+}
+.description .icon {
+	font-size: 30px;
+	padding-bottom: 10px;
+	color: #3498db;
+	
 }

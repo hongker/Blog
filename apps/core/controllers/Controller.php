@@ -2,12 +2,17 @@
 namespace Blog\Controllers;
 
 use Blog\Utils\Redis;
+use Phalcon\Acl\Adapter\Memory as AclList;
+use Phalcon\Acl;
+use Phalcon\Acl\Resource;
+use Phalcon\Acl\Role;
 /**
  * 公共控制器
  * @author hongker
  * @version 1.0
  */
 class Controller extends \Phalcon\Mvc\Controller {
+	protected $module;
 	/**
 	 * 控制器名称
 	 * @access protected
@@ -35,6 +40,14 @@ class Controller extends \Phalcon\Mvc\Controller {
 	protected $redis;
 	
 	/**
+	 * 权限控制
+	 * @var unknown
+	 */
+	protected $acl;
+	
+	protected $resource;
+	
+	/**
 	 * 初始化
 	 */
 	protected function initialize() {
@@ -47,6 +60,7 @@ class Controller extends \Phalcon\Mvc\Controller {
 	 * @param unknown $dispatcher
 	 */
 	public function beforeExecuteRoute($dispatcher) {
+		$this->module = $dispatcher->getModuleName();
 		$this->controller = $dispatcher->getControllerName();
 		$this->action = $dispatcher->getActionName();
 		$config = new \Phalcon\Config\Adapter\Ini ( "../apps/configs/config.ini" );
@@ -199,5 +213,55 @@ class Controller extends \Phalcon\Mvc\Controller {
 	 */
 	protected function getCache($key) {
 		return $this->redis->get($key);
+	}
+	
+	/**
+	 * 查看角色是否有访问权限
+	 * @param int $type 用户type
+	 * @return boolean
+	 */
+	protected function checkAcl($type) {
+		$config = new \Phalcon\Config\Adapter\Ini ( "../apps/configs/config.ini" );
+		$roles = $config->acl->roles;
+		$this->resource = ucfirst($this->module).ucfirst($this->controller).'Resources';
+		// 检查ACL数据是否存在
+		$aclCacheFile = __DIR__.'/../../../cache/acl.data';
+		if (!is_file($aclCacheFile)) {
+		
+		    $this->acl = new AclList();
+		
+		    // 创建角色
+			// The first parameter is the name, the second parameter is an optional description.
+			$roleAdmins = new Role("Administrators");
+			$roleEditors = new Role("Editors");
+			$roleUsers = new Role("Users");
+			
+			$this->acl->addRole($roleAdmins);
+			$this->acl->addRole($roleEditors);
+			$this->acl->addRole($roleUsers);
+			
+			$adminsUserResource= new Resource("BackendUserResources");
+			
+			$this->acl->addResource($adminsUserResource, array("index","add", "edit","delete"));
+			
+			$this->acl->deny("Editors", "BackendUserResources", "add");
+			
+			$this->acl->deny("Editors", "BackendUserResources", "delete");
+			
+		    // 保存实例化的数据到文本文件中
+		    file_put_contents($aclCacheFile, serialize($this->acl));
+		} else {
+		
+		     // 返序列化
+		     $this->acl = unserialize(file_get_contents($aclCacheFile));
+		}
+		
+		if(isset($roles[$type])) {
+			//判断是否有权限
+			if($this->acl->isAllowed($roles[$type],$this->resource,$this->action)) {
+				return true;
+			}
+		}
+		return false;
 	}
 }

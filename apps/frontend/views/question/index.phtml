@@ -13,7 +13,7 @@
 			<?php else:?>
 			<?php foreach ($page->items as $question):?>
 			<div class="title">
-				<a href="/question/info/<?php echo $question->code?>" class="text-info"><?php echo $question->title?></a>
+				<a href="/question/info/<?php echo $question->code?>" class="text-info"><span class="type">[<?php echo $question->getType()->name?>]</span><?php echo $question->title?></a>
 				<span class="right visible-md-block visible-lg-block"><?php echo $question->getCreatedAt()?></span>
 			</div>
 			<?php endforeach;?>

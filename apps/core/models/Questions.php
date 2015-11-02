@@ -20,6 +20,10 @@ class Questions extends BaseModel {
 		$this->hasMany("id", "Blog\Models\Answers", "question_id", array(
 				'alias' => 'Answers'
 		));
+		
+		$this->belongsTo("type_id", "Blog\Models\Types", "id", array(
+				'alias' => 'Type'
+		));
 	}
 	
 	/**

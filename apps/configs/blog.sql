@@ -6,7 +6,7 @@ use blog;
  * username 用户名
  * password 密码
  * email 邮箱
- * type 用户类型(1:普通用户,2:超级管理员,3:普通管理员)
+ * type 用户类型(1:普通用户,2:超级管理员,3:编辑)
  * age 年龄
  * sex 性别(M:男,F:女,N:保密)
  * picture 头像
@@ -32,6 +32,8 @@ create table users(
 )engine=myisam default charset=utf8;
 insert into users(username,email,type,password,age)
 values('admin','xiaok2013@live.com',2,'$2a$12$omJ0WXB97BKwNIsdWcK7gOC4G8OjeHegDFEdc1rROYplV8EFgFK4.',21);
+insert into users(username,email,type,password,age)
+values('editor1','xiaok123@live.com',3,'$2a$12$omJ0WXB97BKwNIsdWcK7gOC4G8OjeHegDFEdc1rROYplV8EFgFK4.',21);
 
 /**
  * articles 文章表(保存文章信息)
