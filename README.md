@@ -1,6 +1,6 @@
 # Blog
 
-I want to use pjax and nprogress to display the content.Please waiting for the cool thing.
+基于Phalcon实现的多模块博客应用。
 
 #架构说明
  -----
